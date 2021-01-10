@@ -2,3 +2,7 @@
   :video:
     :width:   600
     :name:    extrait.mp4
+  :personnages:
+    :PR: Protagoniste
+    :AN: Antagoniste
+    :OQ: Objet de la quête

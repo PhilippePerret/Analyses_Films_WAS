@@ -4,6 +4,12 @@ const TABS = ['home','crop','analyse','export'];
 
 class UI {
 
+static init(){
+  return new Promise((ok,ko) => {
+    ok()
+  })
+}
+
 /**
 * Insertion des éléments HTML (briques)
 ***/

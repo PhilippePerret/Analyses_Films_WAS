@@ -1,9 +1,8 @@
 'use strict';
 
-// DGet("video").src = '_FILMS_/Drive/extrait.mp4'
-
 $(document).ready(function(){
-  UI.insert("brique", "div#div-inserted")
-  .then(UI.insert.bind(UI, "video", "div#div-video"))
+  UI.insert("video", "body")
+  .then(UI.insert.bind(UI, "listing", "div#rigth-margin"))
+  .then(UI.init.bind())
   .then(Film.load.bind())
 })
