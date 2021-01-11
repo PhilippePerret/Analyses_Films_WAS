@@ -4,11 +4,24 @@ class Film {
 // Méthode qui charge le film courant (c'est-à-dire le film se trouvant
 // dans le dossier _FILMS_)
 static load(){
+  const my = this
+  console.log("my = ", my)
   Ajax.send('load_config_current_film.rb')
-  .then(ret => {
-    window.film = new Film(ret.config)
-    window.film.prepare()
+  .then(my.prepareFilm.bind(my))
+  .then(my.loadFilmEvents.bind(my))
+}
+static prepareFilm(ret){
+  return new Promise((ok,ko) => {
+    if ( ret.config ){
+      window.film = new Film(ret.config)
+      window.film.prepare()
+      ok()
+    }
   })
+}
+static loadFilmEvents(){
+  return Ajax.send('load_events.rb', {film: film.folder})
+  .then(film.dispatchEvents.bind(film))
 }
 
 
@@ -45,6 +58,13 @@ prepareMenuPersonnages(){
   menuPersonnages.addEventListener('change', this.onChoosePersonnage.bind(this))
 }
 
+/**
+* Méthode appelée après le chargement par ajax de tous les évènements
+du film courant
+***/
+dispatchEvents(ret){
+  ret.events.forEach(devent => AEvent.addFromData(devent))
+}
 
 /** ---------------------------------------------------------------------
 *   Méthodes d'évènement

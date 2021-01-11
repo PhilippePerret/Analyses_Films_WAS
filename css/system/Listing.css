@@ -46,7 +46,7 @@ div.listing div.listing-barre-centrale ul {
   padding:0;
   user-select:none;
   -webkit-user-select:none;
-  width: 240px; /* à reproduire ci-dessous */
+  min-width: 240px; /* à reproduire ci-dessous */
 }
 div.listing div.listing-barre-centrale form {
   margin-left:240px;
@@ -115,7 +115,7 @@ form.listing-form textarea {
   background-color:#EEEEEE;
   font-size: inherit;
   font-family:inherit;
-  width:280px;
+  width:-webkit-fill-available;
 }
 form.listing-form textarea {
   height:80px;

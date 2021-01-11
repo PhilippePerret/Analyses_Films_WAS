@@ -41,8 +41,15 @@ init(){
 *   Properties
 *** --------------------------------------------------------------------- */
 
-get time(){ return this.obj.currentTime }
-set time(v){ this.obj.currentTime = parseFloat(v)}
+get time(){ return Number.parseFloat(this.obj.currentTime).toPrecision(3) }
+set time(v){
+  v = parseFloat(v) // peut être un string
+  if ( v <= this.obj.duration ) {
+    this.obj.currentTime = v
+  } else {
+    error(`Le temps ${t2h(v)} (${v}) dépasse la durée du film.`)
+  }
+}
 
 // Méthode pour informer que la vidéo est prête
 setReady(){

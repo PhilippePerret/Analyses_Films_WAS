@@ -34,7 +34,8 @@ class MaClasse {
         titre: 'Le titre du listing'
       , id: '<identifiant du listing>'
       // Optionnel
-      , container: <selector> // le sélecteur du container, sinon, le body
+      , container: <DOMElement> // le container, sinon, le body
+      													// Note : pas en String
       , height: <Number Hauteur> // hauteur de la fenêtre
       , top:    <Number> // décalage vertical
       , left:   <Number> // Décalage horizontal
@@ -104,6 +105,7 @@ On appelle « propriétaire du listing » la CLASSE quelconque du programme qu
 * définir une méthode de classe `get` qui reçoit en argument l'identifiant d'un item et retourne son instance,
 * définir la méthode de classe `create` pour la création d'un nouvel item (la méthode doit recevoir les valeurs, dont `id` qui vaudra `null`),
 * définir la méthode de classe `update` pour la modification de l'item (la méthode doit recevoir les valeurs, dont `id` qui possède la valeur de l'identifiant)
+* définir la propriété de classe `tableName` qui doit retourner le nom de la table SI le listing travaille avec une base de données.
 
 Les instances doivent :
 
@@ -231,6 +233,16 @@ Les méthodes 'setter' et 'getter' permettent respectivement de définir et de r
 * Le champ de formulaire doit avoir un ID de `item-<propriété>` (`item-matieres` pour l’exemple).
 
 
+
+---
+
+## Méthodes optionnelles
+
+
+
+### `static <owner>.onDestroy(item)`
+
+Méthode appelée (si elle existe) à la destruction d’un item. Si cette méthode n’existe pas, l’élément sera simplement détruit de la liste.
 
 ---
 
@@ -378,7 +390,8 @@ Mais on peut définir une méthode propre au cours de l'[instanciation du listin
 
 * Réglage de la valeur par défaut quand on reset le formulaire.
 * Option `createOnPlus` qui permet de définir qu’il faut créer l’élément quand on clique sur le bouton « + ». Dans l’idée, c’est parce que souvent je fonctionne ainsi : je rentre les valeurs, puis je clique sur « + » pour créer l’élément alors que par défaut, le comportement est : 1) on clique sur « + » pour instancier un nouvel élément, 2) on définit ses valeurs, 3) on clique sur « Save » pour l’enregistrer.
-* Développement du présent manuel (meilleure définition des champs de formulaire propres)
+* Développement du présent manuel (meilleure définition des champs de formulaire propres).
+* Correction de la méthode de destruction qui ne fonctionnait qu’avec une base de données.
 
 
 

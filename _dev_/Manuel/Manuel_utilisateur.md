@@ -4,14 +4,18 @@
 
 ## Analyse
 
-### Ajouter un évènement d'analyse
+### Créer un évènement d'analyse
 
 * Choisir son type dans le menu (scène, nœud clé, etc.),
 * choisir le temps sur la vidéo en [navigant dans le film](#naviguer),
 * rédiger le contenu de l'évènement
 * cliquer sur le bouton « + » du listing d'éléments.
 
+### Modifier un évènement d'analyse
 
+* Le choisir dans la liste,
+* modifier ses valeurs,
+* cliquer sur le bouton « save ».
 
 <a id="naviguer"></a>
 

@@ -254,15 +254,17 @@ class Listing {
       if ( 'function' == typeof this.owner.destroy ) {
         this.owner.destroy.call(this.owner, litem.item)
       } else {
-        if ( undefined === this.owner.tableName){
-          return erreur("ERREUR SYSTÉMIQUE : Il faut définir la propriété `tableName` du propriétaire du listing qui doit retourner le nom de la table (DB).")
-        }
-        Ajax.send('system/db-remove.rb', {table:this.owner.tableName, item_id:litem.item.id})
-        .then(ret => {
-          onAjaxSuccess(ret)
-          if(undefined!==this.owner.onDestroy)this.owner.onDestroy(litem.item)
+        if ( undefined != this.owner.tableName ) {
+          Ajax.send('system/db-remove.rb', {table:this.owner.tableName, item_id:litem.item.id})
+          .then(ret => {
+            onAjaxSuccess(ret)
+            if(undefined!==this.owner.onDestroy)this.owner.onDestroy(litem.item)
+            this.afterDestroy(litem)
+          }).catch(onError)
+        } else {
+          if(this.owner.onDestroy)this.owner.onDestroy(litem.item)
           this.afterDestroy(litem)
-        }).catch(onError)
+        }
       }
     }
   }
@@ -371,9 +373,9 @@ class Listing {
   get btnAll(){return this._btnall||(this._btnall = this.obj.querySelector('.listing-btn-all'))}
 
   get obj(){return this._obj || (this._obj = DGet(this.dieseId))}
-  get id(){return this._id || (this._id = this.constructor.getNewId())}
+  get id(){return this._id || (this._id = this.data.id || this.constructor.getNewId())}
   get dieseId(){return this._did ||(this._did = `#${this.id}`)}
-}
+}// class Listing
 
 
 /** ---------------------------------------------------------------------
@@ -410,12 +412,12 @@ class ListingItem {
   }
 
   onClick(ev){
-    console.log({
-        'this.selected':this.selected
-      , 'this.listing.selection.hasSeveral':this.listing.selection.hasSeveral
-      , 'ev.shiftKey': ev.shiftKey
-      , 'ev.altKey': ev.altKey
-    })
+    // console.log({
+    //     'this.selected':this.selected
+    //   , 'this.listing.selection.hasSeveral':this.listing.selection.hasSeveral
+    //   , 'ev.shiftKey': ev.shiftKey
+    //   , 'ev.altKey': ev.altKey
+    // })
     if (ev.altKey) {
       // Quand on clique sur un élément par la touche ALT, c'est pour le
       // retirer de la liste filtrée. Si aucun filtre n'est encore appliqué,
