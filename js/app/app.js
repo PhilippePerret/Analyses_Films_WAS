@@ -3,10 +3,12 @@
 class App {
 
   // Quand la page est chargée
-  static initialisation(){
+  static init(){
     return new Promise((ok,ko) => {
       console.log("Initialisation en cours…")
       UI.init()
+      Console.init()
+      AEvent.init()
       ok()
     })
   }

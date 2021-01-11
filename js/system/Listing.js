@@ -3,7 +3,7 @@
   Class Listing
   -------------
 
-  Version 1.0.0
+  Version 1.0.1
   -------------
 
 Cette classe permet de gérer des listes de chose intégralement, c'est-à-dire
@@ -235,9 +235,16 @@ class Listing {
   *** --------------------------------------------------------------------- */
 
   onPlusButton(ev){
-    this.form.cleanup()
-    this.toggleBtnSave(true)
-    message("Vous pouvez créer le nouvel élément.")
+    if ( this.data.createOnPlus ) {
+      // Quand on doit créer l'élément quand on clique sur "+"
+      this.onSaveButton(null)
+    } else {
+      // Procédure normale en trois temps : 1) "+" initialisation,
+      // 2) entrée des valeurs 3) "save" pour créer l'élément
+      this.form.cleanup()
+      this.toggleBtnSave(true)
+      message("Vous pouvez créer le nouvel élément.")
+    }
   }
 
   onMoinsButton(ev){
@@ -327,7 +334,8 @@ class Listing {
         }
       } else {
         if ( 'function' === typeof (this.owner.create) ){
-          this.owner.create.call(this.owner, itemValues)
+          const newItem = this.owner.create.call(this.owner, itemValues)
+          this.add(newItem)
         } else {
           console.error("Le propriétaire doit posséder la méthode 'create', qui reçoit les nouvelles valeurs, pour pouvoir fonctionner.")
         }
@@ -586,9 +594,9 @@ class ListingForm {
 
   cleanup(){
     this.obj.querySelector('.span-id').innerHTML = '&nbsp;'
-    this.forEachField((field, propName) => {
+    this.forEachField((field, dprop) => {
       if ( field.isCheckbox ) field.checked = false
-      else { field.value = "" }
+      else { field.value = dprop.default || "" }
     })
     // Par défaut on décoche toutes les case à cocher
     this.obj.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false)
@@ -630,20 +638,29 @@ class ListingForm {
       }
 
       const row = this.obj.querySelector(`div.row-${dproperty.name}`)
-      const div_message = row.querySelector(`.error-message`)
+      let div_message;
+      if (row){
+        div_message = row.querySelector(`.error-message`)
+      } else {
+        console.warn(`Pas de rangée “div.row-${dproperty.name}” dans le formulaire. Impossible de mettre en exergue l'erreur.`)
+      }
       if (error) {
         errors.push(error)
-        row.classList.add('field-error')
-        div_message.innerHTML = error
-        $(div_message).show()
+        if(row){
+          row.classList.add('field-error')
+          div_message.innerHTML = error
+          $(div_message).show()
+        }
         if (!firstFocusSet){
           firstFocusSet = true
           this.obj.querySelector(`#item-${dproperty.name}`).focus()
         }
       } else {
         // Tout est OK, on peut la prendre
-        row.classList.remove('field-error') // s'il y avait une erreur
-        $(div_message).hide()
+        if ( row ) {
+          row.classList.remove('field-error') // s'il y avait une erreur
+          $(div_message).hide()
+        }
         Object.assign(onlyValues, {[dproperty.name]: value})
       }
     })// fin de boucle sur toutes les propriétés

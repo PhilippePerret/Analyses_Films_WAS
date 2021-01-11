@@ -25,9 +25,8 @@ prepare(){
   this.prepareEditor()
 }
 prepareVideo(){
-  const video = new DOMVideo(DGet('video'), `_FILMS_/${this.config.film_folder}/${this.config.video.name}`)
-  video.setWidth(this.config.video.width || 400)
-  window.video = video
+  window.video = new DOMVideo(DGet('video'), `_FILMS_/${this.config.film_folder}/${this.config.video.name}`)
+  window.video.setWidth(this.config.video.width || 400)
 }
 prepareEditor(){
   if ( this.config.personnages ){

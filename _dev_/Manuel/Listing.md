@@ -16,7 +16,7 @@ La class `Listing` est une classe permettant de gérer de façon très profonde 
 Pour pouvoir fonctionner, la classe `Listing` a besoin :
 
 * du module `Listing.js`,
-* du module CSS `Listing.css`,
+* du module CSS `Listing.css` (ou `_Listing.sass`),
 * d'un propriétaire conforme (cf. [conformité du propriétaire du listing](ownerconfirmite)),
 * une méthode générale `error(msg)` qui traite les messages d'erreur,
 * une méthode générale `message(msg)` qui traite les messages notice,
@@ -30,14 +30,20 @@ Pour pouvoir fonctionner, la classe `Listing` a besoin :
 class MaClasse {
 
   static get listing(){
-    return this._listing || ( this._listing = new Listing({
+    return this._listing || ( this._listing = new Listing(this, {
         titre: 'Le titre du listing'
       , id: '<identifiant du listing>'
       // Optionnel
+      , container: <selector> // le sélecteur du container, sinon, le body
       , height: <Number Hauteur> // hauteur de la fenêtre
       , top:    <Number> // décalage vertical
       , left:   <Number> // Décalage horizontal
       , sortable: true/false  // Si true, la liste est "sortable"
+			// Par défaut la procédure normale est 1) on clique sur "+", 2) on 
+      // définit les valeurs et 3) on clique sur "Save". Si on veut adopter
+      // plutôt la procédure 1) On définit les valeurs, 2) on clique sur "+"
+      // pour créer l'item, alors on met la propriété 'createOnPlus' à true
+      , createOnPlus: true/false // défaut : false
       // Si la méthode propriétaire qui doit être appelée après une sélection
       // n'est pas onSelect, on peut la définir ici : (elle reçoit en premier
       // argument l'item sélectionné)
@@ -58,7 +64,11 @@ class MaClasse {
 
 ```
 
+> Note : bien noter que le premier paramètre de l’initialisation est le propriété (`this`).
 
+### Insertion du listing dans la page
+
+Dès qu'on instancie le listing — cf. ci-dessus —, la listing est affiché dans la page tel qu'il est défini par ses propriétés.
 
 ### Définir des boutons propres
 
@@ -99,7 +109,7 @@ Les instances doivent :
 
 * définir la méthode `li` qui retournera la balise `LI` à afficher dans le listing,
 * ce `LI` doit contenir la classe `listing-item` (dans le cas contraire le filtrage ne sera pas possible — l'erreur sera signalée),
-* ce `LI` doit impérativement avec un attribut `id` constitué par `<type élément>-<id>` et le `<type-element>` ne doit comporter aucun tiret (moins) (par exemple `projet-12`),
+* ce `LI` doit **impérativement** avoir un attribut `id` constitué par `<type élément>-<id>` et le `<type-element>` ne doit comporter aucun tiret (moins) (par exemple `projet-12`),
 * définir la propriété `id` qui devra retourner l'identifiant de l'item
 
 
@@ -157,43 +167,21 @@ min         Longueur minimale de la donnée (ou nombre min)
 default     Valeur par défaut de la propriété.                Philippe
             Pour un type=checkbox, c'est true/false
 
-form        Si la propriété ne se définit pas par un champ
-            simple, on peut définir ici le NOM de la fonction
-            qui doit servir à construire le champ. Par exem-
-            ple, imaginons des sociétés qui traitent diffé-
-            rente matière (bois, métal, papier, etc.). La
-            propriété 'matieres' est définie par :
-            {
-                name:'matieres'
-              , hname:null
-              , type: 'hidden'
-              , form:'buildCbMatieres'
-              , setter:'setMatieresValue'
-              , getter:'getMatieresValue'
-            }
-            Listing produira alors une rangée avec un champ
-            caché pour mettre la valeur finale de 'matieres'
-            et la méthode 'buildCbMatieres' du propriétaire
-            construira la liste des checkbox à cocher.
-            Cette méthode 'buildCbMatieres' reçoit en premier
-            argument le div.row contenant déjà le champ défi-
-            ni dans PROPERTIES.
-            Les méthodes 'setter' et 'getter' permettent res-
-            pectivement de définir et de récupérer les valeurs
-            de la propriété 'matieres'.
+form        cf. ci-dessous "Utilisation de form"
 
 setter      Pour définir les valeurs d'un champ complexe
-            cf. 'form' ci-dessus
+            (p.e. le 'form' ci-dessus, mais pas seulement)
             Le setter reçoit la valeur de la propriété et doit
             se débrouiller avec en fonction de ce qu'elle est
             et de la construction des champs de formulaire. Par
             exemple, si on a affaire aux matières ci-dessus et
             que la valeur ressemble à "0011001" avec 1 utilisé
-            lorsqu'une matière est choisie. Donc les matières
-            3, 4 et 7 seront sélectionnée.
+            lorsqu'une matière est choisie. Donc la méthode setter
+            devra sélectionner les matières 3, 4 et 7.
+            Peut être utilisé par exemple si la valeur se trouve 
+            autre par dans l'interface.
 
 getter      Pour récupérer les valeurs d'un champ complexe
-            cf. 'form' ci-dessus
             La méthode de getter reçoit le div contenant les
             élément de formulaire construits avec la méthode
             définie par 'form'.
@@ -201,6 +189,52 @@ getter      Pour récupérer les valeurs d'un champ complexe
             priété concernée.
 
 ```
+
+
+
+##### Utilisation de `form`
+
+Si la propriété ne se définit pas par un champ simple, on peut définir ici le NOM de la fonction qui doit servir à construire le champ. Par exemple, imaginons des sociétés qui traitent différente matière (bois, métal, papier, etc.). La propriété 'matieres' est définie par :
+
+~~~javascript
+{
+		name:'matieres'
+  , hname:null
+  , type: 'hidden'
+  , form:'buildCbMatieres'
+  , setter:'setMatieresValue'
+  , getter:'getMatieresValue'
+ }
+
+~~~
+
+Listing produira alors une rangée avec un champ caché pour mettre la valeur finale de 'matieres' et la méthode de classe 'buildCbMatieres' du owner construira la liste des checkbox à cocher.
+
+Cette méthode de classe 'buildCbMatieres' reçoit en premier argument le div.row contenant déjà le champ défini dans PROPERTIES. 
+
+Les méthodes 'setter' et 'getter' permettent respectivement de définir et de récupérer les valeurs de la propriété 'matieres'.
+
+**Requis absolument** :
+
+* La méthode qui produit le champ (`buildCbMatieres` pour l’exemple) doit être placé dans un div de classe `row-<type>` (donc `row-matieres` pour l’exemple) et ce div doit contenir un champ pour l’erreur. S’il y a un label, on ajoute un DOMElement label :
+
+  ~~~javascript
+  DCreate('DIV', {class: "row-<property>", inner: [
+    	 DCreate('LABEL', {text: "<nom humain>"})
+     , DCreate(/* champ du formulaire */)
+    , DCreate('DIV', {class:'error-message'})
+  ]})
+  ~~~
+
+  
+
+* Le champ de formulaire doit avoir un ID de `item-<propriété>` (`item-matieres` pour l’exemple).
+
+
+
+---
+
+
 
 ## Méthodes utiles
 
@@ -319,7 +353,7 @@ Mais on peut définir une méthode propre dans l'[instanciation du listing][] av
 
 ~~~javascript
 <owner>.onDeselectAll(){
-  
+
 }
 ~~~
 
@@ -331,6 +365,30 @@ Mais on peut définir une méthode propre dans l'[instanciation du listing][] av
 Par défaut, cette méthode est `Propriétaire#onAdd(item)`.
 
 Mais on peut définir une méthode propre au cours de l'[instanciation du listing][] avec la propriété `onAdd`.
+
+
+
+---
+
+## Annexe
+
+### Historique des versions
+
+##### version 1.0.1
+
+* Réglage de la valeur par défaut quand on reset le formulaire.
+* Option `createOnPlus` qui permet de définir qu’il faut créer l’élément quand on clique sur le bouton « + ». Dans l’idée, c’est parce que souvent je fonctionne ainsi : je rentre les valeurs, puis je clique sur « + » pour créer l’élément alors que par défaut, le comportement est : 1) on clique sur « + » pour instancier un nouvel élément, 2) on définit ses valeurs, 3) on clique sur « Save » pour l’enregistrer.
+* Développement du présent manuel (meilleure définition des champs de formulaire propres)
+
+
+
+
+
+
+
+
+
+
 
 
 [propriétaire du listing]: #ownerlisting
