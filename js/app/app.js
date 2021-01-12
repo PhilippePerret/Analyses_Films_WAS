@@ -7,7 +7,9 @@ class App {
     return new Promise((ok,ko) => {
       console.log("Initialisation en cours…")
       UI.init()
+      Locators.init()
       Console.init()
+      Controller.init()
       AEvent.init()
       ok()
     })

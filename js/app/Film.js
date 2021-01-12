@@ -5,7 +5,6 @@ class Film {
 // dans le dossier _FILMS_)
 static load(){
   const my = this
-  console.log("my = ", my)
   Ajax.send('load_config_current_film.rb')
   .then(my.prepareFilm.bind(my))
   .then(my.loadFilmEvents.bind(my))

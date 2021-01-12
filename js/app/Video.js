@@ -18,17 +18,80 @@ togglePlay(){
   }
 }
 play(){
+  this.rewinding && this.resetRewind()
   this.obj.play()
   this.playing = true
 }
-pause(){
+resetPlaying(){
   this.obj.pause()
   this.playing = false
+  this.obj.playbackRate = 1
+}
+pause(){
+  if ( this.playing ){ this.resetPlaying() }
+  else if ( this.rewinding ) { this.resetRewinding() }
+}
+rewind(){
+  this.playing && this.resetPlaying()
+  this.startRewind()
+  this.rewinding  = true
+}
+resetRewinding(){
+  this.stopRewind()
+  this.rewinding  = false
+  this.rewindRate = 60
+}
+startRewind(){
+  const my = this
+  this.rewindTimer = setInterval(() => {
+    my.obj.currentTime -= .1
+  }, my.rewindRate)
+}
+stopRewind(){
+  if ( this.rewindTimer ) {
+    clearInterval(this.rewindTimer)
+    delete this.rewindTimer
+  }
+}
+
+// Pour accéler le jeu à chaque impulsion (appel)
+replay(){
+  this.obj.playbackRate += 0.2
+  this.playing || this.play()
+}
+// Pour accéler le rewind à chaque impulsion (appel)
+rerewind(){
+  this.stopRewind() // même si ça ne joue pas encore
+  this.rewindRate -= 2
+  this.rewind()
+}
+
+/**
+* Pour avancer ou reculer d'un "cran"
+Par défaut, on avance d'une frame (25 par secondes)
+Mais avec des modifieurs :
+  - maj:      avance par seconde
+  - command   avance par dizaine de secondes
+***/
+avance(ev){
+  this.time = this.calcPas(this.time, ev, 1)
+}
+recule(ev){
+  this.time = this.calcPas(this.time, ev, -1)
+}
+calcPas(t, ev, factor){
+  console.log("t = ", t)
+  var p
+  if ( ev.shiftKey )      p = 1
+  else if ( ev.metaKey )  p = 10
+  else                    p = 1 / 25
+  return (t + (p * factor) )
 }
 
 init(){
   const my = this
   this.obj.src = this.src
+  this.rewindRate = 60
   this.obj.load()
   $(this.obj).on('canplaythrough', (res) => {
     my.calcValues()
@@ -41,7 +104,7 @@ init(){
 *   Properties
 *** --------------------------------------------------------------------- */
 
-get time(){ return Number.parseFloat(this.obj.currentTime).toPrecision(3) }
+get time(){ return parseFloat(Number.parseFloat(this.obj.currentTime).toPrecision(3)) }
 set time(v){
   v = parseFloat(v) // peut être un string
   if ( v <= this.obj.duration ) {
@@ -101,11 +164,11 @@ onMouseOver(ev){
 ***/
 onKey(ev){
   switch(ev.key){
-    case 'LEFT ARROW':
-      message("Touche gauche")
+    case 'ArrowLeft':
+      this.recule(ev)
       return stopEvent(ev)
-    case 'Right Array':
-      message("Touche droite")
+    case 'ArrayRight':
+      this.avance(ev)
       return stopEvent(ev)
     default:
       message("Touche "+ev.key)

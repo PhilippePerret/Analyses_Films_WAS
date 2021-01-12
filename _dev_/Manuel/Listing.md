@@ -39,7 +39,11 @@ class MaClasse {
       , height: <Number Hauteur> // hauteur de la fenêtre
       , top:    <Number> // décalage vertical
       , left:   <Number> // Décalage horizontal
-      , sortable: true/false  // Si true, la liste est "sortable"
+      , options: {
+  	    	sortable: true/false  // Si true, la liste est "sortable"
+					draggable: true/false // si false, le listing n'est pas déplaçable
+      		title: true/false			// Si false, pas de bande de titre
+	    }
 			// Par défaut la procédure normale est 1) on clique sur "+", 2) on 
       // définit les valeurs et 3) on clique sur "Save". Si on veut adopter
       // plutôt la procédure 1) On définit les valeurs, 2) on clique sur "+"
@@ -385,6 +389,11 @@ Mais on peut définir une méthode propre au cours de l'[instanciation du listin
 ## Annexe
 
 ### Historique des versions
+
+##### version 1.1.0
+
+* Option pour ne pas afficher la bande de titre
+* Option pour ne pas rendre le listing draggable.
 
 ##### version 1.0.1
 

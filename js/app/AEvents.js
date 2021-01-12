@@ -136,7 +136,6 @@ class AEvent {
     var v = this.tempsField.value
     if (v == '') v = video.time
     else { v = h2t(v) }
-    console.log("Temps retourné : ", v)
     return v
   }
   static setTemps(v){
