@@ -42,9 +42,12 @@ class MaClasse {
       , top:    <Number> // décalage vertical
       , left:   <Number> // Décalage horizontal
       , options: {
+      		// Note : dans les options ci-dessous, la première valeur
+      		// est la valeur par défaut.
   	    	sortable: true/false  // Si true, la liste est "sortable"
 					draggable: true/false // si false, le listing n'est pas déplaçable
       		title: true/false			// Si false, pas de bande de titre
+      		no_id: false/true			// Si true, on n'affiche pas l'identifiant
 	    }
 			// Par défaut la procédure normale est 1) on clique sur "+", 2) on 
       // définit les valeurs et 3) on clique sur "Save". Si on veut adopter
@@ -262,6 +265,9 @@ class maClasseAvecListing extends ListingExtended {
   newId() 		// Renvoie un nouvel id
   create()		// crée un nouvel item à partir des données du listing
   update()		// actualise l'item à partir des données du listing
+  onDestroy()	// peut détruire l'item (la propriété destroyItemScript doit être
+  						// définie). Sinon, il faut surclasser cette méthode pour qu'elle
+  						// ne fasse rien.
   
   
   constructor(data){

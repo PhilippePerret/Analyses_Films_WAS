@@ -44,6 +44,13 @@ static update(data){
   const item = this.get(data.id)
   item.update(data)
 }
+
+// Appelé par le listing quand on détruit un item
+static onDestroy(item){
+  Ajax.send(this.destroyItemScript, {id: item.id})
+  .then(() => delete this.table[item.id])
+}
+
 /** ---------------------------------------------------------------------
 *
 *   INSTANCE

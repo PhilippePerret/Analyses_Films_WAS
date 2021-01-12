@@ -421,9 +421,11 @@ class ListingItem {
     this.observe()
   }
   replaceInList(){
-    newObj = this.item.li
-    this.listing.liste.replaceChild(this.obj, newObj)
+    const newObj = this.item.li
+    this.unobserve()
+    this.obj.replaceWith(newObj)
     this.obj = newObj
+    this.observe()
   }
   addClass(css){
     this.obj.classList.add(css)
@@ -439,6 +441,9 @@ class ListingItem {
   // Observation du LI d'un item de liste
   observe(){
     this.obj.addEventListener('click', this.onClick.bind(this))
+  }
+  unobserve(){
+    this.obj.removeEventListener('click', this.onClick.bind(this))
   }
 
   onClick(ev){
@@ -621,11 +626,13 @@ class ListingForm {
   // Remplir le formulaire avec les valeurs de l'item +item+
   feed(item){
     this.obj.querySelector('.span-id').innerHTML = `#${item.id}`
+    this.obj.querySelector('#item-id').value = item.id
     this.forEachField(this.feedField.bind(this,item))
   }
 
   cleanup(){
     this.obj.querySelector('.span-id').innerHTML = '&nbsp;'
+    this.obj.querySelector('#item-id').value = ''
     this.forEachField((field, dprop) => {
       if ( field.isCheckbox ) field.checked = false
       else { field.value = dprop.default || "" }
@@ -642,7 +649,8 @@ class ListingForm {
       , onlyValues = {} // pour ne mettre que les propriétés et les valeurs
       , firstFocusSet = false // pour savoir si on a focussé dans le premier champ
       ;
-    const values = this.getValues()
+    this.getValues()
+    console.log("this.properties:", this.properties)
     this.properties.forEach(dproperty => {
 
       // Débug
@@ -697,6 +705,15 @@ class ListingForm {
       }
     })// fin de boucle sur toutes les propriétés
 
+    // On ajoute l'identifiant, qui ne sera utilisé que si c'est une
+    // édition
+    var itemId = this.obj.querySelector('#item-id').value
+    if (itemId == '') itemId = undefined
+    else itemId = Number(itemId)
+    Object.assign(onlyValues, {id: itemId})
+
+    // console.log("onlyValues = ", onlyValues)
+
     if ( errors.length ) { return null }
     else { return onlyValues }
   }
@@ -726,7 +743,12 @@ class ListingForm {
     propriétés du propriétaire du listing.
   **/
   build(container){
-    container.appendChild(DCreate('DIV',{class:'right span-id', text:'&nbsp;'}))
+    // Pour mettre l'identifiant en cas d'édition
+    var css = ['right', 'span-id']
+    if(this.listing.options.no_id) css.push('hidden')
+    container.appendChild(DCreate('DIV',{class:css.join(' '), text:'&nbsp;'}))
+    container.appendChild(DCreate('INPUT',{type:'hidden',id:'item-id',value:''}))
+
     this.properties.forEach(dproperty => {
       var div   = DCreate('DIV',{class:`row row-${dproperty.name}`})
       const fid = `item-${dproperty.name}`

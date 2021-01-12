@@ -33,7 +33,7 @@ static activateGestionClavier(){
 }
 static desactivateGestionClavier(){
   window.onkeydown = window.gestionKeyDown.bind(window)
-  window.onkeyup   = window.getionsKeyUp.bind(window)
+  window.onkeyup   = window.gestionKeyUp.bind(window)
 }
 
 static onKeyDown(ev){

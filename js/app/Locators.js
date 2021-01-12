@@ -17,6 +17,7 @@ static onSelect(item){ video.time = item.data.time }
 
 static get loadScript(){return 'load_locators.rb'}
 static get saveItemScript(){return 'save_locator.rb'}
+static get destroyItemScript(){return 'destroy_locator.rb'}
 
 static get listing(){
   return this._listing || (this._listing = new Listing(this, {
@@ -30,6 +31,7 @@ static get listing(){
         title: false
       , sortable: true
       , draggable: false
+      , no_id: true // ne pas montrer l'identifiant
     }
     , createOnPlus: true
   }))

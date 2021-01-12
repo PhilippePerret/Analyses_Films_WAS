@@ -8,14 +8,7 @@ class AEvent extends ListingExtended {
 
 static get loadScript(){return 'load_events.rb'}
 static get saveItemScript(){return 'save_event.rb'}
-
-// Appelé par le listing quand on détruit un item
-static onDestroy(item){
-  Ajax.send('destroy_event.rb', {event_id: item.id})
-  .then(() => {
-    delete this.table[item.id]
-  })
-}
+static get destroyItemScript(){return 'destroy_event.rb'}
 
 /**
 * Méthode appelée quand on sélectionne un item dans le listing
