@@ -20,6 +20,12 @@ def save_event(data)
     f.write(YAML.dump(data))
   end
 end
+def save_locator(data)
+  File.open(File.join(locators_folder,"locator-#{data['id']}.yml"),'wb') do |f|
+    f.write(YAML.dump(data))
+  end
+end
+
 # Pour détruire un évènement
 # TODO Plus tard, on le mettra de côté
 def destroy_event(eid)
@@ -27,11 +33,15 @@ def destroy_event(eid)
   File.delete(path) if File.exists?(path)
 end #/ destroy_event
 def get_events
-  Dir["#{events_folder}/*.yml"].collect do |f|
-    YAML.load_file(f)
-  end
+  Dir["#{events_folder}/*.yml"].collect{|f| YAML.load_file(f) }
+end
+def get_locators
+  Dir["#{locators_folder}/*.yml"].collect{|f| YAML.load_file(f) }
 end
 def events_folder
   @events_folder ||= mkdir(File.join(folder,'events'))
+end
+def locators_folder
+  @locators_folder ||= mkdir(File.join(folder,'locators'))
 end
 end #/Film

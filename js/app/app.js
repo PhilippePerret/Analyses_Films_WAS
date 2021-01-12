@@ -11,6 +11,7 @@ class App {
       Console.init()
       Controller.init()
       AEvent.init()
+      UI.endInit()
       ok()
     })
   }

@@ -7,8 +7,10 @@ static load(){
   const my = this
   Ajax.send('load_config_current_film.rb')
   .then(my.prepareFilm.bind(my))
-  .then(my.loadFilmEvents.bind(my))
+  .then(AEvent.load.bind(AEvent))
+  .then(Locators.load.bind(Locators))
 }
+
 static prepareFilm(ret){
   return new Promise((ok,ko) => {
     if ( ret.config ){
@@ -17,10 +19,6 @@ static prepareFilm(ret){
       ok()
     }
   })
-}
-static loadFilmEvents(){
-  return Ajax.send('load_events.rb', {film: film.folder})
-  .then(film.dispatchEvents.bind(film))
 }
 
 
@@ -55,14 +53,6 @@ prepareMenuPersonnages(){
     menuPersonnages.appendChild(DCreate('OPTION',{value:pid, text:`${this.personnages[pid]} (${pid})`}))
   }
   menuPersonnages.addEventListener('change', this.onChoosePersonnage.bind(this))
-}
-
-/**
-* Méthode appelée après le chargement par ajax de tous les évènements
-du film courant
-***/
-dispatchEvents(ret){
-  ret.events.forEach(devent => AEvent.addFromData(devent))
 }
 
 /** ---------------------------------------------------------------------

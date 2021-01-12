@@ -7,42 +7,26 @@
 Les "locators" permettent de définir des points clés dans le film pour
 s'y déplacer plus rapidement. Ils sont reliés au Controller
 *** --------------------------------------------------------------------- */
-class Locators {
-/**
-* Méthode pour initialiser les locators
-***/
-static init(){
-  this.table = {}
-  this.lastId = 0
-}
-/**
-* Méthode qui charge les locateurs du film et les instancie
-***/
-static load(){
+class Locators extends ListingExtended {
 
-}
+static get loadScript(){return 'load_locators.rb'}
+static get saveItemScript(){return 'save_locator.rb'}
 
 static get listing(){
   return this._listing || (this._listing = new Listing(this, {
       titre: "Signets"
     , id: 'locators'
     , container: DGet('div#controller div#locators-container')
-    , sortable: true
+    , height: 200
+    , form_width: 200
+    , list_width: 200
+    , options: {
+        title: false
+      , sortable: true
+      , draggable: false
+    }
     , createOnPlus: true
   }))
-}
-static get(lid){return this.table[lid]}
-static create(data){
-  Object.assign(data, {id: this.newId()})
-  const item = new this(data)
-  item.save()
-  return item
-}
-static update(data){
-  const item = this.get(data.id)
-  item.dispatchData(data)
-  item.save()
-  return item
 }
 static get PROPERTIES(){
   if (undefined == this._properties){
@@ -73,13 +57,9 @@ static get tempsField(){
 *
 *** --------------------------------------------------------------------- */
 constructor(data) {
-  this.dispatchData(data)
+  super(data)
 }
-dispatchData(data){
-  this.data = data
-  this.id = data.id
-}
-li(){
+get li(){
   return DCreate('LI', {id:`locator-${this.id}`, class:`listing-item`, text:this.data.name})
 }
 }

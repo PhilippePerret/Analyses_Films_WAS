@@ -36,6 +36,8 @@ class MaClasse {
       // Optionnel
       , container: <DOMElement> // le container, sinon, le body
       													// Note : pas en String
+      , form_width: <Number>		// Largeur du formulaire (nombre de pixels)
+      , list_width: <Number>		// Largeur du listing (nombre de pixels)
       , height: <Number Hauteur> // hauteur de la fenêtre
       , top:    <Number> // décalage vertical
       , left:   <Number> // Décalage horizontal
@@ -113,7 +115,7 @@ On appelle « propriétaire du listing » la CLASSE quelconque du programme qu
 
 Les instances doivent :
 
-* définir la méthode `li` qui retournera la balise `LI` à afficher dans le listing,
+* définir la PROPRIÉTÉ `li` (donc `get li()`) qui retournera la balise `LI` à afficher dans le listing,
 * ce `LI` doit contenir la classe `listing-item` (dans le cas contraire le filtrage ne sera pas possible — l'erreur sera signalée),
 * ce `LI` doit **impérativement** avoir un attribut `id` constitué par `<type élément>-<id>` et le `<type-element>` ne doit comporter aucun tiret (moins) (par exemple `projet-12`),
 * définir la propriété `id` qui devra retourner l'identifiant de l'item
@@ -235,6 +237,45 @@ Les méthodes 'setter' et 'getter' permettent respectivement de définir et de r
   
 
 * Le champ de formulaire doit avoir un ID de `item-<propriété>` (`item-matieres` pour l’exemple).
+
+
+
+---
+
+## Extension de Listing
+
+
+
+On peut étendre les classes qui utilisent le listing avec la classe `ListingExtended` qui ajoute les méthodes suivantes :
+
+~~~javascript
+class maClasseAvecListing extends ListingExtended {
+  
+  // --- À DÉFINIR ---
+  static get loadScript(){ return 'mon_script_chargement_items.rb'}
+  static get saveItemScript(){ return 'script_save_item.rb'}
+  
+  // --- MÉTHODES AJOUTÉES ---
+  load()		// charge tous les items. Le module this.loadScript doit retourner
+  					// la propriété `items` avec la liste Array de tous les items
+
+  newId() 		// Renvoie un nouvel id
+  create()		// crée un nouvel item à partir des données du listing
+  update()		// actualise l'item à partir des données du listing
+  
+  
+  constructor(data){
+    super(data) // <============ ne pas oublier
+  }
+  
+  // --- Méthodes d'instance ajoutées ---
+  save()	// sauve l'item avec le script <class>.saveItemScript à qui
+  				// on envoie {data: this.data}
+  dispatchData(data)		// pour dispatcher les données
+  update(data)	// pour actualiser les données, rafraichir l'affichage et 
+  							// les sauver
+}
+~~~
 
 
 

@@ -9,6 +9,28 @@ static init(){
     ok()
   })
 }
+/**
+* Fin de l'initialisation, c'est-à-dire lorsque tout est prêt
+***/
+static endInit(){
+  document.querySelectorAll('textarea, input[type="text"]').forEach(el => {
+    el.addEventListener('focus', this.onFocusTextField.bind(this))
+    el.addEventListener('blur',  this.onBlurTextField.bind(this))
+  })
+}
+
+static onFocusTextField(ev){
+  console.log("Focus dans ", ev)
+  this.oldKeyDown   = window.onkeydown
+  this.oldKeyUp     = window.onkeyup
+  window.onkeydown  = window.gestionKeyDown.bind(window)
+  window.onkeyup    = window.gestionKeyUp.bind(window)
+}
+static onBlurTextField(ev){
+  console.log("Blur de ", ev)
+  window.onkeydown  = this.oldKeyDown
+  window.onkeyup    = this.oldKeyUp
+}
 
 /**
 * Insertion des éléments HTML (briques)

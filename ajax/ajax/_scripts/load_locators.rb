@@ -5,7 +5,7 @@
 
 =end
 begin
-  Ajax << {items: Film.current.get_events.sort_by{|e|e['time'].to_f}}
+  Ajax << {items: Film.current.get_locators}
 rescue Exception => e
   Ajax.error(e)
 end

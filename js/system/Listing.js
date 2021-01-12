@@ -34,6 +34,7 @@ class Listing {
     this.owner  = owner;
     this.data   = data ;
     this.setDefaultData()
+    this.options = this.data.options ;
     this.build();
     this.filtered = false
     this.prepareOwner()
@@ -41,6 +42,12 @@ class Listing {
 
   setDefaultData(){
     if ( undefined === this.data.container ) this.data.container = document.body
+    // Les options par défaut
+    if ( undefined === this.data.options ) this.data.options = {}
+    const opts = {sortable: true, draggable: true, title: true}
+    for(var opt in opts){
+      if ( undefined === this.data.options[opt] ) Object.assign(this.data.options, {[opt]: opts[opt]})
+    }
   }
 
   /**
@@ -87,7 +94,9 @@ class Listing {
     var form   = DCreate('FORM', {class:'listing-form'})
     this.form.build(form)
     this.barreCentrale = DCreate('DIV',{class:'listing-barre-centrale'})
-    div.appendChild(barreTitre)
+
+    if ( this.options.title ) div.appendChild(barreTitre)
+
     this.barreCentrale.appendChild(this.liste)
     this.barreCentrale.appendChild(form)
     div.appendChild(this.barreCentrale)
@@ -128,10 +137,20 @@ class Listing {
 
     this.buttonsOnSelection = btnsOnSelection
     this.buttonsOnSelection.push(this.btnMoins, this.btnSave)
+
   }
 
   observe(){
-    $(this.dieseId).draggable()
+
+    if ( this.options.draggable ) {
+      $(this.dieseId).draggable()
+    } else {
+      this.obj.style.position = 'relative'
+      this.obj.style.boxShadow = 'none'
+    }
+    this.options.sortable && $(this.liste).sortable()
+
+
 
     // Les éléments clickable
     const listeClicks = [
@@ -152,11 +171,18 @@ class Listing {
 
   setDimentions(){
     if ( this.data.height ) {
-      this.barreCentrale.style.height = `${this.data.height}px`
-      this.form.obj.style.height = `${this.data.height - 28 - 4}px`
+      this.barreCentrale.style.height = px(this.data.height)
+      this.form.obj.style.height = px(this.data.height - 28 - 4)
     }
-    if ( this.data.top ) { this.obj.style.top = `${this.data.top}px` }
-    if ( this.data.left) { this.obj.style.left = `${this.data.left}px` }
+    if (this.data.form_width) {
+      this.form.obj.style.width = px(this.data.form_width)
+    }
+    this.data.list_width || Object.assign(this.data, {list_width:240} )
+    this.liste.style.width = px(this.data.list_width)
+    this.form.obj.style.marginLeft = px(this.data.list_width + 4)
+
+    if ( this.data.top ) { this.obj.style.top = px(this.data.top) }
+    if ( this.data.left) { this.obj.style.left = px(this.data.left) }
   }
 
   activate(){
@@ -394,7 +420,11 @@ class ListingItem {
     this.listing.liste.appendChild(this.obj)
     this.observe()
   }
-
+  replaceInList(){
+    newObj = this.item.li
+    this.listing.liste.replaceChild(this.obj, newObj)
+    this.obj = newObj
+  }
   addClass(css){
     this.obj.classList.add(css)
   }

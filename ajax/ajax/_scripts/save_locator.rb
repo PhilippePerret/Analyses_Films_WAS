@@ -5,7 +5,7 @@
 
 =end
 begin
-  Film.current.save_event(Ajax.param(:data))
+  Film.current.save_locator(Ajax.param(:data))
   Ajax << {ok: true}
 rescue Exception => e
   Ajax.error(e)
