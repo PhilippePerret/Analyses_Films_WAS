@@ -17,3 +17,5 @@ window.gestionKeyUp = function(ev){
 // Pour pouvoir les désactiver et les remettre
 window.onkeydown  = window.gestionKeyDown.bind(window)
 window.onkeyup    = window.gestionKeyUp.bind(window)
+
+window.onresize = function(){UI.setBody()}

@@ -46,6 +46,10 @@ static onKeyDown(ev){
       case 'j': video.rerewind(); break;
       case 'ArrowRight':  video.avance(ev); break
       case 'ArrowLeft':   video.recule(ev); break
+      case 'ArrowUp':   Locators.gotoSignet('prev'); stopEvent(ev); break
+      case 'ArrowDown': Locators.gotoSignet('next'); stopEvent(ev); break
+      case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8':
+      case '9': Locators.gotoSignet(Number(ev.key) - 1)
       default: console.log("key = '%s'", ev.key)
     }
   }

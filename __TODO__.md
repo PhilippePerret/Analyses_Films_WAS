@@ -1,9 +1,10 @@
 # TODO liste
 
 * Listing
-  * pouvoir définir la largeur du formulaire du listing
-  * pouvoir définir la hauteur du listing
-  * pouvoir fixer le listing dans son container
+  * Vérifier l'update d'un élément (avec les locators et les events)
 * Controller
+  * quand on clique sur un signet on doit s'y rendre
+  * la touche "t" doit permettre de mettre le temps courant du film dans le champ
+  * prendre toujours en priorité le temps du champ pour actualiser le locator
+  * Les touches "ArrowTop" et "ArrowBottom" doivent permettre de choisir les signets
   * renseigner le contrôleur (aide dans le contrôleur lui-même)
-  * raccourci pour insérer le temps courant dans le champ courant (à mémoriser)

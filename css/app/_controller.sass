@@ -1,9 +1,32 @@
 div#controller-container
   position: absolute
-  left: calc(50% - 200px)
-  top: 200px
-  width: auto
-  height: auto
+  left: calc(50% - 380px)
+  bottom: 10px
+  width: 960px
+  padding: 1em
+  height: 400px
   background-color: #7E104A
   z-index: 4000
   color: white
+
+  div#controller
+    display: inline-block
+
+  div#aide-controller
+    display: inline-block
+    padding: 1em
+    margin-top: 1em
+    width: 400px
+
+    table#table-aide-controller
+      td
+        vertical-align: top
+        padding: 4px 0
+      td.touche
+        font-size: 1em
+        width: 20%
+      td.action
+        font-size: 1em
+        width: 35%
+      td.note
+        font-size: 0.85em

@@ -2,6 +2,51 @@
 
 
 
+## Introduction
+
+L’application « Analyseur de Films » permet de procéder à l’analyse « simple » des films, aidés de la vidéo.
+
+De façon résumée, l’analyse consiste à enregistrer des « évènements » qui sont autant de points-clé dans le film permettant d’écrire toutes les notes qu’on veut.
+
+
+
+## Film analysé
+
+Le film analysé doit être un dossier unique portant le nom du film (ou un diminutif) se trouvant dans le dossier `_FILM_` de l’application. Ce dossier doit au minimum contenir :
+
+* la vidéo du film
+* un fichier `config.yml` défini ci-dessous.
+
+~~~
+Analyses_Films_WAS/_FILMS_/<monFilm>/config.yml
+												            /video.mp4
+
+~~~
+
+
+
+### Fichier `config.yml` du film
+
+C’est le fichier qui définit le film courant. On trouve les propriétés suivantes :
+
+~~~yaml
+---
+	:titre: Le titre du film
+	:video:
+		:width:	400 				// taille de la vidéo à afficher
+		:name:  video.mp4		// nom dans ce dossier
+		
+	// optionnellement
+	:personnages:
+		:PR: <personnage>		// 2 lettres qui seules vont remplacer le personnage
+												// dans les textes.
+		:SA: <autre>				// Autre personnage
+~~~
+
+
+
+---
+
 
 
 ## Analyse

@@ -17,6 +17,11 @@ static endInit(){
     el.addEventListener('focus', this.onFocusTextField.bind(this))
     el.addEventListener('blur',  this.onBlurTextField.bind(this))
   })
+  this.setBody()
+}
+static setBody(){
+  // Pour fixer la taille du body car beaucoup d'éléments sont absolus
+  document.querySelector('body').style.height = px(window.innerHeight)
 }
 
 static onFocusTextField(ev){

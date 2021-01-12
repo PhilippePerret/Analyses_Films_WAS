@@ -148,7 +148,7 @@ class Listing {
       this.obj.style.position = 'relative'
       this.obj.style.boxShadow = 'none'
     }
-    this.options.sortable && $(this.liste).sortable()
+    this.options.sortable && $(this.liste).sortable({axis:'y'})
 
 
 
