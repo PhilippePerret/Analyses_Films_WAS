@@ -15,7 +15,7 @@ static get destroyItemScript(){return 'destroy_event.rb'}
 ***/
 static onSelect(item){
   const followItem = DGet('input#follow-selected-event').checked
-  followItem && (video.time = item.data.time)
+  followItem && (DOMVideo.current.time = item.data.time)
 }
 
 static get PROPERTIES(){
@@ -100,7 +100,7 @@ static get menuTypeNoeud(){return this._menutynoeud || (this._menutynoeud = docu
 // --- Méthode pour le temps de l'évènement ---
 static getTemps(){
   var v = this.tempsField.value
-  if (v == '') v = video.time
+  if (v == '') v = DOMVideo.current.time
   else { v = h2t(v) }
   return v
 }

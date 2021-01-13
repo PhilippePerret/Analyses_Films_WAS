@@ -39,13 +39,15 @@ static desactivateGestionClavier(){
 static onKeyDown(ev){
   if (ev.metaKey && ev.key == 'k'){
     this.close()
+  } else if (ev.metaKey && ev.altKey && ev.key == 'È' /* alt cmd k */){
+    Aide.toggleControllerShortcuts()
   } else {
     switch(ev.key){
-      case 'l': video.replay(); break;
-      case 'k': video.pause(); break;
-      case 'j': video.rerewind(); break;
-      case 'ArrowRight':  video.avance(ev); break
-      case 'ArrowLeft':   video.recule(ev); break
+      case 'l': DOMVideo.current.replay(); break;
+      case 'k': DOMVideo.current.pause(); break;
+      case 'j': DOMVideo.current.rerewind(); break;
+      case 'ArrowRight':  DOMVideo.current.avance(ev); break
+      case 'ArrowLeft':   DOMVideo.current.recule(ev); break
       case 'ArrowUp':   Locators.gotoSignet('prev'); stopEvent(ev); break
       case 'ArrowDown': Locators.gotoSignet('next'); stopEvent(ev); break
       case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8':

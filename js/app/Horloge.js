@@ -8,16 +8,17 @@ class Horloge {
 *   L'horloge en tant qu'objet DOM
 *
 *** --------------------------------------------------------------------- */
-static set(time){
-  this.obj.querySelector('div#current_time').innerHTML = s2h(time)
+constructor(video){
+  this.video = video
+}
+set(time){
+  this.objCurrentTime.textContent = s2h(time)
 }
 
-static get obj(){return this._obj || (this._obj = DGet('div#horloge'))}
-/** ---------------------------------------------------------------------
-*   INSTANCE (un temps)
-*
-*** --------------------------------------------------------------------- */
-constructor() {
-
+get objCurrentTime(){
+  return this._ocurtime || (this._ocurtime = this.obj.querySelector('.current_time'))
 }
+get obj(){
+  return this._obj || (this._obj = this.video.container.querySelector('.horloge'))
 }
+}// Class Horloge

@@ -12,7 +12,7 @@ class Locators extends ListingExtended {
 /**
 * Méthode appelée quand on sélectionne un item dans le listing
 ***/
-static onSelect(item){ video.time = item.data.time }
+static onSelect(item){ DOMVideo.current.time = item.data.time }
 
 
 static get loadScript(){return 'load_locators.rb'}
@@ -49,7 +49,7 @@ static get PROPERTIES(){
 // --- Méthode pour le temps de l'évènement ---
 static getTemps(){
   var v = this.tempsField.value
-  if (v == '') v = video.time
+  if (v == '') v = DOMVideo.current.time
   else { v = h2t(v) }
   return v
 }

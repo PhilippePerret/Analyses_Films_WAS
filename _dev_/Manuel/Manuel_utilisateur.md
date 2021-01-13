@@ -68,15 +68,17 @@ C’est le fichier qui définit le film courant. On trouve les propriétés suiv
 
 ## Naviguer dans le film
 
-
+Pour naviguer dans le film, jouer la vidéo, etc. on utilise le contrôleur. Le contrôleur n’est pas ouvert par défaut (car il modifie la gestion des touches du clavier). On l’ouvre à l’aide `Cmd K`.
 
 ### Choisir un endroit précis dans le film avec la souris
 
 * Se déplacer sur la vidéo horizontalement pour choisir l’endroit approximatif
 * cliquer pour « geler » la vidéo
-* rectifier le point en déplaçant les flèches gauche/droite.
+* si le contrôleur est ouvert, on peut rectifier le point en déplaçant les flèches gauche/droite.
 
+### Rejoindre un signet
 
+Des signets — c’est-à-dire des points précis dans le film — peuvent être définis à l’aide du [contrôleur][]. Il suffit de les cliquer dans la liste, ou d’utiliser une touche de 1 à 9 s’ils font partie des 9 premiers, pour rejoindre le temps correspondant.
 
 ### Choisir un endroit précis dans le film avec la console
 
@@ -85,3 +87,13 @@ C’est le fichier qui définit le film courant. On trouve les propriétés suiv
 `- <s>` permet de se déplacer de `<s>` secondes en arrière.
 
 `goto h:m:s.fr` permet de rejoindre le temps désigné par cette horloge (les frames vont de 0 à 25, 25 correspondant à une seconde).
+
+
+
+## Le Contrôleur
+
+Le contrôle permet de contrôler la vidéo et de mémoriser des points-clés, des signets, qui permettent de se déplacer avec plus d’aisance.
+
+
+
+[contrôleur]: #controller

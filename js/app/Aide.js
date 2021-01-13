@@ -32,13 +32,17 @@ static showNextAide(){
   if (undefined == this.idxAide) this.idxAide = 0
   else ++ this.idxAide
   if (this.idxAide >= this.messagesCount) this.idxAide = 0
-  const idx = this.idxAide < 5 ? this.idxAide : getRandom(this.messagesCount))
+  const idx = this.idxAide < 5 ? this.idxAide : getRandom(this.messagesCount)
   new this(this.MESSAGES[idx]).show()
 }
 // Pour afficher/masquer les raccourcis pour le contrôleur
 static toggleControllerShortcuts(){
-  this.cleanUp()
-  UI.insert('controller_shortcuts', this.obj)
+  if ( this.running ){
+    this.stopAide()
+    UI.insert('controller_shortcuts', this.obj)
+  } else {
+    this.runAide()
+  }
 }
 
 static cleanUp(){this.obj.textContent = ''}
@@ -69,11 +73,11 @@ static get MESSAGES(){
   if ( undefined == this._messages){
     this._messages = [
         {content: '<span class="key">⌘</span><span class="key">k</span> pour afficher/masquer le contrôleur de vidéo'}
-      , {content: '<span class="key">⌘</span><span class="key">⌥</span><span class="key">k</span> (“help”) pour afficher/masquer les raccourcis du contrôleur'}
-      , {content: 'Déplacer la souris 🖱 sur la vidéo pour choisir le temps (puis click pour la figer)'}
-      , {content: '<span class="key">⌘</span><span class="key">h</span> pour afficher/masquer cette aide'}
-      , {content: 'Quatrième aide'}
-      , {content: 'Cinquième aide'}
+      , {content: '<span class="key">⌘</span><span class="key">⌥</span><span class="key">k</span> pour afficher/masquer les raccourcis du contrôleur'}
+      , {content: 'Déplacer la souris sur la vidéo pour choisir le temps (puis clic pour la figer)'}
+      , {content: '<span class="key">⌘</span><span class="key">a</span> pour afficher/masquer cette aide'}
+      , {content: 'Quand le contrôleur est ouvert (<span class="key">⌘</span><span class="key">k</span>), on peut rejoindre facilement les 9 premiers signets à l’aide des touches 1 à 9'}
+      , {content: 'Pour obtenir une seconde vidéo du film, il suffit de définir :video2 dans la configuration du film.'}
       , {content: 'Sixième aide'}
     ]
   }return this._messages

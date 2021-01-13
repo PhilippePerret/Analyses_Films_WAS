@@ -34,11 +34,11 @@ run(){
     case 'rewind':
     case 'back':
     case '-' :
-    case 'backward':  return video.backward(this.params[1])
+    case 'backward':  return DOMVideo.current.backward(this.params[1])
     case 'for':
     case '+':
-    case 'forward':   return video.forward(this.params[1])
-    case 'goto':      return video.goto(this.params[1])
+    case 'forward':   return DOMVideo.current.forward(this.params[1])
+    case 'goto':      return DOMVideo.current.goto(this.params[1])
     default:
       erreur(`Je ne connais pas la commande “${this.command}”`)
   }

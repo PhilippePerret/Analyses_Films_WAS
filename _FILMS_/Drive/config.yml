@@ -2,6 +2,8 @@
   :video:
     :width:   600
     :name:    extrait.mp4
+  :video2:
+    :width: 200
   :personnages:
     :PR: Protagoniste
     :AN: Antagoniste

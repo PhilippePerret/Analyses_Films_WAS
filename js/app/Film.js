@@ -32,11 +32,17 @@ constructor(config) {
 
 prepare(){
   this.prepareVideo()
+  this.config.video2 && this.prepareVideo2()
   this.prepareEditor()
 }
 prepareVideo(){
-  window.video = new DOMVideo(DGet('video'), `_FILMS_/${this.config.film_folder}/${this.config.video.name}`)
+  window.video = new DOMVideo(DGet('video#video1'), `_FILMS_/${this.config.film_folder}/${this.config.video.name}`)
   window.video.setWidth(this.config.video.width || 400)
+}
+prepareVideo2(){
+  window.video2 = new DOMVideo(DGet('video#video2'), `_FILMS_/${this.config.film_folder}/${this.config.video.name}`)
+  window.video2.setWidth(this.config.video2.width || 400)
+  window.video2.show()
 }
 prepareEditor(){
   if ( this.config.personnages ){

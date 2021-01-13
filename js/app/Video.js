@@ -3,12 +3,42 @@
 *   Class Video
 *   -----------
     Pour la commande de la vidéo
+
+On peut avoir plusieurs vidéo dans l'écran, pour pouvoir faire des
+comparaison. La vidéo principale est une propriété 'video' de window.
+On peut donc y faire appel de n'importe où par 'video'.
 *** --------------------------------------------------------------------- */
 class DOMVideo {
+/** ---------------------------------------------------------------------
+*   CLASSE
+*
+*** --------------------------------------------------------------------- */
+
+// La vidéo courante, donc activée, qui recevra toutes les commandes
+static get current(){return this._current || (this._current = video)}
+static set current(v){
+  this.current.obj.classList.remove('selected')
+  this._current = v
+  this._current.obj.classList.add('selected')
+}
+
+/** ---------------------------------------------------------------------
+*
+*   INSTANCE
+*
+*** --------------------------------------------------------------------- */
 constructor(obj, src) {
   this.obj = obj
+  this.container = this.obj.parentNode
+  this.id = this.obj.id // p.e. "video1"
   this.src = src
   this.init()
+}
+show(){
+  this.container.classList.remove('hidden')
+}
+hide(){
+  this.container.classList.add('hidden')
 }
 togglePlay(){
   if (this.playing) {
@@ -80,10 +110,9 @@ recule(ev){
   this.time = this.calcPas(this.time, ev, -1)
 }
 calcPas(t, ev, factor){
-  console.log("t = ", t)
   var p
-  if ( ev.shiftKey )      p = 1
-  else if ( ev.metaKey )  p = 10
+  if ( ev.shiftKey )      p = 10
+  else if ( ev.metaKey )  p = 1
   else                    p = 1 / 25
   return (t + (p * factor) )
 }
@@ -110,14 +139,14 @@ set time(v){
   if ( v <= this.obj.duration ) {
     this.obj.currentTime = v
   } else {
-    error(`Le temps ${t2h(v)} (${v}) dépasse la durée du film.`)
+    error(`Le temps ${t2h(v)} (${v}) dépasse la durée du film.`, {keep:false})
   }
 }
 
 // Méthode pour informer que la vidéo est prête
 setReady(){
   this.onTimeChange(null) // pour régler l'horloge
-  message("La vidéo est prête.")
+  message(`La vidéo ${this.id} est prête.`)
 }
 observe(){
   this.obj.addEventListener('click', this.onClick.bind(this))
@@ -138,7 +167,10 @@ px2time(px){ return px / this.timeRatio}
 time2px(time){ return parseInt(time * this.timeRatio, 10)}
 
 onTimeChange(ev){
-  Horloge.set(this.time)
+  this.horloge.set(this.time)
+}
+get horloge(){
+  return this._horloge || (this._horloge = new Horloge(this))
 }
 onMouseMove(ev){
   if ( ! this.frozen ) {
@@ -183,6 +215,7 @@ onClick(){
     this.frozen = true
     message("J'ai gelé la vidéo pour choisir ce temps.")
   }
+  this.constructor.current = this
 }
 
 
@@ -207,8 +240,8 @@ goto(s){
 }
 
 setWidth(w){
-  console.log("Je dois avancer de ", frames)
+  // console.log("Je dois avancer de ", frames)
   this.obj.style.width = px(w)
 }
 
-}
+}// DOMVideo
