@@ -22,6 +22,20 @@ static set current(v){
   this._current.obj.classList.add('selected')
 }
 
+/**
+* Au démarrage, régler les options pour la vidéo
+On en profite aussi pour placer les observateurs pour changer les
+options quand il y a un travail à faire.
+***/
+static setOptions(){
+  const videosOptions = ['follow_selected_event', 'show_current_event','video_follows_mouse']
+  videosOptions.forEach(key => {
+    const cb = DGet('#' + key)
+    cb.checked = film.options[key]
+    cb.addEventListener('click', film.onChangeOption.bind(film, key))
+  })
+}
+
 /** ---------------------------------------------------------------------
 *
 *   INSTANCE
@@ -151,10 +165,12 @@ setReady(){
 observe(){
   this.obj.addEventListener('click', this.onClick.bind(this))
   this.obj.addEventListener('mouseover', this.onMouseOver.bind(this))
-  this.obj.addEventListener('mouseout', this.onMouseOut.bind(this))
+  this.obj.addEventListener('mouseout',  this.onMouseOut.bind(this))
   this.obj.addEventListener('mousemove', this.onMouseMove.bind(this))
   this.obj.addEventListener('timeupdate', this.onTimeChange.bind(this))
 }
+
+get isMouseSensible(){ return film.options.video_follows_mouse }
 
 /**
 * Méthode calculant les valeurs après le chargement de la vidéo, et notamment
@@ -173,12 +189,14 @@ get horloge(){
   return this._horloge || (this._horloge = new Horloge(this))
 }
 onMouseMove(ev){
+  if (!this.isMouseSensible) return stopEvent(ev)
   if ( ! this.frozen ) {
     this.time = this.px2time(ev.offsetX)
     this.moving = true
   }
 }
 onMouseOut(ev){
+  if (!this.isMouseSensible) return stopEvent(ev)
   this.moving = false
   this.frozen = false
   this.obj.removeEventListener('keydown', this.onKey.bind(this))
@@ -188,6 +206,7 @@ onMouseOut(ev){
 * les raccourcis propres à la vidéo
 ***/
 onMouseOver(ev){
+  if (!this.isMouseSensible) return stopEvent(ev)
   this.obj.addEventListener('keydown', this.onKey.bind(this))
 }
 
@@ -208,13 +227,16 @@ onKey(ev){
 }
 
 onClick(){
-  if ( this.frozen ) {
-    this.frozen = false
-    message("J'ai dégelé la vidéo, tu peux déplacer la souris pour chercher un temps")
-  } else {
-    this.frozen = true
-    message("J'ai gelé la vidéo pour choisir ce temps.")
+  if ( this.isMouseSensible ) {
+    if ( this.frozen ) {
+      this.frozen = false
+      message("J'ai dégelé la vidéo, tu peux déplacer la souris pour chercher un temps", {keep:false})
+    } else {
+      this.frozen = true
+      message("J'ai gelé la vidéo pour choisir ce temps.", {keep:false})
+    }
   }
+  // La mettre en vidéo courante
   this.constructor.current = this
 }
 

@@ -15,6 +15,9 @@ attr_reader :folder
 def initialize(folder)
   @folder = folder
 end #/ initialize
+def save_config(config)
+  File.open(config_path,'wb'){|f| f.write(YAML.dump(config))}
+end
 def save_event(data)
   File.open(File.join(events_folder,"event-#{data['id']}.yml"),'wb') do |f|
     f.write(YAML.dump(data))
@@ -47,5 +50,8 @@ def events_folder
 end
 def locators_folder
   @locators_folder ||= mkdir(File.join(folder,'locators'))
+end
+def config_path
+  @config_path ||= File.join(folder, 'config.yml')
 end
 end #/Film

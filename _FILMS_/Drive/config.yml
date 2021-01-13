@@ -1,10 +1,15 @@
 ---
-  :video:
-    :width:   600
-    :name:    extrait.mp4
-  :video2:
-    :width: 200
-  :personnages:
-    :PR: Protagoniste
-    :AN: Antagoniste
-    :OQ: Objet de la quête
+video:
+  width: 600
+  name: extrait.mp4
+video2:
+  width: 200
+options:
+  video_follows_mouse: false
+  follow_selected_event: true
+  show_current_event: true
+personnages:
+  PR: Protagoniste
+  AN: Antagoniste
+  OQ: Objet de la quête
+film_folder: Drive

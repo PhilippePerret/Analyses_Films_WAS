@@ -14,7 +14,7 @@ static get destroyItemScript(){return 'destroy_event.rb'}
 * Méthode appelée quand on sélectionne un item dans le listing
 ***/
 static onSelect(item){
-  const followItem = DGet('input#follow-selected-event').checked
+  const followItem = DGet('input#follow_selected_event').checked
   followItem && (DOMVideo.current.time = item.data.time)
 }
 
@@ -42,7 +42,8 @@ static get TYPES(){
 static get TYPES_NOEUDS(){
   if (undefined == this._types_noeuds){
     this._types_noeuds = {
-        ex: {id:'ex', hname:'Début Exposition'}
+        zr: {id:'zr', hname:'Point Zéro'}
+      , ex: {id:'ex', hname:'Début Exposition'}
       , ip: {id:'ip', hname:'Incident perturbateur'}
       , id: {id:'id', hname:'Incident déclencheur'}
       , p1: {id:'p1', hname:'Premier pivot'}

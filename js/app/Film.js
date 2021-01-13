@@ -30,9 +30,16 @@ constructor(config) {
   this.config = config // contient tout ce qui est défini dans config.yml
 }
 
+// Sauvegarde des configurations du film
+save(){
+  Ajax.send('save_config.rb', {config: this.config})
+}
+
 prepare(){
+  this.options = this.defaultizeOptions(this.config.options)
   this.prepareVideo()
   this.config.video2 && this.prepareVideo2()
+  DOMVideo.setOptions()
   this.prepareEditor()
 }
 prepareVideo(){
@@ -70,5 +77,21 @@ onChoosePersonnage(){
   message("Un personnage a été choisi")
 }
 
-
+onChangeOption(key){
+  this.options[key] = DGet('#'+key).checked
+  this.save()
 }
+
+/** ---------------------------------------------------------------------
+*   PRIVATE METHODS AND PROPERTIES
+*
+*** --------------------------------------------------------------------- */
+
+defaultizeOptions(opts = {}){
+  const keysOptions = ['follow_selected_event', 'show_current_event','video_follows_mouse']
+  keysOptions.forEach(key => {
+    if ( undefined === opts[key] ) Object.assign(opts, {[key]: true})
+  })
+  return opts
+}
+}// Film
