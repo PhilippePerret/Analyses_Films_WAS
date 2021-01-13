@@ -4,7 +4,13 @@ window.gestionKeyDown = function(ev){
   // console.log("-> onkeydown (%s)", ev.key)
   if (ev.metaKey){
     switch(ev.key){
-      case 'k': Controller.toggle(); break;
+      case 'k':
+        if (ev.altKey) Aide.toggleControllerShortcuts()
+        else Controller.toggle()
+        break
+      case 'h':
+        Aide.toggle()
+        break
     }
     return stopEvent(ev)
   }
