@@ -117,7 +117,10 @@ static get listing(){
     , container: DGet("div#container-listing")
     , id: "aevents"
     , createOnPlus: true
-    , sortable: false
+    , options:{
+        draggable: false
+      , sortable: false
+    }
   }))
 }
 

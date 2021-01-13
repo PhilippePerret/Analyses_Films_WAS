@@ -8,7 +8,7 @@ require 'yaml'
 
 begin
   if Film.current
-    Film.current.destroy_event(Ajax.param(:id))
+    Film.current.destroy_locator(Ajax.param(:id))
     Ajax << {ok: true}
   else
     Ajax << {error: "Il n'y a pas de film courant !"}

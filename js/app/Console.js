@@ -28,7 +28,7 @@ constructor(code){
 Méthode qui joue le code
 ***/
 run(){
-  message("Je joue le code")
+  message(`Je joue le code '${this.code}'`, {keep:false})
   this.parse()
   switch(this.command){
     case 'rewind':

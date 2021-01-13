@@ -28,10 +28,14 @@ end
 
 # Pour détruire un évènement
 # TODO Plus tard, on le mettra de côté
-def destroy_event(eid)
-  path = File.join(events_folder,"event-#{eid}.yml")
+def destroy_event(id)
+  path = File.join(events_folder,"event-#{id}.yml")
   File.delete(path) if File.exists?(path)
-end #/ destroy_event
+end
+def destroy_locator(id)
+  path = File.join(locators_folder,"locator-#{id}.yml")
+  File.delete(path) if File.exists?(path)
+end
 def get_events
   Dir["#{events_folder}/*.yml"].collect{|f| YAML.load_file(f) }
 end

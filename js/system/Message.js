@@ -1,14 +1,14 @@
 'use strict';
 
-function message(msg){
-  (new Message(msg)).display()
+function message(msg, options){
+  (new Message(msg)).display(options)
 }
-function erreur(msg){
+function erreur(msg, options){
   if (undefined != msg.message){
     console.error(msg)
     msg = msg.message
   }
-  (new Message(msg, 'error').display())
+  (new Message(msg, 'error').display(options))
 }
 function suivi(msg, debugLevel){
   if (DEBUG_LEVEL < debugLevel) return
@@ -40,7 +40,11 @@ class Message {
   correctText(){
     this.str = String(this.str).replace(/\r?\n/g, '<br> '/* espace utile pour comptage mots */)
   }
-  display(){
+  display(options){
+    options = options || {}
+    if ( options.cleanup || false === options.keep) {
+      this.constructor.obj.innerHTML = ''
+    }
     this.constructor.obj.appendChild(this.div)
     this.timer = setTimeout(this.remove.bind(this), 1000 * this.tempsLecture)
   }

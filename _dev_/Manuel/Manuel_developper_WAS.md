@@ -199,9 +199,18 @@ En théorie, il n’y a pas de limite pour le niveau de débuggage.
 
 ### Simple notification
 
-Pour un message simple, utiliser la méthode `message("<message> »)`.
+Pour un message simple, utiliser la méthode `message("<message>"[, {options}])`.
 
-> Un second argument est utilisé mais pas encore appliqué, qui permet d’envoyer des options.
+~~~javascript
+// Les options peuvent définir :
+options = {
+  // Note : ma première valeur est la valeur par défaut
+	cleanup: 	false/true 	// Nettoyer les messages précédents
+  keep:     true/false  // Garder les messages déjà affichés (inverse de cleanup)
+}
+~~~
+
+
 
 ### Messages d'erreur
 
