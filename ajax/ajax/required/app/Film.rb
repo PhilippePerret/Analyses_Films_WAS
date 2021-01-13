@@ -4,7 +4,23 @@ require 'yaml'
 
 class Film
 class << self
-  def current; @current ||= new(Dir["../_FILMS_/*"].first) end
+  def current
+    @current ||= begin
+      folder = nil
+      if File.exists?('../_FILMS_/CURRENT')
+        folder = File.expand_path("../_FILMS_/#{File.read('../_FILMS_/CURRENT').strip}")
+        folder = nil if not(File.exists?(folder))
+      end
+      folder ||= get_first_directory # peut être nil
+      folder && new(folder)
+    end
+  end
+  def get_first_directory
+    Dir["../_FILMS_/*"].each do |p|
+      return p if File.directory?(p)
+    end
+    return nil
+  end #/ get_first_directory
 end # /<< self
 # ---------------------------------------------------------------------
 #
@@ -15,6 +31,9 @@ attr_reader :folder
 def initialize(folder)
   @folder = folder
 end #/ initialize
+def config
+  YAML.load_file(config_path).merge!(film_folder: File.basename(folder))
+end #/ config
 def save_config(config)
   File.open(config_path,'wb'){|f| f.write(YAML.dump(config))}
 end

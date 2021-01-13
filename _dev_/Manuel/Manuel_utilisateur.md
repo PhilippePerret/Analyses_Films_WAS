@@ -8,6 +8,28 @@ L’application « Analyseur de Films » permet de procéder à l’analyse « s
 
 De façon résumée, l’analyse consiste à enregistrer des « évènements » qui sont autant de points-clé dans le film permettant d’écrire toutes les notes qu’on veut.
 
+---
+
+## Première analyse (ou reprise après absence)
+
+Voici la procédure pour une première analyse ou pour reprendre en main l’application après un long moment sans l’utiliser.
+
+* Dans le dossier `_FILMS_` de l’application, mettre le dossier du film analysé (regarder sur un disque dur) ou le créer,
+* Si c’est une création, il faut créer un fichier `config.yml` en s’inspirant du dossier `_FILMS_/Essai` et il faut mettre la vidéo dans le dossier,
+* Dans le fichier `_FILMS_/CURRENT`, mettre le nom de ce dossier du film,
+* Lancer l’application à l’aide de l’adresse : [`http://localhost/Analyses_Films_WAS`](http://localhost/Analyses_Films_WAS)
+* Jouer le raccourci `Cmd K` pour afficher le contrôleur,
+* Jouer les touches `L`, `K` ou `J` pour lancer la lecture, l’arrêter ou revenir en arrière,
+* Une fois à l’endroit voulu, se placer dans le champ « contenu » de la liste des évènements d’analyse (note : cela ferme le contrôleur)
+* Écrire le contenu de la scène par exemple, choisir le type « Scène » et cliquer sur le bouton « + »,
+* Le nouvel évènement d’analyse est automatiquement créé et enregistré. Le nouvel évènement est ajouté à la liste. Il suffira de cliquer dessus pour revenir à cet endroit précis. Comme c’est une scène, l’évènement est aussi ajouté à la liste des scènes.
+* Poursuivre ainsi jusqu’à obtenir tous les évènements d’analyse voulu, dans tous les types voulus.
+* On peut utiliser la seconde vidéo pour visualiser des endroits sans bouger la vidéo principale. On peut s’en servir par exemple pour visualiser la scène courante. Si on ne se sert pas de cette seconde vidéo, on peut supprimer toutes les informations concernant `:video2` dans le fichier de configuration et recharger la page.
+
+
+
+---
+
 
 
 ## Film analysé

@@ -52,6 +52,7 @@ prepareVideo2(){
   window.video2.show()
 }
 prepareEditor(){
+  AEvent.listing // juste pour le faire apparaitre si aucun event
   if ( this.config.personnages ){
     this.prepareMenuPersonnages()
   } else {

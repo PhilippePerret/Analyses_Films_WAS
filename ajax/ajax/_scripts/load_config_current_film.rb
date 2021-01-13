@@ -7,14 +7,11 @@
 require 'yaml'
 
 begin
-  path = File.expand_path("../_FILMS_/**/config.yml")
-  config_file = Dir["#{APP_FOLDER}/_FILMS_/**/config.yml"].first
-  if config_file.nil?
+  film = Film.current
+  if film.nil?
     Ajax << {error: "Impossible de trouver un fichier config.yml dans un dossier de _FILMS_… (dans #{path.inspect})"}
   else
-    conf = YAML.load_file(config_file)
-    conf.merge!(film_folder: File.basename(File.dirname(config_file)))
-    Ajax << {config: conf}
+    Ajax << {config: film.config}
   end
 rescue Exception => e
   Ajax.error(e)

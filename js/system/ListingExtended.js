@@ -21,6 +21,7 @@ static newId(){return ++this.lastId}
 * Méthode qui charge les items (locators ou events) et les instancie
 ***/
 static load(){
+  this.init()
   return Ajax.send(this.loadScript)
   .then(this.dispatchItems.bind(this))
 }
@@ -41,8 +42,12 @@ static create(data){
   return item
 }
 static update(data){
-  const item = this.get(data.id)
-  item.update(data)
+  var item = this.get(data.id)
+  if (item) {
+    item.update(data)
+  } else {
+    console.error("Impossible de trouver l'item %s dans ", String(data.id), this.table)
+  }
 }
 
 // Appelé par le listing quand on détruit un item
