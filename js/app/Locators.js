@@ -32,6 +32,7 @@ static get listing(){
       , sortable: true
       , draggable: false
       , no_id: true // ne pas montrer l'identifiant
+      , destroy_without_confirm: true
     }
     , createOnPlus: true
   }))

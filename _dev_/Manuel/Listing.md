@@ -48,6 +48,9 @@ class MaClasse {
 					draggable: true/false // si false, le listing n'est pas déplaçable
       		title: true/false			// Si false, pas de bande de titre
       		no_id: false/true			// Si true, on n'affiche pas l'identifiant
+      		destroy_without_confirm: false/true // Si true, on n'a pas besoin de 
+      																				// confirmer les destructions 
+      																				// d'items
 	    }
 			// Par défaut la procédure normale est 1) on clique sur "+", 2) on 
       // définit les valeurs et 3) on clique sur "Save". Si on veut adopter
@@ -441,6 +444,7 @@ Mais on peut définir une méthode propre au cours de l'[instanciation du listin
 
 * Option pour ne pas afficher la bande de titre
 * Option pour ne pas rendre le listing draggable.
+* Option pour ne pas confirmer la suppression
 
 ##### version 1.0.1
 

@@ -6,6 +6,17 @@ Pour affichage de tout ce qui concerne l'aide, et principalement les messages
 "transparents"
 ***/
 class Aide {
+// Méthode qui lance la boucle sur les messages d'aide pour les afficher
+// régulièrement.
+static runAide(){
+  this.aideTimer = setInterval(this.showNextAide.bind(this), 10*1000)
+}
+static stopAide(){
+  if(this.aideTimer){
+    clearInterval(this.aideTimer)
+    this.aideTimer = null
+  }
+}
 static showNextAide(){
   if (undefined == this.idxAide) this.idxAide = 0
   else ++ this.idxAide
@@ -38,7 +49,8 @@ static get MESSAGES(){
   if ( undefined == this._messages){
     this._messages = [
         {content: '<span class="key">⌘</span><span class="key">k</span> pour afficher/masquer le contrôleur de vidéo'}
-      , {content: 'Autre aide'}
+      , {content: '<span class="key">⌘</span><span class="key">a</span> pour afficher/masquer les raccourcis du contrôleur'}
+      , {content: 'Déplacer la souris sur la vidéo pour choisir le temps (puis click pour la figer)'}
       , {content: 'Troisième aide'}
       , {content: 'Quatrième aide'}
       , {content: 'Cinquième aide'}

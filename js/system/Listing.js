@@ -274,7 +274,8 @@ class Listing {
   }
 
   onMoinsButton(ev){
-    if (confirm("Êtes-vous certain de vouloir supprimer cet élément ?")){
+    const is_confirmed = this.options.destroy_without_confirm || confirm("Êtes-vous certain de vouloir supprimer cet élément ?")
+    if ( is_confirmed ){
       const litem = this.selection.lastItem
       // console.log("litem:", litem)
       if ( 'function' == typeof this.owner.destroy ) {

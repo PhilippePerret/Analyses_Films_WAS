@@ -6,7 +6,7 @@ class App {
   static init(){
     return new Promise((ok,ko) => {
       console.log("Initialisation en cours…")
-      Aide.showNextAide()
+      Aide.runAide()
       UI.init()
       Locators.init()
       Console.init()
