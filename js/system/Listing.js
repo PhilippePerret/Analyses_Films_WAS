@@ -130,7 +130,7 @@ class Listing {
       })
     }
 
-    // On met l'élément dans le DOM
+    // === On met l'élément dans le DOM ===
     this.data.container.appendChild(div)
     this.observe()
     this.setDimentions()
@@ -138,6 +138,7 @@ class Listing {
     this.buttonsOnSelection = btnsOnSelection
     this.buttonsOnSelection.push(this.btnMoins, this.btnSave)
 
+    if ( 'function' == typeof this.owner.afterBuild) this.owner.afterBuild.call(this.owner)
   }
 
   observe(){

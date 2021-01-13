@@ -7,7 +7,7 @@
 
 # 1.1.1
   Amélioration de stopEvent pour désactiver encore plus de choses
-  
+
 # 1.1.0
   Modification de la méthode with_pixels -> px
   + Elle peut recevoir maintenant, dans les objets, des valeurs qui ont

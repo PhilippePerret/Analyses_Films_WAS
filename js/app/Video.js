@@ -118,17 +118,26 @@ Mais avec des modifieurs :
   - command   avance par dizaine de secondes
 ***/
 avance(ev){
-  this.time = this.calcPas(this.time, ev, 1)
+  console.log("-> avance (time = %f)", this.time)
+  const nt = this.calcPas(this.time, ev, 1)
+  console.log("Temps retourné à avance : ", nt, typeof(nt))
+  this.time = nt
+  console.log("Temps fin vidéo dans avance = ", this.time)
 }
 recule(ev){
+  console.log("-> recule (time = %f)", this.time)
   this.time = this.calcPas(this.time, ev, -1)
+  console.log("Temps fin recule = ", this.time)
 }
 calcPas(t, ev, factor){
   var p
   if ( ev.shiftKey )      p = 10
   else if ( ev.metaKey )  p = 1
   else                    p = 1 / 25
-  return (t + (p * factor) )
+  t += p * factor
+  console.log("Nouveau t = %f (p = %f)", t, p)
+  console.log("this.time = ", parseFloat(this.time, 10))
+  return t
 }
 
 init(){
@@ -149,11 +158,12 @@ init(){
 
 get time(){ return parseFloat(Number.parseFloat(this.obj.currentTime).toPrecision(3)) }
 set time(v){
-  v = parseFloat(v) // peut être un string
+  if ( 'string' == typeof(v) ) v = parseFloat(v) // peut être un string
   if ( v <= this.obj.duration ) {
+    console.log("Temps appliqué à la vidéo : ", v, typeof(v))
     this.obj.currentTime = v
   } else {
-    error(`Le temps ${t2h(v)} (${v}) dépasse la durée du film.`, {keep:false})
+    error(`Le temps ${t2h(v)} dépasse la durée du film.`, {keep:false})
   }
 }
 

@@ -112,6 +112,15 @@ static get tempsField(){
   return this._tpsfield || (this._tpsfield = this.listing.obj.querySelector('#item-time'))
 }
 
+// Méthode appelée après la construction du listing d'évènements d'analyse
+static afterBuild(){
+  console.log("-> afterBuild")
+  // On place un observateur dans le champ de texte pour basculer le
+  // gestionnaire de clavier
+  // Dget('textarea#item-content').addEventListener('focus')
+  // Dget('textarea#item-content').addEventListener('blur')
+}
+
 static get listing(){
   return this._listing || (this._listing = new Listing(this, {
       titre: "Évènements d'analyse"
@@ -119,8 +128,9 @@ static get listing(){
     , id: "aevents"
     , createOnPlus: true
     , options:{
-        draggable: false
-      , sortable: false
+        draggable:  false
+      , sortable:   false
+      , no_id:      true
     }
   }))
 }

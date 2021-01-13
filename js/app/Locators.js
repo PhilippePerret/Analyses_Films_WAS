@@ -60,6 +60,7 @@ static get tempsField(){
   return this._tpsfield || (this._tpsfield = this.listing.obj.querySelector('#item-time'))
 }
 static gotoSignet(which){
+  const initIndex = this.indexCurrentSignet || 0
   if ( undefined == this.orderedItems ) this.orderedItems = this.getOrderedItems()
   if ( undefined == this.indexCurrentSignet ){
     this.indexCurrentSignet = 0
@@ -77,7 +78,9 @@ static gotoSignet(which){
         this.indexCurrentSignet = which
     }
   }
-  this.orderedItems[this.indexCurrentSignet].select()
+  const signet = this.orderedItems[this.indexCurrentSignet]
+  if (signet) signet.select()
+  else { message(`Le signet ${this.indexCurrentSignet + 1} n'existe pas.`, {keep:false}) ; this.indexCurrentSignet = initIndex }
 }
 
 /**

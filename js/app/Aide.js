@@ -78,7 +78,7 @@ static get MESSAGES(){
       , {content: '<span class="key">⌘</span><span class="key">a</span> pour afficher/masquer cette aide'}
       , {content: 'Quand le contrôleur est ouvert (<span class="key">⌘</span><span class="key">k</span>), on peut rejoindre facilement les 9 premiers signets à l’aide des touches 1 à 9'}
       , {content: 'Pour obtenir une seconde vidéo du film, il suffit de définir :video2 dans la configuration du film.'}
-      , {content: 'Sixième aide'}
+      , {content: 'Pour créer un signet, ouvrir le contôleur (<span class="key">⌘</span><span class="key">k</span>) et l’ajouter.'}
     ]
   }return this._messages
 }

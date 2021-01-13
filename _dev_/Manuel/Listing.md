@@ -403,6 +403,16 @@ Pour retirer une class CSS à un item de liste.
 
 ## Méthodes propriétaire utiles
 
+> Note : la plupart de ces méthodes (toutes ?) sont appelées si elles existent, en tant que méthodes de classe, dans le propriétaire.
+
+#### Méthode appelée après la construction du listing et son placement dans le DOM
+
+`Propriétaire::afterBuild()`
+
+On peut s’en servir par exemple pour surveiller certains champs particuliers.
+
+
+
 ### Méthode appelée quand on sélectionne un élément dans le listing
 
 Par défaut, cette méthode est `Propriétaire#onSelect(item)`.
