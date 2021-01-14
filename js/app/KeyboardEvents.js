@@ -109,7 +109,8 @@ window.gestionKeyUp = function(ev){
 }
 
 // Pour pouvoir les désactiver et les remettre
-window.onkeydown  = window.gestionKeyDown.bind(window)
+// Note : le onkeydown ne sera affecté que lorsque les vidéos seront chargées
+// window.onkeydown  = window.gestionKeyDown.bind(window)
 window.onkeyup    = window.gestionKeyUp.bind(window)
 
 window.onresize = function(){UI.setBody()}

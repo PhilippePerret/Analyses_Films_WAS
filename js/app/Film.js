@@ -37,6 +37,7 @@ save(){
 
 prepare(){
   this.options = this.defaultizeOptions(this.config.options)
+  DOMVideo.nombreVideosToPrepare = this.config.video2 ? 2 : 1
   this.prepareVideo()
   this.config.video2 && this.prepareVideo2()
   DOMVideo.setOptions()

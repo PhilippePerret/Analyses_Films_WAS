@@ -36,6 +36,14 @@ static setOptions(){
   })
 }
 
+static incVideosReady(){
+  if(undefined === this.nombreVideosReady) this.nombreVideosReady = 0
+  ++ this.nombreVideosReady
+  if ( this.nombreVideosReady == this.nombreVideosToPrepare ) {
+    window.onkeydown = window.gestionKeyDown.bind(window)
+  }
+}
+
 /**
 * Méthode qui synchronise les deux vidéos (donc qui les cale sur le même temps)
 ***/
@@ -179,7 +187,7 @@ set time(v){
 // Méthode pour informer que la vidéo est prête
 setReady(){
   this.onTimeChange(null) // pour régler l'horloge
-  message(`La vidéo ${this.id} est prête.`)
+  this.constructor.incVideosReady()
 }
 observe(){
   this.obj.addEventListener('click', this.onClick.bind(this))
