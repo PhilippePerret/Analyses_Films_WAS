@@ -1,4 +1,4 @@
-# Analyses films<br>Manuel utilisateur
+# ANALYSES FILMS – Manuel utilisateur
 
 [TOC]
 

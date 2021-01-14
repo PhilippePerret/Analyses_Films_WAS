@@ -28,15 +28,14 @@ static set current(v){
   Doit déterminer this.nextTime qui est le temps du prochain évènement
 ***/
 static setCurrentVideoEvent(){
-  console.log("-> setCurrentVideoEvent (%f)", video.time)
+  // console.log("-> setCurrentVideoEvent (%f)", video.time)
   // S'il y a un évènement courant
   const evs = AEvent.getEventsAround(video.time)
-  console.log("evs = ", evs)
+  // console.log("evs = ", evs)
   evs.previous && evs.previous.listingItem.removeClass('current-in-video')
   evs.current && evs.current.listingItem.addClass('current-in-video')
   this.nextTime = evs.next ? evs.next.time : 10000000
-
-  console.log("this.nextTime = %f", this.nextTime)
+  // console.log("this.nextTime = %f", this.nextTime)
 }
 
 /**

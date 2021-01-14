@@ -37,13 +37,19 @@ class MaClasse {
       , container: <DOMElement> // le container, sinon, le body
       													// Note : pas en String
       , form_width: <Number>		// Largeur du formulaire (nombre de pixels)
+      , form_height: <Number>		// Hauteur du formulaire (en pixels)
       , list_width: <Number>		// Largeur du listing (nombre de pixels)
-      , height: <Number Hauteur> // hauteur de la fenêtre
+      , list_height: <Number>		// Hauteur du listing (en pixels)
+      , height: <Number Hauteur> // hauteur de la fenêtre (bande centrale, en fait)
       , top:    <Number> // décalage vertical
       , left:   <Number> // Décalage horizontal
       , options: {
       		// Note : dans les options ci-dessous, la première valeur
       		// est la valeur par défaut.
+      		form_under_listing: false/true 
+      													// True pour mettre le formulaire sous
+      													// la liste. Régler les largeurs et hauteurs
+      													// en conséquence.
   	    	sortable: true/false  // Si true, la liste est "sortable"
 					draggable: true/false // si false, le listing n'est pas déplaçable
       		title: true/false			// Si false, pas de bande de titre

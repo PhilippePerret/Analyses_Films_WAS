@@ -175,12 +175,18 @@ class Listing {
       this.barreCentrale.style.height = px(this.data.height)
       this.form.obj.style.height = px(this.data.height - 28 - 4)
     }
-    if (this.data.form_width) {
-      this.form.obj.style.width = px(this.data.form_width)
+
+    // Taille du formulaire
+    this.data.form_width  && (this.form.obj.style.width = px(this.data.form_width))
+    this.data.form_height && (this.form.obj.style.height = px(this.data.form_height))
+
+    // Taille du listing
+    this.liste.style.width  = px(this.data.list_width || 240)
+    this.data.list_height && (this.liste.style.height = px(this.data.list_height))
+
+    if ( !this.options.form_under_listing ){
+      this.form.obj.style.marginLeft = px(this.data.list_width + 4)
     }
-    this.data.list_width || Object.assign(this.data, {list_width:240} )
-    this.liste.style.width = px(this.data.list_width)
-    this.form.obj.style.marginLeft = px(this.data.list_width + 4)
 
     if ( this.data.top ) { this.obj.style.top = px(this.data.top) }
     if ( this.data.left) { this.obj.style.left = px(this.data.left) }

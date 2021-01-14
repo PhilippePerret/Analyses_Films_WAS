@@ -44,15 +44,13 @@ C'est-à-dire une table contenant :
 static getEventsAround(time){
   const d = {current: null, previous: null, next: null}
   for(var i = 0, len = this.orderedList.length; i < len ; ++i){
-    console.log("Comparaison de avec ", this.orderedList[i].time, time)
     if ( this.orderedList[i].time > time ){
       d.current   = this.orderedList[i - 1]
       d.previous  = this.orderedList[i - 2]
       d.next      = this.orderedList[i]
-      return d
+      break
     }
   }
-  console.error("Impossible de trouver un évènement contenant le %f parmi ", time, this.orderedList)
   return d
 }
 
@@ -180,10 +178,15 @@ static get listing(){
     , container: DGet("div#container-listing")
     , id: "aevents"
     , createOnPlus: true
+    , height: 580
+    , list_width: 610
+    , list_height: 260
+    , form_width: 610
     , options:{
         draggable:  false
       , sortable:   false
       , no_id:      true
+      , form_under_listing: true
     }
   }))
 }
