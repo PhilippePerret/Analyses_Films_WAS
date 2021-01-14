@@ -118,25 +118,23 @@ Mais avec des modifieurs :
   - command   avance par dizaine de secondes
 ***/
 avance(ev){
-  console.log("-> avance (time = %f)", this.time)
+  // message(`-> avance (time = ${this.time})`, {keep:false})
   const nt = this.calcPas(this.time, ev, 1)
-  console.log("Temps retourné à avance : ", nt, typeof(nt))
   this.time = nt
-  console.log("Temps fin vidéo dans avance = ", this.time)
+  // message("Temps fin vidéo dans avance = " + this.time)
 }
 recule(ev){
-  console.log("-> recule (time = %f)", this.time)
+  // message(`-> recule (time = ${this.time})`, {keep:false})
   this.time = this.calcPas(this.time, ev, -1)
-  console.log("Temps fin recule = ", this.time)
+  // message("Temps fin recule = " + this.time)
 }
 calcPas(t, ev, factor){
   var p
   if ( ev.shiftKey )      p = 10
   else if ( ev.metaKey )  p = 1
-  else                    p = 1 / 25
+  else                    p = .04
   t += p * factor
-  console.log("Nouveau t = %f (p = %f)", t, p)
-  console.log("this.time = ", parseFloat(this.time, 10))
+  // console.log("Nouveau temps à appliquer = %f (pas = %f)", t, p)
   return t
 }
 
@@ -156,12 +154,11 @@ init(){
 *   Properties
 *** --------------------------------------------------------------------- */
 
-get time(){ return parseFloat(Number.parseFloat(this.obj.currentTime).toPrecision(3)) }
+get time(){ return parseFloat(Number.parseFloat(this.obj.currentTime).toFixed(3)) }
 set time(v){
-  if ( 'string' == typeof(v) ) v = parseFloat(v) // peut être un string
+  v = parseFloat(v) // peut être un string
   if ( v <= this.obj.duration ) {
-    console.log("Temps appliqué à la vidéo : ", v, typeof(v))
-    this.obj.currentTime = v
+    this.obj.currentTime = v + .001
   } else {
     error(`Le temps ${t2h(v)} dépasse la durée du film.`, {keep:false})
   }
