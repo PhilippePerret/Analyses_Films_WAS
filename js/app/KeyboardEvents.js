@@ -12,6 +12,9 @@ function setModeClavier(mode){
     case 'text':
       window.onkeydown = function(ev){return true}
       break
+    case 'select':
+      window.onkeydown = function(ev){return true}
+      break
     default: return error("Le mode clavier "+mode+" est inconnu…")
   }
   DGet('#mode-clavier').textContent = `mode clavier : ${mode}`

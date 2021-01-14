@@ -165,10 +165,9 @@ static focusTexte(){
 
 // Pour initialiser le formulaire
 static initForm(){
+  this.listing.deselectAll()
   this.listing.form.cleanup()
-  // this._current = null
   delete this._current
-  console.log("this.current:", this.current)
   message("Formulaire initialisé.", {keep:false})
 }
 

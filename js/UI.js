@@ -17,6 +17,10 @@ static endInit(){
     el.addEventListener('focus', this.onFocusTextField.bind(this))
     el.addEventListener('blur',  this.onBlurTextField.bind(this))
   })
+  document.querySelectorAll('select').forEach(el => {
+    el.addEventListener('focus', this.onFocusSelect.bind(this))
+    el.addEventListener('blur',  this.onBlurSelect.bind(this))
+  })
   this.setBody()
 }
 static setBody(){
@@ -25,11 +29,15 @@ static setBody(){
 }
 
 static onFocusTextField(ev){
-  // console.log("Focus dans ", ev)
   setModeClavier('text')
 }
 static onBlurTextField(ev){
-  // console.log("Blur de ", ev)
+  setModeClavier('command')
+}
+static onFocusSelect(ev){
+  setModeClavier('select')
+}
+static onBlurSelect(ev){
   setModeClavier('command')
 }
 
