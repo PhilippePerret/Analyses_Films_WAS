@@ -271,6 +271,10 @@ class maClasseAvecListing extends ListingExtended {
   onDestroy()	// peut détruire l'item (la propriété destroyItemScript doit être
   						// définie). Sinon, il faut surclasser cette méthode pour qu'elle
   						// ne fasse rien.
+  selectFirst()			// Sélectionne (et édite) le premier item
+  selectNext()			// Sélectionne (et édite) l'item suivant
+  selectPrevious()	// Sélectionne (et édite) l'item précédent s'il existe
+  selectLast()			// Sélectionne (et édite) le dernier item
   
   
   constructor(data){

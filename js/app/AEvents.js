@@ -10,12 +10,16 @@ static get loadScript(){return 'load_events.rb'}
 static get saveItemScript(){return 'save_event.rb'}
 static get destroyItemScript(){return 'destroy_event.rb'}
 
+static get current() { return this._current }
+static set current(e) { this._current = e }
+
 /**
 * Méthode appelée quand on sélectionne un item dans le listing
 ***/
 static onSelect(item){
-  const followItem = DGet('input#follow_selected_event').checked
-  followItem && (DOMVideo.current.time = item.data.time)
+  this.current = item
+  const optFollowItem = DGet('input#follow_selected_event').checked
+  optFollowItem && (DOMVideo.current.time = item.data.time)
 }
 
 static get PROPERTIES(){
@@ -57,6 +61,7 @@ static get TYPES_NOEUDS(){
       , cd: {id:'cd', hname:'Crise (dénouement)'}
       , cx: {id:'cx', hname:'Climax'}
       , de: {id:'de', hname:'Désinence'}
+      , pf: {id:'pf', hname:'Point Fin'}
     }
   }; return this._types_noeuds
 }
@@ -112,15 +117,20 @@ static get tempsField(){
   return this._tpsfield || (this._tpsfield = this.listing.obj.querySelector('#item-time'))
 }
 
-// Méthode appelée après la construction du listing d'évènements d'analyse
-static afterBuild(){
-  console.log("-> afterBuild")
-  // On place un observateur dans le champ de texte pour basculer le
-  // gestionnaire de clavier
-  // Dget('textarea#item-content').addEventListener('focus')
-  // Dget('textarea#item-content').addEventListener('blur')
+// Pour focusser dans le champ de texte
+static focusTexte(){
+  focusIn(this.listing.obj.querySelector('#item-content'))
 }
 
+// Pour initialiser le formulaire
+static initForm(){
+  this.listing.form.cleanup()
+  message("Formulaire initialisé.", {keep:false})
+}
+
+/**
+* Pour la construction du listing
+***/
 static get listing(){
   return this._listing || (this._listing = new Listing(this, {
       titre: "Évènements d'analyse"
@@ -140,12 +150,39 @@ constructor(data) {
   super(data)
   this.content  = this.data.content
 }
+// Une référence à l'objet (évènement d'analyse) pour les messages
+get ref(){
+  return this._ref || (this._ref = `AEvent #${this.id}`)
+}
+
+// Le LI à afficher dans le listing
 get li(){
   const LI = DCreate("LI", {id: `aevent-${this.id}`, class:"listing-item li-aevent", text:this.content})
   return LI
 }
 
+updateTime(newtime){
+  if ( undefined == newtime ) newtime = DOMVideo.current.time
+  this.data.time = newtime
+  this.constructor.setTemps(newtime)
+  this.setModified()
+}
+setModified(){
+  this.listingItem.addClass('modified')
+  message(`${this.ref} modifié. Tape "s" pour l'enregistrer.`, {keep:false})
+}
+unsetModified(){
+  this.listingItem.removeClass('modified')
+}
+
 update(data){
   this.data = data
 }
+
+save(){
+  super.save()
+  message(`${this.ref} enregistré.`)
+  this.unsetModified()
 }
+
+}//AEvent

@@ -249,6 +249,12 @@ class Listing {
     this.selection.setTo(liste, options)
   }
 
+  // Pour sélectionner un élément (en fait, on simule un clic dessus)
+  select(litem){
+    if ('listingItem' in litem) litem = litem.listingItem
+    litem.onClick({shiftKey:false,metaKey:false,altKey:false})
+  }
+
   // Retourne l'instance de l'item sélectionné mais seulement s'il n'y
   // a que lui sélectionné
   // Sinon return UNDEFINED

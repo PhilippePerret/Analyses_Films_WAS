@@ -46,8 +46,11 @@ div.listing
         background-color: #DDDDFF
 
 
-      &.selected
-        background-color: #1a67db
+      &.selected:not(.modified)
+        background-color: #1A67DB
+        color: white
+      &.modified
+        background-color: #EC0B0B
         color: white
 
 //

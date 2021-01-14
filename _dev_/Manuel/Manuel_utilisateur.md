@@ -118,4 +118,57 @@ Le contrôle permet de contrôler la vidéo et de mémoriser des points-clés, d
 
 
 
+---
+
+# Annexe
+
+<a id="shortcuts"></a>
+
+## Raccourcis clavier
+
+### Commande du contrôleur
+
+| Action attendue | Raccourci     | Description du raccourci / options       |
+| ----------------------- | ------------------------ | ------------------------------------------------------------ |
+| Jouer la vidéo active   | ![K_L](K_L.png)          | En appuyant plusieurs fois sur la touche, on accélère la vidéo. |
+| Stopper la vidéo active | ![K_K](K_K.png)          |                                                              |
+| Jouer en arrière        | ![K_J](K_J.png)          | Appuyer plusieurs fois pour changer la vitesse (accélérer)   |
+| Avancer d’une image     | ![][ArrowRight]          |                                                              |
+| Reculer d’une image     | ![][ArrowLeft]           |                                                              |
+| Avancer d’1 seconde     | ![][Cmd]![][ArrowRight]  |                                                              |
+| Reculer d’1 seconde     | ![][Cmd]![][ArrowLeft]   |                                                              |
+| Avancer de 10 secs      | ![][Maj] ![][ArrowRight] |                                                              |
+| Reculer de 10 secs      | ![][Maj]![][ArrowLeft]   |                                                              |
+| Aller au signet suivant | ![][Cmd]![][ArrowDown] | |
+| Aller au signet précédent | ![][Cmd]![][ArrowUp] | |
+
+<a id="shortcuts-event-editor"></a>
+
+### Commande de l’éditeur d'évènement
+
+| Action attendue                    | Raccourci      | Description du raccourci/options         |
+| ---------------------------------- | -------------- | ---------------------------------------- |
+| Enregistrer l'event                | ![][K_S]       |                                          |
+| Focusser dans le champ de texte    | ![][K_T]       |                                          |
+| Actualiser le temps                | ![][K_U]       | En prenant celui de la vidéo active.     |
+| Sélectionner l’évènement suivant   | ![][ArrowDown] | Ou le premier si aucun n’est sélectionné |
+| Sélectionner l’évènement précédent | ![][ArrowUp]   | Ou le dernier si aucun n’est sélectionné |
+|                                    |                |                                          |
+|                                    |                |                                          |
+
+
+
+
+
+[K_S]: ./img/clavier/K_S.png
+[K_T]: ./img/clavier/K_T.png
+[K_U]: ./img/clavier/K_U.png
+[Cmd]: ./img/clavier/K_Command.png
+[Maj]: ./img/clavier/K_Maj.png
+[ArrowRight]: ./img/clavier/K_FlecheD.png
+[ArrowLeft]: ./img/clavier/K_FlecheG.png
+[ArrowDown]: ./img/clavier/K_FlecheB.png
+[ArrowUp]: ./img/clavier/K_FlecheH.png
+
 [contrôleur]: #controller
+

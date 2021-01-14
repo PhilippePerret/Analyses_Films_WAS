@@ -13,6 +13,57 @@ static init(){
   this.lastId = 0
 }
 
+// Pour sélectionner le premier item (if any)
+static selectFirst(){
+  if ( Object.keys(this.table).length ) {
+    var litem = this.listing.liste.firstChild
+    var item = this.get(parseInt(litem.id.split('-')[1]))
+    this.listing.select(item)
+  } else {
+    error("Impossible de sélectionner le premier élément. Il n'y en a pas.", {keep:false})
+  }
+}
+// Pour sélectionner le dernier item (if any)
+static selectLast(){
+  if ( Object.keys(this.table).length ) {
+    var litem = this.listing.liste.lastChild
+    var item = this.get(parseInt(litem.id.split('-')[1]))
+    this.listing.select(item.listingItem)
+  } else {
+    error("Impossible de sélectionner le dernier élément. Il n'y en a pas.", {keep:false})
+  }
+}
+// Pour sélectionner l'item suivant (if any)
+static selectNext(){
+  var item = this.listing.getSelection()[0]
+  if ( item ) {
+    const litem = item.listingItem.obj.nextSibling
+    if (litem) {
+      const item  = this.get(Number(litem.id.split('-')[1]))
+      this.listing.select(item)
+    } else {
+      this.selectFirst()
+    }
+  } else {
+    error("Aucun item trouvé… Impossible de passer au suivant.")
+  }
+}
+// Pour sélectionner l'item précédent (if any)
+static selectPrevious(){
+  var item = this.listing.getSelection()[0]
+  if ( item ) {
+    const litem = item.listingItem.obj.previousSibling
+    if (litem) {
+      const item  = this.get(Number(litem.id.split('-')[1]))
+      this.listing.select(item)
+    } else {
+      this.selectLast()
+    }
+  } else {
+    error("Aucun item trouvé… Impossible de passer au précédent.")
+  }
+}
+
 static get(itemId){return this.table[itemId]}
 
 static newId(){return ++this.lastId}

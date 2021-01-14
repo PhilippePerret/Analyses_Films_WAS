@@ -3,7 +3,11 @@
 
   MÉTHODES PRATIQUES
   ------------------
-  Version 1.1.1
+  Version 1.2.0
+
+# 1.2.0
+  Ajout de la méthode focusIn. Qui permet de focusser dans un élément
+  en triggant un évènement focus.
 
 # 1.1.1
   Amélioration de stopEvent pour désactiver encore plus de choses
@@ -17,6 +21,28 @@
 # 1.0.2
   Ajout de la méthode 'px'
 *** --------------------------------------------------------------------- */
+
+// Pour focus dans un élément en triggant un évènement focus
+// Mais bon… ça ne semble pas marcher…
+function focusIn(element) {
+  // var eventType = "onfocusin" in element ? "focusin" : "focus",
+  //   , bubbles = "onfocusin" in element,
+  //   , event;
+  var eventType = 'focus'
+    , bubbles = false
+    , event
+
+  if ("createEvent" in document) {
+    event = document.createEvent("Event");
+    event.initEvent(eventType, bubbles, true);
+  }
+  else if ("Event" in window) {
+    event = new Event(eventType, { bubbles: bubbles, cancelable: true });
+  }
+
+  element.focus();
+  element.dispatchEvent(event);
+}
 
 // Méthode à utiliser en catch des promesses
 function onError(err){
