@@ -1,6 +1,22 @@
 'use strict'
 
 /**
+* Pour changer de mode clavier
+***/
+function setModeClavier(mode){
+  window.modeClavier = mode
+  switch(mode){
+    case 'command':
+      window.onkeydown = window.gestionKeyDown.bind(window)
+      break
+    case 'text':
+      window.onkeydown = function(ev){return true}
+      break
+    default: return error("Le mode clavier "+mode+" est inconnu…")
+  }
+  DGet('#mode-clavier').textContent = `mode clavier : ${mode}`
+}
+/**
 * Gestionnaire des touches qui concerne le contrôleur de vidéo
 ***/
 function gestionnaireTouchesController(ev){
@@ -12,7 +28,7 @@ function gestionnaireTouchesController(ev){
       }
     } else {
       switch(ev.key){
-        case 'k':Controller.toggle();break
+        case 'k': Controller.toggle();break
         case 'ArrowRight':  DOMVideo.current.avance(ev); break
         case 'ArrowLeft':   DOMVideo.current.recule(ev); break
         case 'ArrowUp':     Locators.gotoSignet('prev'); stopEvent(ev); break
@@ -51,6 +67,7 @@ function gestionnaireTouchesEditeurEvents(ev){
         case 'u': AEvent.current.updateTime(undefined);break
         case 't': AEvent.focusTexte();break
         case 'i': AEvent.initForm();break
+        case 'Backspace': AEvent.current.destroy();break
         case 'ArrowDown': AEvent.selectNext();break
         case 'ArrowUp': AEvent.selectPrevious();break
         default: return

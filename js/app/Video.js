@@ -40,9 +40,10 @@ static incVideosReady(){
   if(undefined === this.nombreVideosReady) this.nombreVideosReady = 0
   ++ this.nombreVideosReady
   if ( this.nombreVideosReady == this.nombreVideosToPrepare ) {
-    window.onkeydown = window.gestionKeyDown.bind(window)
+    App.setVeryReady()
   }
 }
+
 
 /**
 * Méthode qui synchronise les deux vidéos (donc qui les cale sur le même temps)

@@ -127,5 +127,11 @@ update(data){
   this.save()
   this.listingItem.replaceInList()
 }
+destroy(lefaire = false){
+  lefaire = lefaire || confirm("Es-tu certain de vouloir détruire cet éléments ?")
+  if ( lefaire ) {
+    this.listingItem.onMoinsButton()
+  }
+}
 
 }

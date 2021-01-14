@@ -13,7 +13,9 @@ static init(){
 * Fin de l'initialisation, c'est-à-dire lorsque tout est prêt
 ***/
 static endInit(){
+  console.log("-> endInit")
   document.querySelectorAll('textarea, input[type="text"]').forEach(el => {
+    console.log("Élément surveillé : ", el)
     el.addEventListener('focus', this.onFocusTextField.bind(this))
     el.addEventListener('blur',  this.onBlurTextField.bind(this))
   })
@@ -26,15 +28,11 @@ static setBody(){
 
 static onFocusTextField(ev){
   console.log("Focus dans ", ev)
-  this.oldKeyDown   = window.onkeydown
-  this.oldKeyUp     = window.onkeyup
-  window.onkeydown  = window.gestionKeyDown.bind(window)
-  window.onkeyup    = window.gestionKeyUp.bind(window)
+  setModeClavier('text')
 }
 static onBlurTextField(ev){
   console.log("Blur de ", ev)
-  window.onkeydown  = this.oldKeyDown
-  window.onkeyup    = this.oldKeyUp
+  setModeClavier('command')
 }
 
 /**

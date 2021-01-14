@@ -12,19 +12,13 @@ class App {
       Console.init()
       Controller.init()
       AEvent.init()
-      UI.endInit()
       ok()
     })
   }
 
-  // Quand tout est prêt
-  static start(){
-    // console.clear()
-    console.log("On peut commencer !")
-    // Pour lancer des procédures directement au cours de l'implémentation
-
-    // Pour essai du code ruby (_scripts_/_essai_.rb)
-    // UI.run_script_essai()
+  static setVeryReady(){
+    UI.endInit()
+    window.setModeClavier('command')
+    message("Nous sommes prêts.", {keep:false})
   }
-
 }
