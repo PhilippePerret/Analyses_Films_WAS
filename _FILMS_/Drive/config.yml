@@ -6,7 +6,7 @@ video2:
   width: 200
 options:
   video_follows_mouse: false
-  follow_selected_event: false
+  follow_selected_event: true
   show_current_event: false
 personnages:
   PR: Protagoniste

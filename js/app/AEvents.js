@@ -166,6 +166,9 @@ static focusTexte(){
 // Pour initialiser le formulaire
 static initForm(){
   this.listing.form.cleanup()
+  // this._current = null
+  delete this._current
+  console.log("this.current:", this.current)
   message("Formulaire initialisé.", {keep:false})
 }
 
@@ -204,8 +207,29 @@ get ref(){
 
 // Le LI à afficher dans le listing
 get li(){
-  const LI = DCreate("LI", {id: `aevent-${this.id}`, class:"listing-item li-aevent", text:this.content})
+  const LI = DCreate("LI", {id: `aevent-${this.id}`, class:"listing-item li-aevent", text:this.fcontent})
   return LI
+}
+
+// Retourne le contenu formaté de l'évènement
+get fcontent(){
+  return `${this.htype} ${this.data.content}`
+}
+
+// Retourne le type humain en fonction du nœud
+get htype(){
+  var ty = this.data.type, cty, st ;
+  if ( ty.match(/:/) ) {
+    [ty, st] = this.data.type.split(':')
+    if ( ty == 'nc') {
+      cty = this.constructor.TYPES_NOEUDS[st].hname
+    } else {
+      cty = ty // à mieux régler
+    }
+  } else {
+    cty = ty
+  }
+  return `<span class="type ${ty}">${cty}</span>`
 }
 
 updateTime(newtime){
@@ -218,8 +242,13 @@ setModified(){
   this.listingItem.addClass('modified')
   message(`${this.ref} modifié. Tape "s" pour l'enregistrer.`, {keep:false})
 }
+/**
+* Marquer non modifié
+Note : on doit checker l'existence du listing-item car quand on crée
+l'event, ce listing-item n'existe pas encore, ici
+***/
 unsetModified(){
-  this.listingItem.removeClass('modified')
+  this.listingItem && this.listingItem.removeClass('modified')
 }
 
 update(data){

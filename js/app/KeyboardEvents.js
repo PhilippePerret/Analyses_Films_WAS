@@ -75,6 +75,7 @@ function gestionnaireTouchesEditeurEvents(ev){
     } else {
       /* Si aucun évènement n'est sélectionné */
       switch(ev.key){
+        case 's': AEvent.listing.onSaveButton(null);break
         case 't': AEvent.focusTexte();break
         case 'i': AEvent.initForm();break
         case 'ArrowDown': AEvent.selectFirst();break
