@@ -1,3 +1,11 @@
 li.li-aevent
   overflow: hidden
-  text-overflow: ellipsis 
+  text-overflow: ellipsis
+  position: relative
+
+  &.current-in-video
+    &:before
+      content: "➜"
+      position: absolute
+      left: -30px
+      color: green

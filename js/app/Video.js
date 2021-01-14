@@ -23,6 +23,25 @@ static set current(v){
 }
 
 /**
+* L'évènement actuellement affiché dans la vidéo (if any)
+***/
+static get currentInVideo(){return this._currentinvideo}
+static set currentInVideo(e){
+  if (this.currentInVideo){
+    this.currentInVideo.obj.classList.remove('current-in-video')
+    this._currentinvideo = e
+    this.currentInVideo.obj.classList.add('current-in-video')
+  }
+}
+
+/**
+* Méthode qui permet de suivre les évènements en même temps que la vidéo
+Définit this.nextTime qui est le temps du prochain évènement
+***/
+static setCurrentVideoEvent(){
+  if ( this.currentInVideo )
+}
+/**
 * Au démarrage, régler les options pour la vidéo
 On en profite aussi pour placer les observateurs pour changer les
 options quand il y a un travail à faire.
@@ -210,8 +229,16 @@ calcValues(){
 px2time(px){ return px / this.timeRatio}
 time2px(time){ return parseInt(time * this.timeRatio, 10)}
 
+/**
+* Méthode appelée au changement de temps
+  - elle règle l'horloge
+  - elle regarde si un évènement doit être "sélectionné"
+***/
 onTimeChange(ev){
   this.horloge.set(this.time)
+  if ( film.options.show_current_event && this.time > this.constructor.nextTime ){
+    this.constructor.setCurrentVideoEvent()
+  }
 }
 get horloge(){
   return this._horloge || (this._horloge = new Horloge(this))

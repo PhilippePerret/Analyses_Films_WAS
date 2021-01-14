@@ -27,11 +27,11 @@ static setBody(){
 }
 
 static onFocusTextField(ev){
-  console.log("Focus dans ", ev)
+  // console.log("Focus dans ", ev)
   setModeClavier('text')
 }
 static onBlurTextField(ev){
-  console.log("Blur de ", ev)
+  // console.log("Blur de ", ev)
   setModeClavier('command')
 }
 
