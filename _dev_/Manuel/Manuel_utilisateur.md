@@ -166,7 +166,7 @@ On peut utiliser une seconde vidéo simplement en la définissant dans le fichie
 | Reculer d’1 seconde     | ![][Cmd]![][ArrowLeft]   |                                                              |
 | Avancer de 10 secs      | ![][Maj] ![][ArrowRight] |                                                              |
 | Reculer de 10 secs      | ![][Maj]![][ArrowLeft]   |                                                              |
-| Aller au signet suivant | ![][Cmd]![][ArrowDown] | |
+|  |  | |
 | Aller au signet précédent | ![][Cmd]![][ArrowUp] | |
 | Copier le temps de la vidéo active dans le temps de l’autre vidéo | ![][K_C] | Il faut qu’une [seconde vidéo soit active](#use-two-videos) |
 
@@ -186,6 +186,20 @@ On peut utiliser une seconde vidéo simplement en la définissant dans le fichie
 |                                    |                |                                          |
 |                                    |                |                                          |
 
+<a id="shortcut-signets"></a>
+
+### Commandes signets
+
+| Action attendue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Raccourci&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description/options |
+| ------------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------------ |
+| Aller au signet suivant | ![][Cmd]![][ArrowDown] |                                                              |
+| Aller au signet précédent | ![][Cmd]![][ArrowUp] | |
+| Aller au signet 1… 9 | ![][K_1]…![][K_9] | |
+
+
+
+
+
 <a id="shortcut-divers"></a>
 
 ### Commandes diverses
@@ -198,7 +212,8 @@ On peut utiliser une seconde vidéo simplement en la définissant dans le fichie
 |                                                              |                                                     |                                                              |
 
 
-
+[K_1]: ./img/clavier/K_1.png
+[K_9]: ./img/clavier/K_9.png
 [K_A]: ./img/clavier/K_A.png
 [K_C]: ./img/clavier/K_C.png
 [K_J]: ./img/clavier/K_J.png

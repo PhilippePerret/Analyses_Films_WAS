@@ -14,6 +14,49 @@ static get current() { return this._current }
 static set current(e) { this._current = e }
 
 /**
+* L'évènement actuellement affiché dans la vidéo (if any)
+***/
+static get currentInVideo(){return this._currentinvideo}
+static set currentInVideo(e){
+  if (this.currentInVideo){
+    this.currentInVideo.obj.classList.remove('current-in-video')
+    this._currentinvideo = e
+    this.currentInVideo.obj.classList.add('current-in-video')
+  }
+}
+
+/**
+* Liste des events classés par temps
+***/
+static get orderedList(){
+  if (undefined == this._orderedList){
+    this._orderedList = Object.values(this.table).sort((a,b) => {
+      if (a.time > b.time) {return 1}
+      else return -1
+    })
+  } return this._orderedList
+}
+/**
+* Méthode qui retourne les évènements autour du temps +time+
+C'est-à-dire une table contenant :
+{:current, :previous, :next}
+***/
+static getEventsAround(time){
+  const d = {current: null, previous: null, next: null}
+  for(var i = 0, len = this.orderedList.length; i < len ; ++i){
+    console.log("Comparaison de avec ", this.orderedList[i].time, time)
+    if ( this.orderedList[i].time > time ){
+      d.current   = this.orderedList[i - 1]
+      d.previous  = this.orderedList[i - 2]
+      d.next      = this.orderedList[i]
+      return d
+    }
+  }
+  console.error("Impossible de trouver un évènement contenant le %f parmi ", time, this.orderedList)
+  return d
+}
+
+/**
 * Méthode appelée quand on sélectionne un item dans le listing
 ***/
 static onSelect(item){
@@ -149,6 +192,7 @@ static get listing(){
 constructor(data) {
   super(data)
   this.content  = this.data.content
+  this.time = this.data.time
 }
 // Une référence à l'objet (évènement d'analyse) pour les messages
 get ref(){

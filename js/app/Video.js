@@ -23,24 +23,22 @@ static set current(v){
 }
 
 /**
-* L'évènement actuellement affiché dans la vidéo (if any)
-***/
-static get currentInVideo(){return this._currentinvideo}
-static set currentInVideo(e){
-  if (this.currentInVideo){
-    this.currentInVideo.obj.classList.remove('current-in-video')
-    this._currentinvideo = e
-    this.currentInVideo.obj.classList.add('current-in-video')
-  }
-}
-
-/**
 * Méthode qui permet de suivre les évènements en même temps que la vidéo
-Définit this.nextTime qui est le temps du prochain évènement
+
+  Doit déterminer this.nextTime qui est le temps du prochain évènement
 ***/
 static setCurrentVideoEvent(){
-  if ( this.currentInVideo )
+  console.log("-> setCurrentVideoEvent (%f)", video.time)
+  // S'il y a un évènement courant
+  const evs = AEvent.getEventsAround(video.time)
+  console.log("evs = ", evs)
+  evs.previous && evs.previous.listingItem.removeClass('current-in-video')
+  evs.current && evs.current.listingItem.addClass('current-in-video')
+  this.nextTime = evs.next ? evs.next.time : 10000000
+
+  console.log("this.nextTime = %f", this.nextTime)
 }
+
 /**
 * Au démarrage, régler les options pour la vidéo
 On en profite aussi pour placer les observateurs pour changer les
@@ -236,7 +234,7 @@ time2px(time){ return parseInt(time * this.timeRatio, 10)}
 ***/
 onTimeChange(ev){
   this.horloge.set(this.time)
-  if ( film.options.show_current_event && this.time > this.constructor.nextTime ){
+  if ( film.options.show_current_event && this.time > (this.constructor.nextTime||0) ){
     this.constructor.setCurrentVideoEvent()
   }
 }
