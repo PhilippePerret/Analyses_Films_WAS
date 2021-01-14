@@ -6,6 +6,19 @@ Pour affichage de tout ce qui concerne l'aide, et principalement les messages
 "transparents"
 ***/
 class Aide {
+// Ouvrir le fichier PDF dans une autre fenêtre/signet
+static openPDF(){
+  window.open("./_dev_/Manuel/Manuel_utilisateur.pdf", "manuel-analyseur-de-film")
+  message("Le manuel d'utilisation est ouvert.", {keep:false})
+}
+// Pour modifier le mode d'emploi
+static editManuel(){
+  message("J'ouvre le manuel en édition…")
+  return Ajax.send('open_manuel.rb', {mode:'edit'})
+  .then(ret => {
+    message("Manuel ouvert en édition.", {keep:false})
+  })
+}
 // Lancer/arrêter l'aide
 static toggle(){
   if (this.running) this.stopAide()
@@ -72,11 +85,12 @@ build(){
 static get MESSAGES(){
   if ( undefined == this._messages){
     this._messages = [
-        {content: '<span class="key">⌘</span><span class="key">k</span> pour afficher/masquer le contrôleur de vidéo'}
+        {content: '<span class="key">⌘</span><span class="key">a</span> pour ouvrir le manuel d’utilisation dans une autre fenêtre'}
+      , {content: '<span class="key">⌘</span><span class="key">k</span> pour afficher/masquer le contrôleur de vidéo'}
       , {content: '<span class="key">⌘</span><span class="key">⌥</span><span class="key">k</span> pour afficher/masquer les raccourcis du contrôleur'}
       , {content: 'Déplacer la souris sur la vidéo pour choisir le temps (puis clic pour la figer)'}
-      , {content: '<span class="key">⌘</span><span class="key">a</span> pour afficher/masquer cette aide'}
-      , {content: 'Quand le contrôleur est ouvert (<span class="key">⌘</span><span class="key">k</span>), on peut rejoindre facilement les 9 premiers signets à l’aide des touches 1 à 9'}
+      , {content: '<span class="key">⇧</span><span class="key">⌘</span><span class="key">a</span> pour afficher/masquer cette aide flottante'}
+      , {content: 'On peut rejoindre facilement les 9 premiers signets à l’aide des touches 1 à 9'}
       , {content: 'Pour obtenir une seconde vidéo du film, il suffit de définir :video2 dans la configuration du film.'}
       , {content: 'Pour créer un signet, ouvrir le contôleur (<span class="key">⌘</span><span class="key">k</span>) et l’ajouter.'}
     ]

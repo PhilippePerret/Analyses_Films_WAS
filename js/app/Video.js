@@ -36,6 +36,18 @@ static setOptions(){
   })
 }
 
+/**
+* Méthode qui synchronise les deux vidéos (donc qui les cale sur le même temps)
+***/
+static synchronizeVideos(){
+  if (video2){
+    const otherVideo = this.current.id == 'video1' ? video2 : video
+    otherVideo.time = this.current.time
+    message("Retours vidéos synchronisés", {keep:false})
+  } else {
+    error("Il y a un seul retour vidéo. Impossible de les synchroniser.")
+  }
+}
 /** ---------------------------------------------------------------------
 *
 *   INSTANCE

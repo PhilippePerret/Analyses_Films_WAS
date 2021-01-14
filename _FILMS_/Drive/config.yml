@@ -1,7 +1,6 @@
 ---
 video:
   width: 600
-  # name: Collision_720p-subtitles.mp4
   name: Drive_720p.mp4
 video2:
   width: 200

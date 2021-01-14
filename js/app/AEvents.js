@@ -181,7 +181,7 @@ update(data){
 
 save(){
   super.save()
-  message(`${this.ref} enregistré.`)
+  message(`${this.ref} enregistré.`, {keep:false})
   this.unsetModified()
 }
 

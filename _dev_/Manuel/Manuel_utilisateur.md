@@ -1,5 +1,7 @@
 # Analyses films<br>Manuel utilisateur
 
+[TOC]
+
 
 
 ## Introduction
@@ -56,9 +58,15 @@ C’est le fichier qui définit le film courant. On trouve les propriétés suiv
 	:titre: Le titre du film
 	:video:
 		:width:	400 				// taille de la vidéo à afficher
-		:name:  video.mp4		// nom dans ce dossier
+		:name:  video.mp4		// nom de la vidéo dans ce dossier
 		
-	// optionnellement
+	// === OPTIONS ===
+	
+	// Pour avoir une seconde vidéo de contrôle ou d’essai
+	// Pour le moment, ce sera toujours la même
+	:video2:
+		:width: 200
+		
 	:personnages:
 		:PR: <personnage>		// 2 lettres qui seules vont remplacer le personnage
 												// dans les textes.
@@ -118,6 +126,23 @@ Le contrôle permet de contrôler la vidéo et de mémoriser des points-clés, d
 
 
 
+<a id="use-two-videos"></a>
+
+## Utiliser une seconde vidéo
+
+On peut utiliser une seconde vidéo simplement en la définissant dans le fichier `config.yml` du film :
+
+~~~yaml
+---
+	...
+	:video2:
+		:width: 200 # en général, assez petite
+		# TODO Plus tard des options, comme le placement dans l'interface
+		# pourront être déterminées.
+~~~
+
+
+
 ---
 
 # Annexe
@@ -128,11 +153,13 @@ Le contrôle permet de contrôler la vidéo et de mémoriser des points-clés, d
 
 ### Commande du contrôleur
 
-| Action attendue | Raccourci     | Description du raccourci / options       |
+> Ces raccourcis sont utilisables dès le lancement de l’application. Ils ne se désactivent que lorsqu’on se trouve dans un champ d’édition.
+
+| Action attendue | Raccourci&nbsp;&nbsp;&nbsp;&nbsp;| Description du raccourci / options       |
 | ----------------------- | ------------------------ | ------------------------------------------------------------ |
-| Jouer la vidéo active   | ![K_L](K_L.png)          | En appuyant plusieurs fois sur la touche, on accélère la vidéo. |
-| Stopper la vidéo active | ![K_K](K_K.png)          |                                                              |
-| Jouer en arrière        | ![K_J](K_J.png)          | Appuyer plusieurs fois pour changer la vitesse (accélérer)   |
+| Jouer la vidéo active   | ![][K_L]          | En appuyant plusieurs fois sur la touche, on accélère la vidéo. |
+| Stopper la vidéo active | ![][K_K]          |                                                              |
+| Jouer en arrière        | ![][K_J]          | Appuyer plusieurs fois pour changer la vitesse (accélérer)   |
 | Avancer d’une image     | ![][ArrowRight]          |                                                              |
 | Reculer d’une image     | ![][ArrowLeft]           |                                                              |
 | Avancer d’1 seconde     | ![][Cmd]![][ArrowRight]  |                                                              |
@@ -141,29 +168,47 @@ Le contrôle permet de contrôler la vidéo et de mémoriser des points-clés, d
 | Reculer de 10 secs      | ![][Maj]![][ArrowLeft]   |                                                              |
 | Aller au signet suivant | ![][Cmd]![][ArrowDown] | |
 | Aller au signet précédent | ![][Cmd]![][ArrowUp] | |
+| Copier le temps de la vidéo active dans le temps de l’autre vidéo | ![][K_C] | Il faut qu’une [seconde vidéo soit active](#use-two-videos) |
 
 <a id="shortcuts-event-editor"></a>
 
 ### Commande de l’éditeur d'évènement
 
+> Ces raccourcis clavier sont utilisables dès le lancement de l’application. Ils ne se désactivent que lorsqu’on se trouve dans un champ d’édition.
+
 | Action attendue                    | Raccourci      | Description du raccourci/options         |
 | ---------------------------------- | -------------- | ---------------------------------------- |
 | Enregistrer l'event                | ![][K_S]       |                                          |
-| Focusser dans le champ de texte    | ![][K_T]       |                                          |
+| Focusser dans le champ de texte    | ![][K_T]       | Désactive les raccourcis clavier.        |
 | Actualiser le temps                | ![][K_U]       | En prenant celui de la vidéo active.     |
 | Sélectionner l’évènement suivant   | ![][ArrowDown] | Ou le premier si aucun n’est sélectionné |
 | Sélectionner l’évènement précédent | ![][ArrowUp]   | Ou le dernier si aucun n’est sélectionné |
 |                                    |                |                                          |
 |                                    |                |                                          |
 
+<a id="shortcut-divers"></a>
+
+### Commandes diverses
+
+| Action attendue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Raccourci&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description/options |
+| ------------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------------ |
+| Ouvrir ce fichier d'aide                                     | ![][Cmd]![][K_A]                                    | Il s’ouvre en PDF dans une autre fenêtre                     |
+| Activer/désactiver l’aide transparent                        | ![][Maj]![][Cmd]![][K_A]                            | Ce sont les messages qui s’affichent régulièrement dans l’interface. |
+| Ouvrir ce fichier d’aide pour le modifier                    | ![][Alt]![][Cmd]![][K_A]                            |                                                              |
+|                                                              |                                                     |                                                              |
 
 
 
-
+[K_A]: ./img/clavier/K_A.png
+[K_C]: ./img/clavier/K_C.png
+[K_J]: ./img/clavier/K_J.png
+[K_K]: ./img/clavier/K_K.png
+[K_L]: ./img/clavier/K_L.png
 [K_S]: ./img/clavier/K_S.png
 [K_T]: ./img/clavier/K_T.png
 [K_U]: ./img/clavier/K_U.png
 [Cmd]: ./img/clavier/K_Command.png
+[Alt]: ./img/clavier/K_Alt.png
 [Maj]: ./img/clavier/K_Maj.png
 [ArrowRight]: ./img/clavier/K_FlecheD.png
 [ArrowLeft]: ./img/clavier/K_FlecheG.png

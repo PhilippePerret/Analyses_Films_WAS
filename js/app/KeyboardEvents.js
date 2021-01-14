@@ -24,9 +24,11 @@ function gestionnaireTouchesController(ev){
   }
   // Les touches seules
   switch(ev.key){
-    case 'l': DOMVideo.current.replay(); break;
-    case 'k': DOMVideo.current.pause(); break;
-    case 'j': DOMVideo.current.rerewind(); break;
+    case ' ': DOMVideo.current.togglePlay();break
+    case 'l': DOMVideo.current.replay(); break
+    case 'k': DOMVideo.current.pause(); break
+    case 'j': DOMVideo.current.rerewind(); break
+    case 'c': DOMVideo.synchronizeVideos();break
     case 'ArrowRight':  DOMVideo.current.avance(ev); break
     case 'ArrowLeft':   DOMVideo.current.recule(ev); break
     case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8':
@@ -63,25 +65,36 @@ function gestionnaireTouchesEditeurEvents(ev){
         default: return
       }
     }
-  }
-  return true
+    return true
+  } // si aucune touche modificatrice
 }
 
 /**
 * Le gestion des touches quand on est en dehors d'un champ de texte
 ***/
 window.gestionKeyDown = function(ev){
+  // console.log("ev.key = '%s'", ev.key)
   if ( gestionnaireTouchesController(ev) ) return stopEvent(ev)
-
+  // console.log("Je poursuis après touches controller")
   if ( gestionnaireTouchesEditeurEvents(ev) ) return stopEvent(ev)
+  // console.log("Je poursuis après touches éditeur")
 
   // console.log("-> onkeydown (%s)", ev.key)
   if (ev.metaKey){
-    switch(ev.key){
-      case 'È':
-        if (ev.altKey) Aide.toggleControllerShortcuts() // Alt+Cmd+k
-        break
-      case 'a': Aide.toggle(); break
+    if(ev.shiftKey){
+      if(ev.altKey){ // Cmd + MAJ + ALT
+        switch(ev.key){
+          case 'Æ': Aide.editManuel(); break
+        }
+      } else { // juste Cmd + MAJ
+        switch(ev.key){
+          case 'a': Aide.toggle(); break
+        }
+      }
+    } else {
+      switch(ev.key){
+        case 'a': Aide.openPDF(); break
+      }
     }
     return stopEvent(ev)
   }
