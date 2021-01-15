@@ -136,9 +136,10 @@ static getType(){
 }
 static setType(v){
   var nt ;
-  if ( v.match(':') ) { v, nt = v.split(':')}
+  if ( v.match(':') ) { [v, nt] = v.split(':')}
   this.menuType.value = v
   nt && $(this.menuTypeNoeud).val(nt)
+  this.menuTypeNoeud.classList[nt?'remove':'add']('hidden')
 }
 static get menuType(){return this._menutype || (this._menutype = document.querySelector('select#item-type'))}
 static get menuTypeNoeud(){return this._menutynoeud || (this._menutynoeud = document.querySelector('select#item-ntype'))}
