@@ -75,7 +75,7 @@ function gestionnaireTouchesEditeurEvents(ev){
     if ( AEvent.current ) {
       /* Si un évènement est sélectionné */
       switch(ev.key){
-        case 's': AEvent.current.update();break
+        case 's': AEvent.listing.onSaveButton({});break
         case 'u': AEvent.current.updateTime(undefined);break
         case 't': AEvent.focusTexte();break
         case 'i': AEvent.initForm();break

@@ -166,6 +166,7 @@ static __afterCreate(item){
 static update(data){
   console.log("-> %s::update", this.name)
   var item = this.get(data.id)
+  item.isSelectedItem = this.listing.selection.lastItem && item.id == this.listing.selection.lastItem.id
   if (item) {
     item.update(data)
   } else {
@@ -224,7 +225,7 @@ save(){
   // .then(ret => console.log(ret))
 }
 update(data){
-  console.log("-> update %s", this.ref)
+  // console.log("-> update %s avec ", this.ref, data)
   const timeHasChanged = parseFloat(data.time) != this.time
   const oldIndex = this.index
   this.dispatchData(data)
@@ -234,7 +235,9 @@ update(data){
     this.constructor.resetOrderedList()
     this.index == oldIndex || this.repositionne()
   }
+  this.isSelectedItem && this.select()
 }
+
 destroy(lefaire = false){
   lefaire = lefaire || confirm("Es-tu certain de vouloir détruire cet éléments ?")
   lefaire && this.constructor.listing.onMoinsButton({}, true)

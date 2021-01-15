@@ -370,7 +370,7 @@ class Listing {
     if ( itemValues ){
       if ( itemValues.id ) {
         /* === ACTUALISATION === */
-        if ( 'function' === typeof (this.owner.update) ){
+        if ( 'update' in this.owner ){
           itemValues.id = Number(itemValues.id)
           this.owner.update.call(this.owner, itemValues)
         } else {
