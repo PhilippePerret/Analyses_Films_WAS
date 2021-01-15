@@ -75,9 +75,10 @@ static get PROPERTIES(){
 static get TYPES(){
   if (undefined == this._types){
     this._types = {
-        sc: {id:'sc', hname: "Scène"}
-      , nc: {id:'nc', hname: "Nœud clé"}
-      , no: {id:'no', hname: "Note"}
+        sc: {id:'sc', hname: "Scène",     letter:'s'}
+      , nc: {id:'nc', hname: "Nœud clé",  letter:''}
+      , no: {id:'no', hname: "Note",      letter:'n'}
+      , if: {id:'if', hname: 'Info',      letter:'i'}
     }
   }; return this._types
 }
@@ -228,7 +229,7 @@ get htype(){
       cty = ty // à mieux régler
     }
   } else {
-    cty = ty
+    cty = this.constructor.TYPES[ty].letter
   }
   return `<span class="type ${ty}">${cty}</span>`
 }
