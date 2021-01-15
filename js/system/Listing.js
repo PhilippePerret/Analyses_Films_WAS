@@ -312,7 +312,7 @@ class Listing {
     this.selection.remove(litem) // ne pas le faire avant
     litem.obj.remove()
     message("Élément supprimé avec succès.")
-    this.owner.afterDestroy && this.owner.afterDestroy.call(this, litem.item)
+    this.owner.afterDestroy && this.owner.afterDestroy.call(this.owner, litem.item)
   }
 
   onInitButton(ev){this.form.cleanup()}

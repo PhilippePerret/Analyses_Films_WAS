@@ -13,6 +13,10 @@ static init(){
   this.lastId = 0
 }
 
+static get(itemId){return this.table[itemId]}
+
+static newId(){return ++this.lastId}
+
 /**
 * Liste des events classés (par la méthode this.sortMethod )
 ***/
@@ -99,10 +103,6 @@ static selectPrevious(){
   }
 }
 
-static get(itemId){return this.table[itemId]}
-
-static newId(){return ++this.lastId}
-
 /**
 * Méthode qui charge les items (locators ou events) et les instancie
 ***/
@@ -175,7 +175,13 @@ Note : si c'est une liste ordonnée, elle est actualisée
 */
 static onDestroy(item){
   const isSelectedItem = this.listing.selection.lastItem && item.id == this.listing.selection.lastItem.id
-  item.isSelectedItem = isSelectedItem
+  if ( isSelectedItem ) {
+    // Quand c'est l'item sélectionné qui doit être détruit, il faut voir
+    // quel item on va sélectionner en remplacement. Pour ça, et pour que ça
+    // fonctionne pour toutes les configurations, on regarde dans le DOM
+    item.isSelectedItem = isSelectedItem
+    item.sibling = item.listingItem.obj.nextSibling || item.listingItem.obj.previousSibling
+  }
   Ajax.send(this.destroyItemScript, {id: item.id})
   .then(() => {
     delete this.table[item.id]
@@ -185,8 +191,10 @@ static onDestroy(item){
 
 static afterDestroy(item){
   console.log("item détruit : ", item)
-  if ( item.isSelectedItem ) {
-    console.log("Je dois sélectionner un élément autour")
+  if ( item.isSelectedItem && item.sibling ) {
+    const other = this.get(Number(item.sibling.id.split('-')[1]))
+    console.log("Autre : ", other)
+    other.select()
   }
 }
 
