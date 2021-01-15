@@ -26,16 +26,33 @@ static set currentInVideo(e){
 }
 
 /**
-* Liste des events classés par temps
+* Méthode appelée après la création d'un nouvel évènement
 ***/
-static get orderedList(){
-  if (undefined == this._orderedList){
-    this._orderedList = Object.values(this.table).sort((a,b) => {
-      if (a.time > b.time) {return 1}
-      else return -1
-    })
-  } return this._orderedList
+static afterCreate(item){
+  // Pour forcer l'actualisation de la liste classer des events
+  this.resetOrderedList()
+  // On doit placer l'item à sa bonne place
+  console.log("item = ", item)
+  const oLi = item.listingItem.obj
+  console.log("oLi = ", oLi)
+  oLi.parentNode.insertAfter(oLi, this.orderedList[item.index - 1].listingItem.obj)
 }
+
+static afterDestroy(item){
+  console.log("-> afterDestroy")
+  // Pour forcer l'actualisation de la liste classer des events
+  this.resetOrderedList()
+}
+
+/**
+* Méthode qui permet de classer les items (dans this.orderedList qui
+est une extension apportée par ListingExtended)
+***/
+static sortMethod(a, b){
+  return a.time > b.time ? 1 : -1
+}
+
+
 /**
 * Méthode qui retourne les évènements autour du temps +time+
 C'est-à-dire une table contenant :
@@ -197,7 +214,7 @@ static get listing(){
 constructor(data) {
   super(data)
   this.content  = this.data.content
-  this.time = this.data.time
+  this.time = this.data.time = parseFloat(this.data.time)
 }
 // Une référence à l'objet (évènement d'analyse) pour les messages
 get ref(){

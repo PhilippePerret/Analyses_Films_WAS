@@ -368,6 +368,7 @@ class Listing {
     const itemValues = this.form.checkedValues()
     if ( itemValues ){
       if ( itemValues.id ) {
+        /* === ACTUALISATION === */
         if ( 'function' === typeof (this.owner.update) ){
           itemValues.id = Number(itemValues.id)
           this.owner.update.call(this.owner, itemValues)
@@ -375,9 +376,11 @@ class Listing {
           console.error("Le propriétaire doit posséder la méthode 'update', qui reçoit les nouvelles valeurs, pour pouvoir fonctionner.")
         }
       } else {
+        /* === CRÉATION === */
         if ( 'function' === typeof (this.owner.create) ){
           const newItem = this.owner.create.call(this.owner, itemValues)
           this.add(newItem)
+          this.owner.afterCreate && this.owner.afterCreate(newItem)
         } else {
           console.error("Le propriétaire doit posséder la méthode 'create', qui reçoit les nouvelles valeurs, pour pouvoir fonctionner.")
         }

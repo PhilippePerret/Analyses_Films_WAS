@@ -267,7 +267,20 @@ class maClasseAvecListing extends ListingExtended {
   static get loadScript(){ return 'mon_script_chargement_items.rb'}
   static get saveItemScript(){ return 'script_save_item.rb'}
   
+  static sortMethod(a,b){ ... } // Méthode de classement des items
+  							// NOTER que c'est la présence de cette méthode qui
+  							// détermine par convention que la liste des items doit
+  							// être classée
+  
+  // --- PROPRIÉTÉS AJOUTÉES ---
+  
+  orderedList		// Liste des items classés (selon la méthode 'sortMethod')
+  							// Note : dans cette liste, chaque item possède une nouvelle
+  							// propriété 'index' qui permet de connaitre sa position 
+  							// dans la liste.
+  
   // --- MÉTHODES AJOUTÉES ---
+  
   load()		// charge tous les items. Le module this.loadScript doit retourner
   					// la propriété `items` avec la liste Array de tous les items
 
@@ -304,9 +317,19 @@ class maClasseAvecListing extends ListingExtended {
 
 
 
-### `static <owner>.onDestroy(item)`
+**`static <owner>.onDestroy(item)`**
 
 Méthode appelée (si elle existe) à la destruction d’un item. Si cette méthode n’existe pas, l’élément sera simplement détruit de la liste.
+
+
+
+**`<owner>::afterCreate(item)`**
+
+Méthode appelée après la création de l’item `item` si elle existe dans le propriétaire du listing.
+
+Permet par exemple de placer le `LI` de l’item au bon endroit, en cas de classement autre que le classement naturel par ajout.
+
+
 
 ---
 
@@ -314,19 +337,27 @@ Méthode appelée (si elle existe) à la destruction d’un item. Si cette méth
 
 ## Méthodes utiles
 
-### `listing#deselectAll()`
+
+
+**`listing#deselectAll()`**
 
 Pour retirer toutes les sélections du listing.
 
-### `listing#displayedItems()`
+
+
+**`listing#displayedItems()`**
 
 Retourne la liste des instances (du propriétaire) qui sont affichés. Sert particulièrement lorsqu'on filtre la liste.
 
-### `Listing#selectedItems()` ou `Listing#getSelection()`
+
+
+**`Listing#selectedItems()` ou `Listing#getSelection()`**
 
 Retourne la liste des instances (du propriétaire) qui sont sélectionnées.
 
-### `Listing#setSelectionTo(...)`
+
+
+**`Listing#setSelectionTo(...)`**
 
 Met la sélection à la valeur envoyée ou aux valeurs envoyées en premier argument. Le second argument permet de définir des options.
 
@@ -371,71 +402,95 @@ Dès qu'elles sont introduites dans le listing, on leur colle une nouvelle propr
 
 
 
-## Nouvelle méthodes/propriétés propriétaire (classe)
+## Nouvelle propriétés de classe
 
-### `<owner>.selectedOne`
+### Item sélectionné
+
+**`<owner>.selectedOne`**
 
 Retourne l’item sélectionné dans le listing, mais seulement s’il est unique.
 
-## Nouvelles méthodes propriétaire (instances)
+## Nouvelles méthodes d'instances
 
 Quand on lie un listing à un propriétaire, ce listing ajoute aussi de nouvelles méthodes (cf. la méthode d’instance `Listing#prepareOwner`)
 
-### `<item owner>.select()`
+
+
+### Sélection d’un item
+
+**`<item owner>.select()`**
 
 Permet de sélectionner l’instance du propriétaire `<item owner>` dans le listing.
 
 
 
-### `<item owner>.deselect()`
+### Désélection d’un item
+
+**`<item owner>.deselect()`**
 
 Désélectionne l’instance propriétaire dans le listing.
 
 
 
-## Nouvelles propriétés du propriétaire (instances)
+## Nouvelles propriétés d'instances
 
 
 
-### `<item owner>.listingItem`
+### Objet listing de l'item
+
+**`<item owner>.listingItem`**
 
 Retourne l’instance `Listing::ListingItem` de l’objet du listing associé à l’instance du propriétaire.
 
-### `<item owner>.listingItem.addClass('<class css>')`
-
-Pour ajouter une class CSS à un item de liste.
-
-### `<item owner>.listingItem.removeClass('<class css>')`
-
-Pour retirer une class CSS à un item de liste.
 
 
+#### Ajout d’un classe au listing-item
 
-## Méthodes propriétaire utiles
+**`<item owner>.listingItem.addClass('<class css>')`**
+
+Concrètement, ça ajoute une classe css à l’élément `LI` de l’item dans la liste.
+
+#### Retrait d’une class du listing-item
+
+**`<item owner>.listingItem.removeClass('<class css>')`**
+
+Concrètement, ça supprime la classe CSS de l’élément `LI` de l’item de la liste.
+
+
+
+## Méthodes de classe optionnelles
 
 > Note : la plupart de ces méthodes (toutes ?) sont appelées si elles existent, en tant que méthodes de classe, dans le propriétaire.
 
-#### Méthode appelée après la construction du listing et son placement dans le DOM
 
-`Propriétaire::afterBuild()`
+
+### Après la construction du listing
+
+**`<Propriétaire>::afterBuild()`**
 
 On peut s’en servir par exemple pour surveiller certains champs particuliers.
 
+> Note : la méthode est appelée après que le listing a été placé dans le DOM.
 
 
-### Méthode appelée quand on sélectionne un élément dans le listing
+
+### À la sélection d'un élément dans le listing
 
 Par défaut, cette méthode est `Propriétaire#onSelect(item)`.
 
 Mais on peut définir une méthode propre dans l'[instanciation du listing][] avec la propriété `onSelect`.
 
-### Méthode propriétaire appelée quand on déselectionne un item
+
+
+### À la désélection d'un item
 
 Par défaut, cette méthode est `Propriétaire#onDeselect(item)`.
 
 Mais on peut définir une méthode propre dans l'[instanciation du listing][] avec la propriété `onDeselect`.
 
-### Appelée quand on désélectionne tout
+
+
+### Quand on désélectionne tout
 
 ~~~javascript
 <owner>.onDeselectAll(){
@@ -446,7 +501,7 @@ Mais on peut définir une méthode propre dans l'[instanciation du listing][] av
 
 
 
-### Méthode appelée quand on ajoute un élément dans le listing
+### À l'ajout d'un élément dans le listing
 
 Par défaut, cette méthode est `Propriétaire#onAdd(item)`.
 
@@ -459,6 +514,10 @@ Mais on peut définir une méthode propre au cours de l'[instanciation du listin
 ## Annexe
 
 ### Historique des versions
+
+#### version 1.2.0
+
+* Gestion des listes d’item ordonnées (`orderedList`)
 
 ##### version 1.1.0
 
