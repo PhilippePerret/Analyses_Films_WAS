@@ -116,6 +116,12 @@ resetPlaying(){
 pause(){
   if ( this.playing ){ this.resetPlaying() }
   else if ( this.rewinding ) { this.resetRewinding() }
+  else this.stop()
+}
+// Un "vrai" stop, qui retourne au début
+stop(){
+  this.playing && this.resetPlaying()
+  this.time = 0
 }
 rewind(){
   this.playing && this.resetPlaying()
