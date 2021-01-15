@@ -669,7 +669,7 @@ class ListingForm {
       , firstFocusSet = false // pour savoir si on a focussé dans le premier champ
       ;
     this.getValues()
-    console.log("this.properties:", this.properties)
+    // console.log("this.properties:", this.properties)
     this.properties.forEach(dproperty => {
 
       // Débug

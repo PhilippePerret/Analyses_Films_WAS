@@ -23,3 +23,16 @@ li.li-aevent
       background-color: red
     &.sc
       background-color: green
+
+  span.show-on-select
+    position: absolute
+    right: 4px
+    font-size: 0.85em
+
+li.li-aevent
+  &:not(.selected)
+    span.show-on-select
+      display: none
+  &.selected
+    span.show-on-select
+      display: inline

@@ -210,7 +210,11 @@ get li(){
 
 // Retourne le contenu formaté de l'évènement
 get fcontent(){
-  return `${this.htype} ${this.data.content}`
+  return `${this.htype} ${this.data.content}<span class="show-on-select">${this.hiddenInfos}</span>`
+}
+
+get hiddenInfos(){
+  return `${t2h(this.time)} #${this.id}`
 }
 
 // Retourne le type humain en fonction du nœud
@@ -229,11 +233,17 @@ get htype(){
   return `<span class="type ${ty}">${cty}</span>`
 }
 
+afterUpdate(){
+  this.time = this.data.time
+}
+
 updateTime(newtime){
   if ( undefined == newtime ) newtime = DOMVideo.current.time
-  this.data.time = newtime
-  this.constructor.setTemps(newtime)
-  this.setModified()
+  if ( newtime != this.time ) {
+    this.data.time = this.time = newtime
+    this.constructor.setTemps(newtime)
+    this.setModified()
+  }
 }
 setModified(){
   this.listingItem.addClass('modified')

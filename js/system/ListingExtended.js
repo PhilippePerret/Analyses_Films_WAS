@@ -224,15 +224,25 @@ save(){
   return Ajax.send(this.constructor.saveItemScript, {data: this.data})
   // .then(ret => console.log(ret))
 }
+
+/**
+* Actualisation de l'item
+    - enregistre ses nouvelles données
+    - actualise son affichage
+    - le replace si c'est une liste ordonnée et que son index a changé
+***/
 update(data){
   // console.log("-> update %s avec ", this.ref, data)
-  const timeHasChanged = parseFloat(data.time) != this.time
-  const oldIndex = this.index
+  const oldIndex = this.index // undefined si pas liste ordonnée
   this.dispatchData(data)
   this.save()
-  this.listingItem.replaceInList() // mais ne change pas la position
-  if ( timeHasChanged ) {
+  this.afterUpdate && this.afterUpdate()
+  this.listingItem.replaceInList()
+  if ( this.constructor.isOrdered ) {
     this.constructor.resetOrderedList()
+    console.log({
+      index: this.index, oldIndex: oldIndex
+    })
     this.index == oldIndex || this.repositionne()
   }
   this.isSelectedItem && this.select()
