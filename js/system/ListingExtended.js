@@ -17,17 +17,32 @@ static init(){
 * Liste des events classés (par la méthode this.sortMethod )
 ***/
 static get orderedList(){
-  if (undefined == this._orderedList){
+  if ( !this._orderedList ){
     this._orderedList = Object.values(this.table).sort(this.sortMethod.bind(this))
     // On renseigne la donnée 'index' de chaque évènement
-    for(var i = 0, len = this.orderedList.length; i < len ; ++i){
+    for(var i = 0, len = this._orderedList.length; i < len ; ++i){
       this._orderedList[i].index = Number(i)
     }
+    this.count = this._orderedList.length
+    this.lastIndex = this.count - 1
   }
   return this._orderedList
 }
+
+/**
+* Retourne TRUE si l'item +item+ est le dernier de la liste
+***/
+static isLastItem(item){
+  return this.isOrdered && (item.index === this.lastIndex)
+}
+
+/**
+* Actualiser la liste ordonnée (après une création, un suppression,
+un déplacement)
+***/
 static resetOrderedList(){
   delete this._orderedList
+  this.orderedList // pour actualiser et notamment remettre à jour les index
   // console.log("_orderedList = ", this._orderedList)
 }
 
@@ -63,7 +78,8 @@ static selectNext(){
       this.selectFirst()
     }
   } else {
-    error("Aucun item trouvé… Impossible de passer au suivant.")
+    this.selectFirst()
+    // error("Aucun item trouvé… Impossible de passer au suivant.", {keep:false})
   }
 }
 // Pour sélectionner l'item précédent (if any)
@@ -78,7 +94,8 @@ static selectPrevious(){
       this.selectLast()
     }
   } else {
-    error("Aucun item trouvé… Impossible de passer au précédent.")
+    this.selectLast()
+    // error("Aucun item trouvé… Impossible de passer au précédent.", {keep:false})
   }
 }
 
@@ -110,9 +127,7 @@ afficher
 */
 static addItemsToListing(){
   __in("%s::addItemsToListing", this.name)
-  var list
-  if ( 'sortMethod' in this ) list = this.orderedList
-  else list = Object.values(this.table)
+  const list = this.isOrdered ? this.orderedList : Object.values(this.table)
   list.forEach(item => this.listing.add(item) )
   __out("%s::addItemsToListing", this.name)
 }
@@ -125,9 +140,26 @@ static addFromData(data){
 static create(data){
   Object.assign(data, {id: this.newId()})
   const item = new this(data)
+  Object.assign(this.table, {[item.id]: item})
   item.save()
-  return item
+  return item // pour l'ajouter à la liste
 }
+
+/**
+* Méthode système appelée après l'ajout de l'item dans la liste, quand
+c'est une création.
+***/
+static __afterCreate(item){
+  if (this.isOrdered) {
+    this.resetOrderedList()
+    item.repositionne()
+    item.select()
+  }
+}
+
+/**
+* Actualisation des données
+***/
 static update(data){
   var item = this.get(data.id)
   if (item) {
@@ -137,13 +169,30 @@ static update(data){
   }
 }
 
-// Appelé par le listing quand on détruit un item
+/**
+Appelé par le listing quand on détruit un item
+Note : si c'est une liste ordonnée, elle est actualisée
+*/
 static onDestroy(item){
+  const isSelectedItem = this.listing.selection.lastItem && item.id == this.listing.selection.lastItem.id
+  item.isSelectedItem = isSelectedItem
   Ajax.send(this.destroyItemScript, {id: item.id})
   .then(() => {
     delete this.table[item.id]
-    this.afterDestroy && this.afterDestroy.call(this, item)
+    this.isOrdered && this.resetOrderedList()
   })
+}
+
+static afterDestroy(item){
+  console.log("item détruit : ", item)
+  if ( item.isSelectedItem ) {
+    console.log("Je dois sélectionner un élément autour")
+  }
+}
+
+
+static get isOrdered(){
+  return this._isorderedlist || (this._isorderedlist = 'sortMethod' in this)
 }
 
 /** ---------------------------------------------------------------------
@@ -159,17 +208,41 @@ dispatchData(data){
   this.id = data.id
 }
 save(){
-  return Ajax.send(this.constructor.saveItemScript, {data: this.data}).then(ret => console.log(ret))
+  return Ajax.send(this.constructor.saveItemScript, {data: this.data})
+  // .then(ret => console.log(ret))
 }
 update(data){
+  const timeHasChanged = parseFloat(data.time) != this.time
+  const oldIndex = this.index
   this.dispatchData(data)
   this.save()
-  this.listingItem.replaceInList()
+  this.listingItem.replaceInList() // mais ne change pas la position
+  if ( timeHasChanged ) {
+    this.constructor.resetOrderedList()
+    this.index == oldIndex || this.repositionne()
+  }
 }
 destroy(lefaire = false){
   lefaire = lefaire || confirm("Es-tu certain de vouloir détruire cet éléments ?")
-  if ( lefaire ) {
-    this.listingItem.onMoinsButton()
+  lefaire && this.constructor.listing.onMoinsButton({}, true)
+}
+
+/**
+* Méthode qui repositionne l'item au bon endroit dans la liste
+en fonction de son index
+Rappel : l'index n'est calculé que lorsque c'est une liste classée
+Rappel : le listing ne fonctionne par liste classée (orderedList) que
+         lorsque la méthode this.sortMethod est définie.
+***/
+repositionne(){
+  console.log(`Repositionnement de ${this.ref}`)
+  const li = this.listingItem.obj
+      , listing = li.parentNode
+  if ( this.constructor.isLastItem(this) ) {
+    listing.appendChild(li)
+  } else {
+    listing.removeChild(li)
+    listing.insertBefore(li, listing.children[this.index])
   }
 }
 

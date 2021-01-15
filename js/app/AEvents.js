@@ -26,25 +26,6 @@ static set currentInVideo(e){
 }
 
 /**
-* Méthode appelée après la création d'un nouvel évènement
-***/
-static afterCreate(item){
-  // Pour forcer l'actualisation de la liste classer des events
-  this.resetOrderedList()
-  // On doit placer l'item à sa bonne place
-  console.log("item = ", item)
-  const oLi = item.listingItem.obj
-  console.log("oLi = ", oLi)
-  oLi.parentNode.insertAfter(oLi, this.orderedList[item.index - 1].listingItem.obj)
-}
-
-static afterDestroy(item){
-  console.log("-> afterDestroy")
-  // Pour forcer l'actualisation de la liste classer des events
-  this.resetOrderedList()
-}
-
-/**
 * Méthode qui permet de classer les items (dans this.orderedList qui
 est une extension apportée par ListingExtended)
 ***/

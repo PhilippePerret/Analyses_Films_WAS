@@ -286,8 +286,8 @@ class Listing {
     }
   }
 
-  onMoinsButton(ev){
-    const is_confirmed = this.options.destroy_without_confirm || confirm("Êtes-vous certain de vouloir supprimer cet élément ?")
+  onMoinsButton(ev, force = false){
+    const is_confirmed = force || this.options.destroy_without_confirm || confirm("Êtes-vous certain de vouloir supprimer cet élément ?")
     if ( is_confirmed ){
       const litem = this.selection.lastItem
       // console.log("litem:", litem)
@@ -309,9 +309,10 @@ class Listing {
     }
   }
   afterDestroy(litem){
-    this.selection.remove(litem)
+    this.selection.remove(litem) // ne pas le faire avant
     litem.obj.remove()
     message("Élément supprimé avec succès.")
+    this.owner.afterDestroy && this.owner.afterDestroy.call(this, litem.item)
   }
 
   onInitButton(ev){this.form.cleanup()}
@@ -380,6 +381,7 @@ class Listing {
         if ( 'function' === typeof (this.owner.create) ){
           const newItem = this.owner.create.call(this.owner, itemValues)
           this.add(newItem)
+          this.owner.__afterCreate && this.owner.__afterCreate(newItem)
           this.owner.afterCreate && this.owner.afterCreate(newItem)
         } else {
           console.error("Le propriétaire doit posséder la méthode 'create', qui reçoit les nouvelles valeurs, pour pouvoir fonctionner.")
