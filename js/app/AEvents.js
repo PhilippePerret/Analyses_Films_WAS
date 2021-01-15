@@ -167,6 +167,7 @@ static focusTexte(){
 static initForm(){
   this.listing.deselectAll()
   this.listing.form.cleanup()
+  this.menuTypeNoeud.classList.add('hidden')
   delete this._current
   message("Formulaire initialisé.", {keep:false})
 }
