@@ -157,6 +157,22 @@ On peut utiliser une seconde vidéo simplement en la définissant dans le fichie
 		# pourront être déterminées.
 ~~~
 
+---
+
+<a id="console"></id>
+
+## La console
+
+<a id="commandes-console"></a>
+
+### Liste des commandes
+
+| Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Commande&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description/options                                          |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Construire le PFA                                            | `pfa build`                                                  | Produit le fichier qui contient le Paradigme de Field Augmenté.  Utiliser la commande `open-pfa` pour l’afficher. |
+| Afficher le PFA                                              | `pfa open`                                                   |                                                              |
+|                                                              |                                                              |                                                              |
+
 
 
 ---

@@ -28,6 +28,7 @@ end # /<< self
 #
 # ---------------------------------------------------------------------
 attr_reader :folder
+attr_accessor :duration
 def initialize(folder)
   @folder = folder
 end #/ initialize

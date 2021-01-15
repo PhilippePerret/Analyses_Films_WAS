@@ -236,12 +236,14 @@ init(){
 get time(){ return parseFloat(Number.parseFloat(this.obj.currentTime).toFixed(3)) }
 set time(v){
   v = parseFloat(v) // peut être un string
-  if ( v <= this.obj.duration ) {
+  if ( v <= this.duration ) {
     this.obj.currentTime = v + .001
   } else {
     error(`Le temps ${t2h(v)} dépasse la durée du film.`, {keep:false})
   }
 }
+
+get duration(){return this._duration || (this._duration = this.obj.duration)}
 
 // Méthode pour informer que la vidéo est prête
 setReady(){

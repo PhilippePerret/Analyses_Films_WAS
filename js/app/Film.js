@@ -96,4 +96,6 @@ defaultizeOptions(opts = {}){
   })
   return opts
 }
+
+get analyse(){return this._analyse || (this._analyse = new Analyse(this))}
 }// Film

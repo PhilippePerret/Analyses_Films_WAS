@@ -31,6 +31,7 @@ run(){
   message(`Je joue le code '${this.code}'`, {keep:false})
   this.parse()
   switch(this.command){
+    case 'pfa':       return this.run_pfa_command(this.params[1])
     case 'rewind':
     case 'back':
     case '-' :
@@ -43,6 +44,17 @@ run(){
       erreur(`Je ne connais pas la commande “${this.command}”`)
   }
 }
+
+/**
+* Les commandes pour le PFA du film
+***/
+run_pfa_command(cmd){
+  switch(cmd){
+    case 'build': return film.analyse.buildPFA()
+    case 'open':  return film.analyse.openPFA()
+  }
+}
+
 
 /**
 * Méthode pour "parser" le code de la console, i.e. l'analyser pour pouvoir
