@@ -13,7 +13,10 @@ constructor(film) {
 
 buildPFA(){
   Ajax.send('pfa_build.rb', { duration: video.duration } )
-  .then(ret => console.log(ret))
+  .then(ret => {
+    console.log(ret)
+    message(ret.message, {keep:false})
+  })
 }
 openPFA(){
   error("Je ne sais pas encore ouvrir le PFA.")

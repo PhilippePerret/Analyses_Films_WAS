@@ -57,6 +57,7 @@ function gestionnaireTouchesController(ev){
     case 'k': DOMVideo.current.pause(); break
     case 'j': DOMVideo.current.rerewind(ev); break
     case 'c': DOMVideo.synchronizeVideos();break
+    case 'x': focusIn(DGet('#console'));break
     case 'ArrowRight':  DOMVideo.current.avance(ev); break
     case 'ArrowLeft':   DOMVideo.current.recule(ev); break
     case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8':

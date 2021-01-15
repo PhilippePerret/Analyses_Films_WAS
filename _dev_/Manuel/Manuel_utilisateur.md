@@ -183,6 +183,8 @@ On peut utiliser une seconde vidéo simplement en la définissant dans le fichie
 
 ## Raccourcis clavier
 
+> À tout moment, pour sortir d’un champ de texte ou d’un menu select — et donc retrouver l’usage des raccourcis clavier généraux — il suffit de jouer la touche ![][Escape].
+
 ### Commande du contrôleur
 
 > Ces raccourcis sont utilisables dès le lancement de l’application. Ils ne se désactivent que lorsqu’on se trouve dans un champ d’édition.
@@ -201,6 +203,7 @@ On peut utiliser une seconde vidéo simplement en la définissant dans le fichie
 |  |  | |
 | Aller au signet précédent | ![][Cmd]![][ArrowUp] | |
 | Copier le temps de la vidéo active dans le temps de l’autre vidéo | ![][K_C] | Il faut qu’une [seconde vidéo soit active](#use-two-videos) |
+| Se placer dans la console | ![][K_X] |  |
 
 <a id="shortcuts-event-editor"></a>
 
@@ -254,10 +257,12 @@ On peut utiliser une seconde vidéo simplement en la définissant dans le fichie
 [K_S]: ./img/clavier/K_S.png
 [K_T]: ./img/clavier/K_T.png
 [K_U]: ./img/clavier/K_U.png
+[K_X]: ./img/clavier/K_X.png
 [Ctrl]: ./img/clavier/K_Control.png
 [Cmd]: ./img/clavier/K_Command.png
 [Alt]: ./img/clavier/K_Alt.png
 [Maj]: ./img/clavier/K_Maj.png
+[Escape]: ./img/clavier/K_Escape.png
 [ArrowRight]: ./img/clavier/K_FlecheD.png
 [ArrowLeft]: ./img/clavier/K_FlecheG.png
 [ArrowDown]: ./img/clavier/K_FlecheB.png

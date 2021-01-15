@@ -93,6 +93,7 @@ static get MESSAGES(){
       , {content: 'On peut rejoindre facilement les 9 premiers signets à l’aide des touches 1 à 9'}
       , {content: 'Pour obtenir une seconde vidéo du film, il suffit de définir :video2 dans la configuration du film.'}
       , {content: 'Pour créer un signet, ouvrir le contôleur (<span class="key">⌘</span><span class="key">k</span>) et l’ajouter.'}
+      , {content: 'Pour sortir d’un champ de texte ou d’un select (=> raccourcis généraux), presser la touche ESCAPE.'}
     ]
   }return this._messages
 }

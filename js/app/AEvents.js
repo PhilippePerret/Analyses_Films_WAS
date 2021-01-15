@@ -101,7 +101,7 @@ static get TYPES_NOEUDS(){
       , cd: {id:'cd', hname:'Crise (dénouement)'}
       , cx: {id:'cx', hname:'Climax'}
       , de: {id:'de', hname:'Désinence'}
-      , pf: {id:'pf', hname:'Point Fin'}
+      , pf: {id:'pf', hname:'Point Final'}
     }
   }; return this._types_noeuds
 }
