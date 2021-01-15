@@ -124,11 +124,27 @@ Des signets — c’est-à-dire des points précis dans le film — peuvent ê
 
 Le contrôle permet de contrôler la vidéo et de mémoriser des points-clés, des signets, qui permettent de se déplacer avec plus d’aisance.
 
+> Note : maintenant, il n’est plus dédié qu’aux signets.
+
+On l’affiche grâce au raccourci  ![][Cmd]![][K_K].
+
+
+
+---
+
+<a id="videos"></a>
+
+## Les vidéos
+
+### Régler la vitesse
+
+Pour régler la vitesse de la vidéo, il suffit de presser autant de fois que nécessaire la touche ![][K_L] qui permet de lancer la lecture. Avec la touche ![][Ctrl] appuyée, on ralentit la vitesse.
+
 
 
 <a id="use-two-videos"></a>
 
-## Utiliser une seconde vidéo
+### Utiliser une seconde vidéo
 
 On peut utiliser une seconde vidéo simplement en la définissant dans le fichier `config.yml` du film :
 
@@ -157,8 +173,8 @@ On peut utiliser une seconde vidéo simplement en la définissant dans le fichie
 
 | Action attendue | Raccourci&nbsp;&nbsp;&nbsp;&nbsp;| Description du raccourci / options       |
 | ----------------------- | ------------------------ | ------------------------------------------------------------ |
-| Jouer la vidéo active   | ![][K_L]          | En appuyant plusieurs fois sur la touche, on accélère la vidéo. |
-| Stopper la vidéo active | ![][K_K]          |                                                              |
+| Jouer la vidéo active   | ![][K_L]          | En appuyant plusieurs fois sur la touche, on accélère la vidéo. La touche ![][Ctrl] permet de ralentir jusqu’à 50 % de la vitesse. |
+| Stopper la vidéo active | ![][K_K]          | Une seconde pression permet de revenir au début de la vidéo. |
 | Jouer en arrière        | ![][K_J]          | Appuyer plusieurs fois pour changer la vitesse (accélérer)   |
 | Avancer d’une image     | ![][ArrowRight]          |                                                              |
 | Reculer d’une image     | ![][ArrowLeft]           |                                                              |
@@ -222,6 +238,7 @@ On peut utiliser une seconde vidéo simplement en la définissant dans le fichie
 [K_S]: ./img/clavier/K_S.png
 [K_T]: ./img/clavier/K_T.png
 [K_U]: ./img/clavier/K_U.png
+[Ctrl]: ./img/clavier/K_Control.png
 [Cmd]: ./img/clavier/K_Command.png
 [Alt]: ./img/clavier/K_Alt.png
 [Maj]: ./img/clavier/K_Maj.png

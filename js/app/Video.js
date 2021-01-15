@@ -8,6 +8,9 @@ On peut avoir plusieurs vidéo dans l'écran, pour pouvoir faire des
 comparaison. La vidéo principale est une propriété 'video' de window.
 On peut donc y faire appel de n'importe où par 'video'.
 *** --------------------------------------------------------------------- */
+
+const SPEEDS = [.25, .5, .75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75]
+
 class DOMVideo {
 /** ---------------------------------------------------------------------
 *   CLASSE
@@ -100,13 +103,15 @@ togglePlay(){
 }
 play(){
   this.rewinding && this.resetRewind()
+  this.resetPlaying()
   this.obj.play()
   this.playing = true
 }
 resetPlaying(){
   this.obj.pause()
   this.playing = false
-  this.obj.playbackRate = 1
+  this.ispeed = 3
+  this.setSpeed()
 }
 pause(){
   if ( this.playing ){ this.resetPlaying() }
@@ -136,9 +141,13 @@ stopRewind(){
 }
 
 // Pour accéler le jeu à chaque impulsion (appel)
-replay(){
-  this.obj.playbackRate += 0.2
-  this.playing || this.play()
+replay(ev){
+  if (this.playing) {
+    this[ev.ctrlKey?'downSpeed':'upSpeed']()
+  }
+  else {
+    this.play()
+  }
 }
 // Pour accéler le rewind à chaque impulsion (appel)
 rerewind(){
@@ -146,6 +155,33 @@ rerewind(){
   this.rewindRate -= 2
   this.rewind()
 }
+
+/** ---------------------------------------------------------------------
+*   Méthodes pour la VITESSE
+*
+*** --------------------------------------------------------------------- */
+upSpeed(){
+  ++ this.ispeed
+  SPEEDS[this.ispeed] || (this.ispeed = 3) // 1
+  this.setSpeed()
+}
+downSpeed(){
+  -- this.ispeed
+  this.ispeed < 0 && (this.ispeed = 0)
+  this.setSpeed()
+}
+setSpeed(){
+  this.obj.playbackRate = SPEEDS[this.ispeed]
+  this.showSpeed()
+}
+/**
+* Pour afficher la vitesse
+***/
+showSpeed(){
+  this.spanSpeed.textContent = `x ${this.obj.playbackRate}`
+}
+
+// ---------------------------------------------------------------------
 
 /**
 * Pour avancer ou reculer d'un "cran"
@@ -316,6 +352,10 @@ goto(s){
 setWidth(w){
   // console.log("Je dois avancer de ", frames)
   this.obj.style.width = px(w)
+}
+
+get spanSpeed(){
+  return this._spanspeed || ( this._spanspeed = this.container.querySelector('.speed'))
 }
 
 }// DOMVideo

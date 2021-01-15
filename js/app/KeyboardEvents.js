@@ -53,9 +53,9 @@ function gestionnaireTouchesController(ev){
   // Les touches seules
   switch(ev.key){
     case ' ': DOMVideo.current.togglePlay();break
-    case 'l': DOMVideo.current.replay(); break
+    case 'l': DOMVideo.current.replay(ev); break
     case 'k': DOMVideo.current.pause(); break
-    case 'j': DOMVideo.current.rerewind(); break
+    case 'j': DOMVideo.current.rerewind(ev); break
     case 'c': DOMVideo.synchronizeVideos();break
     case 'ArrowRight':  DOMVideo.current.avance(ev); break
     case 'ArrowLeft':   DOMVideo.current.recule(ev); break
