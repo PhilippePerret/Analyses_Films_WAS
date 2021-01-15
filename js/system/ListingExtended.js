@@ -137,6 +137,9 @@ static addFromData(data){
   Object.assign(this.table, {[item.id]: item})
 }
 
+/**
+* Appelée à la création d'un nouvel item avec les données +data+
+***/
 static create(data){
   Object.assign(data, {id: this.newId()})
   const item = new this(data)
@@ -161,6 +164,7 @@ static __afterCreate(item){
 * Actualisation des données
 ***/
 static update(data){
+  console.log("-> %s::update", this.name)
   var item = this.get(data.id)
   if (item) {
     item.update(data)
@@ -220,6 +224,7 @@ save(){
   // .then(ret => console.log(ret))
 }
 update(data){
+  console.log("-> update %s", this.ref)
   const timeHasChanged = parseFloat(data.time) != this.time
   const oldIndex = this.index
   this.dispatchData(data)

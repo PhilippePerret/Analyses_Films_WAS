@@ -64,7 +64,7 @@ static onSelect(item){
 static get PROPERTIES(){
   if (undefined == this._properties){
     this._properties = [
-        {name:"content", hname:"Contenu", type:'textarea', required:false}
+        {name:"content", hname:"Contenu", type:'textarea', required:true}
       , {name: "type", hname:'Type', type:'text', form:"buildMenuType", setter:"setType", getter:"getType", default:'no'}
       , {name:'time', hname:"Temps", type:'number', vtype:'text', setter:"setTemps", getter:'getTemps', placeholder: 'Cliquez le point-temps sur la vidéo'}
     ]
@@ -246,10 +246,6 @@ l'event, ce listing-item n'existe pas encore, ici
 ***/
 unsetModified(){
   this.listingItem && this.listingItem.removeClass('modified')
-}
-
-update(data){
-  this.data = data
 }
 
 save(){

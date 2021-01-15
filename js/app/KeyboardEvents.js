@@ -10,14 +10,23 @@ function setModeClavier(mode){
       window.onkeydown = window.gestionKeyDown.bind(window)
       break
     case 'text':
-      window.onkeydown = function(ev){return true}
+      window.onkeydown = window.gestionnaireTouchesFormField.bind(window)
       break
     case 'select':
-      window.onkeydown = function(ev){return true}
+      window.onkeydown = window.gestionnaireTouchesFormField.bind(window)
       break
     default: return error("Le mode clavier "+mode+" est inconnu…")
   }
   DGet('#mode-clavier').textContent = `mode clavier : ${mode}`
+}
+
+function gestionnaireTouchesFormField(ev){
+  if ( ev.key == 'Escape' ){
+    document.activeElement.blur()
+    return stopEvent(ev)
+  } else {
+    return true
+  }
 }
 /**
 * Gestionnaire des touches qui concerne le contrôleur de vidéo
@@ -66,7 +75,7 @@ function gestionnaireTouchesEditeurEvents(ev){
     if ( AEvent.current ) {
       /* Si un évènement est sélectionné */
       switch(ev.key){
-        case 's': AEvent.current.save();break
+        case 's': AEvent.current.update();break
         case 'u': AEvent.current.updateTime(undefined);break
         case 't': AEvent.focusTexte();break
         case 'i': AEvent.initForm();break
