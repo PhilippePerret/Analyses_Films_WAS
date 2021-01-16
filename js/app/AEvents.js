@@ -94,6 +94,7 @@ static get TYPES_NOEUDS(){
       , dv: {id:'dv', hname:'Début Développement'}
       , t1: {id:'t1', hname:'Scène de 1er tiers'}
       , cv: {id:'cv', hname:'Clé de voûte'}
+      , d2: {id:'d2', hname:'Développement part II'}
       , t2: {id:'t2', hname:'Scène de 2nd tiers'}
       , cr: {id:'cr', hname:'Crise (développement)'}
       , p2: {id:'p2', hname:'Pivot 2'}

@@ -14,10 +14,20 @@ def build_pfa
   @pfa.noeuds = noeuds
   @pfa.enabled? || raise("Les informations sont insuffisantes pour établir le PFA : #{@pfa.errors.join(', ')}.")
 
-  # Message de retour
-  msg = "Le PFA a été construit avec succès."
-  @pfa.complet? || msg = "#{msg} Mais il n'est pas complet à cause de l'absence d'informations sur : #{@pfa.lakes.join(', ')}"
 
+  # === CONSTRUCTION ===
+  @pfa.build
+
+  # Message de retour
+  msg =
+  if File.exists?(@pfa.path)
+    msg = "Le PFA a été construit avec succès."
+    @pfa.complet? || msg = "#{msg} Mais il n'est pas complet à cause de l'absence d'informations sur : #{@pfa.lakes.join(', ')}"
+    msg
+  else
+    "Bizarrement, tout semble s'être bien passé mais l'image n'a pas été produite…"
+  end
+  
   Ajax << {message: msg}
 rescue Exception => e
   Ajax << {error: e.message}

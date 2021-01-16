@@ -228,10 +228,13 @@ class String
     end
     return res
   end
-  # Quand le string est une horloge, retourne le nombre de secondes
+
+  # {Integer} Quand le string est une horloge, la transforme en
+  # secondes
+  # Note pour la méthode inverse, voir Integer#s2h
   def h2s
-    pms = self.split(':').reverse
-    pms[0].to_i + (pms[1]||0) * 60 + (pms[2]||0) * 3660
+    str = self.split(':').reverse
+    str[0].to_i + str[1].to_i * 60 + str[2].to_i * 3600
   end
 
   def self.levenshtein_beween(s, t)
@@ -381,13 +384,6 @@ class String
     str = self.gsub(searched, "<span class='motex'>\\1</span>")
     str.instance_variable_set('@iterations_motex', self.scan(searched).count)
     return str
-  end
-
-  # {Integer} Quand le string est une horloge, la transforme en
-  # secondes
-  def h2s
-    str = self.split(':').reverse
-    str[0].to_i + str[1].to_i * 60 + str[2].to_i * 3600
   end
 
   # Pour upcaser vraiment tous les caractères, même les accents et

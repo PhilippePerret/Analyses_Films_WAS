@@ -62,7 +62,7 @@ le jouer
 ***/
 parse(){
   this.params = this.code.split(' ')
-  console.log("This.params:", this.params)
+  // console.log("This.params:", this.params)
   this.command = this.params[0]
 }
 
