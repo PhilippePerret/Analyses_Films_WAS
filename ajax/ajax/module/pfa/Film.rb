@@ -27,10 +27,8 @@ def build_pfa
   else
     "Bizarrement, tout semble s'être bien passé mais l'image n'a pas été produite…"
   end
-  
+
   Ajax << {message: msg}
-rescue Exception => e
-  Ajax << {error: e.message}
 end #/ build_pfa
 
 end #/Film

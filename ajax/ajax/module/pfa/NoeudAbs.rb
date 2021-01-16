@@ -44,15 +44,15 @@ def initialize(data)
 end
 
 def draw_command
-  <<-TXT.gsub(/\n/,' ')
-#{send("lines_for_#{type}".to_sym).gsub(/\n/,' ')}
+  <<-TXT.gsub(/\n/,' ').strip
+#{send("lines_for_#{type}".to_sym)}
 \\(
 -stroke #{COLORS[type]}
 -strokewidth #{FONTWEIGHTS[type]}
 -pointsize #{FONTSIZES[type]}
 -size #{surface}
--background none
 label:"#{mark}"
+-background none
 -trim
 -gravity #{GRAVITIES[type]}
 -extent #{surface}
@@ -61,7 +61,6 @@ label:"#{mark}"
 -geometry +#{left}+#{top}
 -composite
   TXT
-  # %Q{\\( -size #{surface} -background none label:"#{label}" -trim -gravity center -extent #{surface} \\) -gravity northwest -geometry +#{left}+#{top} -composite}
 end #/ draw_command
 
 # La marque pour une partie (un rectangle)
@@ -69,6 +68,7 @@ def lines_for_part
   <<-CMD
 -background transparent
 -stroke #{DARKERS[:part]}
+-fill white
 -strokewidth #{BORDERS[:part]}
 -draw "rectangle #{left},#{top} #{right},#{box_bottom}"
   CMD
@@ -79,6 +79,7 @@ def lines_for_seq
   <<-CMD
 -strokewidth #{BORDERS[:seq]}
 -stroke #{COLORS[:seq]}
+-fill white
 -draw "polyline #{left+4},#{top+demiheight} #{left+4},#{bottom} #{right-4},#{bottom} #{right-4},#{top+demiheight}"
 #{mark_horloge}
   CMD
@@ -89,6 +90,7 @@ def lines_for_noeud
   <<-CMD
 -strokewidth #{BORDERS[:noeud]}
 -stroke #{COLORS[:noeud]}
+-fill white
 -draw "roundrectangle #{left},#{top} #{right},#{bottom} 10,10"
 #{mark_horloge}
   CMD
@@ -96,8 +98,8 @@ end
 
 def mark_horloge
   return '' if data[:no_horloge]
-  horloge = Horloge.new(horloge: horloge_start, top:bottom+2, left:hcenter)
-  horloge.magick_code
+  ihorloge = Horloge.new(horloge: horloge_start, top:bottom+2, left:hcenter)
+  ihorloge.magick_code
 end
 
 def mark  ; @mark   ||= data[:mark] || label  end
@@ -118,7 +120,7 @@ def demiwidth   ; @demiwidth    ||= width / 2         end
 def top         ; @top          ||= TOPS[type]        end
 def right       ; @right        ||= left + width      end
 def bottom      ; @bottom       ||= top  + height     end
-def box_bottom  ; @box_bottom   ||= top + 12*PFA::LINE_HEIGHT end
+def box_bottom  ; @box_bottom   ||= top + 13*PFA::LINE_HEIGHT end
 def hcenter     ; @hcenter      ||= left + demiwidth  end
 def vcenter     ; @vcenter      ||= top + demiheight  end
 

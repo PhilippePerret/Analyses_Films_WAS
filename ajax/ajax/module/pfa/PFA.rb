@@ -3,9 +3,9 @@
 class PFA
 
   PFA_WIDTH   = 4000 # 4000px (en 300dpi)
-  PFA_HEIGHT  = PFA_WIDTH / 5
-  PFA_LEFT_MARGIN   = 100
-  PFA_RIGHT_MARGIN  = 100
+  PFA_HEIGHT  = PFA_WIDTH / 4
+  PFA_LEFT_MARGIN   = 150
+  PFA_RIGHT_MARGIN  = 150
   LINE_HEIGHT = PFA_HEIGHT / 15
   log("LINE_HEIGHT = #{LINE_HEIGHT}")
 
@@ -18,7 +18,32 @@ end
 
 def top_horloge_part_relative
   @top_horloge_part_relative ||= top_horloge_part_absolue + LINE_HEIGHT
-end #/ top_horloge_part_relative
+end
+
+# Retoure le type :part, :seq ou :noeud en fonction de l'identifiant
+# du noeud (par exemple 'id','ip', 'dv', etc.)
+def type_of(id)
+  id = id.to_sym
+  id_to_absnode[id][:type]
+end #/ type_of
+
+def mark_of(id)
+  d = id_to_absnode[id.to_sym]
+  d[:dim] || d[:mark] || d[:hname]
+end #/ mark_of
+
+def id_to_absnode
+  @id_to_absnode ||= begin
+    h = {}
+    DATA_PFA.each do |kp, dp|
+      h.merge!(kp => dp)
+      dp[:inner].each do |kn, dn|
+        h.merge!(kn => dn)
+      end
+    end
+    h
+  end
+end #/ type_per_id
 
 end # /<< self
 # ---------------------------------------------------------------------
@@ -43,37 +68,40 @@ def build
   cmd = ["/usr/local/bin/convert -size #{PFA_WIDTH}x#{PFA_HEIGHT}"]
   cmd << "xc:white"
   cmd << "-units PixelsPerInch -density 300"
-  cmd << "-background white -stroke black -fill white"
-  # cmd << '-draw "text 100,100 \'Montexte\'"'
-
-# -draw "rectangle 10,10 400,400"
-#  -draw "text 1000,100 'EXPOSITION'"
-  # cmd << "-draw 'rectangle 10,400 400,800'"
-# -draw "text 2000,100 'DÉVELOPPEMENT'"
-# -gravity center -draw "text 2000,100 'DÉVELOPPEMENT'"
-
-=begin
-convert sea.jpg \( -size 173x50 -background none label:"A" -trim -gravity center -extent 173x50 \) -gravity northwest -geometry +312+66 -composite result.png
-=end
-
-  # Pour la font à utiliser
-  # cmd << '-font "Arial" -pointsize 10'
-  cmd << "-strokewidth 3"
-  # cmd << "-pointsize 10"
+  cmd << "-background white -stroke black"
 
   # On dessine d'abord le fond, avec les actes
   DATA_PFA.each do |kpart, dpart|
     ne = NoeudAbs.new(dpart)
     cmd << ne.draw_command
   end
+
   # Et on dessine ensuite le contenu
   DATA_PFA.each do |kpart, dpart|
     dpart[:inner].each do |kin, din|
-      ne = NoeudAbs.new(din.merge!(pfa: self, film: film))
-      cmd << ne.draw_command
+      neu = NoeudAbs.new(din.merge!(pfa: self, film: film))
+      cmd << neu.draw_command
     end
   end
 
+  # On ajoute les nœuds du film qui sont définis
+  [:ip, :id, :p1, :t1, :cv, :t2, :cr, :p2, :cd, :cx, :de].each do |kne|
+    neu = ne(kne)
+    next if neu.nil?
+    # log("\n\nNoeud #{kne.inspect} : #{neu.draw_command}")
+    cmd << neu.draw_command
+  end
+
+  # On ajoute des délimitations pour les actes s'ils ne coïncident
+  # pas avec les valeurs absolues (à +- 1/24e)
+  [:dv, :d2, :dn].each do |kpart|
+    # log("\n\nPartie #{kpart.inspect}")
+    # log("   Commande: #{ne(kpart).draw_command}")
+    cmd << ne(kpart).draw_command
+  end
+
+  # On ajoute les horloges des parties, aussi bien absolues que
+  # relatives au film.
   cmd << horloges_parties
 
   # cmd << "-colorspace sRGB"
@@ -81,9 +109,9 @@ convert sea.jpg \( -size 173x50 -background none label:"A" -trim -gravity center
   cmd << path.gsub(/ /, "\\ ")
 
   cmd = cmd.join(' ')
-  log("CMD IMAGE: #{cmd.inspect}")
+  log("\n\n\nCMD IMAGE: #{cmd}\n\n\n")
   res = `#{cmd} 2>&1`
-  log("retour de commande: #{res.inspect}")
+  log("retour de commande: #{res.inspect}") if res != ""
   # Pour l'ouvrir tout de suite
   begin
     sleep 0.3
@@ -122,14 +150,14 @@ end
 # Code pour les horloges des parties
 def horloges_parties
   cmd = []
-  cmd << %{Q-pointsize 6.5 -strokewidth 2 stroke gray50}
+  cmd << %Q{-stroke gray50 -fill -pointsize 6.5 -strokewidth 2}
   # Pour le paradigme absolu
   decs = [0,30,60,90,120] # on en aura besoin ci-dessous
   decs.each do |dec|
     h = Horloge.new(horloge:realtime(dec).to_horloge, top:self.class.top_horloge_part_absolue, left:realpos(dec), bgcolor:'gray50', color:'gray90')
     cmd << h.magick_code
   end
-  
+
   # Pour le paradigme propre au film
   [ne(:ex), ne(:dv), ne(:d2)||ne(:cv), ne(:dn), ne(:pf)].each_with_index do |noeud, idx|
     next if noeud.nil?

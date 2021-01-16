@@ -18,14 +18,18 @@ end # /<< self
 attr_reader :data
 def initialize data
   @data = data
+  if !data[:horloge]
+    raise "L'horloge doit être défini ! (dans #{data.inspect})"
+  end
 end #/ initialize
 
 
 def magick_code
-  <<-CMD.gsub(/\n/,' ')
+  <<-CMD.gsub(/\n/,' ').strip
 \\(
 -background #{bgcolor}
 -stroke #{color}
+-fill #{color}
 -strokewidth 1
 -pointsize 6.5
 -size #{surface}
