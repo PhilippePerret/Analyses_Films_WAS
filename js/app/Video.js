@@ -288,25 +288,37 @@ get horloge(){
   return this._horloge || (this._horloge = new Horloge(this))
 }
 onMouseMove(ev){
-  if (!this.isMouseSensible) return stopEvent(ev)
-  if ( ! this.frozen ) {
-    this.time = this.px2time(ev.offsetX)
-    this.moving = true
+  if ( !this.frozen ) {
+    if (this.isMouseSensible){
+      this.time = this.px2time(ev.offsetX)
+      this.moving = true
+    } else {
+      this.miniHorloge.show(this.px2time(ev.offsetX))
+    }
   }
 }
 onMouseOut(ev){
-  if (!this.isMouseSensible) return stopEvent(ev)
-  this.moving = false
-  this.frozen = false
-  this.obj.removeEventListener('keydown', this.onKey.bind(this))
+  if (this.isMouseSensible){
+    // this.obj.removeEventListener('keydown', this.onKey.bind(this))
+  } else {
+  }
+  this.resetOnMouse()
 }
 /**
 * Méthode appelée quand on passe la souris sur la vidéo. Ça active
 * les raccourcis propres à la vidéo
 ***/
 onMouseOver(ev){
-  if (!this.isMouseSensible) return stopEvent(ev)
-  this.obj.addEventListener('keydown', this.onKey.bind(this))
+  if (this.isMouseSensible){
+    // this.obj.addEventListener('keydown', this.onKey.bind(this))
+  } else {
+    this.miniHorloge.show(this.px2time(ev.offsetX))
+  }
+}
+resetOnMouse(){
+  this.miniHorloge.hide()
+  this.moving = false
+  this.frozen = false
 }
 
 /**
@@ -325,15 +337,19 @@ onKey(ev){
   }
 }
 
-onClick(){
-  if ( this.isMouseSensible ) {
+onClick(ev){
+  if ( this.isMouseSensible ){
     if ( this.frozen ) {
       this.frozen = false
-      message("J'ai dégelé la vidéo, tu peux déplacer la souris pour chercher un temps", {keep:false})
+      message("Vidéo dégelée. Tu peux déplacer la souris pour chercher un temps", {keep:false})
     } else {
+      message("Vidéo gelée.", {keep:false})
       this.frozen = true
-      message("J'ai gelé la vidéo pour choisir ce temps.", {keep:false})
     }
+  } else {
+      // Quand la vidéo n'est pas sensible à la souris, un clic dessus
+      // met le temps courant.
+      this.time = this.px2time(ev.offsetX)
   }
   // La mettre en vidéo courante
   this.constructor.current = this
@@ -363,6 +379,10 @@ goto(s){
 setWidth(w){
   // console.log("Je dois avancer de ", frames)
   this.obj.style.width = px(w)
+}
+
+get miniHorloge(){
+  return this._minihorloge || (this._minihorloge = new HorlogeMini(this))
 }
 
 get spanSpeed(){
