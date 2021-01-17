@@ -4,11 +4,22 @@ div#video-options
 div.video-container
   position: relative
   display: inline-block
-  video
-    &:not(.selected)
+  &:not(.selected)
+    video
       border: 4px solid transparent
-    &.selected
+    span.tete-lecture
+      color: grey
+  &.selected
+    video
       border: 4px solid blue
+    span.tete-lecture
+      color: green
+  div.tete-lecture-container
+    position: relative
+    height: 4px
+    span.tete-lecture
+      position: absolute
+      top: -10px
   span.speed
     color: #999999
     position: absolute

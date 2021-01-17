@@ -20,9 +20,9 @@ class DOMVideo {
 // La vidéo courante, donc activée, qui recevra toutes les commandes
 static get current(){return this._current || (this._current = video)}
 static set current(v){
-  this.current.obj.classList.remove('selected')
+  this.current.container.classList.remove('selected')
   this._current = v
-  this._current.obj.classList.add('selected')
+  this._current.container.classList.add('selected')
 }
 
 /**
@@ -274,12 +274,15 @@ time2px(time){ return parseInt(time * this.timeRatio, 10)}
 * Méthode appelée au changement de temps
   - elle règle l'horloge
   - elle regarde si un évènement doit être "sélectionné"
+  - elle déplace la petite tête de lecture sous la vidéo
 ***/
 onTimeChange(ev){
   this.horloge.set(this.time)
   if ( film.options.show_current_event && this.time > (this.constructor.nextTime||0) ){
     this.constructor.setCurrentVideoEvent()
   }
+  this.tete_lecture = DGet('.tete-lecture',this.container)
+  this.tete_lecture.style.left = px(this.time2px(this.time))
 }
 get horloge(){
   return this._horloge || (this._horloge = new Horloge(this))
