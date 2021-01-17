@@ -100,11 +100,17 @@ C’est le fichier qui définit le film courant. On trouve les propriétés suiv
 
 Pour naviguer dans le film, jouer la vidéo, etc. on utilise le contrôleur. Le contrôleur n’est pas ouvert par défaut (car il modifie la gestion des touches du clavier). On l’ouvre à l’aide `Cmd K`.
 
+<a id="video-sensible-souris"></a>
+
+#### Vidéo sensible à la souris
+
+Avant toute chose, il faut noter les deux modes d'utilisation de la souris sur la vidéo (réglable avec la préférence « Vidéo sensible à la souris »). Dans le mode « sensible à la souris », l'image/le temps de la vidéo suit en direct la souris. Un clic permet de « figer » le temps.
+
 ### Choisir un endroit précis dans le film avec la souris
 
-* Se déplacer sur la vidéo horizontalement pour choisir l’endroit approximatif
-* cliquer pour « geler » la vidéo
-* si le contrôleur est ouvert, on peut rectifier le point en déplaçant les flèches gauche/droite.
+* Se déplacer sur la vidéo horizontalement pour choisir l’endroit approximatif (en se servant de la mini-horloge si [la vidéo n’est pas sensible à la souris](#video-sensible-souris))
+* cliquer (pour « geler » la vidéo en mode sensible),
+* on peut rectifier le point en déplaçant les flèches gauche/droite.
 
 ### Rejoindre un signet
 
@@ -117,6 +123,8 @@ Des signets — c’est-à-dire des points précis dans le film — peuvent ê
 `- <s>` permet de se déplacer de `<s>` secondes en arrière.
 
 `goto h:m:s.fr` permet de rejoindre le temps désigné par cette horloge (les frames vont de 0 à 25, 25 correspondant à une seconde).
+
+La commande `goto` permet également de rejoindre des points « absolu » du film (correspondant aux PFA absolu). Cf. [La commande `goto`](#commande-goto).
 
 
 
@@ -180,11 +188,28 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | Ouvrir le dossier du film                                    | `open film`                                                  | Ouvrir le dossier du film dans le Finder, ce qui permet de récupérer ses éléments produit, notamment. |
 | Construire le PFA                                            | `pfa build`                                                  | Produit le fichier qui contient le Paradigme de Field Augmenté.  Utiliser la commande `open-pfa` pour l’afficher. |
 | Afficher le PFA                                              | `pfa open`                                                   |                                                              |
-|                                                              |                                                              |                                                              |
+| Se déplacer dans le film                                     | `goto`                                                       | Cf. [Command `goto`](#commande-goto)                         |
 
+<a id="commande-goto"></a>
+
+#### Commande `goto`
+
+| Lieu                | Commande&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description/options     |
+| ------------------- | ------------------------------------------------------------ | ----------------------- |
+| Quart du film       | `goto quart`                                                 | Cf. la note ci-dessous. |
+| Tiers du film       | `goto tiers`                                                 | Cf. la note ci-dessous. |
+| Milieu              | `goto milieu`                                                | Cf. la note ci-dessous  |
+| Deux tiers du film  | `goto deux-tiers`                                            | Cf. la note ci-dessous. |
+| Trois-quart du film | `goto trois-quart`                                           | Cf. la note ci-dessous  |
+
+> On peut ajouter à toutes ces commandes un nombre (précédé d’un moins si avant) pour se placer à x secondes du point visé. Par exemple, la commande `goto milieu -10` placera la tête de lecture à 10 secondes avant le milieu du film. 
+>
+> Attention, ne pas mettre d’espace après le « moins ».
 
 
 ---
+
+<a id="annexe"></a>
 
 # Annexe
 
