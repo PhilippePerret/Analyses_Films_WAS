@@ -102,17 +102,23 @@ def mark_horloge
   ihorloge.magick_code
 end
 
+
 def mark  ; @mark   ||= data[:mark] || label  end
-def label ; @label  ||= data[:hname]          end
+def hname ; @hname  ||= data[:hname]          end
+alias :label :hname
 def type  ; @type   ||= data[:type]           end
 
-def surface
-  @surface ||= "#{width}x#{height}"
-end
+# = Méthodes de temps =
 
 def horloge_start
   @horloge_start  ||= (data[:start] * pfa.coef_time).to_i.to_horloge
 end #/ horloge
+
+# = Méthodes de dimension et position =
+
+def surface
+  @surface ||= "#{width}x#{height}"
+end
 
 def height      ; @height       ||= HEIGHTS[type]     end
 def demiheight  ; @demiheight   ||= height / 2        end
@@ -137,6 +143,12 @@ end
 def rel_left
   @rel_left ||= data[:start]
 end
+
+def part?     ; @is_part    || type == :part    end
+# Note : un "noeud système" est un noeud qui n'en est pas un dans le PFA.
+#        typiquement, il s'agit du point zéro et du point final, qui délimintent
+#        le début et la fin du film.
+def system?   ; @is_system  || type == :system  end
 
 def pfa ; @pfa ||= data[:pfa] end
 

@@ -24,26 +24,13 @@ end
 # du noeud (par exemple 'id','ip', 'dv', etc.)
 def type_of(id)
   id = id.to_sym
-  id_to_absnode[id][:type]
+  DATA_PFA[id][:type]
 end #/ type_of
 
 def mark_of(id)
-  d = id_to_absnode[id.to_sym]
+  d = DATA_PFA[id.to_sym]
   d[:dim] || d[:mark] || d[:hname]
 end #/ mark_of
-
-def id_to_absnode
-  @id_to_absnode ||= begin
-    h = {}
-    DATA_PFA.each do |kp, dp|
-      h.merge!(kp => dp)
-      dp[:inner].each do |kn, dn|
-        h.merge!(kn => dn)
-      end
-    end
-    h
-  end
-end #/ type_per_id
 
 end # /<< self
 # ---------------------------------------------------------------------
@@ -52,11 +39,12 @@ end # /<< self
 #
 # ---------------------------------------------------------------------
 attr_reader :film
-attr_accessor :noeuds
+attr_accessor :noeudsRel
 attr_reader :errors, :lakes
 def initialize(film)
   @film = film
 end #/ initialize
+
 
 # Construction du PFA
 # -------------------
@@ -65,31 +53,31 @@ end #/ initialize
 def build
   File.delete(path) if File.exists?(path)
 
+  # 'cmd' va contenir tous le code pour construire l'image avec 'convert'
   cmd = ["/usr/local/bin/convert -size #{PFA_WIDTH}x#{PFA_HEIGHT}"]
   cmd << "xc:white"
   cmd << "-units PixelsPerInch -density 300"
   cmd << "-background white -stroke black"
 
   # On dessine d'abord le fond, avec les actes
-  DATA_PFA.each do |kpart, dpart|
-    ne = NoeudAbs.new(dpart)
-    cmd << ne.draw_command
+  actes = []
+  DATA_PFA.each do |kneu, dneu|
+    next unless dneu[:instance].part?
+    cmd << dneu[:instance].draw_command
+    actes << dneu[:instance]
   end
 
   # Et on dessine ensuite le contenu
-  DATA_PFA.each do |kpart, dpart|
-    dpart[:inner].each do |kin, din|
-      neu = NoeudAbs.new(din.merge!(pfa: self, film: film))
-      cmd << neu.draw_command
+  actes.each do |acte|
+    acte.data[:inner].each do |kin|
+      cmd << noeudAbs(kin).draw_command
     end
   end
 
   # On ajoute les nœuds du film qui sont définis
   [:ip, :id, :p1, :t1, :cv, :t2, :cr, :p2, :cd, :cx, :de].each do |kne|
-    neu = ne(kne)
-    next if neu.nil?
-    # log("\n\nNoeud #{kne.inspect} : #{neu.draw_command}")
-    cmd << neu.draw_command
+    next if noeudRel(kne).nil?
+    cmd << noeudRel(kne).draw_command
   end
 
   # On ajoute des délimitations pour les actes s'ils ne coïncident
@@ -97,7 +85,7 @@ def build
   [:dv, :d2, :dn].each do |kpart|
     # log("\n\nPartie #{kpart.inspect}")
     # log("   Commande: #{ne(kpart).draw_command}")
-    cmd << ne(kpart).draw_command
+    cmd << noeudRel(kpart).draw_command
   end
 
   # On ajoute les horloges des parties, aussi bien absolues que
@@ -159,9 +147,9 @@ def horloges_parties
   end
 
   # Pour le paradigme propre au film
-  [ne(:ex), ne(:dv), ne(:d2)||ne(:cv), ne(:dn), ne(:pf)].each_with_index do |noeud, idx|
-    next if noeud.nil?
-    h = Horloge.new(horloge:noeud.time.to_i.to_horloge, top:self.class.top_horloge_part_relative, left:realpos(decs[idx]), bgcolor:'gray20', color:'white')
+  [ne(:ex), ne(:dv), ne(:d2)||ne(:cv), ne(:dn), ne(:pf)].each_with_index do |neu, idx|
+    next if neu.nil?
+    h = Horloge.new(horloge:neu.time.to_i.to_horloge, top:self.class.top_horloge_part_relative, left:realpos(decs[idx]), bgcolor:'gray20', color:'white')
     cmd << h.magick_code
   end
 
@@ -184,9 +172,9 @@ end #/ complets?
 # Méthode qui retourne true si on peut construire le PFA
 def enabled?
   errs = []
-  noeud(:zr) || errs << "manque le “point zéro”"
-  noeud(:pf) || errs << "manque le “point final”"
-  noeud(:ex) || errs << "manque le début de l'exposition"
+  noeudRel(:zr) || errs << "manque le “point zéro”"
+  noeudRel(:pf) || errs << "manque le “point final”"
+  noeudRel(:ex) || errs << "manque le début de l'exposition"
   if ne(:dv) && ne(:ex)
     bon_ordre?(:ex, :dv) || errs << "le développement commence avant l'exposition…"
   else
@@ -198,7 +186,7 @@ def enabled?
   else
     errs << "manque le début de la seconde partie de développement"
   end
-  if noeud(:dn)
+  if noeudRel(:dn)
     !ne(:dv) || bon_ordre?(:dv, :dn) || errs << "le dénouement commence avant le développement"
     !ne(:d2) || bon_ordre?(:d2, :dn) || errs << "le dénouement commence avant la part II de développement"
     !ne(:ex) || bon_ordre?(:ex, :dn) || errs << "le dénouement commence avant l'exposition"
@@ -239,8 +227,7 @@ def enabled?
   laks = []
   if errs.empty?
     [:ip, :cv, :cr].each do |k|
-      na = noeudAbs(k) # un Hash, ici
-      ne(k) || laks << "#{na[:hname]}"
+      noeudRel(k) || laks << "#{noeudAbs(k).hname}"
     end
   end
 
@@ -249,28 +236,42 @@ def enabled?
   return errors.empty?
 end #/ enabled?
 
-def noeud(key)
-  noeuds[key]
-end #/ noeud
-alias :ne :noeud
+# Retourne l'instance PFANoeud du noeud (existant) de clé +key+
+def noeudRel(key)
+  noeudsRel[key]
+end
+alias :ne :noeudRel
+alias :nr :noeudRel
 
 # Données absolu du noeud
 def noeudAbs(key)
-  DATA_NOEUDS[key]
-end #/ noeudAbs
+  log("DATA_PFA[#{key}] : #{DATA_PFA[key]}")
+  DATA_PFA[key][:instance]
+end
+alias :na :noeudAbs
 
 # Chemin d'accès au fichier image du paradigme
 def path
   @path ||= File.join(film.folder,'pfa.jpg')
 end
 
+# Méthode qui crée une bonne fois pour toutes les instances de nœuds absolu
+# pour renseigner la propriété :instance dans DATA_PFA.
+# Ce noeud se récupère à l'aide de la méthode :noeudAbs (ou son alias :na)
+# en fournissant la clé. Par exemple :
+#   neu = noeudAbs(:ip)
+#
+def prepare_noeuds_abs
+  DATA_PFA.each { |kn, dn| dn.merge!(instance: NoeudAbs.new(dn.merge!(pfa: self, film: film)))}
+end
 
 private
 
 # Renvoie true si le noeud de clé +kav+ se situe bien avant le noeud de
 # clé +kap+
 def bon_ordre?(kav, kap)
-  noeud(kav).time < noeud(kap).time
+  noeudRel(kav).time < noeudRel(kap).time
 end #/ bon_ordre?
+
 
 end #/PFA

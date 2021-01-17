@@ -163,12 +163,21 @@ On peut utiliser une seconde vidéo simplement en la définissant dans le fichie
 
 ## La console
 
+La console permet de lancer les commandes et notamment les commandes de construction de l’analyse qui produira les fichiers et les images du film analysé.
+
+### Se placer dans/sortir de la console
+
+Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K_X] en mode de commande. On se retrouve alors en mode de texte. Pour quitter la console — et donc le mode de texte — et revenir en mode de commande, on suffit de sortir de la console avec ![][Tab] ou ![][Escape].
+
+
+
 <a id="commandes-console"></a>
 
 ### Liste des commandes
 
 | Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Commande&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description/options                                          |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Ouvrir le dossier du film                                    | `open film`                                                  | Ouvrir le dossier du film dans le Finder, ce qui permet de récupérer ses éléments produit, notamment. |
 | Construire le PFA                                            | `pfa build`                                                  | Produit le fichier qui contient le Paradigme de Field Augmenté.  Utiliser la commande `open-pfa` pour l’afficher. |
 | Afficher le PFA                                              | `pfa open`                                                   |                                                              |
 |                                                              |                                                              |                                                              |
@@ -262,6 +271,7 @@ On peut utiliser une seconde vidéo simplement en la définissant dans le fichie
 [Cmd]: ./img/clavier/K_Command.png
 [Alt]: ./img/clavier/K_Alt.png
 [Maj]: ./img/clavier/K_Maj.png
+[Tab]: ./img/clavier/K_Tab.png
 [Escape]: ./img/clavier/K_Escape.png
 [ArrowRight]: ./img/clavier/K_FlecheD.png
 [ArrowLeft]: ./img/clavier/K_FlecheG.png

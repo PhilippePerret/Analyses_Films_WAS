@@ -31,6 +31,7 @@ run(){
   message(`Je joue le code '${this.code}'`, {keep:false})
   this.parse()
   switch(this.command){
+    case 'open':      return this.run_open_command(this.params[1])
     case 'pfa':       return this.run_pfa_command(this.params[1])
     case 'rewind':
     case 'back':
@@ -42,6 +43,20 @@ run(){
     case 'goto':      return DOMVideo.current.goto(this.params[1])
     default:
       erreur(`Je ne connais pas la commande “${this.command}”`)
+  }
+}
+
+
+/**
+* Les commandes d'ouverture
+***/
+run_open_command(what){
+  switch(what){
+    case 'film':
+    case 'manuel':
+      Ajax.send(`open_${what}.rb`).then(ret => message(ret.message||"Ouverture effectuée"))
+      break
+    default: erreur(`Je ne sais pas ouvrir '${what}'…`)
   }
 }
 

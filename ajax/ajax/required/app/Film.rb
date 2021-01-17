@@ -31,7 +31,15 @@ attr_reader :folder
 attr_accessor :duration
 def initialize(folder)
   @folder = folder
-end #/ initialize
+end
+
+def open_in_finder
+  `open -a Finder "#{folder}"`
+end
+def title
+  @title ||= config['title_fr']||config['title']
+end
+
 def config
   YAML.load_file(config_path).merge!(film_folder: File.basename(folder))
 end #/ config
