@@ -28,7 +28,6 @@ constructor(code){
 Méthode qui joue le code
 ***/
 run(){
-  message(`Je joue le code '${this.code}'`, {keep:false})
   this.parse()
   switch(this.command){
     case 'open':      return this.run_open_command(this.params[1])
