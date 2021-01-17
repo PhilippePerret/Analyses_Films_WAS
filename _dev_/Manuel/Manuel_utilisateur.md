@@ -194,13 +194,14 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 
 #### Commande `goto`
 
-| Lieu                | Commande&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description/options     |
-| ------------------- | ------------------------------------------------------------ | ----------------------- |
-| Quart du film       | `goto quart`                                                 | Cf. la note ci-dessous. |
-| Tiers du film       | `goto tiers`                                                 | Cf. la note ci-dessous. |
-| Milieu              | `goto milieu`                                                | Cf. la note ci-dessous  |
-| Deux tiers du film  | `goto deux-tiers`                                            | Cf. la note ci-dessous. |
-| Trois-quart du film | `goto trois-quart`                                           | Cf. la note ci-dessous  |
+| Lieu                   | Commande&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description/options                            |
+| ---------------------- | ------------------------------------------------------------ | ---------------------------------------------- |
+| Quart du film          | `goto quart`                                                 | Cf. la note ci-dessous.                        |
+| Tiers du film          | `goto tiers`                                                 | Cf. la note ci-dessous.                        |
+| Milieu                 | `goto milieu`                                                | Cf. la note ci-dessous                         |
+| Deux tiers du film     | `goto deux-tiers`                                            | Cf. la note ci-dessous.                        |
+| Trois-quart du film    | `goto trois-quarts`                                          |                                                |
+| Une scène particulière | `goto scene x`                                               | Rejoint la scène de numéro `x` si elle existe. |
 
 > On peut ajouter à toutes ces commandes un nombre (précédé d’un moins si avant) pour se placer à x secondes du point visé. Par exemple, la commande `goto milieu -10` placera la tête de lecture à 10 secondes avant le milieu du film. 
 >

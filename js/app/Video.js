@@ -369,11 +369,39 @@ backward(s){
   this.time = this.time - parseFloat(s)
 }
 /*
-  Pour aller à un temps précis (sert à la console)
-  +s+   Peut être un nombre de secondes ou une horloge h:m:s.f
+  Pour aller à un temps précis ou à un lieu précis (sert à la console)
+  +s+   Peut être :
+          - un nombre de secondes
+          - une horloge h:m:s.f
+          - un lieu précis (comme 'milieu', 'trois-quart', etc.)
+          - une scène (+offset+ est alors le numéro de la scène)
+  +offset+  {Number} Le décalage en secondes avec le point à rejoindre
 */
-goto(s){
-  this.time = s.match(/[:\.]/) ? h2t(s) : parseFloat(s)
+goto(s, offset){
+  switch(s){
+    case 'quart':
+    case 'tiers':
+    case 'milieu':
+    case 'deux-tiers':
+    case 'trois-quarts': return this.gotoLieu(s, offset)
+    case 'scene' : return this.gotoScene(offset)
+    default:
+      this.time = s.match(/[:\.]/) ? h2t(s) : parseFloat(s)
+  }
+}
+gotoLieu(lieu, offset){
+  var m ;
+  switch(lieu){
+    case 'quart':         m = 1/4; break
+    case 'tiers':         m = 1/3; break
+    case 'milieu':        m = 1/2; break
+    case 'deux-tiers':    m = 2/3; break
+    case 'trois-quarts':  m = 3/4; break
+    default:
+      return erreur(`Je ne connais pas le lieu '${lieu}'`)
+  }
+  const v = this.duration * m ;
+  this.time = (this.duration * m) + parseFloat(offset||0)
 }
 
 setWidth(w){

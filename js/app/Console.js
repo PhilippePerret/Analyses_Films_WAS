@@ -40,7 +40,7 @@ run(){
     case 'for':
     case '+':
     case 'forward':   return DOMVideo.current.forward(this.params[1])
-    case 'goto':      return DOMVideo.current.goto(this.params[1])
+    case 'goto':      return DOMVideo.current.goto(this.params[1], this.params[2])
     default:
       erreur(`Je ne connais pas la commande “${this.command}”`)
   }
