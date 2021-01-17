@@ -70,6 +70,25 @@ prepareMenuPersonnages(){
   menuPersonnages.addEventListener('change', this.onChoosePersonnage.bind(this))
 }
 
+get pointZero(){return this._pointzero}
+set pointZero(nd){this._pointzero = nd}
+get pointFin(){return this._pointfin}
+set pointFin(nd){this._pointfin = nd}
+definePointsLimites(nd){
+  switch(nd.type){
+    case 'nc:zr': this.pointZero = nd ; break
+    case 'nc:ex': if (!this.pointZero){this.pointZero = nd}; break
+    case 'nc:pf': this.pointFin = nd ; break
+  }
+}
+
+// Calcul des valeurs en fonction des vrais débuts et fin
+get realDuration(){
+  return this._realduration || (this._realduration = this.realEnd - this.realStart)
+}
+get realStart(){ return this.pointZero ? this.pointZero.time : 0 }
+get realEnd(){ return this.pointFin  ? this.pointFin.time  : video.duration }
+
 /** ---------------------------------------------------------------------
 *   Méthodes d'évènement
   *

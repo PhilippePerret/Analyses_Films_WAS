@@ -28,11 +28,16 @@ div.video-container
   // Les lignes repère
   div.repere
     position: absolute
-    width: 2px
     height: inherit
     min-height: 10px
     top: 0
     &.quart
       background-color: white
+      width: 2px
     &.tiers
       background-color: lime
+      width: 2px
+    &.mask
+      background-color: black
+      opacity: .8
+      width: auto

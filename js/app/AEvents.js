@@ -106,6 +106,7 @@ static get TYPES_NOEUDS(){
     }
   }; return this._types_noeuds
 }
+
 static buildMenuType(){
   const options = []
   Object.values(this.TYPES).forEach(d => options.push(DCreate('OPTION',{value:d.id, text:d.hname})))
@@ -199,8 +200,11 @@ static get listing(){
 constructor(data) {
   super(data)
   this.content  = this.data.content
-  this.time = this.data.time = parseFloat(this.data.time)
+  this.time = this.data.time = parseFloat(this.data.time);
+  ['nc:zr','nc:ex','nc:pf']
+   .includes(this.type) && film.definePointsLimites(this)
 }
+
 // Une référence à l'objet (évènement d'analyse) pour les messages
 get ref(){
   return this._ref || (this._ref = `AEvent #${this.id}`)
@@ -268,4 +272,6 @@ save(){
   this.unsetModified()
 }
 
+get type(){return this._type || (this._type = this.data.type)}
+set type(v){this._type = this.data.type = v}
 }//AEvent

@@ -42,6 +42,7 @@ run(){
     case 'forward':   return DOMVideo.current.forward(this.params[1])
     case 'goto':      return DOMVideo.current.goto(this.params[1], this.params[2])
     case 'draw':      return DOMVideo.current.draw(this.params[1])
+    case 'erase':     return DOMVideo.current.erase(this.params[1])
     default:
       erreur(`Je ne connais pas la commande “${this.command}”`)
   }

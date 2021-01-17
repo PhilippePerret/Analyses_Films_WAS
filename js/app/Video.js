@@ -116,12 +116,26 @@ resetPlaying(){
 pause(){
   if ( this.playing ){ this.resetPlaying() }
   else if ( this.rewinding ) { this.resetRewinding() }
-  else this.stop()
+  else {
+    if ( parseInt(this.time,10) > parseInt(film.realStart,10) ) {
+      // <= Seconde pression
+      // => Début du film
+      this.stop(film.realStart)
+    } else if (parseInt(this.time,10) == 0) {
+      // <= Film à 0
+      // => On se place au début s'il existe
+      this.stop(film.realStart)
+    } else {
+      // <= Troisième pression
+      // => Tout début de la vidéo
+      this.stop(0)
+    }
+  }
 }
-// Un "vrai" stop, qui retourne au début
-stop(){
+// Un "vrai" stop, qui retourne au tout début
+stop(at){
   this.playing && this.resetPlaying()
-  this.time = 0
+  this.time = at
 }
 rewind(){
   this.playing && this.resetPlaying()
@@ -400,15 +414,24 @@ gotoLieu(lieu, offset){
     default:
       return erreur(`Je ne connais pas le lieu '${lieu}'`)
   }
-  const v = this.duration * m ;
-  this.time = (this.duration * m) + parseFloat(offset||0)
+  const v = film.realDuration * m ;
+  this.time = film.realStart + v + parseFloat(offset||0)
 }
 
 // ---------------------------------------------------------------------
 
+// Pour afficher/masquer tous les repères PFA
+toggleReperesPFA(){
+  if (this.reperesPfaON) this.erase('all')
+  else this.draw('all')
+  this.reperesPfaON = !this.reperesPfaON
+}
+
 // === Commandes pour dessiner sur la vidéo ===
 draw(what){
   message("Je dessine…", {keep:false})
+  // On masque le début et la fin si nécessaire
+  this.drawMasqueHorsFilm()
   switch(what){
     case 'quarts': return this.drawQuarts()
     case 'tiers':  return this.drawTiers()
@@ -416,21 +439,52 @@ draw(what){
     default: return erreur(`Je ne sais pas dessiner de '${what}'.`)
   }
 }
+erase(what){
+  message("J'efface…", {keep:false})
+  // On masque le début et la fin si nécessaire
+  this.eraseMasqueHorsFilm()
+  switch(what){
+    case 'quarts': return this.eraseQuarts()
+    case 'tiers':  return this.eraseTiers()
+    case 'all': this.eraseQuarts(); return this.eraseTiers()
+    default: return erreur(`Je ne sais pas dessiner de '${what}'.`)
+  }
+}
+
+drawMasqueHorsFilm(){
+  if ( film.realStart > 0 ) {
+    const sty = {left:0, width:this.time2px(film.realStart), height: this.height}
+    this.container.appendChild(DCreate('DIV',{class:'repere mask', style:px(sty,true)}))
+  }
+  if ( film.realEnd < this.duration - 1 ) {
+    const sty = {left:this.time2px(film.realEnd), right:0, height: this.height}
+    this.container.appendChild(DCreate('DIV',{class:'repere mask', style:px(sty,true)}))
+  }
+}
+eraseMasqueHorsFilm(){
+  $('.repere.mask').remove()
+}
 
 drawQuarts(){
+  const duree = film.realDuration
+  const left  = this.time2px(film.realStart)
   for(var i = 1 ; i < 4 ; ++i){
-    const sty = { left: this.time2px(this.duration * i / 4), height: this.height }
+    const sty = { left: left + this.time2px(duree * i / 4), height: this.height }
     this.container.appendChild(DCreate('DIV', {class:'repere quart', style:px(sty, true)}))
   }
   message("Les quarts se trouvent aux lignes blanches.")
 }
+eraseQuarts(){$('.repere.quart').remove()}
 drawTiers(){
+  const duree = film.realDuration
+  const left  = this.time2px(film.realStart)
   for(var i = 1 ; i < 3 ; ++i){
-    const sty = { left: this.time2px(this.duration * i / 3), height: this.height }
+    const sty = { left: left + this.time2px(duree * i / 3), height: this.height }
     this.container.appendChild(DCreate('DIV', {class:'repere tiers', style:px(sty, true)}))
   }
   message("Les tiers se trouvent aux lignes vertes.")
 }
+eraseTiers(){$('.repere.tiers').remove()}
 
 // ---------------------------------------------------------------------
 

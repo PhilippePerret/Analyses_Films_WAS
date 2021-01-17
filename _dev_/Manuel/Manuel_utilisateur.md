@@ -20,13 +20,14 @@ Voici la procédure pour une première analyse ou pour reprendre en main l’app
 * Si c’est une création, il faut créer un fichier `config.yml` en s’inspirant du dossier `_FILMS_/Essai` et il faut mettre la vidéo dans le dossier,
 * Dans le fichier `_FILMS_/CURRENT`, mettre le nom de ce dossier du film,
 * Lancer l’application à l’aide de l’adresse : [`http://localhost/Analyses_Films_WAS`](http://localhost/Analyses_Films_WAS)
-* Jouer le raccourci `Cmd K` pour afficher le contrôleur,
-* Jouer les touches `L`, `K` ou `J` pour lancer la lecture, l’arrêter ou revenir en arrière,
-* Une fois à l’endroit voulu, se placer dans le champ « contenu » de la liste des évènements d’analyse (note : cela ferme le contrôleur)
-* Écrire le contenu de la scène par exemple, choisir le type « Scène » et cliquer sur le bouton « + »,
+* On peut commencer par définir le début et la fin « utiles » du film, c’est-à-dire le vrai temps zéro de l’analyse. Pour se faire, on se place aux endroits voulus, par exemple en cliquant sur la vidéo et  en ajustant avec les flèches, puis en créant les évènements « noeud-clé > Point Zéro » et le « Noeud-clé > Point Final ».
+* Ensuite, jouer les touches `L`, `K` ou `J` pour lancer la lecture, l’arrêter ou revenir en arrière,
+* Une fois à l’endroit voulu, on **crée un nouvel évènement d’analyse** : se placer dans le champ « contenu » de la liste des évènements d’analyse (par exemple en pressant ![][K_T]). Écrire le contenu de la scène par exemple, choisir le type « Scène » et cliquer sur le bouton « + »,
 * Le nouvel évènement d’analyse est automatiquement créé et enregistré. Le nouvel évènement est ajouté à la liste. Il suffira de cliquer dessus pour revenir à cet endroit précis. Comme c’est une scène, l’évènement est aussi ajouté à la liste des scènes.
 * Poursuivre ainsi jusqu’à obtenir tous les évènements d’analyse voulu, dans tous les types voulus.
+* Si les points de début et de fin sont définis, on peut demander la visualisation des quarts et des tiers en cliquant sur ![][K_R].
 * On peut utiliser la seconde vidéo pour visualiser des endroits sans bouger la vidéo principale. On peut s’en servir par exemple pour visualiser la scène courante. Si on ne se sert pas de cette seconde vidéo, on peut supprimer toutes les informations concernant `:video2` dans le fichier de configuration et recharger la page.
+* Pour produire le PFA (c’est une image `pfa.jpg` qui sera construite dans le dossier du film), il faut définir les évènements minimaux. Pour savoir ceux qui manquent, il suffit de jouer la commande `pfa build` dans la console (taper ![][K_X] pour se placer dans la console) — tant que des points manquent ils sont indiqués.
 
 
 
@@ -128,6 +129,28 @@ La commande `goto` permet également de rejoindre des points « absolu » du fil
 
 
 
+---
+
+
+
+<a id="modes-clavier"></a>
+
+## Les modes de clavier
+
+Il existe deux modes de clavier selon qu’on se trouve ou non dans un champ de texte ou un menu select :
+
+<a id="mode-commande"></a>
+
+* Le « **mode de commande** ». C’est le mode par défaut, il permet de tout contrôler avec de simples touches le plus souvent, quelquefois un modifieur.<a id="mode-clavier-edition"></a>
+
+  On peut trouver ci-dessous une [liste de tous les raccourcis clavier](#shortcuts-mode-commande).
+
+* Le « **mode d'édition** ». C’est le mode lorsqu’on se trouve dans un champ de texte ou un menu. Il permet de jouer les touches normalement, notamment pour écrire un texte ou se déplacer dans le menu.
+
+---
+
+
+
 ## Le Contrôleur
 
 Le contrôle permet de contrôler la vidéo et de mémoriser des points-clés, des signets, qui permettent de se déplacer avec plus d’aisance.
@@ -166,6 +189,32 @@ On peut utiliser une seconde vidéo simplement en la définissant dans le fichie
 ~~~
 
 ---
+
+
+
+### Naviguer dans la vidéo courante
+
+Cf. [Naviguer dans le film](#naviguer) pour voir les multitudes de moyens de se déplacer dans la vidéo.
+
+
+
+### Dessiner des repères sur la vidéo
+
+Pour faciliter l’analyse, on peut placer des lignes repères qui indiquent les quarts et les tiers du film. 
+
+En [mode commande][], il suffit de jouer la touche ![][K_R] pour afficher ou masquer les repères du paradigme de field, c’est-à-dire les quarts et les tiers. De la même manière, la section avant et après qui n’est pas utilisée est masquée (les génériques, en gros).
+
+On peut aussi utiliser les commandes suivantes :
+
+~~~
+draw quarts			Pour afficher les quarts
+draw tiers			Pour afficher les tiers
+draw all				Pour afficher les quarts et les tiers
+~~~
+
+> ![][K_X] permet de se placer directement dans la console pour taper ces commandes et ![][Escape] permet d’en sortir aussitôt pour retrouver le mode de commande normal.
+
+
 
 <a id="console"></id>
 
@@ -220,14 +269,20 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 
 > À tout moment, pour sortir d’un champ de texte ou d’un menu select — et donc retrouver l’usage des raccourcis clavier généraux — il suffit de jouer la touche ![][Escape].
 
+
+
+<a id="shortcuts-mode-commande"></a>
+
 ### Commande du contrôleur
 
 > Ces raccourcis sont utilisables dès le lancement de l’application. Ils ne se désactivent que lorsqu’on se trouve dans un champ d’édition.
 
 | Action attendue | Raccourci&nbsp;&nbsp;&nbsp;&nbsp;| Description du raccourci / options       |
 | ----------------------- | ------------------------ | ------------------------------------------------------------ |
+| **Contrôle de la vidéo** | |  |
+| Afficher/masquer les repères du PFA. | ![][K_R] |  |
 | Jouer la vidéo active   | ![][K_L]          | En appuyant plusieurs fois sur la touche, on accélère la vidéo. La touche ![][Ctrl] permet de ralentir jusqu’à 50 % de la vitesse. |
-| Stopper la vidéo active | ![][K_K]          | Une seconde pression permet de revenir au début de la vidéo. |
+| Stopper la vidéo active | ![][K_K]          | Une seconde pression permet de revenir au début du film. Une troisième pression permet de revenir au tout début de la vidéo. Ensuite, les pressions alternent entre le 0 et le début réel du film. |
 | Jouer en arrière        | ![][K_J]          | Appuyer plusieurs fois pour changer la vitesse (accélérer)   |
 | Avancer d’une image     | ![][ArrowRight]          |                                                              |
 | Reculer d’une image     | ![][ArrowLeft]           |                                                              |
@@ -237,25 +292,18 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | Reculer de 10 secs      | ![][Maj]![][ArrowLeft]   |                                                              |
 |  |  | |
 | Aller au signet précédent | ![][Cmd]![][ArrowUp] | |
+| **Édition d’un évènement** |  | |
+| Focusser dans le champ de texte | ![][K_T] | Désactive les raccourcis clavier. |
+| Enregistre l’event ou le crée | ![][K_S] |  |
+| Actualiser le temps | ![][K_U] | Met le temps de la vidéo active dans l’event actuellement édité. |
+| Sélectionner l’évènement suivant | ![][ArrowDown] | Ou le premier si aucun n’est sélectionné. |
+| Sélectionner l’évènement précédent | ![][ArrowUp] | Ou le dernier si aucun n’est sélectionné. |
+| **Divers** |  |  |
 | Copier le temps de la vidéo active dans le temps de l’autre vidéo | ![][K_C] | Il faut qu’une [seconde vidéo soit active](#use-two-videos) |
 | Se placer dans la console | ![][K_X] |  |
-
-<a id="shortcuts-event-editor"></a>
-
-### Commande de l’éditeur d'évènement
-
-> Ces raccourcis clavier sont utilisables dès le lancement de l’application. Ils ne se désactivent que lorsqu’on se trouve dans un champ d’édition.
-
-| Action attendue                    | Raccourci      | Description du raccourci/options         |
-| ---------------------------------- | -------------- | ---------------------------------------- |
-| Enregistrer l'event                | ![][K_S]       |                                          |
-| Focusser dans le champ de texte    | ![][K_T]       | Désactive les raccourcis clavier.        |
-| Actualiser le temps                | ![][K_U]       | En prenant celui de la vidéo active.     |
-| Sélectionner l’évènement suivant   | ![][ArrowDown] | Ou le premier si aucun n’est sélectionné |
-| Sélectionner l’évènement précédent | ![][ArrowUp]   | Ou le dernier si aucun n’est sélectionné |
-|                                    |                |                                          |
-|                                    |                |                                          |
-
+| Ouvrir ce fichier d'aide | ![][Cmd]![][K_A] | Il s’ouvre en PDF dans une autre fenêtre  |
+| Ouvrir ce fichier d’aide pour le modifier                    | ![][Alt]![][Cmd]![][K_A]                            | Il s’ouvre dans Typora, pour le moment. |
+| Activer/désactiver l’aide transparent                        | ![][Maj]![][Cmd]![][K_A]                            | Ce sont les messages qui s’affichent régulièrement dans l’interface. |
 <a id="shortcut-signets"></a>
 
 ### Commandes signets
@@ -269,19 +317,6 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 
 
 
-
-<a id="shortcut-divers"></a>
-
-### Commandes diverses
-
-| Action attendue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Raccourci&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description/options |
-| ------------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------------ |
-| Ouvrir ce fichier d'aide                                     | ![][Cmd]![][K_A]                                    | Il s’ouvre en PDF dans une autre fenêtre                     |
-| Activer/désactiver l’aide transparent                        | ![][Maj]![][Cmd]![][K_A]                            | Ce sont les messages qui s’affichent régulièrement dans l’interface. |
-| Ouvrir ce fichier d’aide pour le modifier                    | ![][Alt]![][Cmd]![][K_A]                            |                                                              |
-|                                                              |                                                     |                                                              |
-
-
 [K_1]: ./img/clavier/K_1.png
 [K_9]: ./img/clavier/K_9.png
 [K_A]: ./img/clavier/K_A.png
@@ -289,6 +324,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 [K_J]: ./img/clavier/K_J.png
 [K_K]: ./img/clavier/K_K.png
 [K_L]: ./img/clavier/K_L.png
+[K_R]: ./img/clavier/K_R.png
 [K_S]: ./img/clavier/K_S.png
 [K_T]: ./img/clavier/K_T.png
 [K_U]: ./img/clavier/K_U.png
@@ -304,5 +340,6 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 [ArrowDown]: ./img/clavier/K_FlecheB.png
 [ArrowUp]: ./img/clavier/K_FlecheH.png
 
+[Mode commande]: #mode-commande
 [contrôleur]: #controller
 
