@@ -427,6 +427,27 @@ gotoLieu(lieu, offset){
   const v = film.realDuration * m ;
   this.time = film.realStart + v + parseFloat(offset||0)
 }
+// Méthode pour rejoindre une scène
+gotoScene(numero){
+  numero = Number(numero)
+  var numCourante = 0
+    , i = 0
+    , len ;
+  for(i, len = AEvent.count; i < len ; ++i){
+    const ev = AEvent.orderedList[i]
+    if (ev.type == 'sc'){
+      ++numCourante
+      if (numCourante == numero){
+        AEvent.listing.select(ev)
+        return true
+      }
+    }
+  }
+  const errAjout = numCourante == 0
+    ? 'cette analyse ne définit aucune scène'
+    : `dernier numéro de scène : ${numCourante}`
+  erreur(`Aucune scène de numéro ${numero} n’a été trouvée… (${errAjout})`)
+}
 
 // ---------------------------------------------------------------------
 

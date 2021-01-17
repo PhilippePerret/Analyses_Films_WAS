@@ -261,7 +261,7 @@ Rappel : le listing ne fonctionne par liste classée (orderedList) que
          lorsque la méthode this.sortMethod est définie.
 ***/
 repositionne(){
-  console.log(`Repositionnement de ${this.ref}`)
+  // console.log(`Repositionnement de ${this.ref}`)
   const li = this.listingItem.obj
       , listing = li.parentNode
   if ( this.constructor.isLastItem(this) ) {
