@@ -472,7 +472,6 @@ drawQuarts(){
     const sty = { left: left + this.time2px(duree * i / 4), height: this.height }
     this.container.appendChild(DCreate('DIV', {class:'repere quart', style:px(sty, true)}))
   }
-  message("Les quarts se trouvent aux lignes blanches.")
 }
 eraseQuarts(){$('.repere.quart').remove()}
 drawTiers(){
@@ -482,7 +481,6 @@ drawTiers(){
     const sty = { left: left + this.time2px(duree * i / 3), height: this.height }
     this.container.appendChild(DCreate('DIV', {class:'repere tiers', style:px(sty, true)}))
   }
-  message("Les tiers se trouvent aux lignes vertes.")
 }
 eraseTiers(){$('.repere.tiers').remove()}
 

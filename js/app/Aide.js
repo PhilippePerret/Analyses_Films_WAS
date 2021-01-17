@@ -94,6 +94,8 @@ static get MESSAGES(){
       , {content: 'Pour obtenir une seconde vidéo du film, il suffit de définir :video2 dans la configuration du film.'}
       , {content: 'Pour créer un signet, ouvrir le contôleur (<span class="key">⌘</span><span class="key">k</span>) et l’ajouter.'}
       , {content: 'Pour sortir d’un champ de texte ou d’un select (=> raccourcis généraux), presser la touche ESCAPE.'}
+      , {content: '<span class="key">R</span> pour afficher/masquer les repères du PFA abslu.'}
+      , {content: 'Jouer la commande <code>pfa build</code> pour construire le PFA du film.'}
     ]
   }return this._messages
 }
