@@ -5,7 +5,7 @@
 =end
 require_relative './PFA.rb'
 
-class NoeudAbs
+class PFANoeudAbs
   TOPS        = { part: PFA::LINE_HEIGHT,      seq:3*PFA::LINE_HEIGHT,       noeud:3*PFA::LINE_HEIGHT  }
   HEIGHTS     = { part: 80,       seq: 50,        noeud: 50   }
   FONTSIZES   = { part: 10,       seq: 8,         noeud: 7  }
@@ -152,4 +152,4 @@ def system?   ; @is_system  || type == :system  end
 
 def pfa ; @pfa ||= data[:pfa] end
 
-end #/NoeudAbs
+end #/PFANoeudAbs

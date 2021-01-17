@@ -231,7 +231,7 @@ def enabled?
   return errors.empty?
 end #/ enabled?
 
-# Retourne l'instance PFANoeud du noeud (existant) de clé +key+
+# Retourne l'instance PFANoeudRel du noeud (existant) de clé +key+
 def noeudRel(key)
   noeudsRel[key]
 end
@@ -257,7 +257,7 @@ end
 #   neu = noeudAbs(:ip)
 #
 def prepare_noeuds_abs
-  DATA_PFA.each { |kn, dn| dn.merge!(instance: NoeudAbs.new(dn.merge!(pfa: self, film: film)))}
+  DATA_PFA.each { |kn, dn| dn.merge!(instance: PFANoeudAbs.new(dn.merge!(pfa: self, film: film)))}
 end
 
 private

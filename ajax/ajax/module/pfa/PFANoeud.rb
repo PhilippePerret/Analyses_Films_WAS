@@ -1,8 +1,8 @@
 # encoding: UTF-8
 # frozen_string_literal: true
-require_relative './NoeudAbs'
+require_relative './PFANoeudAbs'
 
-class PFANoeud
+class PFANoeudRel
 
   TOPS = {part: 9*PFA::LINE_HEIGHT, seq:10*PFA::LINE_HEIGHT, noeud:10*PFA::LINE_HEIGHT}
   HEIGHTS = {part:PFA::LINE_HEIGHT, seq:PFA::LINE_HEIGHT, noeud:PFA::LINE_HEIGHT}
@@ -45,7 +45,7 @@ end
 def draw_command_other
   <<-CMD.gsub(/\n/,' ').strip
 -strokewidth #{BORDERS[type]}
--stroke #{NoeudAbs::COLORS[type]}
+-stroke #{PFANoeudAbs::COLORS[type]}
 -draw "roundrectangle #{left},#{top} #{right},#{bottom} 10,10"
 \\(
 -stroke #{COLORS[type]}
@@ -55,7 +55,7 @@ def draw_command_other
 -size #{surface}
 label:"#{mark}"
 -trim
--gravity #{NoeudAbs::GRAVITIES[type]}
+-gravity #{PFANoeudAbs::GRAVITIES[type]}
 -extent #{surface}
 \\)
 -gravity northwest
@@ -100,4 +100,4 @@ def surface
   @surface ||= "#{width}x#{height}"
 end #/ surface
 
-end #/PFANoeud
+end #/PFANoeudRel

@@ -9,7 +9,7 @@ def build_pfa
   get_events.each do |devent|
     next unless devent['type'].start_with?('nc:')
     ty, ntype = devent['type'].split(':')
-    noeudsRel.merge!(ntype.to_sym => PFANoeud.new(@pfa, devent))
+    noeudsRel.merge!(ntype.to_sym => PFANoeudRel.new(@pfa, devent))
   end
   @pfa.noeudsRel = noeudsRel
   @pfa.prepare_noeuds_abs
