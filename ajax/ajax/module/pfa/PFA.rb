@@ -90,12 +90,6 @@ def build
   cmd << mark_pfa_relatif
   cmd << line_inter_pfas
 
-  # On ajoute les nœuds du film qui sont définis
-  [:ip, :id, :p1, :t1, :cv, :t2, :cr, :p2, :cd, :cx, :de].each do |kne|
-    next if noeudRel(kne).nil?
-    cmd << noeudRel(kne).draw_command
-  end
-
   # On ajoute des délimitations pour les actes s'ils ne coïncident
   # pas avec les valeurs absolues (à +- 1/24e)
   [:dv, :d2, :dn].each do |kpart|
@@ -103,6 +97,13 @@ def build
     # log("   Commande: #{ne(kpart).draw_command}")
     cmd << noeudRel(kpart).draw_command
   end
+
+  # On ajoute les nœuds du film qui sont définis
+  [:ip, :id, :p1, :t1, :cv, :t2, :cr, :p2, :cd, :cx, :de].each do |kne|
+    next if noeudRel(kne).nil?
+    cmd << noeudRel(kne).draw_command
+  end
+
 
   # On ajoute les horloges des parties, aussi bien absolues que
   # relatives au film.
