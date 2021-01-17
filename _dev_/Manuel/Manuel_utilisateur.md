@@ -171,6 +171,14 @@ On l’affiche grâce au raccourci  ![][Cmd]![][K_K].
 
 Pour régler la vitesse de la vidéo, il suffit de presser autant de fois que nécessaire la touche ![][K_L] qui permet de lancer la lecture. Avec la touche ![][Ctrl] appuyée, on ralentit la vitesse.
 
+Plusieurs pressions sur la touche ![][K_L] (avec ou sans ![][Ctrl]) permettent de modifier la vitesse.
+
+> Noter que dès qu’on arrête la lecture, la vitesse revient à son état initial, sauf si on l’a figée (cf. ci-dessous)
+
+#### Figer la vitesse
+
+Parfois il est intéressant de rester toujours à une même vitesse. Par exemple pour faire la relève des scène 2 fois plus vite en accélérant par 2. Dans ce cas, on coche la case « Figer la vitesse » qui permettra de ne pas faire varier la vitesse, quelles que soient les touches pressées.
+
 
 
 <a id="use-two-videos"></a>

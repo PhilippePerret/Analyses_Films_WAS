@@ -20,10 +20,19 @@ div.video-container
     span.tete-lecture
       position: absolute
       top: -10px
-  span.speed
-    color: #999999
-    position: absolute
-    right: 10px
+  div.horloge
+    min-width: 400px
+    span.speed-container
+      position: absolute
+      right: 10px
+      span.speed
+        font-family: Monospace
+        white-space: pre
+        color: #999999
+      label
+        font-size: 10pt
+      input[type="checkbox"]
+        width: 12px
 
   // Les lignes repère
   div.repere

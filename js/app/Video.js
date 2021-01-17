@@ -110,8 +110,10 @@ play(){
 resetPlaying(){
   this.obj.pause()
   this.playing = false
-  this.ispeed = 3
-  this.setSpeed()
+  if ( ! this.speedIsFrozen ) {
+    this.ispeed = 3
+    this.setSpeed()
+  }
 }
 pause(){
   if ( this.playing ){ this.resetPlaying() }
@@ -161,9 +163,10 @@ stopRewind(){
 }
 
 // Pour accéler le jeu à chaque impulsion (appel)
+// Note : sauf si la vitesse est bloquée
 replay(ev){
   if (this.playing) {
-    this[ev.ctrlKey?'downSpeed':'upSpeed']()
+    this.speedIsFrozen || this[ev.ctrlKey?'downSpeed':'upSpeed']()
   }
   else {
     this.play()
@@ -180,6 +183,11 @@ rerewind(){
 *   Méthodes pour la VITESSE
 *
 *** --------------------------------------------------------------------- */
+onClickOnSpeed(ev){
+  ++ this.ispeed
+  this.ispeed < 8 || (this.ispeed = 1)
+  this.setSpeed()
+}
 upSpeed(){
   ++ this.ispeed
   SPEEDS[this.ispeed] || (this.ispeed = 3) // 1
@@ -198,7 +206,7 @@ setSpeed(){
 * Pour afficher la vitesse
 ***/
 showSpeed(){
-  this.spanSpeed.textContent = `x ${this.obj.playbackRate}`
+  this.spanSpeed.textContent = `x ${String(this.obj.playbackRate).padEnd(4,' ')}`
 }
 
 // ---------------------------------------------------------------------
@@ -270,6 +278,8 @@ observe(){
   this.obj.addEventListener('mouseout',  this.onMouseOut.bind(this))
   this.obj.addEventListener('mousemove', this.onMouseMove.bind(this))
   this.obj.addEventListener('timeupdate', this.onTimeChange.bind(this))
+  // Pour modifier la vitesse en cliquant sur elle
+  DGet('span.speed',this.container).addEventListener('click', this.onClickOnSpeed.bind(this))
 }
 
 get isMouseSensible(){ return film.options.video_follows_mouse }
@@ -489,6 +499,11 @@ eraseTiers(){$('.repere.tiers').remove()}
 setWidth(w){
   // console.log("Je dois avancer de ", frames)
   this.obj.style.width = px(w)
+}
+
+// Retourne TRUE si la vitesse de la vidéo est bloquée
+get speedIsFrozen(){
+  return DGet('.opt-freeze-speed', this.container).checked
 }
 
 get miniHorloge(){
