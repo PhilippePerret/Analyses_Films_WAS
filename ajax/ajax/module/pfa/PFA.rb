@@ -11,13 +11,17 @@ class PFA
 
 class << self
 
+def top_pfa_relatif
+  @top_pfa_relatif ||= 7 * LINE_HEIGHT
+end
+
 # Position verticale (y) des horloges du paradigme absolu
 def top_horloge_part_absolue
-  @top_horloge_part_absolue ||= 6*LINE_HEIGHT
+  @top_horloge_part_absolue ||= top_pfa_relatif - LINE_HEIGHT + 10 # 6*LINE_HEIGHT
 end
 
 def top_horloge_part_relative
-  @top_horloge_part_relative ||= top_horloge_part_absolue + LINE_HEIGHT
+  @top_horloge_part_relative ||= top_pfa_relatif + 10 # top_horloge_part_absolue + LINE_HEIGHT
 end
 
 # Retoure le type :part, :seq ou :noeud en fonction de l'identifiant
@@ -33,6 +37,9 @@ def mark_of(id)
 end #/ mark_of
 
 end # /<< self
+
+
+
 # ---------------------------------------------------------------------
 #
 #   INSTANCE
@@ -51,6 +58,8 @@ end #/ initialize
 # Cette construction doit produire une image de 4000 pixels de large
 # sur ? de haut
 def build
+
+  # Si l'image du PFA existe déjà on la détruit.
   File.delete(path) if File.exists?(path)
 
   # 'cmd' va contenir tous le code pour construire l'image avec 'convert'
@@ -63,16 +72,23 @@ def build
   actes = []
   DATA_PFA.each do |kneu, dneu|
     next unless dneu[:instance].part?
-    cmd << dneu[:instance].draw_command
     actes << dneu[:instance]
+    cmd << dneu[:instance].draw_command
   end
 
-  # Et on dessine ensuite le contenu
+  # Et on dessine ensuite le contenu absolu des actes, c'est-à-dire les
+  # scènes-clés (pivots, incidents, etc.)
   actes.each do |acte|
     acte.data[:inner].each do |kin|
       cmd << noeudAbs(kin).draw_command
     end
   end
+
+  # On ajoute une marque "ABSOLU" et une marque "FILM" + une délimitation
+  # pour faire la différence entre le paradigme absolu et relatif
+  cmd << mark_pfa_absolu
+  cmd << mark_pfa_relatif
+  cmd << line_inter_pfas
 
   # On ajoute les nœuds du film qui sont définis
   [:ip, :id, :p1, :t1, :cv, :t2, :cr, :p2, :cd, :cx, :de].each do |kne|
@@ -134,27 +150,6 @@ end
 def coef_time
   @coef_time ||= real_duree.to_f / 120
 end
-
-# Code pour les horloges des parties
-def horloges_parties
-  cmd = []
-  cmd << %Q{-stroke gray50 -fill -pointsize 6.5 -strokewidth 2}
-  # Pour le paradigme absolu
-  decs = [0,30,60,90,120] # on en aura besoin ci-dessous
-  decs.each do |dec|
-    h = Horloge.new(horloge:realtime(dec).to_horloge, top:self.class.top_horloge_part_absolue, left:realpos(dec), bgcolor:'gray50', color:'gray90')
-    cmd << h.magick_code
-  end
-
-  # Pour le paradigme propre au film
-  [ne(:ex), ne(:dv), ne(:d2)||ne(:cv), ne(:dn), ne(:pf)].each_with_index do |neu, idx|
-    next if neu.nil?
-    h = Horloge.new(horloge:neu.time.to_i.to_horloge, top:self.class.top_horloge_part_relative, left:realpos(decs[idx]), bgcolor:'gray20', color:'white')
-    cmd << h.magick_code
-  end
-
-  return cmd.join(' ')
-end #/ horloges_parties
 
 
 # La durée "réelle", c'est-à-dire entre le point zéro et
