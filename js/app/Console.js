@@ -31,6 +31,7 @@ run(){
   this.parse()
   switch(this.command){
     case 'open':      return this.run_open_command(this.params[1])
+    case 'build':     return this.run_build_command(this.params[1])
     case 'pfa':       return this.run_pfa_command(this.params[1])
     case 'rewind':
     case 'back':
@@ -48,6 +49,17 @@ run(){
 }
 
 
+/**
+* Les commandes de construction
+***/
+run_build_command(what){
+  switch(what){
+    case 'sequencier':
+      Ajax.send('sequencier_build.rb').then(ret => console.log(ret))
+      break
+    case 'pfa': return film.analyse.buildPFA()
+  }
+}
 /**
 * Les commandes d'ouverture
 ***/
