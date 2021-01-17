@@ -404,6 +404,36 @@ gotoLieu(lieu, offset){
   this.time = (this.duration * m) + parseFloat(offset||0)
 }
 
+// ---------------------------------------------------------------------
+
+// === Commandes pour dessiner sur la vidéo ===
+draw(what){
+  message("Je dessine…", {keep:false})
+  switch(what){
+    case 'quarts': return this.drawQuarts()
+    case 'tiers':  return this.drawTiers()
+    case 'all': this.drawQuarts(); return this.drawTiers()
+    default: return erreur(`Je ne sais pas dessiner de '${what}'.`)
+  }
+}
+
+drawQuarts(){
+  for(var i = 1 ; i < 4 ; ++i){
+    const sty = { left: this.time2px(this.duration * i / 4), height: this.height }
+    this.container.appendChild(DCreate('DIV', {class:'repere quart', style:px(sty, true)}))
+  }
+  message("Les quarts se trouvent aux lignes blanches.")
+}
+drawTiers(){
+  for(var i = 1 ; i < 3 ; ++i){
+    const sty = { left: this.time2px(this.duration * i / 3), height: this.height }
+    this.container.appendChild(DCreate('DIV', {class:'repere tiers', style:px(sty, true)}))
+  }
+  message("Les tiers se trouvent aux lignes vertes.")
+}
+
+// ---------------------------------------------------------------------
+
 setWidth(w){
   // console.log("Je dois avancer de ", frames)
   this.obj.style.width = px(w)
@@ -417,4 +447,7 @@ get spanSpeed(){
   return this._spanspeed || ( this._spanspeed = this.container.querySelector('.speed'))
 }
 
+get height(){
+  return this._height || (this._height = this.obj.offsetHeight)
+}
 }// DOMVideo
