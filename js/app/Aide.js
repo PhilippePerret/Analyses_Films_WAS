@@ -85,9 +85,9 @@ build(){
 static get MESSAGES(){
   if ( undefined == this._messages){
     this._messages = [
-        {content: '<span class="key">⌘</span><span class="key">a</span> pour ouvrir le manuel d’utilisation dans une autre fenêtre'}
-      , {content: '<span class="key">⌘</span><span class="key">k</span> pour afficher/masquer le contrôleur de vidéo'}
-      , {content: '<span class="key">⌘</span><span class="key">⌥</span><span class="key">k</span> pour afficher/masquer les raccourcis du contrôleur'}
+        {content: this.img('A',{cmd:true})+'pour ouvrir le manuel d’utilisation dans une autre fenêtre'}
+      , {content: this.img('K',{cmd:true})+'pour afficher/masquer le contrôleur de vidéo'}
+      , {content: this.img('K',{alt:true,cmd:true})+'pour afficher/masquer les raccourcis du contrôleur'}
       , {content: 'Déplacer la souris sur la vidéo pour choisir le temps (puis clic pour la figer)'}
       , {content: '<span class="key">⇧</span><span class="key">⌘</span><span class="key">a</span> pour afficher/masquer cette aide flottante'}
       , {content: 'On peut rejoindre facilement les 9 premiers signets à l’aide des touches 1 à 9'}
@@ -96,7 +96,22 @@ static get MESSAGES(){
       , {content: 'Pour sortir d’un champ de texte ou d’un select (=> raccourcis généraux), presser la touche ESCAPE.'}
       , {content: '<span class="key">R</span> pour afficher/masquer les repères du PFA abslu.'}
       , {content: 'Jouer la commande <code>pfa build</code> pour construire le PFA du film.'}
+      , {content: this.img('Enter')+' pour mettre l’évènement d’analyse sélectionné en édition séparée.'}
     ]
-  }return this._messages
+  } return this._messages
 }
+
+static img(name, modifiers = {}){
+  var imgs = []
+  modifiers.maj   && imgs.push(this.pathImage('Maj', true))
+  modifiers.ctrl  && imgs.push(this.pathImage('Ctrl', true))
+  modifiers.alt   && imgs.push(this.pathImage('Alt', true))
+  modifiers.cmd   && imgs.push(this.pathImage('Command', true))
+  imgs.push(this.pathImage(name))
+  return imgs.join('')
 }
+static pathImage(name, isModifier){
+  return `<img src="_dev_/Manuel/img/clavier/K_${name}.png" class="${isModifier?'modifier':''}" alt="${name}"/>`
+}
+
+}//Aide

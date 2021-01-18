@@ -1,0 +1,22 @@
+// Pour l'aide flottante
+div#floating-aide
+  // position: absolute
+  margin-top: 2em
+  top: 380px
+  left: 50px
+  color: black
+  max-width: 500px
+  div.floating-message
+    opacity: 0.5
+    font-family: monospace, courier
+    font-size: 24pt
+    color: #AAAAAA
+    text-align: center
+    img
+      margin-left: 0.5em
+      &:not(.modifier)
+        margin-right: 0.5em
+      &.modifier
+        margin-right: 4px
+      & + img
+        margin-left: 0
