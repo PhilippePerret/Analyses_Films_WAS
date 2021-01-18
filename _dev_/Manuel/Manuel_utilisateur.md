@@ -103,6 +103,20 @@ Quand on doit éditer un évènement de façon « sérieuse », par exemple pour
 
 Pour éditer un évènement d’analyse de cette manière, il suffit de le sélectionner dans la liste et de cliquer la touche ![][Return].
 
+
+
+### Produire les livres
+
+Pour produire les livres (ebook mobi, epub, pdf), il suffit de jouer la commande `build books` :
+
+* Jouer ![][Escape] pour sortir d’un champ d’édition si l’on s’y trouve,
+* jouer ![][K_X] pour se placer dans la console,
+* taper la commande `build books`,
+* presser la touche ![][Return] pour lancer la fabrication,
+* attendre jusqu’à la fabrication complète des livres.
+
+---
+
 <a id="naviguer"></a>
 
 ## Naviguer dans le film
@@ -335,6 +349,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 
 | Object construit | Commande           | Description/options                                          |
 | ---------------- | ------------------ | ------------------------------------------------------------ |
+| Tous les livres  | `build books`      | Construit tous les livres et les places dans le dossier `./finaux` du dossier du film. |
 | PFA              | `build pfa`        | Construit une image (`pfa.jpg`) qu’il suffira de copier dans le livre |
 | Séquencier       | `build sequencier` | Construit une page (format à voir) à introduire dans le livre. |
 |                  |                    |                                                              |

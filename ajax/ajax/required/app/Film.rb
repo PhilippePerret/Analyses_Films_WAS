@@ -130,6 +130,9 @@ end
 def folder_products
   @folder_products ||= mkdir(File.join(folder,'products'))
 end
+def folder_finaux
+  @folder_finaux ||= mkdir(File.join(folder,'finaux'))
+end
 def config_path
   @config_path ||= File.join(folder, 'config.yml')
 end

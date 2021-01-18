@@ -1,5 +1,67 @@
 # encoding: UTF-8
 # frozen_string_literal: true
+=begin
+
+  film.sorted_scenes => array des instances Scene classées
+  film.scene(numero)    => instance Scene de la scène de numéro #numero
+  film.scene_per_event(id_event)  => instance Scene de la scène définie par
+      l'event +id_event+
+
+=end
+class Film
+  attr_reader :scenes_per_event, :scenes_per_numero
+
+  def scene_per_event(event_id)
+    scenes_per_event[event_id]
+  end
+
+  def scene(numero)
+    scenes_per_numero(numero)
+  end
+  alias :scene_per_numero :scene
+
+  # Retourne la liste des scènes classées par temps
+  # Note : les propriétés :numero et :time_fin ont été renseignées
+  def sorted_scenes
+    @sorted_scenes ||= begin
+      numCur = 0
+      # scenes.sort_by{|sc| sc.time}.collect{|sc|sc.numero = (numCur += 1)}
+      ary_scenes.sort_by!(&:time)
+      ary_scenes.each do |sc|
+        sc.numero = (numCur += 1)
+      end
+      # Pour obtenir la liste par numéro
+      @scenes_per_numero = {}
+      # On ajoute le temps de fin (début de la suivante)
+      last_start = Film.current.duration.dup
+      ary_scenes.reverse.each do |sc|
+        sc.time_fin = last_start.dup
+        last_start = sc.time
+        @scenes_per_numero.merge!(sc.numero => sc)
+      end
+      ary_scenes.each do |sc|
+      end
+
+      ary_scenes
+    end
+  end #/ sorted_scenes
+
+
+  # Retourne la liste des scènes
+  # C'est un Array d'instance Scene dans l'ordre du film
+  def ary_scenes
+    @ary_scenes ||= begin
+      @scenes_per_event = {}
+      get_events(type: 'sc').collect do |devent|
+        sc = Scene.new(devent)
+        @scenes_per_event.merge!(devent['id'] => sc)
+        sc
+      end
+    end
+  end #/ scenes
+
+end #/class Film
+
 class Scene
 # ---------------------------------------------------------------------
 #
@@ -39,7 +101,7 @@ def hdecor
     if decor.nil? || decor.empty?
       ""
     else
-      formate("#{Film.current.decors[decor]} – ")
+      formate("#{Film.current.decors[decor].hname} – ")
     end
   end
 end
@@ -51,6 +113,11 @@ def resume
     formate(content.split("\n").first.strip)
   end
 end
+
+def formated_resume
+  @formated_resume ||= "Scène #{numero}. #{resume}"
+end
+
 # Le "vrai contenu" est le contenu sans le premier paragraphe qui
 # sert de résumé de scène.
 def real_content

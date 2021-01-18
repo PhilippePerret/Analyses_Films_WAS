@@ -50,12 +50,8 @@ run(){
 ***/
 run_build_command(what){
   switch(what){
-    case 'sequencier':
-      Ajax.send('sequencier_build.rb').then(ret => {
-        console.log(ret);
-        message("Séquencier construit avec succès. Jouer 'open sequencier' pour le voir",{keep:false})
-      })
-      break
+    case 'books': case 'livres': return run_build_books()
+    case 'sequencier': return run_build_sequencier()
     case 'pfa': return film.analyse.buildPFA()
   }
 }
@@ -72,6 +68,26 @@ run_open_command(what){
 
     default: erreur(`Je ne sais pas ouvrir '${what}'…`)
   }
+}
+
+/**
+* Les commandes de construction
+***/
+run_build_books(){
+  message("Construction des livres, merci de patienter…", {keep:false})
+  Ajax.send('build_books.rb').then(ret => {
+    console.log(ret)
+    message("Les livres ont été construits avec succès.",{keep:false})
+    message("Consulter le dossier dans le Finder.", {keep:true})
+  })
+}
+
+run_build_sequencier(){
+  message("Construction du séquencier, merci de patienter…", {keep:false})
+  Ajax.send('build_sequencier.rb').then(ret => {
+    console.log(ret);
+    message("Séquencier construit avec succès. Jouer 'open sequencier' pour le voir",{keep:false})
+  })
 }
 
 /**
