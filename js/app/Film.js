@@ -69,6 +69,10 @@ prepareMenuPersonnages(){
   }
   menuPersonnages.addEventListener('change', this.onChoosePersonnage.bind(this))
 }
+// À régler
+get decorsForMenus(){
+  return []
+}
 
 get pointZero(){return this._pointzero}
 set pointZero(nd){this._pointzero = nd}

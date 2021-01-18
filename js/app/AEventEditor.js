@@ -35,6 +35,7 @@ static activate(editor){
   UI.setFocusOn(editor)
 }
 static desactivate(editor){
+  console.log("-> desactivate", editor)
   editor.obj.style.zIndex = 10
   UI.setFocusOn(AEvent)
 }
@@ -54,10 +55,17 @@ static close(editor){
   if ( isCurrentEditor ){
     this.current = null
   }
-  delete this.table[editor.aevent.id]
-  if ( isCurrentEditor ) {
-    this.current = Object.values(this.table).reverse()[0]
-  }
+  setTimeout(()=>{
+    const eid = editor.aevent.id
+    delete this.table[eid]
+    if ( isCurrentEditor ) {
+      // Si c'était l'éditeur courant, il faut mettre le suivant en
+      // éditeur courant
+      const otherEditor = Object.values(this.table).reverse()[0]
+      if ( otherEditor ) { this.current = otherEditor }
+      else { UI.setFocusOn(AEvent) }
+    }
+  }, 100 /* sinon ça va trop vite */)
 }
 
 static init(){
@@ -116,6 +124,18 @@ save(){
   newData && this.aevent.update(newData)
 }
 
+
+/**
+* Méthode appelée quand on change le main-type de l'évent. Pour régler la
+visibilité et la valeur des autres éléments
+***/
+onChangeMainType(ev){
+  const mtype = this.oMainType.value
+  UI.showIf(this.oLieuScene,  mtype == 'sc')
+  UI.showIf(this.oEffetScene, mtype == 'sc')
+  UI.showIf(this.oNoeudCleType, mtype == 'nc')
+}
+
 /**
 * Construction de l'éditeur
 Note : on peut en créer autant qu'on veut
@@ -124,17 +144,20 @@ Note : on peut en créer autant qu'on veut
 build(){
   const oid = this.divId
 
-  this.oContent = DCreate('TEXTAREA', {id:`${oid}-content`, class:'content'})
-  this.oMainType  = DCreate('SELECT',   {id:`${oid}-mtype`, class:'mtype', inner: AEvent.buildOptionsMainTypes()})
-  this.oSubType   = DCreate('SELECT',   {id:`${oid}-stype`, class:'stype', inner: AEvent.buildOptionsTypesNoeudCle()})
-  this.oTime      = DCreate('INPUT',    {id:`${oid}-time`, class:'time'})
+  this.oContent       = DCreate('TEXTAREA', {id:`${oid}-content`, class:'content'})
+  this.oMainType      = DCreate('SELECT',   {id:`${oid}-mtype`, class:'mtype', inner: AEvent.buildOptionsMainTypes()})
+  this.oNoeudCleType  = DCreate('SELECT',   {id:`${oid}-stype`, class:'stype', inner: AEvent.buildOptionsTypesNoeudCle()})
+  this.oTime          = DCreate('INPUT',    {id:`${oid}-time`, class:'time'})
+  this.oLieuScene     = DCreate('SELECT',   {id:`${oid}-lieu`, class:'lieu', inner:AEvent.buildOptionsLieuScene()})
+  this.oEffetScene    = DCreate('SELECT', {id:`${oid}-effet`, class:'effet', inner:AEvent.buildOptionsEffetScene()})
+  this.oDecor         = DCreate('SELECT', {id:`${oid}-decor`, class:'decor hidden', inner:AEvent.buildOptionsDecorScene()})
 
   this.obj = DCreate('DIV', {id: oid, class:'editor', inner:[
       DCreate('SPAN',     {id:`${oid}-id`, class:'id', text:`#${this.aevent.id}`})
     , DCreate('IMG', {src:'img/ui/b_close.png', class:'close-btn'})
     , this.oContent
-    , this.oMainType
-    , this.oSubType
+    , DCreate('DIV', {inner:[this.oMainType, this.oNoeudCleType, this.oLieuScene, this.oEffetScene]})
+    , this.oDecor
     , this.oTime
   ]})
   document.body.appendChild(this.obj)
@@ -146,26 +169,36 @@ positionneAs(windowNumber = 0){
 }
 
 getValues(){
-  return {
+  var d = {
       id: this.aevent.id
     , content: this.oContent.value.trim()
     , type: this.getTypeValue()
     , time: this.getTimeValue()
   }
+  if ( this.aevent.isScene ) {
+    Object.assign(d, { decor: oDecor.value })
+  }
+  return d
 }
 
 setValues(){
   const ae  = this.aevent
   this.oContent.value   = ae.content
+
   this.oMainType.value  = ae.mainType
-  this.oSubType.value   = ae.subType
-  this.oTime.value      = s2h(ae.time)
+  this.onChangeMainType()
+  this.oNoeudCleType.value   = ae.subType || ''
+  this.oLieuScene.value   = ae.lieu || ''
+  this.oEffetScene.value  = ae.effet || ''
+  ae.isScene && (this.oDecor.value = ae.decor)
+  this.oTime.value = s2h(ae.time)
 }
 
 
 getTypeValue(){
   var ty = this.oMainType.value
-  if ( ty == 'nc' ) { ty += `:${this.oSubType.value}` }
+  if ( ty == 'nc' ) { ty += `:${this.oNoeudCleType.value}` }
+  else if ( ty == 'sc') { ty += `:${this.oLieuScene.value}:${this.oEffetScene.value}` }
   return ty
 }
 getTimeValue(){
@@ -183,6 +216,8 @@ observe(){
   DGet('.close-btn', this.obj).addEventListener('click', this.close.bind(this))
   // On observe les champs éditables (pour le mode clavier)
   UI.observeEditFieldsIn(this.obj)
+  this.oMainType.addEventListener('change', this.onChangeMainType.bind(this))
+
 }
 
 get divId(){return this._divid || (this._divid = `editor-${this.aevent.id}`)}

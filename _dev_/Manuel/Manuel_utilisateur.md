@@ -159,6 +159,64 @@ Il existe deux modes de clavier selon qu’on se trouve ou non dans un champ de 
 
 ---
 
+<a id="events"></a>
+
+## Les évènements d'analyse
+
+Les `évènements d'analyse` sont le résultat de la collecte et ce qui va permettre d'automatiser un peu le travail d'analyse du film.
+
+### Les scènes
+
+Les scènes sont un type très particulier d’évènement dans le sens où on peut définir, en plus des autres données, les propriétés :
+
+* Le **Lieu**. Où se déroule la scène, en intérieur ou en extérieur.
+* L'**Effet**. Le moment où elle se déroule, jour, nuit, etc.
+* Le **Décor**. Le décor et sous-décor exact.
+
+#### Définition des décors
+
+On définit les décors dans le fichier `config.yml` du film :
+
+~~~yaml
+...
+decors:
+	id_decor1:
+		hname: Maison du héros
+		items:
+			id_sous_decor: Salon
+      id_sdecor2: Chambre
+  id_decor2:
+  	hname: Usine du héros
+  	items:
+  		idsdec1: Bureau
+  		idsdec2: Atelier
+  		idscec3: Entrepôt
+~~~
+
+Pour ajouter un nouveau décor, il suffit de faire :
+
+* ![][K_X] pour se placer dans la console,
+* taper `open config `![][Return] pour ouvrir le fichier configuration
+* ajouter les décors voulus
+* taper `update`![][Return] dans la console pour actualiser l'affichage 
+
+
+
+#### Influence sur l'analyse
+
+Ces nouvelles propriétés permettent de définir des statistiques pour les livres d’analyse, dont :
+
+* l’utilisation des décors,
+* le temps passé en intérieur et en extérieur,
+* le temps passé de jour et de nuit,
+* la durée de présence des personnages (repérés dans les scènes).
+
+
+
+
+
+---
+
 
 
 ## Le Contrôleur
@@ -252,10 +310,18 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 
 | Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Commande&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description/options                                          |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Ouvrir le dossier du film                                    | `open film`                                                  | Ouvrir le dossier du film dans le Finder, ce qui permet de récupérer ses éléments produit, notamment. |
-| Afficher le PFA                                              | `pfa open`                                                   |                                                              |
-| Construire un élément                                        | `build`                                                      | Cf. [commande `build`](#commande-build)                      |
-| Se déplacer dans le film                                     | `goto`                                                       | Cf. [commande `goto`](#commande-goto)                        |
+| Ouvrir quelque chose                                         | `open …`                                                     | Cf. [commande `open`](#commande-open)                        |
+| Construire un élément                                        | `build …`                                                    | Cf. [commande `build`](#commande-build)                      |
+| Se déplacer dans le film                                     | `goto …`                                                     | Cf. [commande `goto`](#commande-goto)                        |
+| Actualiser les données du film                               | `update`                                                     | La commande est à utiliser, par exemple, lorsqu’on modifie la liste des personnages ou des décors. |
+
+<a id="commande-open"></a>
+
+| Objet ouvert                | Commande      | Description/options                                          |
+| --------------------------- | ------------- | ------------------------------------------------------------ |
+| Le dossier du film          | `open film`   | Ouvre le dossier du film dans le Finder                      |
+| Le fichier de configuration | `open config` | Ouvre le fichier `config.yml` du film courant dans Atom (pour le moment). |
+| L’image du PFA              | `open pfa`    | Il faut que l’image ait été construite avec succès par la commande `build pfa`. |
 
 <a id="commande-build"></a>
 

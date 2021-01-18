@@ -111,42 +111,6 @@ static get PROPERTIES(){
   };return this._properties
 }
 
-// --- Pour le type d'évènement ---
-static get TYPES(){
-  if (undefined == this._types){
-    this._types = {
-        sc: {id:'sc', hname: "Scène",     letter:'s'}
-      , nc: {id:'nc', hname: "Nœud clé",  letter:''}
-      , no: {id:'no', hname: "Note",      letter:'n'}
-      , if: {id:'if', hname: 'Info',      letter:'i'}
-    }
-  }; return this._types
-}
-
-static get TYPES_NOEUDS(){
-  if (undefined == this._types_noeuds){
-    this._types_noeuds = {
-        zr: {id:'zr', hname:'Point Zéro'}
-      , ex: {id:'ex', hname:'Début Exposition'}
-      , ip: {id:'ip', hname:'Incident perturbateur'}
-      , id: {id:'id', hname:'Incident déclencheur'}
-      , p1: {id:'p1', hname:'Premier pivot'}
-      , dv: {id:'dv', hname:'Début Développement'}
-      , t1: {id:'t1', hname:'Scène de 1er tiers'}
-      , cv: {id:'cv', hname:'Clé de voûte'}
-      , d2: {id:'d2', hname:'Développement part II'}
-      , t2: {id:'t2', hname:'Scène de 2nd tiers'}
-      , cr: {id:'cr', hname:'Crise (développement)'}
-      , p2: {id:'p2', hname:'Pivot 2'}
-      , dn: {id:'dn', hname:'Début Dénouement'}
-      , cd: {id:'cd', hname:'Crise (dénouement)'}
-      , cx: {id:'cx', hname:'Climax'}
-      , de: {id:'de', hname:'Désinence'}
-      , pf: {id:'pf', hname:'Point Final'}
-    }
-  }; return this._types_noeuds
-}
-
 static buildMenuType(){
   const row = DCreate('DIV', {id:'row_type', class:'row row-type', inner:[
       DCreate('LABEL', {text:'Type'})
@@ -165,15 +129,36 @@ l'éditeur séparé de l'évènement
 ***/
 static buildOptionsMainTypes(){
   const options = []
-  Object.values(this.TYPES).forEach(d => options.push(DCreate('OPTION',{value:d.id, text:d.hname})))
+  Object.values(TYPES_EVENT).forEach(d => options.push(DCreate('OPTION',{value:d.id, text:d.hname})))
   return options
 }
 static buildOptionsTypesNoeudCle(){
-  const opts_type_noeud = []
-  Object.values(this.TYPES_NOEUDS).forEach(dn => {
-    opts_type_noeud.push(DCreate('OPTION',{value:dn.id, text:dn.hname}))
+  const opts = []
+  Object.values(TYPES_NOEUDS_CLES).forEach(dn => {
+    opts.push(DCreate('OPTION',{value:dn.id, text:dn.hname}))
   })
-  return opts_type_noeud
+  return opts
+}
+static buildOptionsLieuScene(){
+  const opts = []
+  Object.values(LIEUX_SCENES).forEach(dn => {
+    opts.push(DCreate('OPTION',{value:dn.id, text:dn.hname}))
+  })
+  return opts
+}
+static buildOptionsEffetScene(){
+  const opts = []
+  Object.values(EFFETS_SCENES).forEach(dn => {
+    opts.push(DCreate('OPTION',{value:dn.id, text:dn.hname}))
+  })
+  return opts
+}
+static buildOptionsDecorScene(){
+  const opts = []
+  film.decorsForMenus.forEach(dn => {
+    opts.push(DCreate('OPTION',{value:dn.id, text:dn.hname}))
+  })
+  return opts
 }
 
 static onChooseTypeEvent(ev){
@@ -187,11 +172,11 @@ static getType(){
   return ty
 }
 static setType(v){
-  var nt ;
-  if ( v.match(':') ) { [v, nt] = v.split(':')}
+  var nt, tt ;
+  if ( v.match(':') ) { [v, nt, tt] = v.split(':')}
   this.menuType.value = v
   nt && $(this.menuTypeNoeud).val(nt)
-  this.menuTypeNoeud.classList[nt?'remove':'add']('hidden')
+  UI.showIf(this.menuTypeNoeud, v = 'nc')
 }
 static get menuType(){return this._menutype || (this._menutype = document.querySelector('select#item-type'))}
 static get menuTypeNoeud(){return this._menutynoeud || (this._menutynoeud = document.querySelector('select#item-ntype'))}
@@ -277,18 +262,20 @@ get hiddenInfos(){
   return `${t2h(this.time)} #${this.id}`
 }
 
+get isScene(){return this._isscene || ( this._isscene = this.mainType == 'sc') }
+
 // Retourne le type humain en fonction du nœud
 get htype(){
-  var ty = this.data.type, cty, st ;
+  var ty = this.data.type, cty, st, tt ;
   if ( ty.match(/:/) ) {
-    [ty, st] = this.data.type.split(':')
+    [ty, st, tt] = this.data.type.split(':')
     if ( ty == 'nc') {
-      cty = this.constructor.TYPES_NOEUDS[st].hname
+      cty = TYPES_NOEUDS_CLES[st].hname
     } else {
       cty = ty // à mieux régler
     }
   } else {
-    cty = this.constructor.TYPES[ty].letter
+    cty = TYPES_EVENT[ty].letter
   }
   return `<span class="type ${ty}">${cty}</span>`
 }
@@ -329,7 +316,19 @@ save(){
 get type(){return this._type || (this._type = this.data.type)}
 set type(v){this._type = this.data.type = v}
 
+// Pour les scènes
+get lieu(){
+  return this._lieu || ( this._lieu = this.type == 'sc' ? this.subType : null)
+}
+get effet(){
+  return this._effet || ( this._effet = this.type == 'sc' ? this.terType : null)
+}
+get decor(){
+  return this._decor || ( this._decor = this.data.decor )
+}
+
 get mainType(){return this._maintype || (this._maintype = this.type.split(':')[0])}
 get subType(){return this._subtype || (this._subtype = this.type.split(':')[1])}
+get terType(){return this._tertype || (this._tertype = this.type.split(':')[2])}
 
 }//AEvent
