@@ -155,6 +155,7 @@ static buildOptionsEffetScene(){
 }
 static buildOptionsDecorScene(){
   const opts = []
+  opts.push(DCreate('OPTION',{value:'x', text:'Choisir le décor…'}))
   film.decorsForMenus.forEach(dn => {
     opts.push(DCreate('OPTION',{value:dn.id, text:dn.hname}))
   })

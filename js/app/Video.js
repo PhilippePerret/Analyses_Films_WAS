@@ -94,6 +94,10 @@ show(){
 hide(){
   this.container.classList.add('hidden')
 }
+remove(){
+  this.obj.src = ""
+  this.hide()
+}
 togglePlay(){
   if (this.playing) {
     this.pause()

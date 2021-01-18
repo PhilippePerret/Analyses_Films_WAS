@@ -33,16 +33,12 @@ run(){
     case 'open':      return this.run_open_command(this.params[1])
     case 'build':     return this.run_build_command(this.params[1])
     case 'pfa':       return this.run_pfa_command(this.params[1])
-    case 'rewind':
-    case 'back':
-    case '-' :
-    case 'backward':  return DOMVideo.current.backward(this.params[1])
-    case 'for':
-    case '+':
-    case 'forward':   return DOMVideo.current.forward(this.params[1])
     case 'goto':      return DOMVideo.current.goto(this.params[1], this.params[2])
+    case 'update':    return film.update()
     case 'draw':      return DOMVideo.current.draw(this.params[1])
     case 'erase':     return DOMVideo.current.erase(this.params[1])
+    case 'rewind': case 'back': case '-' : case 'backward':  return DOMVideo.current.backward(this.params[1])
+    case 'for': case '+': case 'forward':   return DOMVideo.current.forward(this.params[1])
     default:
       erreur(`Je ne connais pas la commande “${this.command}”`)
   }
@@ -69,6 +65,8 @@ run_open_command(what){
     case 'manuel':
       Ajax.send(`open_${what}.rb`).then(ret => message(ret.message||"Ouverture effectuée"))
       break
+    case 'config': return this.open_config_file()
+
     default: erreur(`Je ne sais pas ouvrir '${what}'…`)
   }
 }
@@ -99,4 +97,9 @@ parse(){
 *
 *** --------------------------------------------------------------------- */
 
+open_config_file(){
+  return Ajax.send('open_fichier_config.rb').then(ret => {
+    message("J'ai ouvert le fichier config.yml du film (dans Atom)", {keep:false})
+  })
 }
+}//Console

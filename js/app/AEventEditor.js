@@ -48,6 +48,13 @@ static set current(editor){
 }
 
 /**
+* Actualisation du menu décor dans toutes les fenêtres d'édition ouvertes
+***/
+static updateMenuDecors(){
+  Object.values(this.table).forEach(editor => editor.updateMenuDecors())
+}
+
+/**
 * Méthode appelée quand on referme un éditeur
 ***/
 static close(editor){
@@ -133,6 +140,7 @@ onChangeMainType(ev){
   const mtype = this.oMainType.value
   UI.showIf(this.oLieuScene,  mtype == 'sc')
   UI.showIf(this.oEffetScene, mtype == 'sc')
+  UI.showIf(this.oDecor, mtype == 'sc')
   UI.showIf(this.oNoeudCleType, mtype == 'nc')
 }
 
@@ -140,7 +148,6 @@ onChangeMainType(ev){
 * Construction de l'éditeur
 Note : on peut en créer autant qu'on veut
 ***/
-
 build(){
   const oid = this.divId
 
@@ -163,6 +170,12 @@ build(){
   document.body.appendChild(this.obj)
 }
 
+// Actualisation du menu des décors
+updateMenuDecors(){
+  this.oDecor.textContent = ''
+  AEvent.buildOptionsDecorScene().forEach(o => this.oDecor.appendChild(o))
+}
+
 positionneAs(windowNumber = 0){
   this.obj.style.left = px(160 - (windowNumber * 20))
   this.obj.style.top  = px(300 + (windowNumber * 20))
@@ -176,7 +189,7 @@ getValues(){
     , time: this.getTimeValue()
   }
   if ( this.aevent.isScene ) {
-    Object.assign(d, { decor: oDecor.value })
+    Object.assign(d, { decor: this.oDecor.value })
   }
   return d
 }
@@ -188,9 +201,9 @@ setValues(){
   this.oMainType.value  = ae.mainType
   this.onChangeMainType()
   this.oNoeudCleType.value   = ae.subType || ''
-  this.oLieuScene.value   = ae.lieu || ''
-  this.oEffetScene.value  = ae.effet || ''
-  ae.isScene && (this.oDecor.value = ae.decor)
+  this.oLieuScene.value   = ae.lieu || 'i'
+  this.oEffetScene.value  = ae.effet || 'j'
+  ae.isScene && (this.oDecor.value = ae.decor || 'x')
   this.oTime.value = s2h(ae.time)
 }
 

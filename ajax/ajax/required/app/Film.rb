@@ -30,7 +30,7 @@ end # /<< self
 attr_reader :folder
 attr_accessor :duration
 def initialize(folder)
-  @folder = folder
+  @folder = File.expand_path(folder)
 end
 
 def open_in_finder

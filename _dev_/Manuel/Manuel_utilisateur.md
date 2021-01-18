@@ -173,6 +173,10 @@ Les scènes sont un type très particulier d’évènement dans le sens où on p
 * L'**Effet**. Le moment où elle se déroule, jour, nuit, etc.
 * Le **Décor**. Le décor et sous-décor exact.
 
+#### Édition des scènes
+
+Noter que pour le moment, pour pouvoir éditer complètement une scène (i.e. définir son lieu, effet, décors, etc.) il faut l’éditer dans [l’éditeur séparé](#grand-editor). On peut l’éditer comme un autre évènement d’analyse seulement s’il faut juste changer son temps ou son texte.
+
 #### Définition des décors
 
 On définit les décors dans le fichier `config.yml` du film :

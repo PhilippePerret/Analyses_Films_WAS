@@ -43,6 +43,35 @@ prepare(){
   DOMVideo.setOptions()
   this.prepareEditor()
 }
+
+/**
+* Pour actualiser les données du film, souvent après une modification du
+fichier de configuration.
+***/
+update(){
+  Ajax.send('load_config_current_film.rb')
+  .then(ret => {
+    this.config = ret.config
+    this.updateMenuPersonnages()
+    AEventEditor.updateMenuDecors()
+    window.video.setWidth(this.config.video.width || 400)
+    if ( window.video2 ) {
+      if (this.config.video2) {
+        window.video2.setWidth(this.config.video2.width || 400)
+      } else {
+        window.video2.remove()
+        delete window.video2
+        window.video2 = null
+      }
+    } else if (this.config.video2) {
+      this.prepareVideo2()
+    }
+    message("Film actualisé d'après son fichier config.", {keep:false})
+  })
+}
+
+
+
 prepareVideo(){
   window.video = new DOMVideo(DGet('video#video1'), `_FILMS_/${this.config.film_folder}/${this.config.video.name}`)
   window.video.setWidth(this.config.video.width || 400)
@@ -63,15 +92,32 @@ prepareEditor(){
 prepareMenuPersonnages(){
   const menuPersonnages = DGet('select#personnages')
   menuPersonnages.appendChild(DCreate('OPTION', {value:'', text:"Choisir…"}))
+  this.updateMenuPersonnages()
+  menuPersonnages.addEventListener('change', this.onChoosePersonnage.bind(this))
+}
+updateMenuPersonnages(){
+  const menuPersonnages = DGet('select#personnages')
+  menuPersonnages.textContent = ''
   this.personnages = this.config.personnages
   for(var pid in this.personnages){
     menuPersonnages.appendChild(DCreate('OPTION',{value:pid, text:`${this.personnages[pid]} (${pid})`}))
   }
-  menuPersonnages.addEventListener('change', this.onChoosePersonnage.bind(this))
 }
 // À régler
 get decorsForMenus(){
-  return []
+  const decors = this.config.decors || {}
+  const liste_decors = []
+  for(var kdecor in decors ) {
+    const data_decor = decors[kdecor]
+    liste_decors.push({id:kdecor, hname:data_decor.hname})
+    var sous_decors = data_decor.items
+    if ( sous_decors ) {
+      for(var ksdecor in sous_decors){
+        liste_decors.push({id:`${kdecor}:${ksdecor}`, hname:`${data_decor.hname} : ${sous_decors[ksdecor]}`})
+      }
+    }
+  }
+  return liste_decors
 }
 
 get pointZero(){return this._pointzero}
