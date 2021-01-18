@@ -34,10 +34,6 @@ function gestionnaireTouchesFormField(ev){
 function gestionnaireTouchesController(ev){
   if ( ev.metaKey ) {
     if ( ev.altKey ) {
-      switch(ev.key){
-        case 'È': Aide.toggleControllerShortcuts(); break
-        default: return
-      }
     } else {
       switch(ev.key){
         case 'k': Controller.toggle();break
