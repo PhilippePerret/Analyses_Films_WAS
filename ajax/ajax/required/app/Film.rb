@@ -67,17 +67,68 @@ def destroy_locator(id)
   path = File.join(locators_folder,"locator-#{id}.yml")
   File.delete(path) if File.exists?(path)
 end
-def get_events
-  Dir["#{events_folder}/*.yml"].collect{|f| YAML.load_file(f) }
+def get_events(filtre = nil)
+  if filtre.nil?
+    Dir["#{events_folder}/*.yml"].collect{|f| YAML.load_file(f) }
+  else
+    goods = []
+    Dir["#{events_folder}/*.yml"].each do |f|
+      dae = YAML.load_file(f)
+      if filtre[:type]
+        next if dae['type'] != filtre[:type] && dae['type'].split(':')[0] != filtre[:type]
+      end
+      goods << dae
+    end
+    return goods
+  end
 end
 def get_locators
   Dir["#{locators_folder}/*.yml"].collect{|f| YAML.load_file(f) }
 end
+
+# ---------------------------------------------------------------------
+#
+#   TEMPS CALCULATIONS
+#
+# ---------------------------------------------------------------------
+
+# Retourne la durée du film
+# Note : soit c'est le point défini par l'event de type 'zr', soit 0
+# soit c'est le point défini par l'event de type 'pf' soit la durée de la
+# vidéo. NON : on produit une erreur
+def duration
+  @duration ||= begin
+    dataZPoint = nil
+    dataFPoint = nil
+    get_events.each do |devent|
+      if devent['type'] == 'nc:zr'
+        dataZPoint = devent
+      elsif devent['type'] == 'nc:pf'
+        dataFPoint = devent
+        break
+      end
+    end
+    unless dataZPoint && dataFPoint
+      raise "Impossible de calculer la durée du film, les points Zéro et Final ne sont pas définis les deux."
+    end
+    (dataFPoint['time'].to_f - dataZPoint['time'].to_f).to_i
+  end
+end #/ duration
+
+# ---------------------------------------------------------------------
+#
+#   PATHS
+#
+# ---------------------------------------------------------------------
+
 def events_folder
   @events_folder ||= mkdir(File.join(folder,'events'))
 end
 def locators_folder
   @locators_folder ||= mkdir(File.join(folder,'locators'))
+end
+def folder_products
+  @folder_products ||= mkdir(File.join(folder,'products'))
 end
 def config_path
   @config_path ||= File.join(folder, 'config.yml')

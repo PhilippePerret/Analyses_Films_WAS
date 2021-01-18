@@ -248,7 +248,7 @@ alias :na :noeudAbs
 
 # Chemin d'accès au fichier image du paradigme
 def path
-  @path ||= File.join(film.folder,'pfa.jpg')
+  @path ||= File.join(film.folder_products,'pfa.jpg')
 end
 
 # Méthode qui crée une bonne fois pour toutes les instances de nœuds absolu

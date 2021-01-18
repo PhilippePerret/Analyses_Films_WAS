@@ -51,7 +51,10 @@ run(){
 run_build_command(what){
   switch(what){
     case 'sequencier':
-      Ajax.send('sequencier_build.rb').then(ret => console.log(ret))
+      Ajax.send('sequencier_build.rb').then(ret => {
+        console.log(ret);
+        message("Séquencier construit avec succès. Jouer 'open sequencier' pour le voir",{keep:false})
+      })
       break
     case 'pfa': return film.analyse.buildPFA()
   }

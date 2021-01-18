@@ -1,0 +1,40 @@
+---
+  - id: regular
+    type: paragraph
+    primary: true
+    name: Normal
+    bold: false
+    font_size: 12pt
+    uppercase: false
+    justification: JUSTIFY
+
+  - id: smaller
+    type: paragraph
+    primary: true
+    name: Plus petit
+    font_size: 10.5pt
+
+  - id: intitule
+    type: paragraph
+    primary: true
+    name: Intitulé
+    bold: true
+    font_size: 14pt
+    uppercase: true
+    space_before: 20pt
+    no_break_with_next: true
+
+  - id: time_infos
+    type: paragraph
+    primary: false
+    name: Infos sur le temps
+    base_style: smaller
+    space_after: 10pt
+
+  - id: scene_resume
+    type: paragraph
+    primary: false
+    name: Résumé de scène
+    base_style: regular
+    italic: true
+    space_after: 10pt
