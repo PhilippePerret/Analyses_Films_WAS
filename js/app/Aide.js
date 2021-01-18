@@ -96,7 +96,7 @@ static get MESSAGES(){
       , {content: 'Pour sortir d’un champ de texte ou d’un select (=> raccourcis généraux), presser la touche ESCAPE.'}
       , {content: '<span class="key">R</span> pour afficher/masquer les repères du PFA abslu.'}
       , {content: 'Jouer la commande <code>pfa build</code> pour construire le PFA du film.'}
-      , {content: this.img('Enter')+' pour mettre l’évènement d’analyse sélectionné en édition séparée.'}
+      , {content: this.img('Entree')+' pour mettre l’évènement d’analyse sélectionné en édition séparée.'}
     ]
   } return this._messages
 }

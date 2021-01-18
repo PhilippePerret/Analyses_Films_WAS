@@ -77,13 +77,14 @@ function gestionnaireTouchesEditeurEvents(ev){
     if ( AEvent.current ) {
       /* Si un évènement est sélectionné */
       switch(ev.key){
-        case 's': AEvent.listing.onSaveButton({});break
-        case 'u': AEvent.current.updateTime(undefined);break
-        case 't': AEvent.focusTexte();break
-        case 'i': AEvent.initForm();break
+        case 's':   UI.focusedObject.onSave(ev);break
+        case 'u':   UI.focusedObject.onUpdateTime(ev);break
+        case 't':   UI.focusedObject.focusTexte(ev);break
+        case 'i':   AEvent.initForm();break
+        case 'Enter':     AEventEditor.edit(AEvent.current);break
         case 'Backspace': AEvent.current.destroy();break
         case 'ArrowDown': AEvent.selectNext();break
-        case 'ArrowUp': AEvent.selectPrevious();break
+        case 'ArrowUp':   AEvent.selectPrevious();break
         default: return
       }
     } else {

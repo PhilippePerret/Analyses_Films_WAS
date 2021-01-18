@@ -15,7 +15,7 @@ Les « composants » de l’application sont des classes qui permettent de gére
 | [Controller](#controller) | Contrôle la vidéo au plus haut niveau (interface utilisateur) |
 | [Locators](#locators)     | Gère les points-clés du film qui permettent de se déplacer avec plus de souplesse. |
 | [AEvent](#aevents)        | Gère les évènements d’analyse, c’est-à-dire tous les textes situés sur la timeline du film. |
-| [Editor](#editor)         | Pas vraiment utilisé pour le moment, mais devrait gérer l’édition du film (qu’est-ce que ça signifie, au fond ?) |
+| [AEventEditor](#editor)   | Utilisé pour l’édition séparé d’un évènement (permettant de naviguer dans les autres évènements) |
 | [Horloge](#horloge)       | Gère l’horloge qui permet de savoir où on se trouve dans le film. |
 | [Console](#console)       | Gère la console qui permet de commande l’application en ligne de commande. |
 |                           |                                                              |

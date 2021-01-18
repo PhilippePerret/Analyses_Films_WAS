@@ -9,20 +9,39 @@ static init(){
     ok()
   })
 }
+
+/**
+* Pour savoir qui a le focus et à qui, donc, on doit envoyer les évènements
+***/
+static setFocusOn(what){
+  if ( this.focusedObject ) {
+    this.focusedObject.obj.classList.remove('focused')
+  }
+  DGet('#mode-focus').textContent = `focus on ${what.name}`
+  this.focusedObject = what
+  this.focusedObject.obj.classList.add('focused')
+}
+
 /**
 * Fin de l'initialisation, c'est-à-dire lorsque tout est prêt
 ***/
 static endInit(){
-  document.querySelectorAll('textarea, input[type="text"]').forEach(el => {
+  this.observeEditFieldsIn(document)
+  this.setBody()
+}
+
+static observeEditFieldsIn(container){
+  container.querySelectorAll('textarea, input[type="text"]').forEach(el => {
     el.addEventListener('focus', this.onFocusTextField.bind(this))
     el.addEventListener('blur',  this.onBlurTextField.bind(this))
   })
-  document.querySelectorAll('select').forEach(el => {
+  container.querySelectorAll('select').forEach(el => {
     el.addEventListener('focus', this.onFocusSelect.bind(this))
     el.addEventListener('blur',  this.onBlurSelect.bind(this))
   })
-  this.setBody()
 }
+
+
 static setBody(){
   // Pour fixer la taille du body car beaucoup d'éléments sont absolus
   document.querySelector('body').style.height = px(window.innerHeight)

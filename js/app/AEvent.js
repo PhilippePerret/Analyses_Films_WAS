@@ -26,6 +26,46 @@ static set currentInVideo(e){
 }
 
 /**
+* Checker des valeurs de l'évènement
+Note : la méthode sert aussi pour l'éditeur séparé
+Return les données si elles sont valides, sinon null
+***/
+static checkValues(values){
+  try {
+    values.id             || raise("L'identifiant de l'évènement devrait être défini…")
+    values.id > 0         || raise("L'ID de l'évènement doit être supérieur à 0.")
+    values.content != ''  || raise("Il faut définir le contenu de l'évènement.")
+    values.time != 0      || raise("Normalement, il ne doit pas pouvoir y avoir d'évènement au zéro absolu…")
+    values.type != ''     || raise("Le type de l'évènement doit être défini.")
+  } catch (e) {
+    erreur(e)
+    return null
+  }
+  return values
+}
+
+/**
+* Appelé par Listing quand le listing prend le focus
+***/
+static onActivate(){
+  UI.setFocusOn(this)
+}
+static get name(){return 'Listing'}
+static get obj(){return this.listing.obj}
+/**
+* Appelé par la touche 's' pour sauver l'event
+***/
+static onSave(ev){
+  this.listing.onSaveButton(ev)
+}
+/**
+* Appelé par la touche 'u' pour actualiser le temps
+***/
+onUpdateTime(ev){
+  this.current.updateTime(undefined)
+}
+
+/**
 * Méthode qui permet de classer les items (dans this.orderedList qui
 est une extension apportée par ListingExtended)
 ***/
@@ -108,24 +148,34 @@ static get TYPES_NOEUDS(){
 }
 
 static buildMenuType(){
-  const options = []
-  Object.values(this.TYPES).forEach(d => options.push(DCreate('OPTION',{value:d.id, text:d.hname})))
-  // Les types de noeuds clés
-  const opts_type_noeud = []
-  Object.values(this.TYPES_NOEUDS).forEach(dn => {
-    opts_type_noeud.push(DCreate('OPTION',{value:dn.id, text:dn.hname}))
-  })
-
   const row = DCreate('DIV', {id:'row_type', class:'row row-type', inner:[
       DCreate('LABEL', {text:'Type'})
-    , DCreate('SELECT', {id:'item-type', inner: options})
-    , DCreate('SELECT', {id:'item-ntype', class:'hidden', inner:opts_type_noeud}) // type de noeud
+    , DCreate('SELECT', {id:'item-type', inner: this.buildOptionsMainTypes()})
+    , DCreate('SELECT', {id:'item-ntype', class:'hidden', inner:this.buildOptionsTypesNoeudCle()}) // type de noeud
     , DCreate('DIV', {class:'error-message'})
   ]})
   // Pour l'observation des menus
   row.querySelector('#item-type').addEventListener('change', this.onChooseTypeEvent.bind(this))
   return row
 }
+/**
+* Retourne les OPTIONS pour le type d'évènement (main type)
+Note : la méthode sert aussi bien pour le listing d'évènements que pour
+l'éditeur séparé de l'évènement
+***/
+static buildOptionsMainTypes(){
+  const options = []
+  Object.values(this.TYPES).forEach(d => options.push(DCreate('OPTION',{value:d.id, text:d.hname})))
+  return options
+}
+static buildOptionsTypesNoeudCle(){
+  const opts_type_noeud = []
+  Object.values(this.TYPES_NOEUDS).forEach(dn => {
+    opts_type_noeud.push(DCreate('OPTION',{value:dn.id, text:dn.hname}))
+  })
+  return opts_type_noeud
+}
+
 static onChooseTypeEvent(ev){
   const ty = this.menuType.value
   // Visibility du menu des noeuds
@@ -195,8 +245,10 @@ static get listing(){
     }
   }))
 }
-
-
+/** ---------------------------------------------------------------------
+  *   INSTANCE (d'évènement d'analyse)
+  *
+*** --------------------------------------------------------------------- */
 constructor(data) {
   super(data)
   this.content  = this.data.content
@@ -267,11 +319,17 @@ unsetModified(){
 }
 
 save(){
-  super.save()
-  message(`${this.ref} enregistré.`, {keep:false})
-  this.unsetModified()
+  if ( this.constructor.checkValues(this.data) ) {
+    super.save()
+    message(`${this.ref} enregistré.`, {keep:false})
+    this.unsetModified()
+  }
 }
 
 get type(){return this._type || (this._type = this.data.type)}
 set type(v){this._type = this.data.type = v}
+
+get mainType(){return this._maintype || (this._maintype = this.type.split(':')[0])}
+get subType(){return this._subtype || (this._subtype = this.type.split(':')[1])}
+
 }//AEvent

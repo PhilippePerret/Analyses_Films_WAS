@@ -394,7 +394,7 @@ keep: true        Garde la sélection actuelle
 
 ## Instances propriétaires
 
-Une « instance de propriétaire » désigne l'instance de la classe qui possède le listing.
+Une « instance de propriétaire » désigne l'instance qui possède le listing.
 
 Cette instance est soumise à certaines contraintes qu'on peut trouver dans la partie [Conformité du propriétaire du listing](#ownerconfirmite).
 
@@ -471,6 +471,14 @@ Concrètement, ça supprime la classe CSS de l’élément `LI` de l’item de l
 On peut s’en servir par exemple pour surveiller certains champs particuliers.
 
 > Note : la méthode est appelée après que le listing a été placé dans le DOM.
+
+
+
+### À l’activation du listing
+
+C’est-à-dire quand on clique un de ses éléments (sans capturer définitivement l’évènement).
+
+`<propriétaire>::onActivate()`
 
 
 

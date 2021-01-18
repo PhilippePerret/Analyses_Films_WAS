@@ -10,7 +10,7 @@ class ListingExtended {
 *** --------------------------------------------------------------------- */
 static init(){
   this.table = {}
-  this.lastId = 0
+  this.lastId = 0 // le premier doit être 1
 }
 
 static get(itemId){return this.table[itemId]}

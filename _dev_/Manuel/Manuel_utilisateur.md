@@ -95,6 +95,14 @@ C’est le fichier qui définit le film courant. On trouve les propriétés suiv
 * modifier ses valeurs,
 * cliquer sur le bouton « save ».
 
+<a id="grand-editor"></a><a id="grand-editeur"></a>
+
+#### Grand éditeur (éditeur séparé)
+
+Quand on doit éditer un évènement de façon « sérieuse », par exemple pour y ajouter des références à d’autres évènements, on utilise un « éditeur séparé » ou « grand éditeur ». Quand un évènement est édité dans cet éditeur séparé, on peut faire défiler la liste des évènements de façon normale, en restant dans cet éditeur. Cela permet d’ajouter facilement des références à d’autres évènements dans un évènement particulier.
+
+Pour éditer un évènement d’analyse de cette manière, il suffit de le sélectionner dans la liste et de cliquer la touche ![][Return].
+
 <a id="naviguer"></a>
 
 ## Naviguer dans le film
@@ -144,6 +152,8 @@ Il existe deux modes de clavier selon qu’on se trouve ou non dans un champ de 
 * Le « **mode de commande** ». C’est le mode par défaut, il permet de tout contrôler avec de simples touches le plus souvent, quelquefois un modifieur.<a id="mode-clavier-edition"></a>
 
   On peut trouver ci-dessous une [liste de tous les raccourcis clavier](#shortcuts-mode-commande).
+
+  Noter que pour certaines touches (![][K_T], ![][K_S], etc.), le « focus » est important et il est déterminé par le cadre vert brillant autour de l’élément. Par exemple, lorsque l’on édite un évènement dans [l’éditeur séparé](#grand-editor), s’il a le focus (entouré en vert brillant) la touche ![][K_S] enregistre l’évènement édité, sinon elle enregistre l’évènement édité dans l’éditeur simple du listing.
 
 * Le « **mode d'édition** ». C’est le mode lorsqu’on se trouve dans un champ de texte ou un menu. Il permet de jouer les touches normalement, notamment pour écrire un texte ou se déplacer dans le menu.
 
@@ -243,9 +253,19 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Commande&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description/options                                          |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Ouvrir le dossier du film                                    | `open film`                                                  | Ouvrir le dossier du film dans le Finder, ce qui permet de récupérer ses éléments produit, notamment. |
-| Construire le PFA                                            | `pfa build`                                                  | Produit le fichier qui contient le Paradigme de Field Augmenté.  Utiliser la commande `open-pfa` pour l’afficher. |
 | Afficher le PFA                                              | `pfa open`                                                   |                                                              |
-| Se déplacer dans le film                                     | `goto`                                                       | Cf. [Command `goto`](#commande-goto)                         |
+| Construire un élément                                        | `build`                                                      | Cf. [commande `build`](#commande-build)                      |
+| Se déplacer dans le film                                     | `goto`                                                       | Cf. [commande `goto`](#commande-goto)                        |
+
+<a id="commande-build"></a>
+
+#### Commande `build`
+
+| Object construit | Commande           | Description/options                                          |
+| ---------------- | ------------------ | ------------------------------------------------------------ |
+| PFA              | `build pfa`        | Construit une image (`pfa.jpg`) qu’il suffira de copier dans le livre |
+| Séquencier       | `build sequencier` | Construit une page (format à voir) à introduire dans le livre. |
+|                  |                    |                                                              |
 
 <a id="commande-goto"></a>
 
@@ -301,9 +321,9 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 |  |  | |
 | Aller au signet précédent | ![][Cmd]![][ArrowUp] | |
 | **Édition d’un évènement** |  | |
-| Focusser dans le champ de texte | ![][K_T] | Désactive les raccourcis clavier. |
-| Enregistre l’event ou le crée | ![][K_S] |  |
-| Actualiser le temps | ![][K_U] | Met le temps de la vidéo active dans l’event actuellement édité. |
+| Focusser dans le champ de texte | ![][K_T] | Soit dans le texte de l’évènement édité séparément, soit celui du listing. Cette action désactive le mode clavier commande. |
+| Enregistre l’event ou le crée | ![][K_S] | Soit l’évènement édité séparément (si focus), soit l’évènement du listing. |
+| Actualiser le temps | ![][K_U] | Met le temps de la vidéo active dans l’event actuellement édité (soit séparément soit celui du listing). |
 | Sélectionner l’évènement suivant | ![][ArrowDown] | Ou le premier si aucun n’est sélectionné. |
 | Sélectionner l’évènement précédent | ![][ArrowUp] | Ou le dernier si aucun n’est sélectionné. |
 | **Divers** |  |  |
@@ -343,6 +363,8 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 [Maj]: ./img/clavier/K_Maj.png
 [Tab]: ./img/clavier/K_Tab.png
 [Escape]: ./img/clavier/K_Escape.png
+[Enter]: ./img/clavier/K_Enter.png
+[Return]: ./img/clavier/K_Entree.png
 [ArrowRight]: ./img/clavier/K_FlecheD.png
 [ArrowLeft]: ./img/clavier/K_FlecheG.png
 [ArrowDown]: ./img/clavier/K_FlecheB.png

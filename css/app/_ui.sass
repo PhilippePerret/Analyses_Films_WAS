@@ -1,6 +1,12 @@
 body
   position: relative
 
+  // Rectification de l'original
+  div.listing
+    border: unset
+    border-width: 3px // Pour le focus
+    border-style: solid
+
 div#rigth-margin
   position: absolute
   top: 0
@@ -15,26 +21,20 @@ div#rigth-margin
         textarea#item-content
           height: 180px
 
-// Pour l'aide flottante
-div#floating-aide
-  // position: absolute
-  margin-top: 2em
-  top: 380px
-  left: 50px
-  color: black
-  max-width: 500px
-  div.floating-message
-    font-family: monospace, courier
-    font-size: 24pt
-    opacity: 0.2
-    text-align: center
-
-div#mode-clavier
+div#mode-clavier, div#mode-focus
   position: fixed
   bottom: 0
-  right: 0
-  width: 160px
   background-color: #CCCCCC
   color: white
   padding: 4px 1em
   font-variant: all-small-caps
+
+div#mode-clavier
+  right: 0
+  width: 160px
+div#mode-focus
+  right: 160px
+  width: 160px
+
+.focused
+  border-color: limegreen!important

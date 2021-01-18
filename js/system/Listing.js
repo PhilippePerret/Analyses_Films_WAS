@@ -197,6 +197,7 @@ class Listing {
     if (this.constructor.current) this.constructor.current.desactivate()
     this.obj.style.zIndex = 500 ;
     this.constructor.current = this
+    this.owner.onActivate && this.owner.onActivate.call(this.owner)
   }
   desactivate(){
     this.obj.style.zIndex = 0
