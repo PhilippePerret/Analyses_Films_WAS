@@ -8,9 +8,6 @@ Pour gérer le livre
 require 'fileutils'
 
 class Book
-class << self
-
-end # /<< self
 # ---------------------------------------------------------------------
 #
 #   INSTANCE
@@ -38,7 +35,6 @@ end
 
 def prepare_document_xhtml_final
 
-ensure
   # On ouvre le flux vers le fichier XHTML final
   @stream = File.open(xhtml_file_path,'a')
 
@@ -50,6 +46,8 @@ ensure
 
   # On ajoute le pied du fichier XHTML
   @stream << "</body>\n</html>\n"
+
+ensure
   # On ferme le flux vers le fichier XHTML final
   @stream.close
 end
@@ -73,11 +71,14 @@ def add_all_documents
   files = film.documents || Dir["#{film.folder_documents}/**/*.md"]
   files.each do |src|
     log("Extension : #{File.extname(src).inspect}")
-    if ['.html','.htm'].include?(File.extname(src))
+    if File.extname(src).start_with?('.htm')
       # C'est un code HTML déjà préparé
-      dst = File.join(film.folder_products, File.basename(src))
-      log("Fichier #{src.inspect} recherché dans #{dst.inspect}")
-      next if not(File.exists?(dst))
+      dst = src
+      if not(File.exists?(dst))
+        log("Fichier #{src.inspect} recherché dans #{dst.inspect}")
+        film.export_errors << "Le fichier #{File.basename(src).inspect} devrait être ajouté aux livres, mais il est introuvable (dans #{src.inspect})"
+        next
+      end
     else
       affixe  = File.basename(src, File.extname(src))
       dst     = File.join(film.folder_products,"#{affixe}.html")

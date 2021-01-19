@@ -88,9 +88,17 @@ def get_locators
 end
 
 # Retourne la liste des paths de documents tels que définis dans le
-# fichier de configuration
+# fichier de configuration.
+# Noter qu'il peut y avoir des fichiers déjà formatés, comme les statistiques
+# par exemple ou le séquencier.
 def documents
-  @documents ||= (config['documents']||[]).collect{|name|File.join(folder_documents,name)}
+  @documents ||= (config['documents']||[]).collect do |name|
+    if File.extname(name).start_with?('.htm')
+      File.join(folder_products,name)
+    else
+      File.join(folder_documents,name)
+    end
+  end
 end
 
 # Pour ajouter un document au fichier config

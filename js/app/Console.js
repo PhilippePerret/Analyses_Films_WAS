@@ -109,6 +109,10 @@ run_build_books(type){
     console.log(ret)
     message("Les livres ont été construits avec succès.",{keep:false})
     message("Consulter le dossier dans le Finder (dans le dossier <code>./livres</code>).", {keep:true})
+    if ( ret.export_errors.length > 0 ) {
+      error("Mais des erreurs ont été trouvées (consulter la console du navigateur pour les voir)")
+      console.error(ret.export_errors)
+    }
   })
 }
 
