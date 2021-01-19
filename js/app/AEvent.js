@@ -58,12 +58,6 @@ static get obj(){return this.listing.obj}
 static onSave(ev){
   this.listing.onSaveButton(ev)
 }
-/**
-* Appelé par la touche 'u' pour actualiser le temps
-***/
-onUpdateTime(ev){
-  this.current.updateTime(undefined)
-}
 
 /**
 * Méthode qui permet de classer les items (dans this.orderedList qui
@@ -211,6 +205,61 @@ static initForm(){
 }
 
 /**
+  * Méthode filtrant la liste
+  Elle est appelée par la touche "f"
+***/
+static filtre(){
+  message("Pour filtrer les évènements, utiliser la commande 'filtre ...' dans la console.", {keep:false})
+  message("Presser 'a' pour réafficher tous les évènements.")
+}
+/**
+* Pour filtrer avec la console
+***/
+static runFiltreCommand(params){
+  params.shift()// Pour retirer la commande 'filtre' elle-même
+  const conditions = []
+  params.forEach(param => {
+    if ( param.match(':') ) {
+      const [what, value] = param.split(':')
+      message(`Je dois afficher les events de propriété '${what}' à '${value}'`)
+      switch(what){
+        case 'type':
+          switch(value){
+            case'scene':case'scenes': conditions.push(['hasType','sc']);break
+            case'note':case'notes':   conditions.push(['hasType','no']);break
+            case'noeud':case'noeuds': conditions.push(['hasMainType','nc']);break
+          }
+          break
+        case'after':case'apres':
+          conditions.push(['isAfter', h2s(value)]);break
+        case'before':case'avant':
+          conditions.push(['isBefore', h2s(value)]);break
+        case 'personnage':case'personnages':case'perso':
+          conditions.push(['hasPersonnage', value]);break
+      }
+    } else {
+      // C'est un simple texte à chercher
+      conditions.push(['hasContent', param])
+      message("Je dois afficher les évènements contenant "+param)
+    }
+  })
+  // console.log("Conditions : ", conditions)
+  const nombre_cond = conditions.length
+  this.orderedList.forEach( aev => {
+    aev[this.filterOn(aev, conditions, nombre_cond)?'show':'hide']()
+  })
+}
+static filterOn(aev, conditions, nombre_conditions){
+  for(var i = 0; i < nombre_conditions; ++i){
+    const [method, value] = conditions[i]
+    const resultat = aev[method](value)
+    console.log("Résultat de aev.%s(%s) = %s", method, value, resultat)
+    if ( ! resultat ) return false
+  }
+  return true
+}
+
+/**
 * Pour la construction du listing
 ***/
 static get listing(){
@@ -286,6 +335,13 @@ afterUpdate(){
   this.time = this.data.time
 }
 
+/**
+* Appelé par la touche 'u' pour actualiser le temps
+***/
+onUpdateTime(ev){
+  this.updateTime(undefined)
+}
+
 updateTime(newtime){
   if ( undefined == newtime ) newtime = DOMVideo.current.time
   if ( newtime != this.time ) {
@@ -314,6 +370,43 @@ save(){
     this.unsetModified()
   }
 }
+
+show(){
+  $(this.listingItem.obj).show()
+}
+hide(){
+  $(this.listingItem.obj).hide()
+}
+
+/** ---------------------------------------------------------------------
+  *
+  *   MÉTHODES DE FILTRE
+  *
+*** --------------------------------------------------------------------- */
+
+// Retourne true si le contenu contient +str+
+hasContent(str){
+  var telquel = this.content.match(str)
+  if (str.match('_') ) {
+    return telquel || this.content.match(str.replace(/_/g,' '))
+  } else {
+    return telquel
+  }
+}
+hasType(ty){ return this.type == ty }
+hasMainType(mty){return this.mainType == mty}
+isAfter(time){return this.time > time}
+isBefore(time){return this.time < time}
+hasPersonnage(perso_id){
+  const reg = new RegExp(`\\b${perso_id}\\b`)
+  return this.content.match(reg)
+}
+
+/** ---------------------------------------------------------------------
+  *
+  *   PROPERTIES
+  *
+*** --------------------------------------------------------------------- */
 
 get type(){return this._type || (this._type = this.data.type)}
 set type(v){this._type = this.data.type = v}

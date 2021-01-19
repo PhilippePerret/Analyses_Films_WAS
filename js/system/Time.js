@@ -33,3 +33,4 @@ function h2t(hr){
   if ( l[2] ) sc += parseInt(l[2]*3600,10)
   return  sc + fr
 }
+function h2s(v){return h2t(v)}

@@ -30,6 +30,7 @@ Méthode qui joue le code
 run(){
   this.parse()
   switch(this.command){
+    case 'filtre': case 'filter': return AEvent.runFiltreCommand(this.params)
     case 'open':      return this.run_open_command(this.params[1], this.params[2])
     case 'build':     return this.run_build_command(this.params[1], this.params[2])
     case 'pfa':       return this.run_pfa_command(this.params[1])

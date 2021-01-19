@@ -269,7 +269,78 @@ Ces nouvelles propriétés permettent de définir des statistiques pour les livr
 
 
 
+### Filtrage des évènements
 
+On peut utiliser le filtrage normal de la classe `Listing` en procédant de cette façon :
+
+* sortir des champs d’édition avec ![][Escape]
+* initialiser le formulaire en cliquant le bouton « Init » ou en pressant ![][K_I],
+* régler le formulaire suivant la recherche,
+* cliquer le bouton « Filtre ».
+
+Mais dans le cadre de l’analyse, et notamment pour filtrer par type, il peut être plus judicieux d’utiliser la [console](#console) et la commande `filtre`.
+
+* sortir des champs d’édition avec ![][Escape],
+* se placer dans la console avec ![][K_X],
+* définir le filtre `filtre … … …`,
+* jouer ![][Return].
+
+Pour ré-afficher tous les évènements, on peut sortir de la console et taper ![][K_A], ou cliquer sur le bouton « All », ou exécuter la commande `filtre` seule.
+
+#### Détail de la commande `filtre`
+
+**Évènements contenant un ou des textes**
+
+~~~
+filtre ce_texte
+=> Events contenant le texte "ce texte" ou "ce_texte"
+
+filtre texte pour voir
+=> Events contenant obligatoirement les trois mots "texte", "pour" et "voir"
+~~~
+
+**Évènement d’un certain type**
+
+~~~
+filtre type:scene
+=> Toutes les scènes
+
+filtre type:note
+=> Toutes les notes
+
+filtre type:noeud
+=> Tous les noeuds clé
+
+filtre type:nc:zr
+=> Le noeud clé Zéro
+~~~
+
+
+
+**Évènement après ou avant un certain temps**
+
+~~~
+filtre before:0:1:15
+=> Tous les évènements avant 1 minute 15 secondes
+
+filtre type:note before:30:00
+=> Toutes les notes avant la trentième minute
+
+filtre after:10:00 type:scene
+=> Toutes les scènes après la 10e minute
+~~~
+
+
+
+**Évènements contenant un ou des personnages**
+
+~~~
+filtre personnage:PR personnage:AN
+=> Events avec les personnages PR et AN (obligatoirement les deux)
+
+filtre type:scene perso:PR
+=> Scènes avec le personnage d'identifiant PR
+~~~
 
 ---
 
