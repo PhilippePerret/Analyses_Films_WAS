@@ -148,8 +148,10 @@ def folder_products
   @folder_products ||= mkdir(File.join(folder,'products'))
 end
 def folder_finaux
-  @folder_finaux ||= mkdir(File.join(folder,'finaux'))
+  @folder_finaux ||= mkdir(File.join(folder,'livres'))
 end
+alias :folder_livres :folder_finaux
+
 def config_path
   @config_path ||= File.join(folder, 'config.yml')
 end

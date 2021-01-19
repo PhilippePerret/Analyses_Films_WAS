@@ -15,4 +15,4 @@
 =end
 
 require_module('books')
-Film.current.build_books
+Film.current.build_books(Ajax.param(:type))

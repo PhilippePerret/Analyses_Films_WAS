@@ -31,7 +31,7 @@ run(){
   this.parse()
   switch(this.command){
     case 'open':      return this.run_open_command(this.params[1], this.params[2])
-    case 'build':     return this.run_build_command(this.params[1])
+    case 'build':     return this.run_build_command(this.params[1], this.params[2])
     case 'pfa':       return this.run_pfa_command(this.params[1])
     case 'goto':      return DOMVideo.current.goto(this.params[1], this.params[2])
     case 'create':    return this.run_create_command(this.params[1], this.params[2])
@@ -48,9 +48,10 @@ run(){
 /**
 * Les commandes de construction
 ***/
-run_build_command(what){
+run_build_command(what, extra){
   switch(what){
     case 'books': case 'livres': return this.run_build_books()
+    case 'book': case 'livre': return this.run_build_books(extra)
     case 'sequencier': return this.run_build_sequencier()
     case 'pfa': return film.analyse.buildPFA()
   }
@@ -72,6 +73,7 @@ run_open_command(what, name){
       break
     case 'config': return this.open_config_file()
     case 'document': case 'doc': return this.run_open_document(name)
+    case 'book': case 'livre': return this.run_open_book(name)
 
     default: erreur(`Je ne sais pas ouvrir '${what}'…`)
   }
@@ -80,12 +82,15 @@ run_open_command(what, name){
 /**
 * Les commandes de construction
 ***/
-run_build_books(){
-  message("Construction des livres, merci de patienter…", {keep:false})
-  Ajax.send('build_books.rb').then(ret => {
+run_build_books(type){
+  var msg
+  if (type) msg = `Construction du livre de type '${type}'`
+  else msg = 'Construction de tous les livres'
+  message(`${msg}, merci de patienter…`, {keep:false})
+  Ajax.send('build_books.rb', {type: type}).then(ret => {
     console.log(ret)
     message("Les livres ont été construits avec succès.",{keep:false})
-    message("Consulter le dossier dans le Finder (dans le dossier <code>./finaux</code>).", {keep:true})
+    message("Consulter le dossier dans le Finder (dans le dossier <code>./livres</code>).", {keep:true})
   })
 }
 
@@ -119,6 +124,13 @@ run_open_document(name){
   }
 }
 
+run_open_book(type){
+  if (type) {
+    Ajax.send('open_book.rb', {type:type}).then(ret => message(`Livre ouvert.`))
+  } else {
+    erreur("Il faut indiquer le type du livre à ouvrir ! (parmi 'html', 'epub', 'mobi', 'pdf')")
+  }
+}
 /**
 * Les commandes pour le PFA du film
 ***/

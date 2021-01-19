@@ -372,12 +372,13 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 
 #### Commande `open`
 
-| Objet ouvert                | Commande                 | Description/options                                          |
-| --------------------------- | ------------------------ | ------------------------------------------------------------ |
-| Le dossier du film          | `open film`              | Ouvre le dossier du film dans le Finder                      |
-| Le fichier de configuration | `open config`            | Ouvre le fichier `config.yml` du film courant dans Atom (pour le moment). |
-| L’image du PFA              | `open pfa`               | Il faut que l’image ait été construite avec succès par la commande `build pfa`. |
-| Un document                 | `open doc[ument] <name>` | Si le `<name>` ne définit pas son extension, c’est l’extension `.md` qui est choisie. |
+| Objet ouvert                | Commande                        | Description/options                                          |
+| --------------------------- | ------------------------------- | ------------------------------------------------------------ |
+| Le dossier du film          | `open film`                     | Ouvre le dossier du film dans le Finder                      |
+| Le fichier de configuration | `open config`                   | Ouvre le fichier `config.yml` du film courant dans Atom (pour le moment). |
+| L’image du PFA              | `open pfa`                      | Il faut que l’image ait été construite avec succès par la commande `build pfa`. |
+| Un document                 | `open doc[ument] <name>`        | Si le `<name>` ne définit pas son extension, c’est l’extension `.md` qui est choisie. |
+| Un livre                    | `open book pdf|epub|mobi|html|` | Ouvre le livre voulu dans l’application correspondante. Note : les livres doivent avoir été produits (avec la commande `build books` ou `build book [pdf|epub|mobi|html]`) |
 
 <a id="commande-build"></a>
 

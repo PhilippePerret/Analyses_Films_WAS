@@ -1,4 +1,3 @@
 # TODO liste
 
-* Mettre en place l'éditeur séparé
-* Poursuivre la fabrication du séquencier
+> On met ici les choses à faire "sur le moment", lorsqu'elles s'imbriquent.
