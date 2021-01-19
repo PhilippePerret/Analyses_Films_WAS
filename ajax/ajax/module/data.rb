@@ -1,6 +1,12 @@
 # encoding: UTF-8
 # frozen_string_literal: true
 
+TYPES_EVENTS = {
+  'sc' => {hname:"scène"},
+  'no' => {hname:"note"},
+  'nc' => {hname:"nœud-clé"}
+}
+
 LIEUX = {
   i: {hname: 'Int.'},
   e: {hname: 'Ext.'},

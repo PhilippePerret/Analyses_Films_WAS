@@ -9,6 +9,7 @@ class Film
   # Si non fourni, tous les livres sont construits.
   def build_books(type = nil)
     @export_errors = []
+    require_module('scenes')
     folder_finaux # Simplement pour s'assurer qu'il existe
     `open -a Finder "#{folder}"`
     book = Book.new(self)

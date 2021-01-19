@@ -23,7 +23,7 @@ class Film
   def backup_events
     File.delete(backup_signets_path) if File.exists?(backup_signets_path)
     @stream = File.open(backup_events_path,'a')
-    Dir["#{events_folder}/*.yml"].each do |path|
+    Dir["#{folder_events}/*.yml"].each do |path|
       @stream << File.read(path)
     end
   ensure

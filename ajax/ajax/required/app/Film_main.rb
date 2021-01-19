@@ -48,7 +48,7 @@ def save_config(config)
   File.open(config_path,'wb'){|f| f.write(YAML.dump(config))}
 end
 def save_event(data)
-  File.open(File.join(events_folder,"event-#{data['id']}.yml"),'wb') do |f|
+  File.open(File.join(folder_events,"event-#{data['id']}.yml"),'wb') do |f|
     f.write(YAML.dump(data))
   end
 end
@@ -61,7 +61,7 @@ end
 # Pour détruire un évènement
 # TODO Plus tard, on le mettra de côté
 def destroy_event(id)
-  path = File.join(events_folder,"event-#{id}.yml")
+  path = File.join(folder_events,"event-#{id}.yml")
   File.delete(path) if File.exists?(path)
 end
 def destroy_locator(id)
@@ -70,10 +70,10 @@ def destroy_locator(id)
 end
 def get_events(filtre = nil)
   if filtre.nil?
-    Dir["#{events_folder}/*.yml"].collect{|f| YAML.load_file(f) }
+    Dir["#{folder_events}/*.yml"].collect{|f| YAML.load_file(f) }
   else
     goods = []
-    Dir["#{events_folder}/*.yml"].each do |f|
+    Dir["#{folder_events}/*.yml"].each do |f|
       dae = YAML.load_file(f)
       if filtre[:type]
         next if dae['type'] != filtre[:type] && dae['type'].split(':')[0] != filtre[:type]
@@ -144,8 +144,8 @@ end #/ duration
 #
 # ---------------------------------------------------------------------
 
-def events_folder
-  @events_folder ||= mkdir(File.join(folder,'events'))
+def folder_events
+  @folder_events ||= mkdir(File.join(folder,'events'))
 end
 def locators_folder
   @locators_folder ||= mkdir(File.join(folder,'locators'))

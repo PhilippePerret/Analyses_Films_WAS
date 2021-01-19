@@ -109,19 +109,26 @@ L’application « Analyseur de fims » ne peut produire que des documents autom
 
 Tous ces documents doivent se trouver dans le dossier `./documents/` du film.
 
-Pour qu’un document soit ajouté au livre final, il doit être ajouté dans la définition de `documents` dans le fichier de configuration.
+**Pour qu’un document soit ajouté au livre final**, il doit impérativement être ajouté dans la définition de `documents` dans le fichier de configuration.
+
+Si on veut que le livre introduisent les documents :
 
 ~~~
 <dossier film>/documents/mon_document.md
 												 introduction.md
 ~~~
 
-Dans le fichier config :
+On doit ajouter dans le fichier `config.yml` du film :
 
 ~~~yaml
 # ...
 documents: ['introduction.md', 'mon_document.md']
 # ...
+
+# ou
+documents:
+	- introduction.md
+	- mon_document.md
 ~~~
 
 On peut **créer un document** depuis [la console](#console) avec la commande `create document <nom_document.md>`.
@@ -137,7 +144,35 @@ Procédure détaillée :
 * taper `open document mon_document`,
 * presser la touche ![][Return].
 
-### Produire les livres
+
+
+### Mise en forme des documents rédigés
+
+On peut utiliser de nombreux marques de formatage pour rédiger les documents « manuels ». En voici la liste complète :
+
+~~~
+[film:titre du film]
+		Pour mettre en forme un titre de film
+		
+[ref:scene:id_event|Texte alternatif]
+		Pour mettre en forme une référence à une scène dans le texte.
+		Noter qu'il s'agit ici de l'ID de l'event qui définit cette scène
+		et PAS du numéro de la scène (qui pourrait changer à tout moment).
+		Si le texte alternatif n'est pas défini, c'est un texte type :
+		"scène X. à m:ss : résumé"
+		
+[ref:note:id_event|Texte alternatif]
+		Une référence à une note.
+		Si aucun texte alternatif n'est défini, on écrira "(cf. note x)" avec
+		un lien vers la note.
+		
+~~~
+
+
+
+---
+
+## Produire les livres
 
 Pour produire les livres (ebook mobi, epub, pdf), il suffit de jouer la commande `build books` :
 

@@ -9,13 +9,16 @@
 
 =end
 require_relative 'data'
+require_relative 'AEvent'
 
 class Film
   attr_reader :scenes_per_event, :scenes_per_numero
 
   def scene_per_event(event_id)
+    scenes_per_event || sorted_scenes
     scenes_per_event[event_id]
   end
+  alias :scene_per_id :scene_per_event
 
   def scene(numero)
     scenes_per_numero(numero)
@@ -68,16 +71,15 @@ class Film
 
 end #/class Film
 
-class Scene
+class Scene < AEvent
 # ---------------------------------------------------------------------
 #
 #   INSTANCE
 #
 # ---------------------------------------------------------------------
-attr_reader :data
 attr_accessor :numero, :time_fin
 def initialize(data)
-  @data = data
+  super(data)
 end
 
 # ---------------------------------------------------------------------
@@ -152,7 +154,7 @@ def hdecor
     end
   end
 end
-def hstart  ; @hstart ||= time.to_i.s2h(false)      end
+# def hstart  ; @hstart ||= time.to_i.s2h(false)      end
 def hfin    ; @hfin   ||= time_fin.to_i.s2h(false)  end
 def fduree  ; @fduree ||= duree.to_i.s2h(false)     end
 
@@ -163,31 +165,9 @@ def resume
 end
 
 def formated_resume
-  @formated_resume ||= "Scène #{numero}. #{resume}"
+  @formated_resume ||= "scène #{numero}. à #{hstart} « #{resume} »"
 end
 
-# Le "vrai contenu" est le contenu sans le premier paragraphe qui
-# sert de résumé de scène.
-def real_content
-  @real_content ||= begin
-    ps = content.split("\n")
-    ps.shift # pour retirer le résumé
-    formate(ps.join("\n").strip)
-  end
-end
-# ---------------------------------------------------------------------
-#
-#   Propriétés brutes
-#
-# ---------------------------------------------------------------------
-def content
-  @content ||= data['content']
-end #/ content
-def time
-  @time ||= data['time'].to_f
-end
-def duree ; @duree  ||= (time_fin - time).to_i end
-def type  ; @type   ||= data['type']    end
 def decor ; @decor  ||= data['decor']   end
 def lieu
   @lieu ||= (type.split(':')[1]||'i').to_sym
