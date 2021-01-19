@@ -256,7 +256,8 @@ get li(){
 
 // Retourne le contenu formaté de l'évènement
 get fcontent(){
-  return `${this.htype} ${this.data.content}<span class="show-on-select">${this.hiddenInfos}</span>`
+  const firstline = this.data.content.split("\n")[0]
+  return `${this.htype} ${firstline}<span class="show-on-select">${this.hiddenInfos}</span>`
 }
 
 get hiddenInfos(){

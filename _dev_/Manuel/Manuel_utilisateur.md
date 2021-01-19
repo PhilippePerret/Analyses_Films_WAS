@@ -211,6 +211,10 @@ Il existe deux modes de clavier selon qu’on se trouve ou non dans un champ de 
 
 Les `évènements d'analyse` sont le résultat de la collecte et ce qui va permettre d'automatiser un peu le travail d'analyse du film.
 
+### Titre de l’évènement/première ligne
+
+Dans le listing, seule la première ligne de la description des évènements est affichée. C’est en fait que cette première ligne sert toujours de titre à l’évènement et sera toujours traitée de cette manière dans les livres produits.
+
 ### Les scènes
 
 Les scènes sont un type très particulier d’évènement dans le sens où on peut définir, en plus des autres données, les propriétés :
