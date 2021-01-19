@@ -67,6 +67,7 @@ run_create_command(what, name){
 ***/
 run_open_command(what, name){
   switch(what){
+    case 'pfa': return this.run_open_pfa()
     case 'film':
     case 'manuel':
       Ajax.send(`open_${what}.rb`).then(ret => message(ret.message||"Ouverture effectuée"))
@@ -113,6 +114,27 @@ run_create_document(name){
     erreur("Il faut indiquer le nom du document à créer !")
   }
 }
+
+
+/**
+  * Les commande d'ouverture
+***/
+
+run_open_pfa(){
+  const my = this
+  Ajax.send('check_if_exists.rb', {rpath: 'products/pfa.jpg'})
+  .then(ret => {
+    if ( ret.exists ) {
+      my.open_pfa()
+    } else {
+      erreur("Le PFA du film n'est pas encore construit. Lancer la commande 'build pfa'.")
+    }
+  })
+}
+open_pfa(){
+  window.open(`./_FILMS_/${film.folder}/products/pfa.jpg`, 'pfa')
+}
+
 run_open_document(name){
   if (name) {
     Ajax.send('open_document.rb', {name:name}).then(ret => {

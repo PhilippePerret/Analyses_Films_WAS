@@ -167,4 +167,6 @@ defaultizeOptions(opts = {}){
 }
 
 get analyse(){return this._analyse || (this._analyse = new Analyse(this))}
+
+get folder(){return this._folder || (this._folder = this.config.film_folder)}
 }// Film
