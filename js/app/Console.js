@@ -30,6 +30,8 @@ Méthode qui joue le code
 run(){
   this.parse()
   switch(this.command){
+    case 'start': return this.run_start();
+    case 'stop':  return this.run_stop();
     case 'filtre': case 'filter': return AEvent.runFiltreCommand(this.params)
     case 'open':      return this.run_open_command(this.params[1], this.params[2])
     case 'build':     return this.run_build_command(this.params[1], this.params[2])
@@ -44,6 +46,36 @@ run(){
     default:
       erreur(`Je ne connais pas la commande “${this.command}”`)
   }
+}
+
+/**
+* Pour essayer de jouer en contrôlant vraiment la vitesse
+***/
+run_start(){
+  if ( this.running ) return
+  else this.running = true
+  const duration = film.duration
+  this.playingTimer = setInterval(()=>{
+    video.obj.currentTime += 0.04
+    if (video.obj.currentTime > duration){
+      this.runStop()
+    }
+  }, 1)
+  // 1 100tième toutes les millisecondes = x 2
+  // 2 100tième toutes les millisecondes = x 4
+  // 2 100tième toutes les millisecondes = x 4
+  // 4 100tième toutes les millisecondes = x 8
+  Console.obj.value = 'stop'
+  message("Je joue")
+}
+run_stop(){
+  clearInterval(this.playingTimer)
+  delete this.playingTimer
+  this.playingTimer = null
+  Console.obj.value = 'start'
+  video.obj.currentTime = 0
+  this.running = false
+  message("J'ai arrêté")
 }
 
 /**
