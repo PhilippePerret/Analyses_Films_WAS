@@ -103,7 +103,39 @@ Quand on doit éditer un évènement de façon « sérieuse », par exemple pour
 
 Pour éditer un évènement d’analyse de cette manière, il suffit de le sélectionner dans la liste et de cliquer la touche ![][Return].
 
+### Rédiger les documents
 
+L’application « Analyseur de fims » ne peut produire que des documents automatisable, comme les séquenciers, les statistiques, etc. Tous les autres documents « rédactionnels » doivent être, pour le moment en tout cas, produit avec d’autres applications, en markdown de préférence, avec Typora pour le moment.
+
+Tous ces documents doivent se trouver dans le dossier `./documents/` du film.
+
+Pour qu’un document soit ajouté au livre final, il doit être ajouté dans la définition de `documents` dans le fichier de configuration.
+
+~~~
+<dossier film>/documents/mon_document.md
+												 introduction.md
+~~~
+
+Dans le fichier config :
+
+~~~yaml
+# ...
+documents: ['introduction.md', 'mon_document.md']
+# ...
+~~~
+
+On peut **créer un document** depuis [la console](#console) avec la commande `create document <nom_document.md>`.
+
+On peut **ouvrir un document** depuis [la console](#console) avec la commande `open document <nom_document>`.
+
+> Noter que pour l’ouverture, l’extension n’est pas requise s’il existe un seul document de ce type.
+
+Procédure détaillée :
+
+* sortir de tout champ d’édition en pressant la touche ![][Escape],
+* se placer dans la console avec ![][K_X],
+* taper `open document mon_document`,
+* presser la touche ![][Return].
 
 ### Produire les livres
 

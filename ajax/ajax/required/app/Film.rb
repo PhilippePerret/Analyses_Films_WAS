@@ -86,6 +86,12 @@ def get_locators
   Dir["#{locators_folder}/*.yml"].collect{|f| YAML.load_file(f) }
 end
 
+# Retourne la liste des paths de documents tels que définis dans le
+# fichier de configuration
+def documents
+  @documents ||= (config['documents']||[]).collect{|name|File.join(folder_documents,name)}
+end
+
 # ---------------------------------------------------------------------
 #
 #   TEMPS CALCULATIONS
@@ -126,6 +132,9 @@ def events_folder
 end
 def locators_folder
   @locators_folder ||= mkdir(File.join(folder,'locators'))
+end
+def folder_documents
+  @folder_documents ||= mkdir(File.join(folder,'documents'))
 end
 def folder_products
   @folder_products ||= mkdir(File.join(folder,'products'))

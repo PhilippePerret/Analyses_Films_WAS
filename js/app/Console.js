@@ -44,14 +44,13 @@ run(){
   }
 }
 
-
 /**
 * Les commandes de construction
 ***/
 run_build_command(what){
   switch(what){
-    case 'books': case 'livres': return run_build_books()
-    case 'sequencier': return run_build_sequencier()
+    case 'books': case 'livres': return this.run_build_books()
+    case 'sequencier': return this.run_build_sequencier()
     case 'pfa': return film.analyse.buildPFA()
   }
 }
@@ -78,7 +77,7 @@ run_build_books(){
   Ajax.send('build_books.rb').then(ret => {
     console.log(ret)
     message("Les livres ont été construits avec succès.",{keep:false})
-    message("Consulter le dossier dans le Finder.", {keep:true})
+    message("Consulter le dossier dans le Finder (dans le dossier <code>./finaux</code>).", {keep:true})
   })
 }
 

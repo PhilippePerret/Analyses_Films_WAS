@@ -1,4 +1,4 @@
---- [2021-01-18 17:02:05 +0100] Entrée dans ajax.rb
+--- [2021-01-19 06:23:06 +0100] Entrée dans ajax.rb
 APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
 Chargement des modules
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
@@ -11,7 +11,8 @@ Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/requ
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
---- [2021-01-18 17:02:12 +0100] Entrée dans ajax.rb
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-19 06:24:15 +0100] Entrée dans ajax.rb
 APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
 Chargement des modules
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
@@ -24,7 +25,25 @@ Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/requ
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
---- [2021-01-18 17:03:53 +0100] Entrée dans ajax.rb
+Nombre de fichiers .DS_Store détruits : 0
+ERREUR: The source text contains invalid characters for the used encoding US-ASCII
+BACKTRACE ERREUR: /Users/philippeperret/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/kramdown-2.3.0/lib/kramdown/parser/base.rb:93:in `adapt_source'
+/Users/philippeperret/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/kramdown-2.3.0/lib/kramdown/parser/kramdown.rb:90:in `parse'
+/Users/philippeperret/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/kramdown-2.3.0/lib/kramdown/parser/base.rb:69:in `parse'
+/Users/philippeperret/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/kramdown-2.3.0/lib/kramdown/document.rb:102:in `initialize'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/books/Book_prepare.rb:61:in `new'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/books/Book_prepare.rb:61:in `block (2 levels) in add_documents'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/books/Book_prepare.rb:61:in `open'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/books/Book_prepare.rb:61:in `block in add_documents'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/books/Book_prepare.rb:58:in `each'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/books/Book_prepare.rb:58:in `add_documents'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/books/Book_prepare.rb:39:in `prepare'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/books/Film.rb:10:in `build_books'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_books.rb:18:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-19 06:24:34 +0100] Entrée dans ajax.rb
 APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
 Chargement des modules
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
@@ -37,7 +56,8 @@ Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/requ
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
---- [2021-01-18 17:05:48 +0100] Entrée dans ajax.rb
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-19 06:25:58 +0100] Entrée dans ajax.rb
 APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
 Chargement des modules
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
@@ -50,16 +70,4 @@ Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/requ
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
---- [2021-01-18 17:07:00 +0100] Entrée dans ajax.rb
-APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
-Chargement des modules
-Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
-Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
-Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
-Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film.rb'
-Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
-Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
-Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
-Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
-Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
-Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
