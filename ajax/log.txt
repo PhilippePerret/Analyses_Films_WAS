@@ -757,3 +757,87 @@ Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/requ
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
 Nombre de fichiers .DS_Store détruits : 0
 Path checké : /Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/pfa.jpg (existe ? true)
+--- [2021-01-19 10:18:27 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-19 10:18:27 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-19 10:18:28 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-19 10:18:28 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-19 10:18:29 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-19 10:18:30 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0

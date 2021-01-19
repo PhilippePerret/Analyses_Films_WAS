@@ -260,6 +260,7 @@ class Listing {
   // Pour sélectionner un élément (en fait, on simule un clic dessus)
   select(litem){
     if ('listingItem' in litem) litem = litem.listingItem
+    litem.obj.scrollIntoViewIfNeeded()
     litem.onClick({shiftKey:false,metaKey:false,altKey:false})
   }
 
