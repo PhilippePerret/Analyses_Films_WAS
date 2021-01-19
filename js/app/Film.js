@@ -120,6 +120,8 @@ get decorsForMenus(){
   return liste_decors
 }
 
+get title(){return this.config.title}
+
 get pointZero(){return this._pointzero}
 set pointZero(nd){this._pointzero = nd}
 get pointFin(){return this._pointfin}

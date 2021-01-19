@@ -11,11 +11,11 @@ constructor(film) {
   this.film = film
 }
 
-buildPFA(){
-  Ajax.send('pfa_build.rb', { duration: video.duration } )
+buildPFA(keep_messages = false){
+  return Ajax.send('pfa_build.rb', { duration: video.duration } )
   .then(ret => {
-    console.log(ret)
-    message(ret.message, {keep:false})
+    // console.log(ret)
+    message(ret.message, {keep:keep_messages})
   })
 }
 openPFA(){

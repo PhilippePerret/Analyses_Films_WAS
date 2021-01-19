@@ -51,6 +51,7 @@ run(){
 ***/
 run_build_command(what, extra){
   switch(what){
+    case 'all': return this.run_build_all()
     case 'books': case 'livres': return this.run_build_books()
     case 'book': case 'livre': return this.run_build_books(extra)
     case 'sequencier': return this.run_build_sequencier()
@@ -100,14 +101,23 @@ run_open_command(what, name){
 * Les commandes de construction
 ***/
 
-run_build_books(type){
+// Commande qui lance la construction de tout
+run_build_all(){
+  message('Reconstruction de tout…', {keep:false})
+  this.run_build_sequencier(true)
+  .then(this.run_build_statistiques.bind(this, null, true))
+  .then(this.run_build_pfa.bind(this, true))
+  .then(this.run_build_books.bind(this, null, true))
+}
+
+run_build_books(type, keep_messages = false){
   var msg
   if (type) msg = `Construction du livre de type '${type}'`
-  else msg = 'Construction de tous les livres'
-  message(`${msg}, merci de patienter…`, {keep:false})
-  Ajax.send('build_books.rb', {type: type}).then(ret => {
+  else msg = `Construction de tous les livres du film « ${film.title} »`
+  message(`${msg}, merci de patienter…`, {keep:keep_messages})
+  return Ajax.send('build_books.rb', {type: type}).then(ret => {
     console.log(ret)
-    message("Les livres ont été construits avec succès.",{keep:false})
+    message(`Les livres de l'analyse du film « ${film.title} » ont été construits avec succès.`,{keep:keep_messages})
     message("Consulter le dossier dans le Finder (dans le dossier <code>./livres</code>).", {keep:true})
     if ( ret.export_errors.length > 0 ) {
       error("Mais des erreurs ont été trouvées (consulter la console du navigateur pour les voir)")
@@ -116,23 +126,26 @@ run_build_books(type){
   })
 }
 
-run_build_sequencier(){
-  message("Construction du séquencier, merci de patienter…", {keep:false})
-  Ajax.send('build_sequencier.rb').then(ret => {
-    console.log(ret);
-    message("Séquencier construit avec succès. Jouer 'open sequencier' pour le voir",{keep:false})
+run_build_sequencier(keep_messages = false){
+  message("Construction du séquencier, merci de patienter…", {keep:keep_messages})
+  return Ajax.send('build_sequencier.rb').then(ret => {
+    // console.log(ret);
+    message("Séquencier construit avec succès. Jouer 'open sequencier' pour le voir",{keep:keep_messages})
   })
 }
 
-run_build_statistiques(which){
-  message("Construction des statistiques, merci de patienter…", {keep:false})
-  Ajax.send('build_statistiques.rb', {type: which}).then(ret => {
-    console.log(ret)
+run_build_statistiques(which, keep_messages = false){
+  message("Construction des statistiques, merci de patienter…", {keep:keep_messages})
+  return Ajax.send('build_statistiques.rb', {type: which}).then(ret => {
+    // console.log(ret)
     message("Statistiques construites avec succès. Jouer 'open statistiques' pour les voir.")
-    message("Ne pas oublier d'ajouter la fichier 'statistiques.html' à la liste des documents du fichier config (jouer la commande 'open config' pour ce faire).", {keep:false})
+    ret.message && message(ret.message)
   })
 }
 
+run_build_pfa(keep_messages = false){
+  return film.analyse.buildPFA(keep_messages)
+}
 
 
 /**
@@ -177,7 +190,7 @@ run_open_book(type){
 ***/
 run_pfa_command(cmd){
   switch(cmd){
-    case 'build': return film.analyse.buildPFA()
+    case 'build': return this.run_build_pfa()
     case 'open':  return film.analyse.openPFA()
   }
 }

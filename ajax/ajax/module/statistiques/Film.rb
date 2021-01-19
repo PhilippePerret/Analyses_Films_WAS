@@ -9,6 +9,11 @@ class Film
 def build_statistiques(which = nil)
   stats = Statistiques.new(self)
   stats.build
+  log("config['documents'] = #{config['documents'].inspect}")
+  log("config['documents'].include?('statistiques.html') est #{config['documents'].include?('statistiques.html').inspect}")
+  if not(config['documents'].include?('statistiques.html'))
+    Ajax << {message:"Ne pas oublier d'ajouter la fichier 'statistiques.html' à la liste des documents du fichier config (jouer la commande 'open config' pour ce faire)."}
+  end
 end
 end #/Film
 
