@@ -50,10 +50,21 @@ static resetOrderedList(){
   // console.log("_orderedList = ", this._orderedList)
 }
 
+static get firstChildVisible(){
+  var litem = this.listing.liste.firstChild;
+  while(litem.style.display == 'none'){litem = litem.nextSibling}
+  return litem
+}
+static get lastChildVisible(){
+  var litem = this.listing.liste.lastChild;
+  while(litem.style.display == 'none'){litem = litem.previousSibling}
+  return litem
+}
+
 // Pour sélectionner le premier item (if any)
 static selectFirst(){
   if ( Object.keys(this.table).length ) {
-    var litem = this.listing.liste.firstChild
+    var litem = this.firstChildVisible
     var item = this.get(parseInt(litem.id.split('-')[1]))
     this.listing.select(item)
   } else {
@@ -63,7 +74,7 @@ static selectFirst(){
 // Pour sélectionner le dernier item (if any)
 static selectLast(){
   if ( Object.keys(this.table).length ) {
-    var litem = this.listing.liste.lastChild
+    var litem = this.lastChildVisible
     var item = this.get(parseInt(litem.id.split('-')[1]))
     this.listing.select(item.listingItem)
   } else {
@@ -74,7 +85,8 @@ static selectLast(){
 static selectNext(){
   var item = this.listing.getSelection()[0]
   if ( item ) {
-    const litem = item.listingItem.obj.nextSibling
+    var litem = item.listingItem.obj.nextSibling
+    while(litem && litem.style.display == 'none'){litem = litem.nextSibling}
     if (litem) {
       const item  = this.get(Number(litem.id.split('-')[1]))
       this.listing.select(item)
@@ -90,7 +102,8 @@ static selectNext(){
 static selectPrevious(){
   var item = this.listing.getSelection()[0]
   if ( item ) {
-    const litem = item.listingItem.obj.previousSibling
+    var litem = item.listingItem.obj.previousSibling
+    while(litem && litem.style.display == 'none'){litem = litem.previousSibling}
     if (litem) {
       const item  = this.get(Number(litem.id.split('-')[1]))
       this.listing.select(item)
