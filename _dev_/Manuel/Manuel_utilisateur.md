@@ -364,27 +364,38 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Ouvrir quelque chose                                         | `open …`                                                     | Cf. [commande `open`](#commande-open)                        |
 | Construire un élément                                        | `build …`                                                    | Cf. [commande `build`](#commande-build)                      |
+| Créer quelque chose                                          | `create …`                                                   | Cf. [commande `create`](#commande-create)                    |
 | Se déplacer dans le film                                     | `goto …`                                                     | Cf. [commande `goto`](#commande-goto)                        |
 | Actualiser les données du film                               | `update`                                                     | La commande est à utiliser, par exemple, lorsqu’on modifie la liste des personnages ou des décors. |
 
 <a id="commande-open"></a>
 
-| Objet ouvert                | Commande      | Description/options                                          |
-| --------------------------- | ------------- | ------------------------------------------------------------ |
-| Le dossier du film          | `open film`   | Ouvre le dossier du film dans le Finder                      |
-| Le fichier de configuration | `open config` | Ouvre le fichier `config.yml` du film courant dans Atom (pour le moment). |
-| L’image du PFA              | `open pfa`    | Il faut que l’image ait été construite avec succès par la commande `build pfa`. |
+#### Commande `open`
+
+| Objet ouvert                | Commande                 | Description/options                                          |
+| --------------------------- | ------------------------ | ------------------------------------------------------------ |
+| Le dossier du film          | `open film`              | Ouvre le dossier du film dans le Finder                      |
+| Le fichier de configuration | `open config`            | Ouvre le fichier `config.yml` du film courant dans Atom (pour le moment). |
+| L’image du PFA              | `open pfa`               | Il faut que l’image ait été construite avec succès par la commande `build pfa`. |
+| Un document                 | `open doc[ument] <name>` | Si le `<name>` ne définit pas son extension, c’est l’extension `.md` qui est choisie. |
 
 <a id="commande-build"></a>
 
 #### Commande `build`
 
-| Object construit | Commande           | Description/options                                          |
-| ---------------- | ------------------ | ------------------------------------------------------------ |
-| Tous les livres  | `build books`      | Construit tous les livres et les places dans le dossier `./finaux` du dossier du film. |
-| PFA              | `build pfa`        | Construit une image (`pfa.jpg`) qu’il suffira de copier dans le livre |
-| Séquencier       | `build sequencier` | Construit une page (format à voir) à introduire dans le livre. |
-|                  |                    |                                                              |
+| Objet construit | Commande           | Description/options                                          |
+| --------------- | ------------------ | ------------------------------------------------------------ |
+| Tous les livres | `build books`      | Construit tous les livres et les places dans le dossier `./finaux` du dossier du film. |
+| PFA             | `build pfa`        | Construit une image (`pfa.jpg`) qu’il suffira de copier dans le livre |
+| Séquencier      | `build sequencier` | Construit une page (format à voir) à introduire dans le livre. |
+
+<a id="commande-create"></a>
+
+#### Commande `create`
+
+| Objet créé             | Commande                       | Description/options                                          |
+| ---------------------- | ------------------------------ | ------------------------------------------------------------ |
+| Un document quelconque | `create doc[ument] <name.ext>` | Le document sera créé dans le dossier `./documents/` du film. Il sera ajouté à la propriété `documents` du fichier de configuration mais toujours à la fin. |
 
 <a id="commande-goto"></a>
 

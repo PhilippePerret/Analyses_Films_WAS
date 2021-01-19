@@ -92,6 +92,14 @@ def documents
   @documents ||= (config['documents']||[]).collect{|name|File.join(folder_documents,name)}
 end
 
+# Pour ajouter un document au fichier config
+def add_document_to_config(name)
+  conf = config.dup
+  conf.key?('documents') || conf.merge!('documents' => [])
+  conf['documents'] << name
+  save_config(conf)
+end
+
 # ---------------------------------------------------------------------
 #
 #   TEMPS CALCULATIONS
