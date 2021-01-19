@@ -55,6 +55,8 @@ run_build_command(what, extra){
     case 'book': case 'livre': return this.run_build_books(extra)
     case 'sequencier': return this.run_build_sequencier()
     case 'pfa': return film.analyse.buildPFA()
+    case 'statistiques': case 'stats': return this.run_build_statistiques(extra)
+    default: erreur(`Je ne sais pas comment construire un ou une ${what}`)
   }
 }
 run_create_command(what, name){
@@ -63,6 +65,19 @@ run_create_command(what, name){
     default: return erreur(`Je ne sais pas créer un élément de type “${what}”…`)
   }
 }
+
+run_create_document(name){
+  if (name) {
+    Ajax.send('create_document.rb', {name:name}).then(ret => {
+      console.log(ret)
+      message(`Document créé. Utiliser la commande suivante pour l'ouvrir : open document ${name}`,{keep:false})
+      message("Il faut éditer le fichier config (commande <code>open config</code>) pour placer ce document au bon endroit.")
+    })
+  } else {
+    erreur("Il faut indiquer le nom du document à créer !")
+  }
+}
+
 /**
 * Les commandes d'ouverture
 ***/
@@ -84,6 +99,7 @@ run_open_command(what, name){
 /**
 * Les commandes de construction
 ***/
+
 run_build_books(type){
   var msg
   if (type) msg = `Construction du livre de type '${type}'`
@@ -104,17 +120,15 @@ run_build_sequencier(){
   })
 }
 
-run_create_document(name){
-  if (name) {
-    Ajax.send('create_document.rb', {name:name}).then(ret => {
-      console.log(ret)
-      message(`Document créé. Utiliser la commande suivante pour l'ouvrir : open document ${name}`,{keep:false})
-      message("Il faut éditer le fichier config (commande <code>open config</code>) pour placer ce document au bon endroit.")
-    })
-  } else {
-    erreur("Il faut indiquer le nom du document à créer !")
-  }
+run_build_statistiques(which){
+  message("Construction des statistiques, merci de patienter…", {keep:false})
+  Ajax.send('build_statistiques.rb', {type: which}).then(ret => {
+    console.log(ret)
+    message("Statistiques construites avec succès. Jouer 'open statistiques' pour les voir.")
+    message("Ne pas oublier d'ajouter la fichier 'statistiques.html' à la liste des documents du fichier config (jouer la commande 'open config' pour ce faire).", {keep:false})
+  })
 }
+
 
 
 /**

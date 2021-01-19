@@ -5,7 +5,7 @@ Class Book
 ----------
 Pour gérer le livre
 =end
-require 'kramdown'
+require 'fileutils'
 
 class Book
 class << self
@@ -56,7 +56,11 @@ end
 
 # Copie des fichiers css dans le dossier final
 def copie_of_css
-
+  ['styles','analyse','styles_mobi7_kf8'].each do |affixe|
+    src = File.join(folder_templates,"#{affixe}.css")
+    dst = File.join(film.folder_products, "#{affixe}.css")
+    FileUtils.copy_entry(src, dst, false, false, true)
+  end
 end
 
 # Ajout de tous les documents dans le fichier XHTML
@@ -68,10 +72,18 @@ def add_all_documents
   # très aléatoire)
   files = film.documents || Dir["#{film.folder_documents}/**/*.md"]
   files.each do |src|
-    affixe  = File.basename(src, File.extname(src))
-    dst     = File.join(film.folder_products,"#{affixe}.html")
-    File.delete(dst) if File.exists?(dst)
-    File.open(dst,'wb'){|f| f.write(Kramdown::Document.new(File.read(src).force_encoding('utf-8')).to_html)}
+    log("Extension : #{File.extname(src).inspect}")
+    if ['.html','.htm'].include?(File.extname(src))
+      # C'est un code HTML déjà préparé
+      dst = File.join(film.folder_products, File.basename(src))
+      log("Fichier #{src.inspect} recherché dans #{dst.inspect}")
+      next if not(File.exists?(dst))
+    else
+      affixe  = File.basename(src, File.extname(src))
+      dst     = File.join(film.folder_products,"#{affixe}.html")
+      File.delete(dst) if File.exists?(dst)
+      File.open(dst,'wb'){|f| f.write( kramdown(src) )}
+    end
     @stream << File.read(dst)
   end
 end

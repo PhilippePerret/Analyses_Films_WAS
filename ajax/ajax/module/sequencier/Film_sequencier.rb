@@ -4,7 +4,7 @@ gem 'rrtf'
 require 'rrtf'
 require_module('scenes')
 require_module('decors')
-
+require_module('data')
 =begin
   Documentation sur le gem rrtf :
 

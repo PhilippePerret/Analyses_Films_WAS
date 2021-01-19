@@ -8,6 +8,8 @@
       l'event +id_event+
 
 =end
+require_relative 'data'
+
 class Film
   attr_reader :scenes_per_event, :scenes_per_numero
 
@@ -48,14 +50,18 @@ class Film
 
 
   # Retourne la liste des scènes
-  # C'est un Array d'instance Scene dans l'ordre du film
+  # C'est un Array d'instances Scene dans l'ordre des évènement
+  # Pour une liste des scènes classées dans l'ordre, utiliser sorted_scenes
+  #
+  # ATTENTION : si on a besoin de la durée de la scène et de son numéro,
+  #             on doit impérativement utiliser sorted_scenes
   def ary_scenes
     @ary_scenes ||= begin
       @scenes_per_event = {}
       get_events(type: 'sc').collect do |devent|
-        sc = Scene.new(devent)
-        @scenes_per_event.merge!(devent['id'] => sc)
-        sc
+        Scene.new(devent).tap do |sc|
+          @scenes_per_event.merge!(devent['id'] => sc)
+        end
       end
     end
   end #/ scenes
@@ -94,6 +100,47 @@ def times_infos
 end #/ times_infos
 
 
+# ---------------------------------------------------------------------
+#
+#   HELPERS
+#
+# ---------------------------------------------------------------------
+
+# Sort la scène au format voulu en fonction de +params+
+# +params+ est un Hash qui peut définir :
+#   intitule:     true/false
+#   resume:       true/false
+#   times_infos:  true/false
+#   content:      true/false
+#   Ou la propriété :format, par exemple "%{intitule}%{times_infos}%{resume}"
+def output(params)
+  if params.key?(:format)
+    fmt = params[:format]
+  else
+    fmt = []
+    fmt << '%{intitule}'    if params[:intitule]
+    fmt << '%{times_infos}' if params[:times_infos]
+    fmt << '%{resume}'      if params[:resume]
+    fmt << '%{content}'     if params[:content]
+    fmt = fmt.join('')
+  end
+  fmt % {intitule:f_intitule, times_infos:f_times_infos, resume:f_resume, content:f_content}
+end #/ output
+
+def f_intitule
+  @f_intitule ||= "<p class='scene_intitule'>#{intitule}</p>\n"
+end
+def f_times_infos
+  @f_times_infos ||= "<p class='scene_times_infos'>#{times_infos}</p>\n"
+end
+def f_resume
+  @f_resume ||= "<p class='scene_resume'>#{resume}</p>\n"
+end
+def f_content
+  @f_content ||= "<p class='scene_content'>#{real_content}</p>\n"
+end
+
+
 def hlieu   ; @hlieu    ||= LIEUX[lieu][:hname]     end
 def heffet  ; @heffet   ||= EFFETS[effet][:hname]   end
 def hdecor
@@ -105,8 +152,9 @@ def hdecor
     end
   end
 end
-def hstart  ; @hstart ||= time.to_i.s2h(false)     end
-def hfin    ; @hfin   ||= time_fin.to_i.s2h(false) end
+def hstart  ; @hstart ||= time.to_i.s2h(false)      end
+def hfin    ; @hfin   ||= time_fin.to_i.s2h(false)  end
+def fduree  ; @fduree ||= duree.to_i.s2h(false)     end
 
 def resume
   @resume ||= begin
