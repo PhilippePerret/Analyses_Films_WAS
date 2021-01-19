@@ -550,6 +550,26 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 
 
 
+---
+
+
+
+### Backups quotidien
+
+Chaque jour de travail sur l’application, un backup est fait et placé, avec la date inversée du jour, dans le dossier `xbackups` du jour. Pour le moment, la récupération doit se faire à la main.
+
+Noter que les fichiers `aevents.yaml` et `locators.yaml` ne sont pas à proprement parler des fichiers `YAML`. Ils rassemblent simplement tous les fichiers des dossiers `events` et `locators` du film.
+
+On peut détruire régulièrement les dossiers les plus vieux, si tout est OK.
+
+
+
+
+
+---
+
+
+
 
 [K_1]: ./img/clavier/K_1.png
 [K_9]: ./img/clavier/K_9.png

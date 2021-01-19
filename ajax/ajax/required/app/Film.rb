@@ -31,6 +31,7 @@ attr_reader :folder
 attr_accessor :duration
 def initialize(folder)
   @folder = File.expand_path(folder)
+  require_module('backup') && backup unless File.exists?(backup_today_path)
 end
 
 def open_in_finder
@@ -151,8 +152,15 @@ def folder_finaux
   @folder_finaux ||= mkdir(File.join(folder,'livres'))
 end
 alias :folder_livres :folder_finaux
-
+def folder_backups
+  @folder_backups ||= mkdir(File.join(folder,'xbackups'))
+end
 def config_path
   @config_path ||= File.join(folder, 'config.yml')
+end
+def backup_today_path
+  # note : pas de mkdir(...) ci-dessous, car on teste pour voir si le dossier
+  # existe pour savoir si le backup a été fait.
+  @backup_today_path ||= File.join(folder_backups,"#{Time.now.strftime('%Y%m%d')}")
 end
 end #/Film
