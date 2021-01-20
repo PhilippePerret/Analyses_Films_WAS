@@ -87,12 +87,13 @@ static getEventsAround(time){
 }
 
 /**
-* Méthode appelée quand on sélectionne un item dans le listing
+* Méthode appelée quand on sélectionne un évènement dans le listing
 ***/
 static onSelect(item){
   this.current = item
   const optFollowItem = DGet('input#follow_selected_event').checked
   optFollowItem && (DOMVideo.current.time = item.data.time)
+  item.exposeItsReference()
 }
 
 static get PROPERTIES(){
@@ -301,6 +302,15 @@ get ref(){
 get li(){
   const LI = DCreate("LI", {id: `aevent-${this.id}`, class:"listing-item li-aevent", text:this.fcontent})
   return LI
+}
+
+// Mets sa balise dans le presse-papier
+exposeItsReference(){
+  var msg ;
+  if ( undefined == this.exposeItsReference.calls ){this.exposeItsReference.calls = 1}
+  else { this.exposeItsReference.calls += 1}
+  if ( this.exposeItsReference.calls < 3 ) msg = "Référence à l'évènement copié dans le presse-papier."
+  clip(`[ref:event:${this.id}]`, msg)
 }
 
 // Retourne le contenu formaté de l'évènement

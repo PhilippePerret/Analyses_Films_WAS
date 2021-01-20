@@ -144,6 +144,14 @@ Procédure détaillée :
 * taper `open document mon_document`,
 * presser la touche ![][Return].
 
+#### Insérer la référence à un évènement d'analyse
+
+* Cliquer sur l’évènement dans le listing (sa référence est copiée dans le presse-papier),
+* se placer à l’endroit où doit être placée la référence,
+* coller la référence,
+* définir optionnellement le texte alternatif de la référence. Sinon, c’est le résumé (première ligne) de l’évènement d’analyse qui sera utilisé.
+
+
 #### Insérer un texte (propre, type ou template)
 
 Pour insérer un texte quelconque dans un document markdown, on utilise la balise :
@@ -289,6 +297,10 @@ Les `évènements d'analyse` sont le résultat de la collecte et ce qui va perme
 ### Titre de l’évènement/première ligne
 
 Dans le listing, seule la première ligne de la description des évènements est affichée. C’est en fait que cette première ligne sert toujours de titre à l’évènement et sera toujours traitée de cette manière dans les livres produits.
+
+### Obtenir la référence à un évènement
+
+Il suffit de cliquer sur un évènement dans le listing pour que sa référence soient copiée dans le presse-papier. Il suffit donc ensuite de la coller (![][Cmd]![][K_V]) pour la coller à l’endroit voulue.
 
 ### Les scènes
 
@@ -661,6 +673,7 @@ On peut détruire régulièrement les dossiers les plus vieux, si tout est OK.
 [K_S]: ./img/clavier/K_S.png
 [K_T]: ./img/clavier/K_T.png
 [K_U]: ./img/clavier/K_U.png
+[K_V]: ./img/clavier/K_V.png
 [K_X]: ./img/clavier/K_X.png
 [Ctrl]: ./img/clavier/K_Control.png
 [Cmd]: ./img/clavier/K_Command.png
