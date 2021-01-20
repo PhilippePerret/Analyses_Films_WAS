@@ -77,7 +77,12 @@ class Scene < AEvent
 #   INSTANCE
 #
 # ---------------------------------------------------------------------
+
+# Défini quand on classe les scènes
 attr_accessor :numero, :time_fin
+# Défini quand on prépare la sortie
+attr_accessor :events
+
 def initialize(data)
   super(data)
 end
@@ -115,8 +120,14 @@ end #/ times_infos
 #   times_infos:  true/false
 #   content:      true/false
 #   Ou la propriété :format, par exemple "%{intitule}%{times_infos}%{resume}"
+#   OU la propriété :as qui peut être
+#     :sequencier   => intitulé + times + resume
+#     :synopsis     => real content
+#     :traitement   => intitule + times + resume + real content + events
 def output(params)
-  if params.key?(:format)
+  if params.key?(:as)
+    return '<div class="scene">' + send("output_as_#{params[:as]}".to_sym) + '</div>'
+  elsif params.key?(:format)
     fmt = params[:format]
   else
     fmt = []
@@ -129,18 +140,47 @@ def output(params)
   fmt % {intitule:f_intitule, times_infos:f_times_infos, resume:f_resume, content:f_content}
 end #/ output
 
+
+def output_as_sequencier
+  f_intitule + f_times + f_resume
+end
+def output_as_traitement
+  f_intitule + f_times + f_resume + f_content + f_all_events
+end
+def output_as_synopsis
+  "<p><span class='time'>#{hstart}</span>#{f_force_content}</p>"
+end
+
 def f_intitule
   @f_intitule ||= "<p class='scene_intitule'>#{intitule}</p>\n"
 end
 def f_times_infos
   @f_times_infos ||= "<p class='scene_times_infos'>#{times_infos}</p>\n"
 end
+alias :f_times :f_times_infos
 def f_resume
   @f_resume ||= "<p class='scene_resume'>#{resume}</p>\n"
 end
 def f_content
-  @f_content ||= "<p class='scene_content'>#{real_content}</p>\n"
+  @f_content ||= begin
+    "<p class='scene_content'>#{real_content}</p>\n"
+  end
 end
+# Même méthode que f_content, mais celle-ci force le contenu de la scène et
+# prend le résumé s'il est le seul à être défini (première ligne)
+def f_force_content
+  @f_content ||= begin
+    "<p class='scene_content'>#{real_content.empty? ? resume : real_content}</p>\n"
+  end
+end
+
+# Retourne le formatage de tous les évènements appartenant à la
+# scène
+def f_all_events
+  @f_all_events ||= begin
+    (events||[]).collect { |e| e.output(as: :traitement) }.join('')
+  end
+end #/ f_all_events
 
 
 def hlieu   ; @hlieu    ||= LIEUX[lieu][:hname]     end

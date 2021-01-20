@@ -31,6 +31,26 @@ label
   font-style: italic
   margin-top: 1em
   margin-left: 1em
-.scene_content
-  margin-top: 1em
-  margin-left: 1em
+div:not(.synopsis)
+  .scene_content
+    margin-top: 1em
+    margin-left: 1em
+
+div.sequencier
+  div.scene
+    span.scene_times_infos
+      margin-left: 1em
+    span.scene_resume
+      margin-left: 1em
+
+div.synopsis
+  div.scene
+    span.scene_content
+      margin-left:  80px
+    span.time
+      float: left
+      font-size: 9pt
+      font-family: Georgia
+      width: 60px
+      overflow: hidden
+      color: #777777

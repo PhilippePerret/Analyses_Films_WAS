@@ -86,8 +86,10 @@ run_build_command(what, extra){
     case 'books': case 'livres': return this.run_build_books()
     case 'book': case 'livre': return this.run_build_books(extra)
     case 'sequencier': return this.run_build_sequencier()
+    case 'synopsis': return this.run_build_synopsis()
     case 'pfa': return film.analyse.buildPFA()
     case 'statistiques': case 'stats': return this.run_build_statistiques(extra)
+    case 'traitement':case'treatment': return this.run_build_traitement()
     default: erreur(`Je ne sais pas comment construire un ou une ${what}`)
   }
 }
@@ -137,6 +139,9 @@ run_build_all(){
   message('Reconstruction de tout…', {keep:false})
   this.run_build_sequencier(true)
   .then(this.run_build_statistiques.bind(this, null, true))
+  .then(this.run_build_traitement.bind(this, null, true))
+  .then(this.run_build_sequencier.bind(this, null, true))
+  .then(this.run_build_synopsis.bind(this, null, true))
   .then(this.run_build_pfa.bind(this, true))
   .then(this.run_build_books.bind(this, null, true))
 }
@@ -158,15 +163,34 @@ run_build_books(type, keep_messages = false){
 }
 
 run_build_sequencier(keep_messages = false){
-  message("Construction du séquencier, merci de patienter…", {keep:keep_messages})
+  message("Construction du SÉQUENCIER, merci de patienter…", {keep:keep_messages})
   return Ajax.send('build_sequencier.rb').then(ret => {
     // console.log(ret);
     message("Séquencier construit avec succès. Jouer 'open sequencier' pour le voir",{keep:keep_messages})
+    ret.message && message(ret.message)
+  })
+}
+
+run_build_synopsis(keep_messages = false){
+  message("Construction du SYNOPSIS, merci de patienter…", {keep:keep_messages})
+  return Ajax.send('build_synopsis.rb').then(ret => {
+    // console.log(ret);
+    message("Synopsis construit avec succès. Jouer 'open synopsis' pour le voir",{keep:keep_messages})
+    ret.message && message(ret.message)
+  })
+}
+
+run_build_traitement(keep_messages = false){
+  message("Construction du TRAITEMENT, merci de patienter…", {keep:keep_messages})
+  return Ajax.send('build_traitement.rb').then(ret => {
+    // console.log(ret);
+    message("Traitement construit avec succès. Jouer 'open traitement' pour le voir",{keep:keep_messages})
+    ret.message && message(ret.message)
   })
 }
 
 run_build_statistiques(which, keep_messages = false){
-  message("Construction des statistiques, merci de patienter…", {keep:keep_messages})
+  message("Construction des STATISTIQUES, merci de patienter…", {keep:keep_messages})
   return Ajax.send('build_statistiques.rb', {type: which}).then(ret => {
     // console.log(ret)
     message("Statistiques construites avec succès. Jouer 'open statistiques' pour les voir.")
