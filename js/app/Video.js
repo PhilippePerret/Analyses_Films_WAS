@@ -10,19 +10,19 @@ On peut donc y faire appel de n'importe où par 'video'.
 *** --------------------------------------------------------------------- */
 
 const DATA_SPEEDS = {
-    '-x3'   :  {hname:'↫ x3',   value: [-.015,1]}
-  , '-x2'   :  {hname:'↫ x2',   value: [-.01, 1]}
-  , '-x1.5' :  {hname:'↫ x1.5', value: [-.01, 2]}
-  , '-x1'   :  {hname:'↫ x1',   value: [-.01,8]}
-  , 'x1'    :  {hname:'↬ x1',   value: null} // <===== ISPEED_X1
-  , 'x1.5'  :  {hname:'↬ 1.5',  value: [.01, 2]}
-  , 'x2'    :  {hname:'↬ x2',   value: [.01, 1]}
-  , 'x2.5'  :  {hname:'↬ x2.5', value: [.0125, 1]}
-  , 'x3'    :  {hname:'↬ x3',   value: [.015,1]}
-  , 'x3.5'  :  {hname:'↬ x3.5', value: [.0175,1]}
-  , 'x4'    :  {hname:'↬ x4',   value: [.02, 1]}
-  , 'x6'    :  {hname:'↬ x6',   value: [.03, 1]}
-  , 'x8'    :  {hname:'↬ x8',   value: [.04, 1]}
+    '-x3'   :  {hname:'↫ x 3',   value: [-.015,1]}
+  , '-x2'   :  {hname:'↫ x 2',   value: [-.01, 1]}
+  , '-x1.5' :  {hname:'↫ x 1.5', value: [-.01, 2]}
+  , '-x1'   :  {hname:'↫ x 1',   value: [-.01,8]}
+  , 'x1'    :  {hname:'↬ x 1',   value: null} // <===== ISPEED_X1
+  , 'x1.5'  :  {hname:'↬ x 1.5', value: [.01, 2]}
+  , 'x2'    :  {hname:'↬ x 2',   value: [.01, 1]}
+  , 'x2.5'  :  {hname:'↬ x 2.5', value: [.0125, 1]}
+  , 'x3'    :  {hname:'↬ x 3',   value: [.015,1]}
+  , 'x3.5'  :  {hname:'↬ x 3.5', value: [.0175,1]}
+  , 'x4'    :  {hname:'↬ x 4',   value: [.02, 1]}
+  , 'x6'    :  {hname:'↬ x 6',   value: [.03, 1]}
+  , 'x8'    :  {hname:'↬ x 8',   value: [.04, 1]}
 }
 const SPEEDS = Object.keys(DATA_SPEEDS)
 const ISPEED_X1 = SPEEDS.indexOf('x1')
@@ -192,7 +192,7 @@ stopPlayWithSpeed(){
   clearInterval(this.timerPlay)
   this.timerPlay = undefined
   delete this.timerPlay
-  console.info("timerPlay arrêté")
+  // console.info("timerPlay arrêté")
 }
 
 pause(){
@@ -200,13 +200,13 @@ pause(){
   this.playing = false
   if ( undefined != this.timerPlay ) this.stopPlayWithSpeed()
   if ( ! this.speedIsFrozen ) this.setSpeed(ISPEED_X1)
-  console.info("STOP")
+  // console.info("STOP")
 }
 
 
 // Touche pour aller en avant pressée
 onKeyL(ev){
-  console.log("-> onKeyL")
+  // console.log("-> onKeyL")
   if ( this.playing ){
     if ( this.ispeed < ISPEED_X1 /* marche arrière */) {
       this.setSpeed(ISPEED_X1)
@@ -225,11 +225,9 @@ onKeyJ(ev){
       this.setSpeed(ISPEED_X1 - 1)
     } else {
       if ( this.speedIsFrozen ) return
-      console.log("Je ralentis")
       this.downSpeed()
     }
   } else {
-    console.log("Je démarre en arrière")
     this.setSpeed(ISPEED_X1 - 1)
     this.play()
   }
@@ -255,6 +253,7 @@ onKeyK(ev){
 // Méthode appelée quand on change la vitesse par le menu
 onChangeSpeedWithMenu(ev){
   this.setSpeed(Number(this.oMenuSpeed.value))
+  this.oMenuSpeed.blur()
 }
 upSpeed(){
   if ( this.ispeed < LAST_ISPEED ){
@@ -273,8 +272,6 @@ downSpeed(){
 
 // Pour afficher la vitesse
 showSpeed() { this.oMenuSpeed.value = this.ispeed }
-
-
 
 /**
 * Méthode qui, à l'initialisation de la vidéo, construit le menu pour
@@ -322,6 +319,7 @@ calcPas(t, ev, factor){
 
 init(){
   const my = this
+  my._frozenspeed = false
   this.obj.src = this.src
   this.rewindRate = 60
   this.obj.load()
@@ -364,6 +362,9 @@ observe(){
   this.obj.addEventListener('timeupdate', this.onTimeChange.bind(this))
   // Pour modifier la vitesse
   this.oMenuSpeed.addEventListener('change', this.onChangeSpeedWithMenu.bind(this))
+  // Pour geler ou dégeler la vitesse
+  this.cadenasSpeed.addEventListener('click', this.onLockUnlockSpeed.bind(this))
+
 }
 
 get isMouseSensible(){ return film.options.video_follows_mouse }
@@ -607,10 +608,15 @@ setWidth(w){
   this.obj.style.width = px(w)
 }
 
-// Retourne TRUE si la vitesse de la vidéo est bloquée
-get speedIsFrozen(){
-  return DGet('.opt-freeze-speed', this.container).checked
+get cadenasSpeed(){return DGet('img.cadenas-speed',this.container) }
+
+onLockUnlockSpeed(ev){
+  stopEvent(ev)
+  this._frozenspeed = !this._frozenspeed
+  this.cadenasSpeed.src = `img/ui/cadenas-${this._frozenspeed?'':'un'}locked.png`
 }
+
+get speedIsFrozen(){ return this._frozenspeed }
 
 get miniHorloge(){
   return this._minihorloge || (this._minihorloge = new HorlogeMini(this))
