@@ -52,9 +52,9 @@ function gestionnaireTouchesController(ev){
     case 'a': AEvent.listing.onAllButton(null);break
     case 'c': DOMVideo.synchronizeVideos();break
     case 'f': AEvent.filtre();break // simple message
-    case 'j': DOMVideo.current.rerewind(ev); break
-    case 'k': DOMVideo.current.pause(); break
-    case 'l': DOMVideo.current.replay(ev); break
+    case 'j': DOMVideo.current.onKeyJ(ev); break
+    case 'k': DOMVideo.current.onKeyK(ev); break
+    case 'l': DOMVideo.current.onKeyL(ev); break
     case 'r': DOMVideo.current.toggleReperesPFA();break
     case 'x': focusIn(DGet('#console'));break
     case 'ArrowRight':  DOMVideo.current.avance(ev); break

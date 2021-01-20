@@ -9,7 +9,25 @@ comparaison. La vidéo principale est une propriété 'video' de window.
 On peut donc y faire appel de n'importe où par 'video'.
 *** --------------------------------------------------------------------- */
 
-const SPEEDS = [.25, .5, .75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75]
+const DATA_SPEEDS = {
+    '-x3'   :  {hname:'↫ x3',   value: [-.015,1]}
+  , '-x2'   :  {hname:'↫ x2',   value: [-.01, 1]}
+  , '-x1.5' :  {hname:'↫ x1.5', value: [-.01, 2]}
+  , '-x1'   :  {hname:'↫ x1',   value: [-.01,8]}
+  , 'x1'    :  {hname:'↬ x1',   value: null} // <===== ISPEED_X1
+  , 'x1.5'  :  {hname:'↬ 1.5',  value: [.01, 2]}
+  , 'x2'    :  {hname:'↬ x2',   value: [.01, 1]}
+  , 'x2.5'  :  {hname:'↬ x2.5', value: [.0125, 1]}
+  , 'x3'    :  {hname:'↬ x3',   value: [.015,1]}
+  , 'x3.5'  :  {hname:'↬ x3.5', value: [.0175,1]}
+  , 'x4'    :  {hname:'↬ x4',   value: [.02, 1]}
+  , 'x6'    :  {hname:'↬ x6',   value: [.03, 1]}
+  , 'x8'    :  {hname:'↬ x8',   value: [.04, 1]}
+}
+const SPEEDS = Object.keys(DATA_SPEEDS)
+const ISPEED_X1 = SPEEDS.indexOf('x1')
+const LAST_ISPEED = SPEEDS.length - 1
+// console.info("ISPEED_X1 = %i, LAST_ISPEED = %i, SPEEDS:", ISPEED_X1, LAST_ISPEED, SPEEDS)
 
 class DOMVideo {
 /** ---------------------------------------------------------------------
@@ -98,6 +116,16 @@ remove(){
   this.obj.src = ""
   this.hide()
 }
+
+
+/** ---------------------------------------------------------------------
+
+  MOTEUR DE VIDÉO
+
+  Méthodes pour la VITESSE
+
+*** --------------------------------------------------------------------- */
+
 togglePlay(){
   if (this.playing) {
     this.pause()
@@ -105,112 +133,161 @@ togglePlay(){
     this.play()
   }
 }
+
+/**
+Menu quand on change la vitesse
+this.ispeed contient l'indice courant d'accélération (qui peut être égal à ISPEED_X1
+et dans ce cas ne présenter aucune accélération ni aucun ralentissement)
+***/
+setSpeed(newispeed){
+  const isPlaying = !!this.playing
+  this.ispeed = newispeed
+  this.showSpeed()
+  isPlaying && this.obj.pause()
+  this.playMethod = this[this.ispeed == ISPEED_X1 ? 'playRegular' : 'playWithSpeed'].bind(this)
+  isPlaying && this.play()
+}
+
+/**
+* Méthode pour mettre en route la vidéo
+---------------------------------------
+Elle appelle une méthode différente suivante qu'il faut jouer à la
+vitesse normale ou qu'il faut jouer plus vite ou plus lentement.
+***/
 play(){
-  this.rewinding && this.resetRewind()
-  this.resetPlaying()
-  this.obj.play()
+  this.timerPlay && this.stopPlayWithSpeed()
+  if ( undefined == this.playMethod ) this.playMethod = this.playRegular.bind(this)
+  this.playMethod.call(this)
   this.playing = true
 }
-resetPlaying(){
-  this.obj.pause()
-  this.playing = false
-  if ( ! this.speedIsFrozen ) {
-    this.ispeed = 3
-    this.setSpeed()
+// Quand on doit jouer à la vitesse normale
+playRegular(){
+  this.obj.play()
+}
+playWithSpeed(){
+  if ( undefined == this.timerPlay ) {
+    const dataSpeed = DATA_SPEEDS[SPEEDS[this.ispeed]]
+    const enAvant = this.ispeed >= ISPEED_X1
+    this.timerPlay = setInterval(this[`fakePlaying${enAvant?'':'Backward'}`].bind(this, dataSpeed.value[0]), dataSpeed.value[1])
+  } else {
+    console.warn("Le timerPlay est déjà lancé, je ne le relance pas.")
   }
 }
-pause(){
-  if ( this.playing ){ this.resetPlaying() }
-  else if ( this.rewinding ) { this.resetRewinding() }
-  else {
-    if ( parseInt(this.time,10) > parseInt(film.realStart,10) ) {
-      // <= Seconde pression
-      // => Début du film
-      this.stop(film.realStart)
-    } else if (parseInt(this.time,10) == 0) {
-      // <= Film à 0
-      // => On se place au début s'il existe
-      this.stop(film.realStart)
-    } else {
-      // <= Troisième pression
-      // => Tout début de la vidéo
-      this.stop(0)
-    }
+fakePlaying(cran){
+  if ( this.obj.currentTime >= film.duration ){
+    this.pause()
+  } else {
+    this.obj.currentTime += cran
   }
 }
-// Un "vrai" stop, qui retourne au tout début
-stop(at){
-  this.playing && this.resetPlaying()
-  this.time = at
-}
-rewind(){
-  this.playing && this.resetPlaying()
-  this.startRewind()
-  this.rewinding  = true
-}
-resetRewinding(){
-  this.stopRewind()
-  this.rewinding  = false
-  this.rewindRate = 60
-}
-startRewind(){
-  const my = this
-  this.rewindTimer = setInterval(() => {
-    my.obj.currentTime -= .1
-  }, my.rewindRate)
-}
-stopRewind(){
-  if ( this.rewindTimer ) {
-    clearInterval(this.rewindTimer)
-    delete this.rewindTimer
+fakePlayingBackward(cran){
+  if ( this.obj.currentTime <= 0 ){
+    this.pause()
+  } else {
+    this.obj.currentTime += cran
   }
 }
 
-// Pour accéler le jeu à chaque impulsion (appel)
-// Note : sauf si la vitesse est bloquée
-replay(ev){
-  if (this.playing) {
-    this.speedIsFrozen || this[ev.ctrlKey?'downSpeed':'upSpeed']()
-  }
-  else {
+stopPlayWithSpeed(){
+  clearInterval(this.timerPlay)
+  this.timerPlay = undefined
+  delete this.timerPlay
+  console.info("timerPlay arrêté")
+}
+
+pause(){
+  this.obj.pause()
+  this.playing = false
+  if ( undefined != this.timerPlay ) this.stopPlayWithSpeed()
+  if ( ! this.speedIsFrozen ) this.setSpeed(ISPEED_X1)
+  console.info("STOP")
+}
+
+
+// Touche pour aller en avant pressée
+onKeyL(ev){
+  console.log("-> onKeyL")
+  if ( this.playing ){
+    if ( this.ispeed < ISPEED_X1 /* marche arrière */) {
+      this.setSpeed(ISPEED_X1)
+    } else {
+      if ( this.speedIsFrozen ) return
+      this.upSpeed()
+    }
+  } else {
     this.play()
   }
 }
-// Pour accéler le rewind à chaque impulsion (appel)
-rerewind(){
-  this.stopRewind() // même si ça ne joue pas encore
-  this.rewindRate -= 2
-  this.rewind()
-}
-
-/** ---------------------------------------------------------------------
-*   Méthodes pour la VITESSE
-*
-*** --------------------------------------------------------------------- */
-onClickOnSpeed(ev){
-  ++ this.ispeed
-  this.ispeed < 8 || (this.ispeed = 1)
-  this.setSpeed()
-}
-upSpeed(){
-  ++ this.ispeed
-  SPEEDS[this.ispeed] || (this.ispeed = 3) // 1
-  this.setSpeed()
-}
-downSpeed(){
-  -- this.ispeed
-  this.ispeed < 0 && (this.ispeed = 0)
-  this.setSpeed()
-}
-setSpeed(){
-  this.obj.playbackRate = SPEEDS[this.ispeed]
-  this.showSpeed()
+// Touche pour aller en arrière pressée
+onKeyJ(ev){
+  if ( this.playing ) {
+    if ( this.ispeed > ISPEED_X1 /* marche avant */) {
+      this.setSpeed(ISPEED_X1 - 1)
+    } else {
+      if ( this.speedIsFrozen ) return
+      console.log("Je ralentis")
+      this.downSpeed()
+    }
+  } else {
+    console.log("Je démarre en arrière")
+    this.setSpeed(ISPEED_X1 - 1)
+    this.play()
+  }
 }
 /**
-* Pour afficher la vitesse
+Touche pour s'arrêter pressée
+-----------------------------
+Trois comportement possible :
+  1. la vidéo joue => On l'arrête à l'endroit joué
+  2. la vidéo est arrêtée après le point-zéro => on rejoint le point zéro
+  3. la vidéo est arrêtée au point zéro => on rejoint le tout début de la vidéo
+**/
+onKeyK(ev){
+  if ( this.playing ) {
+    this.pause()
+  } else if ( this.time > (film.realStart + 0.1) ) {
+    this.time = film.realStart
+  } else if ( this.time > 0.1 ) {
+    this.time = 0
+  }
+}
+
+// Méthode appelée quand on change la vitesse par le menu
+onChangeSpeedWithMenu(ev){
+  this.setSpeed(Number(this.oMenuSpeed.value))
+}
+upSpeed(){
+  if ( this.ispeed < LAST_ISPEED ){
+    this.setSpeed(++this.ispeed)
+  } else {
+    erreur("C'est la vitesse maximale.",{keep:false})
+  }
+}
+downSpeed(){
+  if ( this.ispeed > 0 ) {
+    this.setSpeed(--this.ispeed)
+  } else {
+    erreur("C'est la vitesse minimale.",{keep:false})
+  }
+}
+
+// Pour afficher la vitesse
+showSpeed() { this.oMenuSpeed.value = this.ispeed }
+
+
+
+/**
+* Méthode qui, à l'initialisation de la vidéo, construit le menu pour
+choisir et afficher la vitesse
 ***/
-showSpeed(){
-  this.spanSpeed.textContent = `x ${String(this.obj.playbackRate).padEnd(4,' ')}`
+buildMenuSpeeds(){
+  var ispeed, speed_id, dspeed
+  for(ispeed in SPEEDS){
+    speed_id  = SPEEDS[ispeed]
+    dspeed    = DATA_SPEEDS[speed_id]
+    this.oMenuSpeed.appendChild(DCreate('OPTION',{value:ispeed, text:dspeed.hname}))
+  }
+  this.setSpeed(ISPEED_X1)
 }
 
 // ---------------------------------------------------------------------
@@ -248,11 +325,14 @@ init(){
   this.obj.src = this.src
   this.rewindRate = 60
   this.obj.load()
+  // On attend que la vidéo soit chargée
   $(this.obj).on('canplaythrough', (res) => {
     my.calcValues()
     my.observe()
     my.setReady()
   })
+  // On construit le menu des vitesses
+  this.buildMenuSpeeds()
 }
 
 /** ---------------------------------------------------------------------
@@ -282,8 +362,8 @@ observe(){
   this.obj.addEventListener('mouseout',  this.onMouseOut.bind(this))
   this.obj.addEventListener('mousemove', this.onMouseMove.bind(this))
   this.obj.addEventListener('timeupdate', this.onTimeChange.bind(this))
-  // Pour modifier la vitesse en cliquant sur elle
-  DGet('span.speed',this.container).addEventListener('click', this.onClickOnSpeed.bind(this))
+  // Pour modifier la vitesse
+  this.oMenuSpeed.addEventListener('change', this.onChangeSpeedWithMenu.bind(this))
 }
 
 get isMouseSensible(){ return film.options.video_follows_mouse }
@@ -486,6 +566,7 @@ erase(what){
   }
 }
 
+
 drawMasqueHorsFilm(){
   if ( film.realStart > 0 ) {
     const sty = {left:0, width:this.time2px(film.realStart), height: this.height}
@@ -535,8 +616,8 @@ get miniHorloge(){
   return this._minihorloge || (this._minihorloge = new HorlogeMini(this))
 }
 
-get spanSpeed(){
-  return this._spanspeed || ( this._spanspeed = this.container.querySelector('.speed'))
+get oMenuSpeed(){
+  return this._spanspeed || ( this._spanspeed = DGet('select.speed',this.container))
 }
 
 get height(){

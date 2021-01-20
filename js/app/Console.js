@@ -63,7 +63,6 @@ run_start(){
   }, 1)
   // 1 100tième toutes les millisecondes = x 2
   // 2 100tième toutes les millisecondes = x 4
-  // 2 100tième toutes les millisecondes = x 4
   // 4 100tième toutes les millisecondes = x 8
   Console.obj.value = 'stop'
   message("Je joue")

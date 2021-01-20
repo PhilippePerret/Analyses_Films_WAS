@@ -166,6 +166,9 @@ On peut utiliser de nombreux marques de formatage pour rédiger les documents «
 		Si aucun texte alternatif n'est défini, on écrira "(cf. note x)" avec
 		un lien vers la note.
 		
+[ref:event:id_event|Texte alternatif]
+		Une référence à n'importe quel évènement.
+		
 ~~~
 
 
