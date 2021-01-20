@@ -34,7 +34,7 @@ run(){
     case 'stop':  return this.run_stop();
     case 'filtre': case 'filter': return AEvent.runFiltreCommand(this.params)
     case 'open':      return this.run_open_command(this.params[1], this.params[2])
-    case 'build':     return this.run_build_command(this.params[1], this.params[2])
+    case 'build':     return this.run_build_command(this.params[1], this.params[2], this.params[3])
     case 'pfa':       return this.run_pfa_command(this.params[1])
     case 'goto':      return DOMVideo.current.goto(this.params[1], this.params[2])
     case 'create':    return this.run_create_command(this.params[1], this.params[2])
@@ -80,11 +80,16 @@ run_stop(){
 /**
 * Les commandes de construction
 ***/
-run_build_command(what, extra){
+run_build_command(what, extra, option1){
   switch(what){
     case 'all': return this.run_build_all()
     case 'books': case 'livres': return this.run_build_books()
-    case 'book': case 'livre': return this.run_build_books(extra)
+    case 'book': case 'livre':
+    if ( option1 == '-update'){
+      return this.run_build_all(extra, option1)
+    } else {
+      return this.run_build_books(extra, option1)
+    }
     case 'sequencier': return this.run_build_sequencier()
     case 'synopsis': return this.run_build_synopsis()
     case 'pfa': return film.analyse.buildPFA()
@@ -135,7 +140,7 @@ run_open_command(what, name){
 ***/
 
 // Commande qui lance la construction de tout
-run_build_all(){
+run_build_all(type, option1){
   message('Reconstruction de tout…', {keep:false})
   this.run_build_sequencier(true)
   .then(this.run_build_statistiques.bind(this, null, true))
@@ -143,10 +148,10 @@ run_build_all(){
   .then(this.run_build_sequencier.bind(this, null, true))
   .then(this.run_build_synopsis.bind(this, null, true))
   .then(this.run_build_pfa.bind(this, true))
-  .then(this.run_build_books.bind(this, null, true))
+  .then(this.run_build_books.bind(this, type, option1, true))
 }
 
-run_build_books(type, keep_messages = false){
+run_build_books(type, option1, keep_messages = false){
   var msg
   if (type) msg = `Construction du livre de type '${type}'`
   else msg = `Construction de tous les livres du film « ${film.title} »`
