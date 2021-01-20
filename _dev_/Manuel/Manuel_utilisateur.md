@@ -144,9 +144,30 @@ Procédure détaillée :
 * taper `open document mon_document`,
 * presser la touche ![][Return].
 
+#### Insérer un texte (propre, type ou template)
 
+Pour insérer un texte quelconque dans un document markdown, on utilise la balise :
+
+~~~markdown
+[include:name.extension] 					<!-- Si à la racine -->
+[include:dossier/path.extension] 	<!-- si dans sous-dossier -->
+~~~
+
+Ce texte doit se trouver dans un de ces trois lieux par ordre de précédence :
+
+~~~
+1. Le dossier ./_TEMPLATES_/ commun à tout les films
+2. Le dossier ./documents du film (fichier .md, en général)
+3. Le dossier ./products du film (fichier html, en général)
+~~~
+
+
+
+Pour le faire de façon programmatique (en ruby), il suffit d’utiliser la méthode `template('relative/path')` pour obtenir **le chemin d'accès** au fichier voulu. Pour l’introduire tel quel dans un autre document ou pour l’envoyer à la méthode `kramdown` qui retournera un texte complètement formaté.
 
 ### Mise en forme des documents rédigés
+
+#### Référence à un autre évènement d’analyse (note, scène, etc.)
 
 On peut utiliser de nombreux marques de formatage pour rédiger les documents « manuels ». En voici la liste complète :
 
@@ -170,6 +191,22 @@ On peut utiliser de nombreux marques de formatage pour rédiger les documents «
 		Une référence à n'importe quel évènement.
 		
 ~~~
+
+
+
+#### Référence à un autre document (une autre section)
+
+Pour faire référence à un autre document se trouvant dans le dossier `documents` ou `products` (mais qui sera dans tous les cas, bien entendu, ajouté au code final), on utilise la balise :
+
+~~~
+[ref:document:<nom avec extension>|<texte alternatif>]
+
+ou
+
+[ref:doc:<nom.ext>|<texte alternatif>]
+~~~
+
+Sans texte alternatif, la marque liée au document (à sa section) sera : **Document « Nom sans extension title-isé »**.
 
 
 

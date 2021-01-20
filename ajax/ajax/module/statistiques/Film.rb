@@ -94,8 +94,8 @@ def path
 end
 
 def explications_stats_of(type)
-  path = File.expand_path(File.join(__dir__,'..','books','inclusions',"explications_stats_#{type}.md"))
-  kramdown(type) + "\n" # tient compte du fait qu'il peut ne pas exister
+  path = template("textes_types/explications_stats_#{type}.md")
+  kramdown(path) + "\n" # tient compte du fait qu'il peut ne pas exister
 end
 
 end #/Class Statistiques

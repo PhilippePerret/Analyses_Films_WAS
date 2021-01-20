@@ -1,1 +1,0 @@
-Ce dossier doit contenir tous les textes récurrents à ajouter à tous les livres, par exemple les explications sur les statistiques des scènes ou la mention de regarder les films dans leur langue originale ou encore la présentation rapide de la série.
