@@ -120,3 +120,13 @@ function stopEvent(ev){
 }
 
 function dorure(str){return `<span style="color:#e9e330;background-color:blueviolet;padding:1px 6px;">${str}</span>`}
+
+function clip(what, msg){
+  const field = DCreate('textarea',{text:what})
+  document.body.appendChild(field)
+  field.focus()
+  field.select()
+  document.execCommand('copy')
+  msg && message(msg)
+  field.remove()
+}
