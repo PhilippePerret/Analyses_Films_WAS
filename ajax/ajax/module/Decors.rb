@@ -13,11 +13,11 @@ class Film
     @decors ||= begin
       h = {}
       (config['decors']||{}).each do |did, ddata|
-        dec = Decor.new(ddata.merge!(id: did))
+        dec = Decor.new(ddata.merge!('id' => did))
         decor_name = dec.hname
         h.merge!(did => dec)
         (ddata['items']||{}).each do |sdid, sdecor_name|
-          sousdec = Decor.new({hname: "#{dec.hname} : #{sdecor_name}", parent: dec, id: sdid})
+          sousdec = Decor.new({'hname' => "#{decor_name} : #{sdecor_name}", 'parent' => dec, 'id' => "#{did}:#{sdid}"})
           h.merge!(sousdec.id => sousdec)
         end
       end
@@ -43,8 +43,10 @@ def initialize(data)
   @data = data
 end
 
-def id      ; @id       ||= data[:id]       end
-def hname   ; @hname    ||= data[:hname]    end
-def parent  ; @parent   ||= data[:parent]   end
+def ref ; hname end
+
+def id      ; @id       ||= data['id']       end
+def hname   ; @hname    ||= data['hname']    end
+def parent  ; @parent   ||= data['parent']   end
 
 end #/Decor

@@ -71,14 +71,17 @@ def stats_scenes
 end #/ stats_scenes
 
 def stats_personnages
+  return if not(film.config.key?('personnages')) || film.config['personnages'].empty?
   stream << "\n<h2>Statistiques personnages</h2>\n\n"
   stream << explications_stats_of('personnages')
   stream << commentaires_stats_of('personnages')
 end #/ stats_personnages
 
 def stats_decors
+  return if not(film.config.key?('decors')) || film.config['decors'].empty?
   stream << "\n<h2>Statistiques décors</h2>\n\n"
   stream << explications_stats_of('decors')
+  stream << Decor.build_stats_decors
   stream << commentaires_stats_of('decors')
 end #/ stats_decors
 

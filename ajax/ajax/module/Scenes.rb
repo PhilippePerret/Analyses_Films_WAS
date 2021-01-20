@@ -10,6 +10,7 @@
 =end
 require_relative 'data'
 require_relative 'AEvent'
+require_module('Decors')
 
 class Film
   attr_reader :scenes_per_event, :scenes_per_numero
@@ -68,6 +69,10 @@ class Film
       end
     end
   end #/ scenes
+
+  def scenes_count
+    @scenes_count ||= ary_scenes.count
+  end #/ scenes_count
 
 end #/class Film
 
@@ -190,7 +195,7 @@ def hdecor
     if decor.nil? || decor.empty?
       ""
     else
-      formate("#{Film.current.decors[decor].hname} – ")
+      formate("#{Film.current.decor(decor).hname} – ")
     end
   end
 end

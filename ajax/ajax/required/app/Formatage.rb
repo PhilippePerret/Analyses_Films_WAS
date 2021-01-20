@@ -14,6 +14,73 @@ def kramdown(src)
   return Kramdown::Document.new(code).to_html
 end #/ kramdown
 
+# Retourne le pourcentage que représente la valeur +value+ par rapport
+# à la chose +what+
+# +what+ peut avoir les valeurs :
+#   :time     La durée du film
+#   :scenes   Le nombre de scènes du film
+#
+# +options+
+#   :par    Si false, on ne met pas la valeur entre parenthèses
+#   :dec    Le nombre de décimales (1 par défaut)
+#
+# Return un texte comme "<span class='pct'>(23.4 %)</span>"
+def pct(what, value, options = {})
+  options[:dec] ||= 1
+  value = value.to_i
+  ref_value = case what
+  when :scene, :scenes then Film.current.scenes_count
+  when :time, :duree then Film.current.duration
+  else raise "Impossible de donner le pourcentage de #{what.inspect}"
+  end
+  vpct = (100.0 / (ref_value.to_f / value.to_f)).round(options[:dec]).to_s
+  vpct = vpct[0..-3] if vpct.end_with?('.0')
+  vpct = "#{vpct} %"
+  vpct = "(#{vpct})" unless options[:par] === false
+  "<span class='pct'>#{vpct}</span>"
+end #/ pct
+
+# ---------------------------------------------------------------------
+#
+#   MISES EN FORME SPÉCIALES
+#
+# ---------------------------------------------------------------------
+
+# Pour construire une table HTML à partir des données +data+
+# +data+  {Hash} Table qui doit définir
+#   :columns    Liste Array de la définition de chaque colonne
+#               Chaque élément est un hash définissant :
+#                 :width    Taille en pourcentage de la colonne
+#                 :title    Titre de la colonne
+#   :values     Liste des listes de valeurs
+#               Chaque élément est une liste qui doit contenir autant de valeurs
+#               que de colonnes.
+#   :options    Options éventuelles
+def table(data)
+  t = ["<table>"]
+  t << '<thead>'
+  t << '<tr>'
+  data[:columns].each do |dcol|
+    t << "<th width='#{dcol[:width]}%'>#{dcol[:title]}</th>"
+  end
+  t << '</tr>'
+  t << '</thead>'
+  t << '<tbody>'
+  data[:values].each do |dline|
+    t << '<tr>'
+    t << dline.collect{|v| "<td>#{v}</td>"}.join('')
+    t << '</tr>'
+  end
+  t << '</tbody>'
+  t << '</table>'
+end #/ table
+
+# ---------------------------------------------------------------------
+#
+#   FORMATAGE DU TEXTE
+#
+# ---------------------------------------------------------------------
+
 # = main =
 #
 # Méthode principale qui doit être appelée par toute valeur, et pas seulement
