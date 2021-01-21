@@ -23,17 +23,19 @@ def initialize(data)
   @data ||= data
 end #/ initialize
 
+def ref ; @ref ||= "Event ##{id} (#{type})" end
+
 def output(params)
   if params.key?(:as)
     if params[:as] == :traitement
-      "#{f_type}#{f_times_infos}#{f_resume}#{f_content}"
+      div("#{f_type} #{f_times_infos}#{f_resume}#{f_content}",'aevent')
     end
   end
 end #/ output
 
 
 def f_type
-  @f_type ||= "<span class='event_type'>#{htype}</span>"
+  @f_type ||= "<span class='event_type'>#{htype.titleize}</span>"
 end #/ f_type
 def f_times_infos
   @f_times_infos ||= "<span class='event_times_infos'>à #{hstart}</span>"
@@ -96,11 +98,11 @@ def type  ; @type   ||= data['type']    end
 def id    ; @id     ||= data['id']      end
 
 def in_traitement?
- @mettre_dans_traitement ||= not(data['no_treatment'] === true)
+ @mettre_dans_traitement ||= not(data['no_tr'] === true)
 end
 
 def scene?
-  @is_scene || type == 'sc'
+  @is_scene || main_type == 'sc'
 end #/ scene?
 
 end #/AEvent

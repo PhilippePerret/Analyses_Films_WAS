@@ -13,7 +13,6 @@ class Film
     @stream = File.open(traitement_path,'a')
     stream << "\n<h2>Traitement complet</h2>\n\n"
     sorted_scenes.each do |scene|
-      next if not scene.in_traitement?
       stream << scene.output(as: :traitement)
     end
     if not config['documents'].include?('traitement.html')
@@ -32,10 +31,12 @@ class Film
       .sort_by(&:time)
       .each do |aev|
         if aev.scene?
-          scene_courante = Scene.new(aev.data)
+          scene_courante = Film.current.scene_per_event(aev.id)
           scene_courante.events = []
         elsif not scene_courante.nil?
-          scene_courante.events << aev
+          if aev.in_traitement?
+            scene_courante.events << aev
+          end
         end
     end
   end #/ dispatch_events_in_scenes

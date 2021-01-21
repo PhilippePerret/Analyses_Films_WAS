@@ -92,6 +92,10 @@ def initialize(data)
   super(data)
 end
 
+def ref
+  @ref ||= "Scène #{numero||"##{id}"} « #{resume} »"
+end
+
 # ---------------------------------------------------------------------
 #
 #   Helpers
