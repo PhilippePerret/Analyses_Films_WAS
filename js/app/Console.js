@@ -77,8 +77,16 @@ run_build_command(what, extra, option1){
 run_create_command(what, name){
   switch(what){
     case 'document': case 'doc': return this.run_create_document(name)
+    case 'film':case'analyse': return this.run_create_new_film(name)
     default: return erreur(`Je ne sais pas créer un élément de type “${what}”…`)
   }
+}
+
+run_create_new_film(name){
+  // J'essaie de charger un module js
+  const script = DCreate('SCRIPT',{src:"js/module/FilmCreator.js", type:"text/javascript"})
+  document.body.appendChild(script)
+  script.addEventListener('load', ev => { FilmCreator.createNew(name) })
 }
 
 run_create_document(name){

@@ -643,9 +643,10 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 
 #### Commande `create`
 
-| Objet créé             | Commande                       | Description/options                                          |
-| ---------------------- | ------------------------------ | ------------------------------------------------------------ |
-| Un document quelconque | `create doc[ument] <name.ext>` | Le document sera créé dans le dossier `./documents/` du film. Il sera ajouté à la propriété `documents` du fichier de configuration mais toujours à la fin. |
+| Objet créé                 | Commande                       | Description/options                                          |
+| -------------------------- | ------------------------------ | ------------------------------------------------------------ |
+| Un document quelconque     | `create doc[ument] <name.ext>` | Le document sera créé dans le dossier `./documents/` du film. Il sera ajouté à la propriété `documents` du fichier de configuration mais toujours à la fin. |
+| Un nouveau film à analyser | `create film`                  | Cela déclenche une procédure de demande qui va permettre de créer un nouveau film. |
 
 <a id="commande-goto"></a>
 
