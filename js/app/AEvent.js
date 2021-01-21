@@ -65,6 +65,13 @@ static onSave(ev){
 }
 
 /**
+* Appelé après que le formulaire a été initialisé
+***/
+static afterInitForm(){
+  UI.focusedObject.focusTexte(null)
+}
+
+/**
 * Méthode qui permet de classer les items (dans this.orderedList qui
 est une extension apportée par ListingExtended)
 ***/

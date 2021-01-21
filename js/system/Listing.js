@@ -665,6 +665,7 @@ class ListingForm {
     })
     // Par défaut on décoche toutes les case à cocher
     this.obj.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false)
+    this.listing.owner.afterInitForm && this.listing.owner.afterInitForm()
   }
 
   /**

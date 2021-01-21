@@ -16,7 +16,7 @@ function s2h(s, with_frames = true){
   s = s % 3600
   const m = Math.floor(s / 60)
   s = s % 60
-  hrl = `${h}:${m<10?'0':''}${m}:${s<10?'0':''}${s}`
+  var hrl = `${h}:${m<10?'0':''}${m}:${s<10?'0':''}${s}`
   if ( with_frames ) hrl += `.${fs<10?'0':''}${fs}`
   return hrl
 }
