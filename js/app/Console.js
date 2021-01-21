@@ -30,8 +30,6 @@ Méthode qui joue le code
 run(){
   this.parse()
   switch(this.command){
-    case 'start': return this.run_start();
-    case 'stop':  return this.run_stop();
     case 'filtre': case 'filter': return AEvent.runFiltreCommand(this.params)
     case 'open':      return this.run_open_command(this.params[1], this.params[2])
     case 'build':     return this.run_build_command(this.params[1], this.params[2], this.params[3])
@@ -43,38 +41,15 @@ run(){
     case 'erase':     return DOMVideo.current.erase(this.params[1])
     case 'rewind': case 'back': case '-' : case 'backward':  return DOMVideo.current.backward(this.params[1])
     case 'for': case '+': case 'forward':   return DOMVideo.current.forward(this.params[1])
+    case 'essai': return this.run_essai()
     default:
       erreur(`Je ne connais pas la commande “${this.command}”`)
   }
 }
 
-/**
-* Pour essayer de jouer en contrôlant vraiment la vitesse
-***/
-run_start(){
-  if ( this.running ) return
-  else this.running = true
-  const duration = film.duration
-  this.playingTimer = setInterval(()=>{
-    video.obj.currentTime += 0.04
-    if (video.obj.currentTime > duration){
-      this.runStop()
-    }
-  }, 1)
-  // 1 100tième toutes les millisecondes = x 2
-  // 2 100tième toutes les millisecondes = x 4
-  // 4 100tième toutes les millisecondes = x 8
-  Console.obj.value = 'stop'
-  message("Je joue")
-}
-run_stop(){
-  clearInterval(this.playingTimer)
-  delete this.playingTimer
-  this.playingTimer = null
-  Console.obj.value = 'start'
-  video.obj.currentTime = 0
-  this.running = false
-  message("J'ai arrêté")
+run_essai(){
+  // Ajax.send("essai.rb").then(ret => console.log(ret))
+  message("Aucun essai pour le moment")
 }
 
 /**
@@ -83,6 +58,7 @@ run_stop(){
 run_build_command(what, extra, option1){
   switch(what){
     case 'all': return this.run_build_all()
+    case 'document':case'documents': return this.run_build_documents(extra,option1)
     case 'books': case 'livres': return this.run_build_books()
     case 'book': case 'livre':
     if ( option1 == '-update'){
@@ -151,6 +127,22 @@ run_build_all(type, option1){
   .then(this.run_build_books.bind(this, type, option1, true))
 }
 
+run_build_documents(doc_name,option1,keep_messages=false){
+  var msg
+  if (doc_name){ msg = `Construction du document '${doc_name}'`}
+  else { msg = `Construction de tous les documents du film « ${film.title} » (définis dans config.yml)` }
+  message(`${msg}, merci de patienter…`, {keep:keep_messages})
+  return Ajax.send('build_documents.rb',{doc_name:doc_name, option:option1})
+  .then(ret => {
+    console.log(ret)
+    if (doc_name){
+      message(`Le document « ${doc_name} » du film « ${film.title} » a été construit avec succès. Tu peux le voir dans le dossier './products' du film (avec l'extension '.html')`,{keep:keep_messages})
+    } else {
+      message(`Les documents du film « ${film.title} » ont été construits avec succès. Tu peux les voir dans le dossier './products'.`,{keep:keep_messages})
+    }
+    ret.message && message(ret.message)
+  })
+}
 run_build_books(type, option1, keep_messages = false){
   var msg
   if (type) msg = `Construction du livre de type '${type}'`

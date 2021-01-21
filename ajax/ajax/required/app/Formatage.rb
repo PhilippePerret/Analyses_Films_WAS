@@ -150,28 +150,18 @@ end #/ formate
 
 REG_REFERENCE = /\[ref:(scene|note|event):([0-9]+)(?:\|(.*?))?\]/
 REG_REFERENCE_DOC = /\[ref:doc(?:ument)?:(.*?)(?:\|(.*?))?\]/
+REG_REFERENCE_FILM = /\[ref:film:(.*?)(?:\|(.*?))?\]/
 def formate_as_a_string(str)
   # Remplacer les balises [include:relative/path.ext]
   str = traite_inclusion_in(str)
   # Remplacer les balises personnage
-  Film.current.personnages.each do |keyp, personnage|
-    str = str.gsub(/\b#{keyp}\b/){
-      key_perso = $1.freeze
-      personnage.recurrence ||= 0
-      personnage.recurrence += 1
-      if personnage.recurrence == 1
-        personnage.full_name
-      elsif personnage.recurrence % 3 == personnage.recurrence / 3
-        personnage.short_name
-      elsif personnage.recurrence % 7 == personnage.recurrence / 7
-        personnage.full_name
-      else
-        personnage.nick_name
-      end
-    }
-  end
+  str = traite_balises_personnages(str)
   # Remplacer les balises films
-  # TODO
+  str = str.gsub(REG_REFERENCE_FILM){
+    ref_id        = $1.freeze
+    ref_text_alt  = $2.freeze
+    reference_code_for('film', ref_id, ref_text_alt)
+  }
   # Remplacer les balises références (à scène, note, etc.)
   str = str.gsub(REG_REFERENCE){
     ref_type      = $1.freeze
@@ -212,6 +202,9 @@ end
 # pas spécifié dans une balise de référence
 def reference_code_for(ref_type, ref_id, ref_text_alt)
   ref_text = ref_text_alt || case ref_type
+  when 'film'     then
+    defined?(Filmodico) || require_module('Filmodico')
+    Filmodico.get(ref_id).titre
   when 'scene'    then film.scene_per_event(ref_id).formated_resume
   when 'note'     then film.event(ref_id).formated_resume
   when 'event'    then film.event(ref_id).formated_resume
@@ -221,7 +214,7 @@ def reference_code_for(ref_type, ref_id, ref_text_alt)
     return "[Référence manquante - #{ref_type}:#{ref_id}]"
   end
 
-  return "<a href='##{ref_type}_#{ref_id}'>#{ref_text}</a>"
+  return "<a href='##{ref_type}_#{ref_id}' class='#{ref_type}'>#{ref_text}</a>"
 end
 
 # Retourne le path d'un dossier template (ou texte type)
@@ -233,3 +226,23 @@ def formate_as_a_integer(n)
 
   return n
 end #/ formate_as_a_integer
+
+def traite_balises_personnages(str)
+  Film.current.personnages.each do |keyp, personnage|
+    str = str.gsub(/\b#{keyp}\b/){
+      key_perso = $1.freeze
+      personnage.recurrence ||= 0
+      personnage.recurrence += 1
+      if personnage.recurrence == 1
+        personnage.full_name
+      elsif personnage.recurrence % 3 == personnage.recurrence / 3
+        personnage.short_name
+      elsif personnage.recurrence % 7 == personnage.recurrence / 7
+        personnage.full_name
+      else
+        personnage.nick_name
+      end
+    }
+  end
+  return str
+end #/ traite_balises_personnages

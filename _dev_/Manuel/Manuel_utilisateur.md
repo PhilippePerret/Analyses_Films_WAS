@@ -604,15 +604,16 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 
 #### Commande `build`
 
-| Objet construit | Commande                      | Description/options                                          |
-| --------------- | ----------------------------- | ------------------------------------------------------------ |
-| Tous les livres | `build books`                 | Construit tous les livres et les places dans le dossier `./finaux` du dossier du film. Attention cette commande ne reconstruit pas tous les fichiers à produire (synopsis, statistiques, etc.). Utiliser l’option `-update` pour ce faire. |
-| Un livre        | `build book <type>[ options]` | Construire le livre de type `<type>` qui peut être `html`, `pdf`,  `mobi` ou `epub`. Noter que cette méthode n’actualise pas les fichiers construits (comme le synopsis, les statistiques, etc.). Pour ce faire, ajouter l’option `-update`. |
-| PFA             | `build pfa`                   | Construit une image (`pfa.jpg`) qu’il suffira de copier dans le livre |
-| Séquencier      | `build sequencier`            | Construit une page (format à voir) à introduire dans le livre. |
-| Synopsis        | `build synopsis`              | Construit le synopsis en se basant sur le contenu des évènements scènes. |
-| Traitement      | `build traitement`            | Construit le traitement. Un traitement est comme un séquencier, mais il présente le contenant complet de la scène ainsi que **tous les évènements qu’elle contient** (sauf ceux qui sont marqués à retirer). C’est donc la version la plus complète du film. |
-| Statistiques    | `build statistiques[ <type>]` | Construit toutes les statistiques du film, à savoir : le classement des scènes par durée, la plus longue et la plus courte, la durée moyenne des scènes, le temps de présence des personnages, le temps d’utilisation des décors, etc. |
+| Objet construit        | Commande                      | Description/options                                          |
+| ---------------------- | ----------------------------- | ------------------------------------------------------------ |
+| Tous les livres        | `build books`                 | Construit tous les livres et les places dans le dossier `./finaux` du dossier du film. Attention cette commande ne reconstruit pas tous les fichiers à produire (synopsis, statistiques, etc.). Utiliser l’option `-update` pour ce faire. |
+| Un livre               | `build book <type>[ options]` | Construire le livre de type `<type>` qui peut être `html`, `pdf`,  `mobi` ou `epub`. Noter que cette méthode n’actualise pas les fichiers construits (comme le synopsis, les statistiques, etc.). Pour ce faire, ajouter l’option `-update`. |
+| PFA                    | `build pfa`                   | Construit une image (`pfa.jpg`) qu’il suffira de copier dans le livre |
+| Séquencier             | `build sequencier`            | Construit une page (format à voir) à introduire dans le livre. |
+| Synopsis               | `build synopsis`              | Construit le synopsis en se basant sur le contenu des évènements scènes. |
+| Traitement             | `build traitement`            | Construit le traitement. Un traitement est comme un séquencier, mais il présente le contenant complet de la scène ainsi que **tous les évènements qu’elle contient** (sauf ceux qui sont marqués à retirer). C’est donc la version la plus complète du film. |
+| Statistiques           | `build statistiques[ <type>]` | Construit toutes les statistiques du film, à savoir : le classement des scènes par durée, la plus longue et la plus courte, la durée moyenne des scènes, le temps de présence des personnages, le temps d’utilisation des décors, etc. |
+| Un document quelconque | `build document <name.ext>`   | Construit en version finale le document de nom (et extension) « name.ext ». Si l’extension n’est pas fourni, la commande fournit `.md` par défaut. |
 
 <a id="commande-create"></a>
 
