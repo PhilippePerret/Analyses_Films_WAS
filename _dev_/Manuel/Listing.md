@@ -172,7 +172,14 @@ vtype       Type de la valeur. Par défaut, c'est string.      number
             Peut être :
                 'number'    Transforme la valeur en nombre
                 'string'    Par défaut, en string
+                'bool'			Pour les checkbox
 
+options			Permet de définir plus précisément le champ :
+						inline:				Si true, est mis dans un span. Cela permet
+													de regrouper sur une même ligne plusieurs
+													champs courts.
+						field_width		Le width exact, AVEC L'UNITÉ, du champ.
+						
 required    Si cet attribut est true, la donnée ne peut être
             vide (donc null).
 
@@ -184,7 +191,7 @@ min         Longueur minimale de la donnée (ou nombre min)
             Ne pas oublier de mettre le vtype à 'number'
             pour que la valeur soit étudiée comme un nombre
 
-default     Valeur par défaut de la propriété.                Philippe
+default     Valeur par défaut de la propriété.                
             Pour un type=checkbox, c'est true/false
 
 form        cf. ci-dessous "Utilisation de form"
@@ -199,7 +206,7 @@ setter      Pour définir les valeurs d'un champ complexe
             lorsqu'une matière est choisie. Donc la méthode setter
             devra sélectionner les matières 3, 4 et 7.
             Peut être utilisé par exemple si la valeur se trouve 
-            autre par dans l'interface.
+            autre part dans l'interface.
 
 getter      Pour récupérer les valeurs d'un champ complexe
             La méthode de getter reçoit le div contenant les
@@ -522,6 +529,11 @@ Mais on peut définir une méthode propre au cours de l'[instanciation du listin
 ## Annexe
 
 ### Historique des versions
+
+#### Version 1.2.1
+
+* Gestion du type « checkbox » 
+* Options pour affiner le formulaire.
 
 #### version 1.2.0
 

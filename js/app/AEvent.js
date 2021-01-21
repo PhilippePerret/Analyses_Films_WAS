@@ -41,8 +41,6 @@ static checkValues(values){
       // [1]  Ce problème se produit avec l'éditeur du listing, qui ne
       //      tient pas compte des effets et lieux de la scène
       values.type = AEvent.get(values.id).type
-      console.log("Je mets le type de la scène à %s",values.type)
-      console.log("values: ", values)
     }
   } catch (e) {
     erreur(e)
@@ -106,17 +104,17 @@ static onSelect(item){
 static get PROPERTIES(){
   if (undefined == this._properties){
     this._properties = [
-        {name:"content", hname:"Contenu", type:'textarea', required:true}
-      , {name: "type", hname:'Type', type:'text', form:"buildMenuType", setter:"setType", getter:"getType", default:'no'}
-      , {name:'time', hname:"Temps", type:'number', vtype:'text', setter:"setTemps", getter:'getTemps', placeholder: 'Cliquez le point-temps sur la vidéo'}
+        {name:"content", hname:false, type:'textarea', required:true, placeholder:"Contenu de l'évènement (première ligne = titre)", options:{}}
+      , {name: "type", hname:'Type', type:'text', form:"buildMenuType", setter:"setType", getter:"getType", default:'no', options:{inline:true}}
+      , {name:'time', hname:"À : ", type:'number', vtype:'text', setter:"setTemps", getter:'getTemps', placeholder: 'Cliquez le point-temps sur la vidéo', options:{inline:true, field_width:'80px'}}
+      , {name:'no_tr', hname:false, label:"Ne pas utiliser dans le traitement", type:'checkbox', vtype:'bool', options:{inline:true}}
     ]
   };return this._properties
 }
 
 static buildMenuType(){
-  const row = DCreate('DIV', {id:'row_type', class:'row row-type', inner:[
-      DCreate('LABEL', {text:'Type'})
-    , DCreate('SELECT', {id:'item-type', inner: this.buildOptionsMainTypes()})
+  const row = DCreate('SPAN', {id:'row_type', class:'row row-type', inner:[
+      DCreate('SELECT', {id:'item-type', inner: this.buildOptionsMainTypes()})
     , DCreate('SELECT', {id:'item-ntype', class:'hidden', inner:this.buildOptionsTypesNoeudCle()}) // type de noeud
     , DCreate('DIV', {class:'error-message'})
   ]})
@@ -282,6 +280,7 @@ static get listing(){
     , form_width: 610
     , options:{
         draggable:  false
+      , title:      false
       , sortable:   false
       , no_id:      true
       , form_under_listing: true
