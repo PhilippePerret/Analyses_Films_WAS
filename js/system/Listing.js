@@ -641,7 +641,11 @@ class ListingForm {
   }
   feedField(item, field, dprop){
     const value = item.data[dprop.name]
-    field.value = value
+    if ( dprop.type == 'checkbox'){
+      field.checked = value
+    } else {
+      field.value = value
+    }
     if (dprop.setter){ this.listing.owner[dprop.setter].call(this.listing.owner,value)}
   }
 
@@ -679,8 +683,10 @@ class ListingForm {
       // console.log("Check property #%s : %s", dproperty.name, dproperty.value)
 
       let error = null
-      const value = dproperty.value
-      if ( dproperty.vtype == 'number' ) {value = Number(value)}
+      var value = dproperty.value
+      switch(dproperty.vtype){
+        case 'number': value = Number(value); break
+      }
       if ( dproperty.required && value === null ) {
         error = `La propriété #${dproperty.name} est absolument requise.`
       }
@@ -699,12 +705,12 @@ class ListingForm {
         }
       }
 
-      const row = this.obj.querySelector(`div.row-${dproperty.name}`)
+      const row = this.obj.querySelector(`.row-${dproperty.name}`)
       let div_message;
       if (row){
         div_message = row.querySelector(`.error-message`)
       } else {
-        console.warn(`Pas de rangée “div.row-${dproperty.name}” dans le formulaire. Impossible de mettre en exergue l'erreur.`)
+        console.warn(`Pas de rangée .row-${dproperty.name}” dans le formulaire. Impossible de mettre en exergue l'erreur.`)
       }
       if (error) {
         errors.push(error)
@@ -763,8 +769,10 @@ class ListingForm {
   /**
     Construction du formulaire en fonction de la définition des
     propriétés du propriétaire du listing.
+
+
   **/
-  build(container){
+  /* ListingForm */build(container){
     // Pour mettre l'identifiant en cas d'édition
     var css = ['right', 'span-id']
     if(this.listing.options.no_id) css.push('hidden')
@@ -772,7 +780,11 @@ class ListingForm {
     container.appendChild(DCreate('INPUT',{type:'hidden',id:'item-id',value:''}))
 
     this.properties.forEach(dproperty => {
-      var div   = DCreate('DIV',{class:`row row-${dproperty.name}`})
+      dproperty.options || (dproperty.options = {})
+      // console.log("dproperty = ", dproperty)
+      var tag  = 'DIV'
+      if ( dproperty.options.inline ) tag = 'SPAN'
+      var div   = DCreate(tag, {class:`row row-${dproperty.name}`})
       const fid = `item-${dproperty.name}`
       if ( dproperty.hname ) {
         div.appendChild(DCreate('LABEL', {text: dproperty.hname}))
@@ -782,9 +794,16 @@ class ListingForm {
           div.appendChild(DCreate('TEXTAREA',{id: fid})); break;
         case 'hidden':
           div.appendChild(DCreate('INPUT', {type:'hidden', id:fid})); break;
+        case 'checkbox':
+          div.appendChild(DCreate('SPAN', {inner:[
+              DCreate('INPUT', {type:'checkbox', id:fid})
+            , DCreate('LABEL', {for:fid, text:dproperty.label})
+          ]}))
+          break
         default:
           var inputData = {type:'text', id:fid}
           if (dproperty.placeholder) Object.assign(inputData,{placeholder: dproperty.placeholder})
+          if ( dproperty.options.field_width )Object.assign(inputData,{style:`width:${dproperty.options.field_width}`})
           div.appendChild(DCreate('INPUT', inputData))
       }
       // Si la propriété définit une méthode particulière de construction,
