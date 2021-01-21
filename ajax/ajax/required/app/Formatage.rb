@@ -14,6 +14,10 @@ def kramdown(src)
   return Kramdown::Document.new(code).to_html
 end #/ kramdown
 
+# Retourne le code d'un span avec la classe +css+ et la valeur +text+
+def span(text, css)
+  "<span class='value'>#{text}</span>"
+end
 # Retourne le pourcentage que représente la valeur +value+ par rapport
 # à la chose +what+
 # +what+ peut avoir les valeurs :
@@ -37,7 +41,7 @@ def pct(what, value, options = {})
   vpct = vpct[0..-3] if vpct.end_with?('.0')
   vpct = "#{vpct} %"
   vpct = "(#{vpct})" unless options[:par] === false
-  "<span class='pct'>#{vpct}</span>"
+  span(vpct, 'pct')
 end #/ pct
 
 # ---------------------------------------------------------------------
@@ -50,25 +54,57 @@ end #/ pct
 # +data+  {Hash} Table qui doit définir
 #   :columns    Liste Array de la définition de chaque colonne
 #               Chaque élément est un hash définissant :
-#                 :width    Taille en pourcentage de la colonne
+#                 :width    Taille (largeur) de la colonne
+#                           Si c'est un nombre => pourcentage, sinon, on laisse
+#                           la valeur telle quelle.
 #                 :title    Titre de la colonne
+#                 :type     [Optionnelle] Le type de la valeur, entre :
+#                           :time     Un temps à traiter comme une horloge
+#                           :scenes   Un nombre de scènes.
+#                           La valeur en pourcentage est ajoutée.
+#
 #   :values     Liste des listes de valeurs
 #               Chaque élément est une liste qui doit contenir autant de valeurs
 #               que de colonnes.
+#               OPTIONNELLEMENT, le DERNIER ÉLÉMENT peut définir le type de la
+#               valeur, pour savoir comment la traiter. C'est une table avec
+#               en clé l'index 0-start de la colonne et en valeur le type.
+#               Par exemple : {2 => :scenes}
+#               Voir les types de colonnes, c'est la même chose. Cette valeur a
+#               priorité sur la définition du type de la colonne.
+#
 #   :options    Options éventuelles
+#       :no_zeros   Si true, on n'écrit aucune valeur qui serait égale à zéro,
+#                   c'est-à-dire qu'on passe la ligne.
 def table(data)
+  # Options
+  options = data[:options] || {}
+  no_zeros = options[:no_zeros] === true
+  cols_count = data[:columns].count
+  column_types = []
+  # On construit la table
   t = ["<table>"]
   t << '<thead>'
   t << '<tr>'
   data[:columns].each do |dcol|
-    t << "<th width='#{dcol[:width]}%'>#{dcol[:title]}</th>"
+    w = dcol[:width]
+    t << "<th width='#{w}#{w.is_a?(String) ? '' : '%'}'>#{dcol[:title]}</th>"
+    column_types << dcol[:type]
   end
   t << '</tr>'
   t << '</thead>'
   t << '<tbody>'
   data[:values].each do |dline|
+    next if no_zeros && dline.include?(0)
     t << '<tr>'
-    t << dline.collect{|v| "<td>#{v}</td>"}.join('')
+    dline[0...cols_count].each_with_index do |v, idx|
+      type_value = (dline[cols_count]||{})[idx] || column_types[idx]
+      case type_value
+      when :time    then v = span(v.to_i.to_horloge,'value') + pct(:time, v)
+      when :scenes  then v = span(v.to_s,'value') + pct(:scenes, v)
+      end
+      t << "<td>#{v}</td>"
+    end.join('')
     t << '</tr>'
   end
   t << '</tbody>'
