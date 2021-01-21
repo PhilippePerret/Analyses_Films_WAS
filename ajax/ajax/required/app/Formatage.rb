@@ -151,6 +151,7 @@ end #/ formate
 REG_REFERENCE = /\[ref:(scene|note|event):([0-9]+)(?:\|(.*?))?\]/
 REG_REFERENCE_DOC = /\[ref:doc(?:ument)?:(.*?)(?:\|(.*?))?\]/
 REG_REFERENCE_FILM = /\[ref:film:(.*?)(?:\|(.*?))?\]/
+REG_BALISE_TEMPS = /\[time:(.*?)\]/
 def formate_as_a_string(str)
   # Remplacer les balises [include:relative/path.ext]
   str = traite_inclusion_in(str)
@@ -174,6 +175,9 @@ def formate_as_a_string(str)
     ref_text_alt  = $2.freeze
     reference_code_for('document', ref_id, ref_text_alt)
   }
+  # Remplacer les balises temps
+  str = str.gsub(REG_BALISE_TEMPS){balise_time_to_horloge($1.freeze)}
+
   return str
 end #/ formate_as_a_string
 
@@ -246,3 +250,8 @@ def traite_balises_personnages(str)
   end
   return str
 end #/ traite_balises_personnages
+
+
+def balise_time_to_horloge(horloge)
+  span((horloge.h2s - Film.current.zero).to_i.to_horloge, 'time')
+end #/ balise_time_to_horloge

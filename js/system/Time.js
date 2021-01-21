@@ -8,7 +8,7 @@
 *** --------------------------------------------------------------------- */
 
 // Transforme un temps en secondes et frames en horloge
-function s2h(s){
+function s2h(s, with_frames = true){
   const fs = Math.floor((s % 1) * 25) // 25 frames/seconds
   s = parseInt(s, 10)
 
@@ -16,7 +16,9 @@ function s2h(s){
   s = s % 3600
   const m = Math.floor(s / 60)
   s = s % 60
-  return `${h}:${m<10?'0':''}${m}:${s<10?'0':''}${s}.${fs<10?'0':''}${fs}`
+  hrl = `${h}:${m<10?'0':''}${m}:${s<10?'0':''}${s}`
+  if ( with_frames ) hrl += `.${fs<10?'0':''}${fs}`
+  return hrl
 }
 function t2h(v){return s2h(v)} // alias
 

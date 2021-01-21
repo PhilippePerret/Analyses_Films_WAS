@@ -336,7 +336,7 @@ init(){
 * Pour mettre une balise de temps de type [temps:h:mm:ss] dans le presse-papier
 ***/
 baliseTimeInClipboard(){
-  const balise = `[time:${s2h(this.time)}]`
+  const balise = `[time:${s2h(this.time, /* frames = */ false)}]`
   clip(balise)
   message(`La balise « ${balise} » a été placé dans le presse-papier.`)
 }
