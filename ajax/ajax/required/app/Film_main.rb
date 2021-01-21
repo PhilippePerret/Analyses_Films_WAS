@@ -34,6 +34,11 @@ def initialize(folder)
   require_module('backup') && backup unless File.exists?(backup_today_path)
 end
 
+def personnages
+  require_module('Personnage') # écrasera cette méthode
+  personnages
+end #/ personnages
+
 def open_in_finder
   `open -a Finder "#{folder}"`
 end

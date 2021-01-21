@@ -22,6 +22,7 @@ class Personnage
 #
 # ---------------------------------------------------------------------
 attr_reader :data
+attr_accessor :recurrence # le nombre d'utilisation dans les textes
 def initialize(data)
   @data = data
 end #/ initialize

@@ -154,7 +154,22 @@ def formate_as_a_string(str)
   # Remplacer les balises [include:relative/path.ext]
   str = traite_inclusion_in(str)
   # Remplacer les balises personnage
-  # TODO
+  Film.current.personnages.each do |keyp, personnage|
+    str = str.gsub(/\b#{keyp}\b/){
+      key_perso = $1.freeze
+      personnage.recurrence ||= 0
+      personnage.recurrence += 1
+      if personnage.recurrence == 1
+        personnage.full_name
+      elsif personnage.recurrence % 3 == personnage.recurrence / 3
+        personnage.short_name
+      elsif personnage.recurrence % 7 == personnage.recurrence / 7
+        personnage.full_name
+      else
+        personnage.nick_name
+      end
+    }
+  end
   # Remplacer les balises films
   # TODO
   # Remplacer les balises références (à scène, note, etc.)

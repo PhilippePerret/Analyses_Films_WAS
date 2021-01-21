@@ -78,6 +78,64 @@ C’est le fichier qui définit le film courant. On trouve les propriétés suiv
 
 ---
 
+## Personnages du film
+
+Les personnages du film, pour permettre les calculs de statistique, doivent être définis dans le fichier de configuration `config.yml`. Pour chacun d’eux, on définir les propriétés `:full_name` (nom complet, patronyme), `:short_name` (le nom court, diminutif) et `:nick_name` (le pseudonyme, le plus employé.). Une définition de personnage ressemblera donc à :
+
+~~~yaml
+# Dans le fichier config.yml
+
+# ...
+personnages:
+	PR:
+		full_name: Philippe Perret
+		short_name: Philippe
+		nick_name: Phil
+	MR:
+		full_name: Marion Michel
+		short_name: Marion
+		nick_name: Bébé
+	TR:
+		full_name: Élie Kakou
+		short_name: Élie
+		nick_name: Lili
+	# etc.
+~~~
+
+
+
+Dans le texte, il suffira d’utiliser la clé d’un personnage pour l’introduire. Par exemple :
+
+~~~
+Quand PR et MR se sont rencontrés.
+~~~
+
+> Note : le remplacement se fait de telle sorte que le « PR » du mot « PREMIER » qui existerait dans le texte ne serait pas remplacé.
+
+Les versions variées du personnage (patronyme, pseudo, etc.) permet d’afficher des noms différents dans les textes.
+
+
+
+### Statistiques des personnages
+
+C’est **la présence de la clé d’un personnage** (par exemple « PR » ou « MR » dans l’exemple précédent) qui permet de savoir si un personnage est présent dans une scène. Et donc, de calculer son temps de présence à l’écran dans le film (et autres statistiques).
+
+C’est la raison pour laquelle, **si un personnage n’est pas présent dans une scène**, il convient de ne pas utiliser sa clé. Par exemple, si deux personnages parlent d’un troisième qui n’est pas là, il convient de ne pas le mention avec sa clé. Par exemple :
+
+~~~
+# MAUVAIS :
+PR et MR parlent de TR qui ne vient pas. # :-(
+
+# BON :
+PR et MR parlent de Lili qui ne vient pas. # :-D
+~~~
+
+
+
+
+
+---
+
 
 
 ## Analyse
