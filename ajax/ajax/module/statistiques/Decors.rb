@@ -76,10 +76,10 @@ def build_stats_decors
   ret << table({
     columns:[
       {width:40, title: "Décor"},
-      {width:20, title: "Durée"}
+      {width:20, title: "Durée", type: :time}
     ],
     values:@sorted_by_duree.collect do |decor|
-      [decor.hname, decor.use_duree.to_i.to_horloge+pct(:time, decor.use_duree)]
+      [decor.hname, decor.use_duree]
     end
   })
 
@@ -88,10 +88,10 @@ def build_stats_decors
   ret << table({
     columns:[
       {width:70, title: "Décor"},
-      {width:20, title: "Nombre de scènes"}
+      {width:20, title: "Nombre de scènes", type: :scenes}
     ],
     values: @sorted_by_count.collect do |decor|
-      [decor.hname, decor.use_count.to_s+pct(:time, decor.use_count)]
+      [decor.hname, decor.use_count]
     end
   })
 

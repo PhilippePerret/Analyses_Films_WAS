@@ -16,7 +16,7 @@ end #/ kramdown
 
 # Retourne le code d'un span avec la classe +css+ et la valeur +text+
 def span(text, css)
-  "<span class='value'>#{text}</span>"
+  "<span class='#{css}'>#{text}</span>"
 end
 # Retourne le pourcentage que représente la valeur +value+ par rapport
 # à la chose +what+
@@ -99,9 +99,10 @@ def table(data)
     t << '<tr>'
     dline[0...cols_count].each_with_index do |v, idx|
       type_value = (dline[cols_count]||{})[idx] || column_types[idx]
-      case type_value
-      when :time    then v = span(v.to_i.to_horloge,'value') + pct(:time, v)
-      when :scenes  then v = span(v.to_s,'value') + pct(:scenes, v)
+      v = case type_value
+      when :time    then span(v.to_i.to_horloge,'value') + pct(:time, v)
+      when :scenes  then span(v.to_s,'value') + pct(:scenes, v)
+      else span(v,'value')
       end
       t << "<td>#{v}</td>"
     end.join('')
