@@ -25,6 +25,8 @@ end #/ initialize
 
 def ref ; @ref ||= "Event ##{id} (#{type})" end
 
+def film ; @film ||= Film.current end
+
 def output(params)
   if params.key?(:as)
     if params[:as] == :traitement
@@ -48,8 +50,8 @@ def f_content
 end
 
 
-def hstart  ; @hstart ||= time.to_i.s2h(false)        end
-def htype   ; @htype  ||= TYPES_EVENTS[main_type][:hname]  end
+def hstart  ; @hstart ||= time.to_i.s2h(false)              end
+def htype   ; @htype  ||= TYPES_EVENTS[main_type][:hname]   end
 
 def formated_resume
   log("type:#{type.inspect} ##{id.inspect}")
@@ -91,7 +93,8 @@ def content
   @content ||= data['content']
 end #/ content
 def time
-  @time ||= data['time'].to_f
+  log("film.zero = #{film.zero}::#{film.zero.class.name}")
+  @time ||= (data['time'].to_f - film.zero)
 end
 def duree ; @duree  ||= (time_fin - time).to_i end
 def type  ; @type   ||= data['type']    end

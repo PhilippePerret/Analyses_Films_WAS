@@ -64,7 +64,6 @@ def save_locator(data)
 end
 
 # Pour détruire un évènement
-# TODO Plus tard, on le mettra de côté
 def destroy_event(id)
   path = File.join(folder_events,"event-#{id}.yml")
   File.delete(path) if File.exists?(path)
@@ -120,6 +119,21 @@ end
 #
 # ---------------------------------------------------------------------
 
+# Le "zéro" du film correspond au temps du noeud clé "ZéroPoint" s'il est
+# défini. C'est le temps qu'il faut retirer à tous les temps pour obtenir
+# une valeur juste.
+def zero
+  @zero ||= begin
+    point_zero = get_events(type:'nc:zr').first
+    log("point_zero: #{point_zero}")
+    if point_zero.nil?
+      0
+    else
+      log("point_zero['time'] = #{point_zero['time']}::#{point_zero['time'].class.name}")
+      point_zero['time'].to_f
+    end
+  end
+end #/ zero
 # Retourne la durée du film
 # Note : soit c'est le point défini par l'event de type 'zr', soit 0
 # soit c'est le point défini par l'event de type 'pf' soit la durée de la
