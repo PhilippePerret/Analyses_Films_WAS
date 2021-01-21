@@ -97,6 +97,7 @@ static get MESSAGES(){
       , {content: '<span class="key">R</span> pour afficher/masquer les repères du PFA abslu.'}
       , {content: 'Jouer la commande <code>pfa build</code> pour construire le PFA du film.'}
       , {content: this.img('Entree')+' pour mettre l’évènement d’analyse sélectionné en édition séparée.'}
+      , {content: this.img('P')+'pour afficher/masquer la liste des personnages'}
     ]
   } return this._messages
 }

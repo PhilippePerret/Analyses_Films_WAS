@@ -684,8 +684,9 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | Sélectionner l’évènement suivant | ![][ArrowDown] | Ou le premier si aucun n’est sélectionné. |
 | Sélectionner l’évènement précédent | ![][ArrowUp] | Ou le dernier si aucun n’est sélectionné. |
 | **Divers** |  |  |
+| Afficher/masquer la liste des personnages | ![][K_P] | En choisir un permet de mettre son ID dans le presse-papier, pour l’introduire où l’on veut. |
 | Copier le temps de la vidéo active dans le temps de l’autre vidéo | ![][K_C] | Il faut qu’une [seconde vidéo soit active](#use-two-videos) |
-| Se placer dans la console | ![][K_X] |  |
+| Se placer dans la console | ![][K_X] | On peut alors jouer [une des nombreuses commandes](#commandes-console) qui permettent de gérer un grand nombre de choses |
 | Ouvrir ce fichier d'aide | ![][Cmd]![][K_A] | Il s’ouvre en PDF dans une autre fenêtre  |
 | Ouvrir ce fichier d’aide pour le modifier                    | ![][Alt]![][Cmd]![][K_A]                            | Il s’ouvre dans Typora, pour le moment. |
 | Activer/désactiver l’aide transparent                        | ![][Maj]![][Cmd]![][K_A]                            | Ce sont les messages qui s’affichent régulièrement dans l’interface. |
@@ -729,6 +730,7 @@ On peut détruire régulièrement les dossiers les plus vieux, si tout est OK.
 [K_J]: ./img/clavier/K_J.png
 [K_K]: ./img/clavier/K_K.png
 [K_L]: ./img/clavier/K_L.png
+[K_P]: ./img/clavier/K_P.png
 [K_R]: ./img/clavier/K_R.png
 [K_S]: ./img/clavier/K_S.png
 [K_T]: ./img/clavier/K_T.png

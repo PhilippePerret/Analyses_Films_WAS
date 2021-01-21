@@ -21,7 +21,6 @@ static prepareFilm(ret){
   })
 }
 
-
 /** ---------------------------------------------------------------------
 *   INSTANCE
 *
@@ -42,6 +41,7 @@ prepare(){
   this.config.video2 && this.prepareVideo2()
   DOMVideo.setOptions()
   this.prepareEditor()
+  this.prepareMenuPersonnages()
 }
 
 /**
@@ -70,8 +70,6 @@ update(){
   })
 }
 
-
-
 prepareVideo(){
   window.video = new DOMVideo(DGet('video#video1'), `_FILMS_/${this.config.film_folder}/${this.config.video.name}`)
   window.video.setWidth(this.config.video.width || 400)
@@ -83,24 +81,23 @@ prepareVideo2(){
 }
 prepareEditor(){
   AEvent.listing // juste pour le faire apparaitre si aucun event
-  if ( this.config.personnages ){
-    this.prepareMenuPersonnages()
-  } else {
-    DGet('select#personnages').classList.add('hidden')
-  }
+}
+
+// Afficher/masquer la liste des personnages
+togglePersonnages(){
+  const montrer = this.menuPersonnages.classList.contains('hidden')
+  this.menuPersonnages.classList[montrer?'remove':'add']('hidden')
 }
 prepareMenuPersonnages(){
-  const menuPersonnages = DGet('select#personnages')
-  menuPersonnages.appendChild(DCreate('OPTION', {value:'', text:"Choisir…"}))
+  this.menuPersonnages.appendChild(DCreate('OPTION', {value:'', text:"Choisir…"}))
   this.updateMenuPersonnages()
-  menuPersonnages.addEventListener('change', this.onChoosePersonnage.bind(this))
+  this.menuPersonnages.addEventListener('change', this.onChoosePersonnage.bind(this))
 }
 updateMenuPersonnages(){
-  const menuPersonnages = DGet('select#personnages')
-  menuPersonnages.textContent = ''
+  this.menuPersonnages.textContent = ''
   this.personnages = this.config.personnages
   for(var pid in this.personnages){
-    menuPersonnages.appendChild(DCreate('OPTION',{value:pid, text:`${this.personnages[pid]} (${pid})`}))
+    this.menuPersonnages.appendChild(DCreate('OPTION',{value:pid, text:`${pid} = ${this.personnages[pid].full_name||this.personnages[pid]}`}))
   }
 }
 // À régler
@@ -146,8 +143,9 @@ get realEnd(){ return this.pointFin  ? this.pointFin.time  : video.duration }
   *
 *** --------------------------------------------------------------------- */
 
-onChoosePersonnage(){
-  message("Un personnage a été choisi")
+onChoosePersonnage(ev){
+  clip(this.menuPersonnages.value)
+  message("ID du personnage mis dans le clipboard.")
 }
 
 onChangeOption(key){
@@ -168,6 +166,9 @@ defaultizeOptions(opts = {}){
   return opts
 }
 
+get menuPersonnages(){
+  return this._menupersos || (this._menupersos = DGet('select#personnages'))
+}
 get analyse(){return this._analyse || (this._analyse = new Analyse(this))}
 
 get folder(){return this._folder || (this._folder = this.config.film_folder)}
