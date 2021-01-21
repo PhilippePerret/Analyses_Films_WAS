@@ -233,8 +233,14 @@ class String
   # secondes
   # Note pour la méthode inverse, voir Integer#s2h
   def h2s
-    str = self.split(':').reverse
-    str[0].to_i + str[1].to_i * 60 + str[2].to_i * 3600
+    str = self
+    negatif = 1
+    if str.start_with?('-')
+      negatif = -1
+      str = str[1..-1]
+    end
+    str = str.split(':').reverse
+    (str[0].to_i + str[1].to_i * 60 + str[2].to_i * 3600) * negatif
   end
 
   def self.levenshtein_beween(s, t)

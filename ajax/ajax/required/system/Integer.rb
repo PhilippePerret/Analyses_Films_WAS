@@ -8,7 +8,12 @@ class Integer
 
   # Retourne l'horloge correspondant au nombre de secondes
   def s2h(with_frames = false)
+    negatif = ''
     s = self
+    if s < 0
+      s = -s
+      negatif = '-'
+    end
     h = s / 3600
     s = s % 3600
     m = s / 60
@@ -17,7 +22,7 @@ class Integer
     str << h.to_s if h > 0
     str << "#{'0' if m < 10 && h > 0}#{m}"
     str << "#{'0' if s < 10}#{s}"
-    return str.join(':')
+    return negatif + str.join(':')
   end #/ s2h
   alias :to_horloge :s2h
 
