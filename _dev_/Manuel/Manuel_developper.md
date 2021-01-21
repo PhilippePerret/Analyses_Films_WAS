@@ -72,3 +72,12 @@ TODO : On pourrait, à l’avenir, imaginer une 3e propriété `category` qui pe
 
 
 
+---
+
+## Annexe
+
+### Notes
+
+#### [N001]
+
+La durée du film depuis le point-zéro jusqu’au point-final peut varier de la durée totale des scènes. Cela se produit dès que le point-zéro n’est pas défini comme début de la première scène. Pour le calcul des pourcentages et en général des statistiques concernant les scènes, on doit se servir de la durée totale d’après les scènes.

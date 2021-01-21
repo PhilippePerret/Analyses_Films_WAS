@@ -2,6 +2,8 @@
 # frozen_string_literal: true
 require 'kramdown'
 
+ASTERISQUE_NOTE = '<exp>*</exp>'
+
 =begin
   Les corrections à faire sur tous les textes, pour les balises et autres noms de personnage
 =end
@@ -18,6 +20,15 @@ end #/ kramdown
 def span(text, css)
   "<span class='#{css}'>#{text}</span>"
 end
+def div(text, css)
+  "<div class='#{css}'>#{text}</div>"
+end
+
+# Retourne le titre +text+ de niveau +level+
+def htitle(text, level)
+  "<h#{level}>#{text}</h#{level}>"
+end #/ title
+
 # Retourne le pourcentage que représente la valeur +value+ par rapport
 # à la chose +what+
 # +what+ peut avoir les valeurs :
@@ -35,6 +46,7 @@ def pct(what, value, options = {})
   ref_value = case what
   when :scene, :scenes then Film.current.scenes_count
   when :time, :duree then Film.current.duration
+  when :time_scenes then Film.current.duration_scenes
   else raise "Impossible de donner le pourcentage de #{what.inspect}"
   end
   vpct = (100.0 / (ref_value.to_f / value.to_f)).round(options[:dec]).to_s
@@ -60,6 +72,9 @@ end #/ pct
 #                 :title    Titre de la colonne
 #                 :type     [Optionnelle] Le type de la valeur, entre :
 #                           :time     Un temps à traiter comme une horloge
+#                           :time_scene   Un temps à traiter, par rapport à la
+#                                         durée réelle des scènes. Cf. la note
+#                                         [N001] du manuel développeur.
 #                           :scenes   Un nombre de scènes.
 #                           La valeur en pourcentage est ajoutée.
 #
@@ -95,13 +110,15 @@ def table(data)
   t << '</thead>'
   t << '<tbody>'
   data[:values].each do |dline|
-    next if no_zeros && dline.include?(0)
+    contient_un_zero = dline.include?(0)
+    next if no_zeros && contient_un_zero
+    next if dline[cols_count] && dline[cols_count][:no_zero] && contient_un_zero
     t << '<tr>'
     dline[0...cols_count].each_with_index do |v, idx|
       type_value = (dline[cols_count]||{})[idx] || column_types[idx]
       v = case type_value
-      when :time    then span(v.to_i.to_horloge,'value') + pct(:time, v)
-      when :scenes  then span(v.to_s,'value') + pct(:scenes, v)
+      when :time, :time_scenes then span(v.to_i.to_horloge,'value') + pct(type_value, v)
+      when :scenes then span(v.to_s,'value') + pct(:scenes, v)
       else span(v,'value')
       end
       t << "<td>#{v}</td>"

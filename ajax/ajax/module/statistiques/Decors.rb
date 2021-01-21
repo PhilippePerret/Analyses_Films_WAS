@@ -7,29 +7,30 @@ class << self
 # = main =
 #
 # Méthode principale qui calcule les statistiques concernant les décors
-def build_stats_decors
+def build_stats
   require_module('Decors')
 
   make_liste_classees
 
   ret = []
-  ret << '<table>'
+
+  ret << htitle("Lieux et effets de scènes", 3)
+
   # Les lieux
   # ---------
   de = @durees_lieux
   ret << table({
     columns:[
       {width:40, title:'Lieux'},
-      {width:25, title:'Durée', type: :time},
+      {width:25, title:'Durée', type: :time_scenes},
       {width:20, title:'Nombre scènes', type: :scenes}
     ],
     values:[
       de[:e].unshift("Scènes en extérieur"),
       de[:i].unshift("Scènes en intérieur"),
-      de[:ie].unshift("Scènes en ext. et int."),
-      de[:x].unshift("Scènes dans autres lieux")
-    ],
-    options:{no_zeros:true}
+      de[:ie].unshift("Scènes en ext. et int.").push(no_zero:true),
+      de[:x].unshift("Scènes dans autres lieux").push(no_zero:true)
+    ]
   })
 
   # Les effets
@@ -38,59 +39,77 @@ def build_stats_decors
   ret << table({
     columns:[
       {width:20, title:'Effet'},
-      {width:30, title:'Durée',         type: :time},
+      {width:30, title:'Durée',         type: :time_scenes},
       {width:30, title:'Nombre scènes', type: :scenes}
     ],
     values:[
-      ["De jour",   de[:j][0], de[:j][1]],
-      ["De nuit",   de[:n][0], de[:n][1]],
-      ["Du matin",  de[:m][0], de[:m][1]],
-      ["Du soir",   de[:s][0], de[:s][1]],
-      ["Autre (p.e. Noir)", de[:x][0], de[:x][1]]
-    ],
-    options:{no_zeros:true}
+      de[:j].unshift('Scènes de jour'),
+      de[:n].unshift('Scènes de nuit'),
+      de[:m].unshift('Scènes du matin').push(no_zero: true),
+      de[:s].unshift('Scènes du soir').push(no_zero: true),
+      de[:x].unshift('Autres (p.e. Noir)').push(no_zero: true)
+    ]
   })
 
+  ret << htitle('Les plus et les moins', 3)
+
   # Le décor le plus utilisé (en nombre de fois et en durée)
-  bestDTime   = @sorted_by_duree.first
-  badDduree   = @sorted_by_duree.last
-  bestDCount  = @sorted_by_count.first
-  badDCount   = @sorted_by_count.last
+  veryBest      = @sorted_universal.first
+  veryWorst     = @sorted_universal.last
+  bestPerTime   = @sorted_per_duree.first
+  worstPerduree = @sorted_per_duree.last
+  bestPerCount  = @sorted_per_count.first
+  worstPerCount = @sorted_per_count.last
 
   ret << table({
     columns:[
-      {width:40, title: 'Objet'},
+      {width:40, title: 'Décor qui est…'},
       {width:45, title: 'Lieu'},
       {width:15, title: 'Valeur'}
     ],
     values: [
-      ["Le plus utilisé en temps", bestDTime.ref, bestDTime.use_duree, {2 => :time}],
-      ["Le plus utilisé en nombre de scène", bestDCount.ref, bestDCount.use_count, {2 => :scenes}],
-      ["Le moins utilisé en temps",badDduree.ref, badDduree.use_duree, {2 => :time}],
-      ["Le moins utilisé en nombre de scène", badDCount.ref, badDCount.use_count, {2 => :scenes}]
+      ["… le plus utilisé", veryBest.ref, veryBest.f_pct_presence],
+      ["… utilisé le plus longtemps", bestPerTime.ref, bestPerTime.use_duree, {2 => :time}],
+      ["… utilisé dans le plus de scènes", bestPerCount.ref, bestPerCount.use_count, {2 => :scenes}],
+      ["… le moins utilisé", veryWorst.ref, veryWorst.f_pct_presence],
+      ["… utilisé le moins longtemps",worstPerduree.ref, worstPerduree.use_duree, {2 => :time}],
+      ["… utilisé dans le moins de scènes", worstPerCount.ref, worstPerCount.use_count, {2 => :scenes}]
     ]
   })
 
+  # Classement absolu des décors
+  ret << htitle("Classement absolu des décors #{ASTERISQUE_NOTE}", 3)
+  ret << div("(#{ASTERISQUE_NOTE} moyenne de la durée d'utilisation et du nombre de scènes)", 'small italic')
+  ret << table({
+    columns:[
+      {title:'Décor', width:40},
+      {title:'Présence', width:20}
+    ],
+    values:  @sorted_universal.collect do |decor|
+      [decor.ref, decor.f_pct_presence]
+    end
+  })
+
   # L'utilisation des décors par temps d'utilisation
-  ret << '<h3>Décors par durée d’utilisation</h3>'
+  ret << htitle("Classement des décors par durée d’utilisation", 3)
   ret << table({
     columns:[
       {width:40, title: "Décor"},
       {width:20, title: "Durée", type: :time}
     ],
-    values:@sorted_by_duree.collect do |decor|
+    values:@sorted_per_duree.collect do |decor|
       [decor.hname, decor.use_duree]
     end
   })
 
   # L'utilisation des décors par nombre de scènes
-  ret << '<h3>Décors par nombre de scènes</h3>'
+  ret << htitle("Classement des décors par nombre de scènes", 3)
   ret << table({
     columns:[
       {width:70, title: "Décor"},
       {width:20, title: "Nombre de scènes", type: :scenes}
     ],
-    values: @sorted_by_count.collect do |decor|
+    values: @sorted_per_count.collect do |decor|
       [decor.hname, decor.use_count]
     end
   })
@@ -130,8 +149,9 @@ def make_liste_classees
       decor.parent.use_count += 1
     end
   end
-  @sorted_by_duree = @liste.sort_by(&:use_duree).reverse
-  @sorted_by_count = @liste.sort_by(&:use_count).reverse
+  @sorted_per_duree    = @liste.sort_by(&:use_duree).reverse
+  @sorted_per_count    = @liste.sort_by(&:use_count).reverse
+  @sorted_universal = @liste.sort_by(&:presence).reverse
 end #/ make_liste_classees
 
 def film
@@ -147,5 +167,20 @@ end # /Decor << self
 # Pour enregistrer leur durée d'utilisation et leur nombre de scène
 attr_accessor :use_duree, :use_count
 
+# La "Présence" est une moyenne entre la durée et le nombre de scène,
+# qui permet de connaitre le classement absolu d'un décor
+def presence
+  @presence ||= ((taux_duree + taux_scenes).to_f / 2)
+end
+def f_pct_presence
+  @f_pct_presence ||= "#{(presence * 100).round(1)} %"
+end
+
+def taux_duree
+  @taux_duree ||= use_duree.to_f / Film.current.duration
+end
+def taux_scenes
+  @taux_scenes ||= use_count.to_f / Film.current.scenes_count
+end
 
 end #/Decor

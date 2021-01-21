@@ -138,6 +138,13 @@ def duration
   end
 end #/ duration
 
+def duration_scenes
+  @duration_scenes ||= begin
+    require_module('Scenes')
+    sorted_scenes.inject(0){|sum,scene| sum + scene.duree}
+  end
+end #/ duration_scenes
+
 # ---------------------------------------------------------------------
 #
 #   PATHS

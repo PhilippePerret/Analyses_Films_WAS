@@ -15,7 +15,7 @@ class Integer
     s = s % 60
     str = []
     str << h.to_s if h > 0
-    str << "#{'0' if m < 10}#{m}"
+    str << "#{'0' if m < 10 && h > 0}#{m}"
     str << "#{'0' if s < 10}#{s}"
     return str.join(':')
   end #/ s2h

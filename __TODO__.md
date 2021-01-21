@@ -4,3 +4,4 @@
 
 * Statistiques sur les personnages
 * Formatage des personnages
+* Rationnaliser les statistiques par scène (en utilisant la méthode 'table', etc.)

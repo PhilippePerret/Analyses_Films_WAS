@@ -155,6 +155,10 @@ end
 def output_as_synopsis
   "<p><span class='time'>#{hstart}</span>#{f_force_content}</p>"
 end
+# L'intitulé dans les statistiques
+def output_as_stats
+  formated_resume
+end
 
 def f_intitule
   @f_intitule ||= "<p class='scene_intitule'>#{intitule}</p>\n"
@@ -199,7 +203,7 @@ def hdecor
     end
   end
 end
-# def hstart  ; @hstart ||= time.to_i.s2h(false)      end
+def hstart  ; @hstart ||= time.to_i.s2h(false)      end
 def hfin    ; @hfin   ||= time_fin.to_i.s2h(false)  end
 def fduree  ; @fduree ||= duree.to_i.s2h(false)     end
 
