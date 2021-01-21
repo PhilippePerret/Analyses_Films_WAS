@@ -594,6 +594,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 
 | Objet ouvert                | Commande                        | Description/options                                          |
 | --------------------------- | ------------------------------- | ------------------------------------------------------------ |
+| L'aide                      | `open aide`                     | Ouvre le fichier PDF dans un autre onglet ou une autre fenêtre suivant les préférences. |
 | Le dossier du film          | `open film`                     | Ouvre le dossier du film dans le Finder                      |
 | Le fichier de configuration | `open config`                   | Ouvre le fichier `config.yml` du film courant dans Atom (pour le moment). |
 | L’image du PFA              | `open pfa`                      | Il faut que l’image ait été construite avec succès par la commande `build pfa`. |

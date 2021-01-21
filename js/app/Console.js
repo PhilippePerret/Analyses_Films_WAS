@@ -100,6 +100,7 @@ run_open_command(what, name){
   switch(what){
     case 'pfa': return this.run_open_pfa()
     case 'film':
+    case 'aide': return Aide.openPDF();
     case 'manuel':
       Ajax.send(`open_${what}.rb`).then(ret => message(ret.message||"Ouverture effectuée"))
       break
