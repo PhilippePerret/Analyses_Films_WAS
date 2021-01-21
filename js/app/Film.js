@@ -161,7 +161,7 @@ onChangeOption(key){
 *** --------------------------------------------------------------------- */
 
 defaultizeOptions(opts = {}){
-  const keysOptions = ['follow_selected_event', 'show_current_event','video_follows_mouse']
+  const keysOptions = ['follow_selected_event', 'show_current_event','video_follows_mouse','synchro_videos_on_stop']
   keysOptions.forEach(key => {
     if ( undefined === opts[key] ) Object.assign(opts, {[key]: true})
   })

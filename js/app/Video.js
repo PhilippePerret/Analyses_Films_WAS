@@ -65,7 +65,7 @@ On en profite aussi pour placer les observateurs pour changer les
 options quand il y a un travail à faire.
 ***/
 static setOptions(){
-  const videosOptions = ['follow_selected_event', 'show_current_event','video_follows_mouse']
+  const videosOptions = ['follow_selected_event', 'show_current_event','video_follows_mouse','synchro_videos_on_stop']
   videosOptions.forEach(key => {
     const cb = DGet('#' + key)
     cb.checked = film.options[key]
@@ -81,14 +81,12 @@ static incVideosReady(){
   }
 }
 
-
 /**
 * Méthode qui synchronise les deux vidéos (donc qui les cale sur le même temps)
 ***/
 static synchronizeVideos(){
   if (video2){
-    const otherVideo = this.current.id == 'video1' ? video2 : video
-    otherVideo.time = this.current.time
+    this.current.otherVideo.time = this.current.time
     message("Retours vidéos synchronisés", {keep:false})
   } else {
     error("Il y a un seul retour vidéo. Impossible de les synchroniser.")
@@ -200,6 +198,7 @@ pause(){
   this.playing = false
   if ( undefined != this.timerPlay ) this.stopPlayWithSpeed()
   if ( ! this.speedIsFrozen ) this.setSpeed(ISPEED_X1)
+  this.synchroOtherVideoOnStop && this.constructor.synchronizeVideos()
   // console.info("STOP")
 }
 
@@ -368,6 +367,7 @@ observe(){
 }
 
 get isMouseSensible(){ return film.options.video_follows_mouse }
+get synchroOtherVideoOnStop(){ return film.options.synchro_videos_on_stop}
 
 /**
 * Méthode calculant les valeurs après le chargement de la vidéo, et notamment
@@ -629,4 +629,9 @@ get oMenuSpeed(){
 get height(){
   return this._height || (this._height = this.obj.offsetHeight)
 }
+
+get otherVideo(){
+  return this._othervideo || (this._othervideo = (this.id =='video1' ? video2 : video))
+}
+
 }// DOMVideo
