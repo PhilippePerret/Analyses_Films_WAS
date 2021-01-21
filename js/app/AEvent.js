@@ -37,6 +37,13 @@ static checkValues(values){
     values.content != ''  || raise("Il faut définir le contenu de l'évènement.")
     values.time != 0      || raise("Normalement, il ne doit pas pouvoir y avoir d'évènement au zéro absolu…")
     values.type != ''     || raise("Le type de l'évènement doit être défini.")
+    if (values.type == 'sc' /* c'est une erreur peut-être normale [1] */) {
+      // [1]  Ce problème se produit avec l'éditeur du listing, qui ne
+      //      tient pas compte des effets et lieux de la scène
+      values.type = AEvent.get(values.id).type
+      console.log("Je mets le type de la scène à %s",values.type)
+      console.log("values: ", values)
+    }
   } catch (e) {
     erreur(e)
     return null
@@ -423,10 +430,10 @@ set type(v){this._type = this.data.type = v}
 
 // Pour les scènes
 get lieu(){
-  return this._lieu || ( this._lieu = this.type == 'sc' ? this.subType : null)
+  return this._lieu || ( this._lieu = this.mainType == 'sc' ? this.subType : null)
 }
 get effet(){
-  return this._effet || ( this._effet = this.type == 'sc' ? this.terType : null)
+  return this._effet || ( this._effet = this.mainType == 'sc' ? this.terType : null)
 }
 get decor(){
   return this._decor || ( this._decor = this.data.decor )
