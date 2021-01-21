@@ -98,6 +98,7 @@ static get MESSAGES(){
       , {content: 'Jouer la commande <code>pfa build</code> pour construire le PFA du film.'}
       , {content: this.img('Entree')+' pour mettre l’évènement d’analyse sélectionné en édition séparée.'}
       , {content: this.img('P')+'pour afficher/masquer la liste des personnages'}
+      , {content: this.img('H')+' (« H » comme « Horloge ») pour mettre le temps courant de la vidéo courante dans le presse-papier, sous forme de balise de temps.'}
     ]
   } return this._messages
 }

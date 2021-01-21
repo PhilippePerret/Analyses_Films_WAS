@@ -52,6 +52,7 @@ function gestionnaireTouchesController(ev){
     case 'a': AEvent.listing.onAllButton(null);break
     case 'c': DOMVideo.synchronizeVideos();break
     case 'f': AEvent.filtre();break // simple message
+    case 'h': DOMVideo.current.baliseTimeInClipboard(); break
     case 'j': DOMVideo.current.onKeyJ(ev); break
     case 'k': DOMVideo.current.onKeyK(ev); break
     case 'l': DOMVideo.current.onKeyL(ev); break

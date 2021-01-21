@@ -332,6 +332,15 @@ init(){
   this.buildMenuSpeeds()
 }
 
+/**
+* Pour mettre une balise de temps de type [temps:h:mm:ss] dans le presse-papier
+***/
+baliseTimeInClipboard(){
+  const balise = `[time:${s2h(this.time)}]`
+  clip(balise)
+  message(`La balise « ${balise} » a été placé dans le presse-papier.`)
+}
+
 /** ---------------------------------------------------------------------
 *   Properties
 *** --------------------------------------------------------------------- */

@@ -209,6 +209,14 @@ Procédure détaillée :
 * coller la référence,
 * définir optionnellement le texte alternatif de la référence. Sinon, c’est le résumé (première ligne) de l’évènement d’analyse qui sera utilisé.
 
+#### Insérer une balise de temps
+
+* Se placer à l’endroit voulu dans la vidéo
+* presser la touche ![][K_H] (=> une balise temps est placée dans le presse-papier),
+* coller la balise temps créée à l’endroit voulu.
+
+> Lire la [note à propos des temps](#note-temps)
+
 
 #### Insérer un texte (propre, type ou template)
 
@@ -278,7 +286,9 @@ Sans texte alternatif, la marque liée au document (à sa section) sera : **Doc
 
 ---
 
-## Produire les livres
+## Les livres
+
+###  Produire les livres
 
 Pour produire les livres (ebook mobi, epub, pdf), il suffit de jouer la commande `build books` :
 
@@ -287,6 +297,19 @@ Pour produire les livres (ebook mobi, epub, pdf), il suffit de jouer la commande
 * taper la commande `build books`,
 * presser la touche ![][Return] pour lancer la fabrication,
 * attendre jusqu’à la fabrication complète des livres.
+
+
+<a id="note-temps"></a>
+
+### Divergences entre les temps
+
+Concernant les temps, vous noterez certainement que les temps qui se retrouvent dans les livres ou les documents finaux ne sont pas ceux avec lesquels on travaille dans l’application. 
+
+Cela s'explique par le fait que les temps dans l’application sont toujours ceux par rapport au **zéro de la vidéo** (`video.currentTime = 0`) tandis que les temps utilisés dans les productions de l’application sont ceux par rapport au **zéro du film** qui, normalement, ne correspondent que très rarement.
+
+Il est donc normal de trouver cette différence.
+
+> Rappel : le zéro du film se définit en créant un évènement de type « nœud-clé > Point Zéro »
 
 ---
 
@@ -648,6 +671,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 
 # Annexe
 
+
 <a id="shortcuts"></a>
 
 ## Raccourcis clavier
@@ -685,6 +709,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | Sélectionner l’évènement précédent | ![][ArrowUp] | Ou le dernier si aucun n’est sélectionné. |
 | **Divers** |  |  |
 | Afficher/masquer la liste des personnages | ![][K_P] | En choisir un permet de mettre son ID dans le presse-papier, pour l’introduire où l’on veut. |
+| Temps de vidéo courante dans presse-papier | ![][K_H] | Cela copie dans le presse-papier une balise de forme `[temps:h:mm:ss]` qui sera correctement formatée. |
 | Copier le temps de la vidéo active dans le temps de l’autre vidéo | ![][K_C] | Il faut qu’une [seconde vidéo soit active](#use-two-videos) |
 | Se placer dans la console | ![][K_X] | On peut alors jouer [une des nombreuses commandes](#commandes-console) qui permettent de gérer un grand nombre de choses |
 | Ouvrir ce fichier d'aide | ![][Cmd]![][K_A] | Il s’ouvre en PDF dans une autre fenêtre  |
@@ -727,6 +752,7 @@ On peut détruire régulièrement les dossiers les plus vieux, si tout est OK.
 [K_9]: ./img/clavier/K_9.png
 [K_A]: ./img/clavier/K_A.png
 [K_C]: ./img/clavier/K_C.png
+[K_H]: ./img/clavier/K_H.png
 [K_J]: ./img/clavier/K_J.png
 [K_K]: ./img/clavier/K_K.png
 [K_L]: ./img/clavier/K_L.png
