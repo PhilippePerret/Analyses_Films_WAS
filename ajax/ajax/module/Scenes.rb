@@ -106,7 +106,7 @@ end
 # Intitulé de scène
 def intitule
   @intitule ||= begin
-    @template_intitule ||= "%{num}. %{lieu} %{decor}%{effet}"
+    @template_intitule ||= '%{num}. %{lieu} %{decor}%{effet}'
     (@template_intitule % {num:numero, lieu:hlieu, decor:hdecor, effet:heffet}).upcase
   end
 end
@@ -203,6 +203,9 @@ def hdecor
   @hdecor ||= begin
     if decor.nil? || decor.empty?
       ""
+    elsif Film.current.decor(decor).nil?
+      log("# ERREUR : DÉCORS INTROUVABLE : #{decor.inspect}")
+      "[Décor introuvable : #{decor}]"
     else
       formate("#{Film.current.decor(decor).hname} – ")
     end
@@ -222,7 +225,13 @@ def formated_resume
   @formated_resume ||= "scène #{numero}. à #{hstart} « #{resume} »"
 end
 
-def decor ; @decor  ||= data['decor']   end
+def decor
+  @decor ||= begin
+    de = data['decor']
+    de = nil if data['decor'] == 'x'
+    de
+  end
+end
 def lieu
   @lieu ||= (type.split(':')[1]||'i').to_sym
 end

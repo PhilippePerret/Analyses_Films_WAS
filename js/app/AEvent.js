@@ -37,10 +37,14 @@ static checkValues(values){
     values.content != ''  || raise("Il faut définir le contenu de l'évènement.")
     values.time != 0      || raise("Normalement, il ne doit pas pouvoir y avoir d'évènement au zéro absolu…")
     values.type != ''     || raise("Le type de l'évènement doit être défini.")
-    if (values.type == 'sc' /* c'est une erreur peut-être normale [1] */) {
+    if (values.type == 'sc' /* c'est une erreur normale [1] */) {
       // [1]  Ce problème se produit avec l'éditeur du listing, qui ne
-      //      tient pas compte des effets et lieux de la scène
-      values.type = AEvent.get(values.id).type
+      //      tient pas compte des effets et lieux de la scène, contrairement
+      //      à l'éditeur séparé.
+      const aev = AEvent.get(values.id)
+      values.type   = aev.type
+      values.decor  = aev.decor
+      console.log("Values après correction : ", values)
     }
   } catch (e) {
     erreur(e)

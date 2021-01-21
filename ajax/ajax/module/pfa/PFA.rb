@@ -241,7 +241,6 @@ alias :nr :noeudRel
 
 # Données absolu du noeud
 def noeudAbs(key)
-  log("DATA_PFA[#{key}] : #{DATA_PFA[key]}")
   DATA_PFA[key][:instance]
 end
 alias :na :noeudAbs
