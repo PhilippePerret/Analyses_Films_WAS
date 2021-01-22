@@ -56,6 +56,7 @@ function gestionnaireTouchesController(ev){
     case 'j': DOMVideo.current.onKeyJ(ev); break
     case 'k': DOMVideo.current.onKeyK(ev); break
     case 'l': DOMVideo.current.onKeyL(ev); break
+    case 'o': Options.togglePanel();break
     case 'p': film.togglePersonnages(); break
     case 'r': DOMVideo.current.toggleReperesPFA();break
     case 'x': focusIn(DGet('#console'));break

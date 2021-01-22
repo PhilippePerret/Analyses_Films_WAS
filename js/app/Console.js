@@ -32,6 +32,7 @@ run(){
   switch(this.command){
     case 'filtre': case 'filter': return AEvent.runFiltreCommand(this.params)
     case'aide':case'manuel':case'help': return this.run_open_command('aide')
+    case 'options':   return Options.togglePanel()
     case 'open':      return this.run_open_command(this.params[1], this.params[2])
     case 'build':     return this.run_build_command(this.params[1], this.params[2], this.params[3])
     case 'pfa':       return this.run_pfa_command(this.params[1])

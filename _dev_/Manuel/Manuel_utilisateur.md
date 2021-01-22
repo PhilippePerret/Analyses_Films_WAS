@@ -664,6 +664,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Commande&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description/options                                          |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Ouvrir l'aide                                                | `aide` ou `manuel`                                           | Ouvre le fichier PDF du manuel dans un autre onglet/une autre fenêtre. |
+| Affiche les options                                          | `options`                                                    | Affiche le panneau contenant les options et permet de les gérer. |
 | Ouvrir quelque chose                                         | `open …`                                                     | Cf. [commande `open`](#commande-open)                        |
 | Construire un élément                                        | `build …`                                                    | Cf. [commande `build`](#commande-build)                      |
 | Créer quelque chose                                          | `create …`                                                   | Cf. [commande `create`](#commande-create)                    |
@@ -769,6 +770,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | Sélectionner l’évènement suivant | ![][ArrowDown] | Ou le premier si aucun n’est sélectionné. |
 | Sélectionner l’évènement précédent | ![][ArrowUp] | Ou le dernier si aucun n’est sélectionné. |
 | **Divers** |  |  |
+| Afficher les options | ![][K_O] | |
 | Afficher/masquer la liste des personnages | ![][K_P] | En choisir un permet de mettre son ID dans le presse-papier, pour l’introduire où l’on veut. |
 | Temps de vidéo courante dans presse-papier | ![][K_H] | Cela copie dans le presse-papier une balise de forme `[temps:h:mm:ss]` qui sera correctement formatée. |
 | Copier le temps de la vidéo active dans le temps de l’autre vidéo | ![][K_C] | Il faut qu’une [seconde vidéo soit active](#use-two-videos) |
@@ -817,6 +819,7 @@ On peut détruire régulièrement les dossiers les plus vieux, si tout est OK.
 [K_J]: ./img/clavier/K_J.png
 [K_K]: ./img/clavier/K_K.png
 [K_L]: ./img/clavier/K_L.png
+[K_O]: ./img/clavier/K_O.png
 [K_P]: ./img/clavier/K_P.png
 [K_R]: ./img/clavier/K_R.png
 [K_S]: ./img/clavier/K_S.png

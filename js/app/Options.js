@@ -3,7 +3,7 @@
 const DATA_OPTIONS = {
     video_follows_mouse: {hname:'La vidéo suit la souris quand la souris se déplace sur elle.'}
   , synchro_videos_on_stop: {hname:'Synchronise les vidéos au stop'}
-  , follow_selected_event: {hname: 'Suivre l’évènement sélectionné dans la liste'}
+  , follow_selected_event: {hname: 'Se placer sur le temps de l’évènement sélectionné'}
   , show_current_event: {hname:'En jouant, afficher l’évènement le plus proche'}
   , memorize_last_time: {hname:'Mémoriser le dernier temps joué'}
 }
@@ -27,6 +27,8 @@ static init(){
 static option(koption){
   return this.get(koption).isChecked()
 }
+
+static togglePanel(){ UI.toggle(this.oOptions) }
 
 /**
 * Retourne l'instance Option de l'option de clé +optKey+

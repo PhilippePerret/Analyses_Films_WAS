@@ -10,6 +10,10 @@ static init(){
   })
 }
 
+static toggle(obj){
+  this.showIf(obj, obj.classList.contains('hidden'))
+}
+
 /**
 * Pour savoir qui a le focus et à qui, donc, on doit envoyer les évènements
 ***/
