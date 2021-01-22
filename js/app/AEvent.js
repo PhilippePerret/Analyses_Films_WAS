@@ -26,6 +26,26 @@ static set currentInVideo(e){
 }
 
 /**
+* Méthode pour créer directement un évènement scène et le mettre en édition
+dans l'éditeur séparé
+***/
+static createScene(){
+  message("Je vais créer un évènement scène")
+  const data = {
+      content: "RÉSUMÉ\n\nDESCRIPTION"
+    , type: 'sc:i:j'
+    , id: this.newId()
+    , time: DOMVideo.current.time
+  }
+  const newItem = this.create(data)
+  this.listing.add(newItem)
+  this.resetOrderedList()
+  newItem.repositionne()
+  newItem.select()
+  // Et enfin, on l'édite dans l'éditeur séparé
+  AEventEditor.edit(newItem)
+}
+/**
 * Checker des valeurs de l'évènement
 Note : la méthode sert aussi pour l'éditeur séparé
 Return les données si elles sont valides, sinon null

@@ -121,7 +121,7 @@ updateMenuPersonnages(){
 }
 // À régler
 get decorsForMenus(){
-  var data_decors
+  var data_decor
   const decors = this.config.decors || {}
   const liste_decors = []
   for(var kdecor in decors ) {

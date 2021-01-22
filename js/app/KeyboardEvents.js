@@ -56,6 +56,7 @@ function gestionnaireTouchesController(ev){
     case 'j': DOMVideo.current.onKeyJ(ev); break
     case 'k': DOMVideo.current.onKeyK(ev); break
     case 'l': DOMVideo.current.onKeyL(ev); break
+    case 'n': AEvent.createScene();break
     case 'o': Options.togglePanel();break
     case 'p': film.togglePersonnages(); break
     case 'r': DOMVideo.current.toggleReperesPFA();break
@@ -78,10 +79,10 @@ function gestionnaireTouchesEditeurEvents(ev){
     if ( AEvent.current ) {
       /* Si un évènement est sélectionné */
       switch(ev.key){
-        case 's':   UI.focusedObject.onSave(ev);break
-        case 'u':   UI.focusedObject.onUpdateTime(ev);break
-        case 't':   UI.focusedObject.focusTexte(ev);break
         case 'i':   AEvent.initForm();break
+        case 's':   UI.focusedObject.onSave(ev);break
+        case 't':   UI.focusedObject.focusTexte(ev);break
+        case 'u':   UI.focusedObject.onUpdateTime(ev);break
         case 'Enter':     AEventEditor.edit(AEvent.current);break
         case 'Backspace': AEvent.current.destroy();break
         case 'ArrowDown': AEvent.selectNext();break
