@@ -182,6 +182,7 @@ stopPlayWithSpeed(){
 pause(){
   this.obj.pause()
   this.playing = false
+  Options.option('memorize_last_time') && this.memorizeLastTime()
   if ( undefined != this.timerPlay ) this.stopPlayWithSpeed()
   if ( ! this.speedIsFrozen ) this.setSpeed(ISPEED_X1)
   this.synchroOtherVideoOnStop && this.constructor.synchronizeVideos()
@@ -325,6 +326,11 @@ baliseTimeInClipboard(){
   const balise = `[time:${s2h(this.time, /* frames = */ false)}]`
   clip(balise)
   message(`La balise « ${balise} » a été placé dans le presse-papier.`)
+}
+
+memorizeLastTime(){
+  Object.assign(film.config, {last_time: DOMVideo.current.time})
+  film.save()
 }
 
 /** ---------------------------------------------------------------------

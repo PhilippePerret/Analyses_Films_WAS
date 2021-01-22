@@ -19,10 +19,20 @@ class App {
     })
   }
 
+  /**
+  * Méthode appelée quand on quitte le film ou l'application
+  ***/
+  static onQuit(ev){
+    return true
+  }
+
   static setVeryReady(){
     UI.endInit()
     window.setModeClavier('command')
     // setTimeout(AEventEditor.edit.bind(AEventEditor, AEvent.get(10)), 2*1000)
+    Options.option('memorize_last_time') && film.config.last_time && (DOMVideo.current.time = film.config.last_time)
     message("Nous sommes prêts.", {keep:false})
   }
 }
+
+window.addEventListener('unload', App.onQuit.bind(App))
