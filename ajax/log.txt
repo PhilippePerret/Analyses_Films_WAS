@@ -344,3 +344,48 @@ Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/requ
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
 Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-22 10:28:23 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+Extension : ".md"
+Extension : ".html"
+Extension : ".html"
+Extension : ".html"
+Extension : ".html"
+Extension : ".md"
+Data du film : {:titre=>"Walker, Texas Ranger", :titre_fr=>"NULL", :id=>"237", :film_id=>"WalkerTexasRanger1993"}
+point_zero: {"id"=>10, "content"=>"Tout d\u00E9but du film. Conforme aux attentes.", "type"=>"nc:zr", "time"=>1}
+point_zero['time'] = 1::Integer
+film.zero = 1.0::Float
+film.zero = 1.0::Float
+film.zero = 1.0::Float
+film.zero = 1.0::Float
+film.zero = 1.0::Float
+film.zero = 1.0::Float
+film.zero = 1.0::Float
+film.zero = 1.0::Float
+film.zero = 1.0::Float
+type:"nc:p2" #12
+type:"no" #5
+Extension : ".md"
+-> Construction du livre HTML
+<- Llivre HTML construit avec succès dans "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/livre.html"
+Commande Calibre jouée :
+cd "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais";/Applications/calibre.app/Contents/console.app/Contents/MacOS/ebook-convert ./products/livre.xhtml ./livres/livre.mobi
+Commande Calibre jouée :
+cd "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais";/Applications/calibre.app/Contents/console.app/Contents/MacOS/ebook-convert ./products/livre.xhtml ./livres/livre.epub
+Commande Calibre jouée :
+cd "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais";/Applications/calibre.app/Contents/console.app/Contents/MacOS/ebook-convert ./products/livre.xhtml ./livres/livre.pdf

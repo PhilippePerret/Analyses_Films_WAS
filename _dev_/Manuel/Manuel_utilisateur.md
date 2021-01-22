@@ -663,6 +663,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 
 | Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Commande&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description/options                                          |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Ouvrir l'aide                                                | `aide` ou `manuel`                                           | Ouvre le fichier PDF du manuel dans un autre onglet/une autre fenêtre. |
 | Ouvrir quelque chose                                         | `open …`                                                     | Cf. [commande `open`](#commande-open)                        |
 | Construire un élément                                        | `build …`                                                    | Cf. [commande `build`](#commande-build)                      |
 | Créer quelque chose                                          | `create …`                                                   | Cf. [commande `create`](#commande-create)                    |
