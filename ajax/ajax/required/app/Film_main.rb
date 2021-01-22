@@ -4,16 +4,35 @@ require 'yaml'
 
 class Film
 class << self
+
+  # Retourne l'instance du film courant
   def current
-    @current ||= begin
-      fdossier = nil
-      if File.exists?(path_current_def)
-        fdossier = File.join(folder, File.read(path_current_def).strip)
-        fdossier = nil if not(File.exists?(fdossier))
-      end
-      fdossier ||= get_first_directory # peut être nil
-      fdossier && new(fdossier)
+    @current ||= new(File.join(folder,get_dossier_current))
+  end
+
+  # Retourne le film courant
+  # ------------------------
+  # L'idée est qu'il y en aura toujours un, que ce soit le film défini par
+  # CURRENT et qui existe, que ce soit le film par défaut xDefaut ou que ce
+  # soit le premier dossier trouvé
+  def get_dossier_current
+    fdossier = nil
+    if File.exists?(path_current_def)
+      fdossier = File.read(path_current_def).strip
     end
+    return fdossier if fdossier && isFolderFilm?(fdossier)
+    # Sinon, le premier dossier
+    fdossier = get_first_directory
+    return fdossier if fdossier && isFolderFilm?(fdossier)
+    # Sinon, le dossier par défaut
+    return 'xDefault' if isFolderFilm?('xDefault')
+    # Sinon un problème
+    raise "Malheureusement, il est impossible de trouver un film… Et le dossier par défaut a été détruit. Il faut réinitialiser l'application."
+  end #/ get_current
+
+  # Retourne true si +fdossier+ est effectivement un dossier de film analysé
+  def isFolderFilm?(fdossier)
+    File.exists?(File.join(folder,fdossier))
   end
 
   # Mets le film +folder+ en film courant
@@ -21,10 +40,16 @@ class << self
     File.open(path_current_def,'wb'){|f|f.write(fdossier)}
   end
 
+  # Retourne le chemin d'accès complet au dossier de nom +fdossier+
+  def full_path(fdossier)
+    File.join(folder,fdossier)
+  end #/ full_path
+
   # Retourne le premier dossier qu'on trouve
   def get_first_directory
     Dir["#{folder}/*"].each do |p|
-      return p if File.directory?(p)
+      pname = File.basename(p)
+      return pname if File.directory?(p) && pname != 'xDefault'
     end
     return nil
   end #/ get_first_directory

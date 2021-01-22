@@ -36,12 +36,17 @@ save(){
 
 prepare(){
   this.options = this.config.options = Options.defaultize(this.config.options)
+  this.setTitle()
   DOMVideo.nombreVideosToPrepare = this.config.video2 ? 2 : 1
   this.prepareVideo()
   this.config.video2 && this.prepareVideo2()
   Options.set()
   this.prepareEditor()
   this.prepareMenuPersonnages()
+}
+
+setTitle(){
+  document.querySelector('head title').textContent = `Analyse du film : ${this.title.toUpperCase()}`
 }
 
 /**
