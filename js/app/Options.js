@@ -2,7 +2,7 @@
 
 const DATA_OPTIONS = {
     video_follows_mouse: {hname:'La vidéo suit la souris quand la souris se déplace sur elle.'}
-  , synchro_videos_on_stop: {hname:'Synchronise les vidéos au stop'}
+  , synchro_videos_on_stop: {hname:'Synchroniser les vidéos au stop'}
   , follow_selected_event: {hname: 'Se placer sur le temps de l’évènement sélectionné'}
   , show_current_event: {hname:'En jouant, afficher l’évènement le plus proche'}
   , memorize_last_time: {hname:'Mémoriser le dernier temps joué'}

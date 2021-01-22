@@ -12,6 +12,7 @@
     show_current_event: false
   personnages:
     PR: Protagoniste
-    AN: Antagoniste
-    OQ: Objet de la quête
+    ELLE: La fille
+    PG: Patron du garage
+    CM: Chef mafieu
   film_folder: Drive

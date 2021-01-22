@@ -16,23 +16,35 @@ De façon résumée, l’analyse consiste à enregistrer des « évènements » 
 
 Voici la procédure pour une première analyse ou pour reprendre en main l’application après un long moment sans l’utiliser.
 
-* Dans le dossier `_FILMS_` de l’application, mettre le dossier du film analysé (regarder sur un disque dur) ou le créer,
-* Si c’est une création, il faut créer un fichier `config.yml` en s’inspirant du dossier `_FILMS_/Essai` et il faut mettre la vidéo dans le dossier,
-* Dans le fichier `_FILMS_/CURRENT`, mettre le nom de ce dossier du film,
 * Lancer l’application à l’aide de l’adresse : [`http://localhost/Analyses_Films_WAS`](http://localhost/Analyses_Films_WAS)
-* On peut commencer par définir le début et la fin « utiles » du film, c’est-à-dire le vrai temps zéro de l’analyse. Pour se faire, on se place aux endroits voulus, par exemple en cliquant sur la vidéo et  en ajustant avec les flèches, puis en créant les évènements « noeud-clé > Point Zéro » et le « Noeud-clé > Point Final ».
-* Ensuite, jouer les touches `L`, `K` ou `J` pour lancer la lecture, l’arrêter ou revenir en arrière,
+
+* Dans le dossier `_FILMS_` de l’application, mettre le dossier du film analysé (ou laisser tel quel pour lancer le dernier film analysé ou le film par défaut,
+
+  > Pour voir le film par défaut, qui est aussi une aide vidéo, joue en console la commande `set current xDefault`.
+
+* Ouvrir le panneau des options avec la touche ![][K_O] pou les définir (on peut utiliser aussi la commande `options` dans [la console][]).
+
+* On peut commencer par définir le début et la fin « utiles » du film, c’est-à-dire le vrai temps zéro de l’analyse. Pour se faire, on se place aux endroits voulus, par exemple en cliquant sur la vidéo et  en ajustant avec les flèches, puis en créant les évènements « **noeud-clé > Point Zéro** » et le « **Noeud-clé > Point Final** ».
+
+* Ensuite, jouer les touches ![][K_L] (jouer), ![][K_K] (arrête), ![][K_J](retour en arrière) — appuyer plusieurs fois pour accélérer, arrêter pour revenir à la vitesse normale,
+
 * Une fois à l’endroit voulu, on **crée un nouvel évènement d’analyse** : 
   * se placer dans le champ « contenu » de la liste des évènements d’analyse en pressant ![][K_T]
   * écrire le contenu textuel de l'évènement, 
   * choisir un type, par exemple « Scène »,
   * et cliquer sur le bouton « + » du listing,
   * Le nouvel évènement d’analyse est automatiquement créé et enregistré. Le nouvel évènement est ajouté à la liste. Il suffira de cliquer dessus pour revenir à cet endroit précis. Comme c’est une scène, l’évènement est aussi ajouté à la liste des scènes.
+  
 * On peut **créer une scène**  à l’endroit voulu en pressant ![][K_N],
+
 * Dans les textes, on peut **ajouter des balises de temps**, des références à d’autres parties, des références à des films ou à des mots, avec [les raccourcis-clavier](#shortcuts) ou par [snippets](#snippets).
+
 * Poursuivre ainsi jusqu’à obtenir tous les évènements d’analyse voulu, dans tous les types voulus.
+
 * Si les points de début et de fin sont définis, on peut demander la visualisation des quarts et des tiers en cliquant sur ![][K_R].
+
 * On peut utiliser la seconde vidéo pour visualiser des endroits sans bouger la vidéo principale. On peut s’en servir par exemple pour visualiser la scène courante. Si on ne se sert pas de cette seconde vidéo, on peut supprimer toutes les informations concernant `:video2` dans le fichier de configuration et recharger la page.
+
 * Pour produire le PFA (c’est une image `pfa.jpg` qui sera construite dans le dossier du film), il faut définir les évènements minimaux. Pour savoir ceux qui manquent, il suffit de jouer la commande `pfa build` dans la console (taper ![][K_X] pour se placer dans la console) — tant que des points manquent ils sont indiqués.
 
 
@@ -132,6 +144,10 @@ Cf. [Définition des décors](#decors)
 #### Définition des personnages
 
 Cf. [Définition des personnages](#personnages)
+
+#### Définition des snippets
+
+Cf. [Définition des snippets](#snippets)
 
 ---
 
@@ -700,11 +716,13 @@ draw all				Pour afficher les quarts et les tiers
 
 
 
-<a id="console"></id>
+<a id="console"></a>
 
 ## La console
 
 La console permet de lancer les commandes et notamment les commandes de construction de l’analyse qui produira les fichiers et les images du film analysé.
+
+C’est la bande noir qui se trouve sous le listing des évènements.
 
 ### Se placer dans/sortir de la console
 
@@ -900,3 +918,4 @@ On peut détruire régulièrement les dossiers les plus vieux, si tout est OK.
 [contrôleur]: #controller
 
 [le fichier `config.yml`]: #fichier-config
+[la console]: #console
