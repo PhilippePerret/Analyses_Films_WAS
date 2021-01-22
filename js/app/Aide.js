@@ -88,7 +88,6 @@ static get MESSAGES(){
         {content: this.img('A',{cmd:true})+'pour ouvrir le manuel d’utilisation dans une autre fenêtre'}
       , {content: 'Commande « aide », « manuel » ou « help » pour ouvrir le manuel d’utilisation'}
       , {content: this.img('K',{cmd:true})+'pour afficher/masquer le contrôleur de vidéo'}
-      , {content: this.img('K',{alt:true,cmd:true})+'pour afficher/masquer les raccourcis du contrôleur'}
       , {content: 'Déplacer la souris sur la vidéo pour choisir le temps (puis clic pour la figer)'}
       , {content: '<span class="key">⇧</span><span class="key">⌘</span><span class="key">a</span> pour afficher/masquer cette aide flottante'}
       , {content: 'On peut rejoindre facilement les 9 premiers signets à l’aide des touches 1 à 9'}

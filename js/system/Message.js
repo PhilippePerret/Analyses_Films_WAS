@@ -46,7 +46,9 @@ class Message {
       this.constructor.obj.innerHTML = ''
     }
     this.constructor.obj.appendChild(this.div)
-    this.timer = setTimeout(this.remove.bind(this), 1000 * this.tempsLecture)
+    if ( !(options.timer === false)){
+      this.timer = setTimeout(this.remove.bind(this), 1000 * this.tempsLecture)
+    }
   }
   remove(){
     this.div.remove()

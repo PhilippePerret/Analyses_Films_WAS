@@ -6,9 +6,23 @@ class Film {
 static load(){
   const my = this
   Ajax.send('load_config_current_film.rb')
+  .then(my.maybeSomethingToDo.bind(my))
   .then(my.prepareFilm.bind(my))
   .then(AEvent.load.bind(AEvent))
   .then(Locators.load.bind(Locators))
+}
+
+static maybeSomethingToDo(retourAjax){
+  retourAjax.message && message(retourAjax.message)
+  delete retourAjax.message
+  return new Promise( (ok,ko) => {
+    if ( retourAjax.action == 'require_retrieve_video' ) {
+      message("La vidéo doit être copiée. Merci de patienter un moment…", {timer:false})
+      Ajax.send('retrieve_video.rb').then(()=>ok(retourAjax))
+    } else {
+      ok(retourAjax)
+    }
+  })
 }
 
 static prepareFilm(ret){

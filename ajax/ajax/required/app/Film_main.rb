@@ -72,6 +72,23 @@ def initialize(folder)
   require_module('backup') && backup unless File.exists?(backup_today_path)
 end
 
+# Si la vidéo définie n'existe pas dans le dossier, on la récupère
+# Si elle est introuvable, on raise
+def retrieving_video_required?
+  return if File.exists?(video_path)
+  File.exists?(config['video']['original_path']) || raise("La vidéo n'est pas dans le dossier et il est impossible de retrouver l'original (#{config['video']['original_path']})")
+  Ajax << {action:'require_retrieve_video'}
+end
+
+def retrieve_video
+  FileUtils.copy(config['video']['original_path'], video_path)
+end #/ retreive_video
+
+# Chemin d'accès à la vidéo dans le dossier du film (pas l'originale)
+def video_path
+  @video_path ||= File.join(folder, config['video']['name'])
+end
+
 def personnages
   require_module('Personnage') # écrasera cette méthode
   personnages
