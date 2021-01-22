@@ -24,6 +24,12 @@ function gestionnaireTouchesFormField(ev){
   if ( ev.key == 'Escape' ){
     document.activeElement.blur()
     return stopEvent(ev)
+  } else if (ev.key == 'Tab' && ev.target.tagName == 'TEXTAREA') {
+    /* Un snippet ? */
+    if ( Snippets.traiteIn(document.activeElement) ) {
+      return stopEvent(ev)
+    }
+    return true
   } else {
     return true
   }

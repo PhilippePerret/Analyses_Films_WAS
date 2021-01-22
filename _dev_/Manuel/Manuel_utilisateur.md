@@ -22,8 +22,14 @@ Voici la procédure pour une première analyse ou pour reprendre en main l’app
 * Lancer l’application à l’aide de l’adresse : [`http://localhost/Analyses_Films_WAS`](http://localhost/Analyses_Films_WAS)
 * On peut commencer par définir le début et la fin « utiles » du film, c’est-à-dire le vrai temps zéro de l’analyse. Pour se faire, on se place aux endroits voulus, par exemple en cliquant sur la vidéo et  en ajustant avec les flèches, puis en créant les évènements « noeud-clé > Point Zéro » et le « Noeud-clé > Point Final ».
 * Ensuite, jouer les touches `L`, `K` ou `J` pour lancer la lecture, l’arrêter ou revenir en arrière,
-* Une fois à l’endroit voulu, on **crée un nouvel évènement d’analyse** : se placer dans le champ « contenu » de la liste des évènements d’analyse (par exemple en pressant ![][K_T]). Écrire le contenu de la scène par exemple, choisir le type « Scène » et cliquer sur le bouton « + »,
-* Le nouvel évènement d’analyse est automatiquement créé et enregistré. Le nouvel évènement est ajouté à la liste. Il suffira de cliquer dessus pour revenir à cet endroit précis. Comme c’est une scène, l’évènement est aussi ajouté à la liste des scènes.
+* Une fois à l’endroit voulu, on **crée un nouvel évènement d’analyse** : 
+  * se placer dans le champ « contenu » de la liste des évènements d’analyse en pressant ![][K_T]
+  * écrire le contenu textuel de l'évènement, 
+  * choisir un type, par exemple « Scène »,
+  * et cliquer sur le bouton « + » du listing,
+  * Le nouvel évènement d’analyse est automatiquement créé et enregistré. Le nouvel évènement est ajouté à la liste. Il suffira de cliquer dessus pour revenir à cet endroit précis. Comme c’est une scène, l’évènement est aussi ajouté à la liste des scènes.
+* On peut **créer une scène**  à l’endroit voulu en pressant ![][K_N],
+* Dans les textes, on peut **ajouter des balises de temps**, des références à d’autres parties, des références à des films ou à des mots, avec [les raccourcis-clavier](#shortcuts) ou par [snippets](#snippets).
 * Poursuivre ainsi jusqu’à obtenir tous les évènements d’analyse voulu, dans tous les types voulus.
 * Si les points de début et de fin sont définis, on peut demander la visualisation des quarts et des tiers en cliquant sur ![][K_R].
 * On peut utiliser la seconde vidéo pour visualiser des endroits sans bouger la vidéo principale. On peut s’en servir par exemple pour visualiser la scène courante. Si on ne se sert pas de cette seconde vidéo, on peut supprimer toutes les informations concernant `:video2` dans le fichier de configuration et recharger la page.
@@ -266,7 +272,13 @@ Procédure détaillée :
 
 #### Insérer une balise de temps
 
-* Se placer à l’endroit voulu dans la vidéo
+##### Méthode par snippet
+
+Si on se trouve dans un champ de texte, on peut utiliser le snippet `t`
+
+##### Méthode par raccourci-clavier
+
+* Se placer à l’endroit voulu dans la vidéo,
 * presser la touche ![][K_H] (=> une balise temps est placée dans le presse-papier),
 * coller la balise temps créée à l’endroit voulu.
 
@@ -293,6 +305,27 @@ Ce texte doit se trouver dans un de ces trois lieux par ordre de précédence :
 
 
 Pour le faire de façon programmatique (en ruby), il suffit d’utiliser la méthode `template('relative/path')` pour obtenir **le chemin d'accès** au fichier voulu. Pour l’introduire tel quel dans un autre document ou pour l’envoyer à la méthode `kramdown` qui retournera un texte complètement formaté.
+
+<a id="snippets"></a>
+
+### Snippets
+
+Pour facilité la rédaction des documents (et notamment ne pas sortir du texte), on peut utiliser des snippets.
+
+> Rappel : un « snippet » est un texte qu'on va obtenir en jouant une ou plusieurs lettes suivies de la touche ![][Tab]. Par exemple, dans l'application, si on écrit « t » et qu'on presse tout de suite la touche tabulation, ce « t » sera remplacé par une balise de temps correspondant au temps de la vidéo courante.
+
+#### Liste des snippets système
+
+| Action                      | Snippet | Description                                                  |
+| --------------------------- | ------- | ------------------------------------------------------------ |
+| Insérer une balise de temps | `t`     | Insère dans le texte une balise de la forme `[time:h:mm:ss]` qui sera remplacé par une horloge liée dans le texte final. |
+|                             |         |                                                              |
+|                             |         |                                                              |
+
+
+
+
+---
 
 ### Mise en forme des documents rédigés
 
@@ -819,6 +852,7 @@ On peut détruire régulièrement les dossiers les plus vieux, si tout est OK.
 [K_J]: ./img/clavier/K_J.png
 [K_K]: ./img/clavier/K_K.png
 [K_L]: ./img/clavier/K_L.png
+[K_N]: ./img/clavier/K_N.png
 [K_O]: ./img/clavier/K_O.png
 [K_P]: ./img/clavier/K_P.png
 [K_R]: ./img/clavier/K_R.png
