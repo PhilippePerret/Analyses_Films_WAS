@@ -59,6 +59,22 @@ Pour créer un film de façon assistée, il suffit de jouer la commande `create 
 * répondre aux questions,
 * attendre que le film se créé (en profiter pour lire la suite, à propos de la configuration du film.
 
+
+
+### Définir l’analyse courante
+
+On peut bien sûr définir l'analyse courante de façon « manuelle », en éditant le fichier `./_FILMS_/CURRENT`, mais il peut être plus pratique de le faire à l'aide de la commande :
+
+~~~
+set current <nom_du_dossier>
+~~~
+
+Par exemple :
+
+~~~
+set current Arrival
+~~~
+
 <a id="fichier-config"></a>
 
 ### Fichier `config.yml` du film
@@ -652,6 +668,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | Créer quelque chose                                          | `create …`                                                   | Cf. [commande `create`](#commande-create)                    |
 | Se déplacer dans le film                                     | `goto …`                                                     | Cf. [commande `goto`](#commande-goto)                        |
 | Actualiser les données du film                               | `update`                                                     | La commande est à utiliser, par exemple, lorsqu’on modifie la liste des personnages ou des décors. |
+| Définir l’analyse courante                                   | `set current <nom_dossier>`                                  | Note : recharge la page pour prendre en compte le changement. |
 
 <a id="commande-open"></a>
 

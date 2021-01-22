@@ -40,6 +40,7 @@ run(){
     case 'update':    return film.update()
     case 'draw':      return DOMVideo.current.draw(this.params[1])
     case 'erase':     return DOMVideo.current.erase(this.params[1])
+    case 'set':       return this.run_set_command(this.params[1], this.params[2])
     case 'rewind': case 'back': case '-' : case 'backward':  return DOMVideo.current.backward(this.params[1])
     case 'for': case '+': case 'forward':   return DOMVideo.current.forward(this.params[1])
     case 'essai': return this.run_essai()
@@ -259,6 +260,23 @@ run_pfa_command(cmd){
     case 'build': return this.run_build_pfa()
     case 'open':  return film.analyse.openPFA()
   }
+}
+
+
+run_set_command(what, value){
+  switch(what){
+    case 'current': return this.run_set_current_command(value)
+    default: message(`Je ne sais pas définir ${what}…`)
+  }
+}
+
+run_set_current_command(value){
+  message("Définition de l'analyse courante. Je recharge la page pour en prendre compte.",{keep:false})
+  Ajax.send('set_current.rb',{dossier: value})
+  .then(ret => {
+    ret.message && message(ret.message)
+    window.location.reload()
+  })
 }
 
 
