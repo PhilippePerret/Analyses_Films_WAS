@@ -107,8 +107,7 @@ static getEventsAround(time){
 ***/
 static onSelect(item){
   this.current = item
-  const optFollowItem = DGet('input#follow_selected_event').checked
-  optFollowItem && (DOMVideo.current.time = item.data.time)
+  Options.option('follow_selected_event') && (DOMVideo.current.time = item.data.time)
   item.exposeItsReference()
   item.listingItem.obj.scrollIntoViewIfNeeded()
 }

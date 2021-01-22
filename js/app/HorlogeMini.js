@@ -17,7 +17,7 @@ show(time){
   this.content = s2h(time)
 }
 hide(){
-  this.obj.classList.add('hidden')
+  this.obj && this.obj.classList.add('hidden')
 }
 
 build(){

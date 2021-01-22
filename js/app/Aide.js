@@ -86,6 +86,7 @@ static get MESSAGES(){
   if ( undefined == this._messages){
     this._messages = [
         {content: this.img('A',{cmd:true})+'pour ouvrir le manuel d’utilisation dans une autre fenêtre'}
+      , {content: 'Commande « aide », « manuel » ou « help » pour ouvrir le manuel d’utilisation'}
       , {content: this.img('K',{cmd:true})+'pour afficher/masquer le contrôleur de vidéo'}
       , {content: this.img('K',{alt:true,cmd:true})+'pour afficher/masquer les raccourcis du contrôleur'}
       , {content: 'Déplacer la souris sur la vidéo pour choisir le temps (puis clic pour la figer)'}

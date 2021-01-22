@@ -8,6 +8,7 @@ class App {
       console.log("Initialisation en cours…")
       Aide.runAide()
       UI.init()
+      Options.init()
       Locators.init()
       Console.init()
       Controller.init()

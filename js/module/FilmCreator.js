@@ -44,12 +44,13 @@ static createNew(name){
   // ==== /fin pour les essais ===
 
   if ( data /* si pas annulé */) {
-    message("Je crée la nouvelle analyse, merci de patienter…", {keep:false})
+    message("Je crée la nouvelle analyse, merci de patienter (notamment pour la copie de la vidéo)…", {keep:false})
     Ajax.send('create_film.rb', {data:data})
     .then(ret => {
       message("Film créé avec succès.")
       if ( data.as_current.value == true ) {
-        alert("Je vais recharger la page pour mettre le film en courant.")
+        alert("Je vais recharger la page pour mettre le nouveau film en film courant.")
+        window.location.reload()
       }
     })
   } else {

@@ -35,11 +35,11 @@ save(){
 }
 
 prepare(){
-  this.options = this.defaultizeOptions(this.config.options)
+  this.options = this.config.options = Options.defaultize(this.config.options)
   DOMVideo.nombreVideosToPrepare = this.config.video2 ? 2 : 1
   this.prepareVideo()
   this.config.video2 && this.prepareVideo2()
-  DOMVideo.setOptions()
+  Options.set()
   this.prepareEditor()
   this.prepareMenuPersonnages()
 }
@@ -150,23 +150,10 @@ onChoosePersonnage(ev){
   message("ID du personnage mis dans le clipboard.")
 }
 
-onChangeOption(key){
-  this.options[key] = DGet('#'+key).checked
-  this.save()
-}
-
 /** ---------------------------------------------------------------------
 *   PRIVATE METHODS AND PROPERTIES
 *
 *** --------------------------------------------------------------------- */
-
-defaultizeOptions(opts = {}){
-  const keysOptions = ['follow_selected_event', 'show_current_event','video_follows_mouse','synchro_videos_on_stop']
-  keysOptions.forEach(key => {
-    if ( undefined === opts[key] ) Object.assign(opts, {[key]: true})
-  })
-  return opts
-}
 
 get menuPersonnages(){
   return this._menupersos || (this._menupersos = DGet('select#personnages'))

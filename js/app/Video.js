@@ -59,20 +59,6 @@ static setCurrentVideoEvent(){
   // console.log("this.nextTime = %f", this.nextTime)
 }
 
-/**
-* Au démarrage, régler les options pour la vidéo
-On en profite aussi pour placer les observateurs pour changer les
-options quand il y a un travail à faire.
-***/
-static setOptions(){
-  const videosOptions = ['follow_selected_event', 'show_current_event','video_follows_mouse','synchro_videos_on_stop']
-  videosOptions.forEach(key => {
-    const cb = DGet('#' + key)
-    cb.checked = film.options[key]
-    cb.addEventListener('click', film.onChangeOption.bind(film, key))
-  })
-}
-
 static incVideosReady(){
   if(undefined === this.nombreVideosReady) this.nombreVideosReady = 0
   ++ this.nombreVideosReady
@@ -375,9 +361,6 @@ observe(){
 
 }
 
-get isMouseSensible(){ return film.options.video_follows_mouse }
-get synchroOtherVideoOnStop(){ return film.options.synchro_videos_on_stop}
-
 /**
 * Méthode calculant les valeurs après le chargement de la vidéo, et notamment
 * le rapport px/temps
@@ -396,7 +379,7 @@ time2px(time){ return parseInt(time * this.timeRatio, 10)}
 ***/
 onTimeChange(ev){
   this.horloge.set(this.time)
-  if ( film.options.show_current_event && this.time > (this.constructor.nextTime||0) ){
+  if ( this.optShowCurrentEvent && this.time > (this.constructor.nextTime||0) ){
     this.constructor.setCurrentVideoEvent()
   }
   this.tete_lecture = DGet('.tete-lecture',this.container)
@@ -642,5 +625,10 @@ get height(){
 get otherVideo(){
   return this._othervideo || (this._othervideo = (this.id =='video1' ? video2 : video))
 }
+
+get isMouseSensible(){ return Options.option('video_follows_mouse') }
+get synchroOtherVideoOnStop(){ return Options.option('synchro_videos_on_stop')}
+get optShowCurrentEvent(){return this._showcurevent || (this._showcurevent = Options.option('show_current_event'))}
+
 
 }// DOMVideo
