@@ -42,18 +42,30 @@ class Message {
   }
   display(options){
     options = options || {}
-    if ( options.cleanup || false === options.keep) {
-      this.constructor.obj.innerHTML = ''
-    }
+    options.force_keep && (this.constructor.force_keep = true)
+    if ( options.cleanup || false === options.keep) { this.cleanUp()}
     this.constructor.obj.appendChild(this.div)
-    if ( !(options.timer === false)){
+    this.div.addEventListener('click', this.onClick.bind(this))
+    if ( !(options.force_keep || options.timer === false) ){
       this.timer = setTimeout(this.remove.bind(this), 1000 * this.tempsLecture)
     }
   }
   remove(){
     this.div.remove()
   }
+
   get tempsLecture(){
     return this.str.split(' ').length * 2
+  }
+  // Nettoie les messages, sauf si options.force_keep est activité (comme
+  // lorsqu'il y a une erreur)
+  cleanUp(){
+    if (this.constructor.force_keep) return
+    this.constructor.obj.innerHTML = ''
+  }
+
+  onClick(){
+    this.constructor.force_keep = false
+    this.remove()
   }
 }

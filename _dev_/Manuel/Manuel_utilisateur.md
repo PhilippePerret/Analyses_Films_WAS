@@ -310,19 +310,41 @@ Pour le faire de façon programmatique (en ruby), il suffit d’utiliser la mét
 
 ### Snippets
 
-Pour facilité la rédaction des documents (et notamment ne pas sortir du texte), on peut utiliser des snippets.
+Pour faciliter la rédaction des documents (et notamment ne pas sortir du texte), on peut utiliser des snippets.
 
 > Rappel : un « snippet » est un texte qu'on va obtenir en jouant une ou plusieurs lettes suivies de la touche ![][Tab]. Par exemple, dans l'application, si on écrit « t » et qu'on presse tout de suite la touche tabulation, ce « t » sera remplacé par une balise de temps correspondant au temps de la vidéo courante.
 
 #### Liste des snippets système
 
-| Action                      | Snippet | Description                                                  |
-| --------------------------- | ------- | ------------------------------------------------------------ |
-| Insérer une balise de temps | `t`     | Insère dans le texte une balise de la forme `[time:h:mm:ss]` qui sera remplacé par une horloge liée dans le texte final. |
-|                             |         |                                                              |
-|                             |         |                                                              |
+| Action                          | Snippet | Description                                                  |
+| ------------------------------- | ------- | ------------------------------------------------------------ |
+| Insérer une balise de temps     | `t`     | Insère dans le texte une balise de la forme `[time:h:mm:ss]` qui sera remplacé par une horloge liée dans le texte final. |
+| Insérer le nom de l'application | `app`   |                                                              |
+|                                 |         |                                                              |
 
+#### Définir ses propres snippets
 
+On peut définir ses propres snippets dans [le fichier `config.yml`][] avec la propriété `snippets`. Un snippet doit définir en clé les lettres du snippet et en valeur la propriété `value`, avec la valeur à écrire, ou la propriété `method` avec le code javascript de la méthode à utiliser pour définir la valeur (valeur que la méthode doit retourner). Par exemple :
+
+~~~yaml
+# Dans le fichier config.yml
+
+# ...
+snippets:
+	ph: Philippe Perret
+	# ou :
+	ph:
+		value: Philippe Perret
+	# Avec une méthode (sans 'return')
+	date:
+		method: new Date().getMonth() + 1
+	# Avec une méthode qui définit explicitement le 'return'
+	autredate:
+		method: var d = new Date(); return d.getFullYear()
+	
+~~~
+
+Noter que si la méthode ne contient pas de `return`, il sera ajouté au début du code.
 
 
 ---

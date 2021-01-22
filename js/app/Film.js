@@ -50,6 +50,7 @@ save(){
 
 prepare(){
   this.options = this.config.options = Options.defaultize(this.config.options)
+  this.config.snippets && Snippets.addCustomSnippets(this.config.snippets)
   this.setTitle()
   DOMVideo.nombreVideosToPrepare = this.config.video2 ? 2 : 1
   this.prepareVideo()
