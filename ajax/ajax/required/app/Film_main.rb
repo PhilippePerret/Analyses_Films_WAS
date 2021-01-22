@@ -6,21 +6,34 @@ class Film
 class << self
   def current
     @current ||= begin
-      folder = nil
-      if File.exists?('../_FILMS_/CURRENT')
-        folder = File.expand_path("../_FILMS_/#{File.read('../_FILMS_/CURRENT').strip}")
-        folder = nil if not(File.exists?(folder))
+      fdossier = nil
+      if File.exists?(path_current_def)
+        fdossier = File.join(folder, File.read(path_current_def).strip)
+        fdossier = nil if not(File.exists?(fdossier))
       end
-      folder ||= get_first_directory # peut être nil
-      folder && new(folder)
+      fdossier ||= get_first_directory # peut être nil
+      fdossier && new(fdossier)
     end
   end
+
+  # Mets le film +folder+ en film courant
+  def set_current(fdossier)
+    File.open(path_current_def,'wb'){|f|f.write(fdossier)}
+  end
+
+  # Retourne le premier dossier qu'on trouve
   def get_first_directory
-    Dir["../_FILMS_/*"].each do |p|
+    Dir["#{folder}/*"].each do |p|
       return p if File.directory?(p)
     end
     return nil
   end #/ get_first_directory
+  def path_current_def
+    @path_current_def ||= File.join(folder,'CURRENT')
+  end
+  def folder
+    @folder ||= File.join(APP_FOLDER,'_FILMS_')
+  end #/ folder
 end # /<< self
 # ---------------------------------------------------------------------
 #

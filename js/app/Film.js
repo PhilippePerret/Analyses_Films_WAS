@@ -102,10 +102,12 @@ updateMenuPersonnages(){
 }
 // À régler
 get decorsForMenus(){
+  var data_decors
   const decors = this.config.decors || {}
   const liste_decors = []
   for(var kdecor in decors ) {
-    const data_decor = decors[kdecor]
+    data_decor = decors[kdecor]
+    if ( 'string' == typeof(data_decor) ) data_decor = {hname:data_decor, items: null}
     liste_decors.push({id:kdecor, hname:data_decor.hname})
     var sous_decors = data_decor.items
     if ( sous_decors ) {

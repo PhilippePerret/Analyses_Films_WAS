@@ -37,7 +37,7 @@ Voici la procédure pour une première analyse ou pour reprendre en main l’app
 
 ## Film analysé
 
-Le film analysé doit être un dossier unique portant le nom du film (ou un diminutif) se trouvant dans le dossier `_FILM_` de l’application. Ce dossier doit au minimum contenir :
+Le film analysé doit être un dossier unique portant le nom du film (ou un diminutif) se trouvant dans le dossier `_FILMS_` de l’application. Ce dossier doit au minimum contenir :
 
 * la vidéo du film
 * un fichier `config.yml` défini ci-dessous.
@@ -48,7 +48,18 @@ Analyses_Films_WAS/_FILMS_/<monFilm>/config.yml
 
 ~~~
 
+#### Créer un film de façon assistée
 
+Pour créer un film de façon assistée, il suffit de jouer la commande `create film` ou `create analyse` :
+
+* sortir de tout champ d’édition avec ![][Escape],
+* se placer dans la console avec ![][K_X],
+* taper `create film`,
+* presser ![][Return] pour lancer la procédure,
+* répondre aux questions,
+* attendre que le film se créé (en profiter pour lire la suite, à propos de la configuration du film.
+
+<a id="fichier-config"></a>
 
 ### Fichier `config.yml` du film
 
@@ -56,37 +67,65 @@ C’est le fichier qui définit le film courant. On trouve les propriétés suiv
 
 ~~~yaml
 ---
-	:titre: Le titre du film
-	:video:
-		:width:	400 				// taille de la vidéo à afficher
-		:name:  video.mp4		// nom de la vidéo dans ce dossier
+	titre: Le titre du film
+	video:
+		width:	400 				// taille de la vidéo à afficher
+		name:  video.mp4		// nom de la vidéo dans ce dossier
+		original_path: path/to/video.mp4 // chemin d’accès
+			
+	# Pour avoir une seconde vidéo de contrôle ou d’essai
+	# Pour le moment, ce sera toujours la même
+	video2:
+		width: 200
 		
-	// === OPTIONS ===
+	# Définition des personnages
+	personnages:
+		PR: <personnage>		# 2 lettres qui seules vont remplacer le personnage
+												# dans les textes.
+		SA: 								# Définition complète d'un autre personnage
+			full_name: Son nom complet
+			short_name: Son diminutif
+			nick_name: Pseudo
 	
-	// Pour avoir une seconde vidéo de contrôle ou d’essai
-	// Pour le moment, ce sera toujours la même
-	:video2:
-		:width: 200
-		
-	:personnages:
-		:PR: <personnage>		// 2 lettres qui seules vont remplacer le personnage
-												// dans les textes.
-		:SA: <autre>				// Autre personnage
+	# définition des décors
+	decors:
+		id_decor1:		# Un décor avec sous-décors
+			hname: LE DÉCOR
+			items:
+				subdecor1: Chambre
+				subdecor2: Salon
+		id_decor2: hname		# Décor seul
+		id_decor3: hname		# Décor seul 
+	
+	# Options
+	# -------
+	# Elles se règlent automatiquement en fonction des choix dans
+	# l'interface.
 ~~~
 
+#### Définition des décors
 
+Cf. [Définition des décors](#decors)
+
+#### Définition des personnages
+
+Cf. [Définition des personnages](#personnages)
 
 ---
 
+<a id="personnages"></a>
+
 ## Personnages du film
 
-Les personnages du film, pour permettre les calculs de statistique, doivent être définis dans le fichier de configuration `config.yml`. Pour chacun d’eux, on définir les propriétés `:full_name` (nom complet, patronyme), `:short_name` (le nom court, diminutif) et `:nick_name` (le pseudonyme, le plus employé.). Une définition de personnage ressemblera donc à :
+Les personnages du film, pour permettre les calculs de statistique, doivent être définis dans [le fichier `config.yml`][]. Pour chacun d’eux, on définir les propriétés `:full_name` (nom complet, patronyme), `:short_name` (le nom court, diminutif) et `:nick_name` (le pseudonyme, le plus employé.). Une définition de personnage ressemblera donc à :
 
 ~~~yaml
 # Dans le fichier config.yml
 
 # ...
 personnages:
+	MG: MacGregor		# personnage "simple" défini seulement
+									# par un nom
 	PR:
 		full_name: Philippe Perret
 		short_name: Philippe
@@ -124,10 +163,10 @@ C’est la raison pour laquelle, **si un personnage n’est pas présent dans un
 
 ~~~
 # MAUVAIS :
-PR et MR parlent de TR qui ne vient pas. # :-(
+PR et MR parlent de TR qui ne vient pas. 		<=== :-(
 
 # BON :
-PR et MR parlent de Lili qui ne vient pas. # :-D
+PR et MR parlent de Lili qui ne vient pas. 	<=== :-D
 ~~~
 
 
@@ -397,13 +436,16 @@ Par convention, la toute première ligne (i.e. premier paragraphe) est considér
 
 Noter que pour le moment, pour pouvoir éditer complètement une scène (i.e. définir son lieu, effet, décors, etc.) il faut l’éditer dans [l’éditeur séparé](#grand-editor). On peut l’éditer comme un autre évènement d’analyse seulement s’il faut juste changer son temps ou son texte.
 
+<a id="decors"></a>
+
 #### Définition des décors
 
-On définit les décors dans le fichier `config.yml` du film :
+On définit les décors dans [le fichier `config.yml`][] du film :
 
 ~~~yaml
 ...
 decors:
+	id_decor_simple: Rue animée # décor simple, sans items
 	id_decor1:
 		hname: Maison du héros
 		items:
@@ -780,3 +822,4 @@ On peut détruire régulièrement les dossiers les plus vieux, si tout est OK.
 [Mode commande]: #mode-commande
 [contrôleur]: #controller
 
+[le fichier `config.yml`]: #fichier-config
