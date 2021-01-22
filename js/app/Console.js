@@ -38,7 +38,7 @@ run(){
     case 'pfa':       return this.run_pfa_command(this.params[1])
     case 'goto':      return DOMVideo.current.goto(this.params[1], this.params[2])
     case 'create':    return this.run_create_command(this.params[1], this.params[2])
-    case 'update':    return film.update()
+    case 'update': case 'reload': return film.update()
     case 'draw':      return DOMVideo.current.draw(this.params[1])
     case 'erase':     return DOMVideo.current.erase(this.params[1])
     case 'set':       return this.run_set_command(this.params[1], this.params[2])

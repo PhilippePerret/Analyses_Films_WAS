@@ -97,7 +97,7 @@ set current Arrival
 
 <a id="fichier-config"></a>
 
-### Fichier `config.yml` du film
+## Fichier configuation (`config.yml`) du film
 
 C’est le fichier qui définit le film courant. On trouve les propriétés suivantes :
 
@@ -138,6 +138,14 @@ C’est le fichier qui définit le film courant. On trouve les propriétés suiv
 	# Elles se règlent automatiquement en fonction des choix dans
 	# l'interface.
 ~~~
+
+### Rechargement du fichier de configuration
+
+Pour actualiser le fichie configuration — par exemple après avoir ajouté un snippet, un personnage, un décor, il suffit de faire :
+
+* ![][Escape] éventuellement pour sortir du champ d'édition,
+* ![][K_X] pour se placer dans la console,
+* taper `update` ou `reload`![][Return].
 
 #### Définition des décors
 
@@ -553,7 +561,7 @@ Pour ajouter un nouveau décor, il suffit de faire :
 * ![][K_X] pour se placer dans la console,
 * taper `open config `![][Return] pour ouvrir le fichier configuration
 * ajouter les décors voulus
-* taper `update`![][Return] dans la console pour actualiser l'affichage 
+* taper `update` ou `reload`![][Return] dans la console pour actualiser l'affichage 
 
 
 
@@ -744,7 +752,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | Construire un élément                                        | `build …`                                                    | Cf. [commande `build`](#commande-build)                      |
 | Créer quelque chose                                          | `create …`                                                   | Cf. [commande `create`](#commande-create)                    |
 | Se déplacer dans le film                                     | `goto …`                                                     | Cf. [commande `goto`](#commande-goto)                        |
-| Actualiser les données du film                               | `update`                                                     | La commande est à utiliser, par exemple, lorsqu’on modifie la liste des personnages ou des décors. |
+| Actualiser les données du film, recharger le fichier de configuration | `update` ou `reload`                                         | La commande est à utiliser, par exemple, lorsqu’on modifie la liste des personnages ou des décors. |
 | Définir l’analyse courante                                   | `set current <nom_dossier>`                                  | Note : recharge la page pour prendre en compte le changement. |
 
 <a id="commande-open"></a>
