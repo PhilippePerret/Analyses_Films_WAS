@@ -100,8 +100,8 @@ observe(){
 }
 
 onChange(ev){
-  film.options[this.key] = film.config.options[this.key] = this.obj.checked
-  film.save()
+  film.options[this.key] = this.obj.checked
+  film.setConfig('options', film.options)
   if ( this.key == 'show_current_event' ) {
     video._showcurevent = null
     video2 && (video2._showcurevent = null)

@@ -24,6 +24,8 @@ Voici la procédure pour une première analyse ou pour reprendre en main l’app
 
 * Ouvrir le panneau des options avec la touche ![][K_O] pou les définir (on peut utiliser aussi la commande `options` dans [la console][]).
 
+* J’ouvre le panneau des personnages avec la touche ![][K_P] (si je suis dans un champ d’édition ou un menu, il faut au préalable que j’en sorte avec la touche ![][Escape]).
+
 * On peut commencer par définir le début et la fin « utiles » du film, c’est-à-dire le vrai temps zéro de l’analyse. Pour se faire, on se place aux endroits voulus, par exemple en cliquant sur la vidéo et  en ajustant avec les flèches, puis en créant les évènements « **noeud-clé > Point Zéro** » et le « **Noeud-clé > Point Final** ».
 
 * Ensuite, jouer les touches ![][K_L] (jouer), ![][K_K] (arrête), ![][K_J](retour en arrière) — appuyer plusieurs fois pour accélérer, arrêter pour revenir à la vitesse normale,

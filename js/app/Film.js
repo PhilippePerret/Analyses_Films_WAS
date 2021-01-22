@@ -47,6 +47,14 @@ constructor(config) {
 save(){
   Ajax.send('save_config.rb', {config: this.config})
 }
+setConfig(key, value){
+  Ajax.send('set_config.rb', {config_key:key, config_value:value})
+  .then(ret => {
+    this.config[key] = value
+    // console.log("ret :", ret)
+    // Note : pas de message, la méthode est trop souvent appelée
+  })
+}
 
 prepare(){
   this.options = this.config.options = Options.defaultize(this.config.options)

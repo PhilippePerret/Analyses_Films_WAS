@@ -329,8 +329,7 @@ baliseTimeInClipboard(){
 }
 
 memorizeLastTime(){
-  Object.assign(film.config, {last_time: DOMVideo.current.time})
-  film.save()
+  film.setConfig('last_time', DOMVideo.current.time)
 }
 
 /** ---------------------------------------------------------------------
