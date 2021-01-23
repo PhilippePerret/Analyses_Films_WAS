@@ -64,7 +64,7 @@ static checkValues(values){
       const aev = AEvent.get(values.id)
       values.type   = aev.type
       values.decor  = aev.decor
-      console.log("Values après correction : ", values)
+      // console.log("Values après correction : ", values)
     }
   } catch (e) {
     erreur(e)
@@ -127,7 +127,9 @@ static getEventsAround(time){
 ***/
 static onSelect(item){
   this.current = item
-  Options.option('follow_selected_event') && (DOMVideo.current.time = item.data.time)
+  // Si on doit suivre l'évènement sélectionné, mais que ce n'est pas
+  //  une actualisation de l'item, on se place au temps de l'event
+  Options._('follow_selected_event') && (!item.updating) && (DOMVideo.current.time = item.data.time)
   item.exposeItsReference()
   item.listingItem.obj.scrollIntoViewIfNeeded()
 }
@@ -378,6 +380,9 @@ get htype(){
   return `<span class="type ${ty}">${cty}</span>`
 }
 
+/**
+* Après l'update, mais il reste des choses à faire (cf. ListingExtended#update)
+***/
 afterUpdate(){
   this.time = this.data.time
 }

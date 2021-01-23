@@ -879,11 +879,29 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | Aller au signet précédent | ![][Cmd]![][ArrowUp] | |
 | Aller au signet 1… 9 | ![][K_1]…![][K_9] | |
 
+---
 
+## Conversion des vidéos pour l'analyse
+
+Si le fichier du film n’est pas en `mp4` ou `ogg`, il convient de le transposer. Cela se fait grâce à la commande Terminal : 
+
+~~~
+ffmpeg -i fichier/original.<ext> -vf subtitles=fichier/original.<ext> fichier/original.mp4
+~~~
+
+>  Si on se place dans le dossier contenant la vidéo, on a juste à mettre le nom du fichier.
 
 ---
 
+#### Extraire le son
 
+Pour extraire le son (*), utiliser la commande :
+
+~~~
+ffmpeg -i input-video.avi -vn -acodec copy output-audio.aac
+~~~
+
+(* Pour essayer de gérer le son même dans une version accélérée de la vidéo)
 
 ### Backups quotidien
 

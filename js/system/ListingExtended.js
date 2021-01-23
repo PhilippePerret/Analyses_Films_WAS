@@ -177,7 +177,6 @@ static __afterCreate(item){
 * Actualisation des données
 ***/
 static update(data){
-  console.log("-> %s::update", this.name)
   var item = this.get(data.id)
   item.isSelectedItem = this.listing.selection.lastItem && item.id == this.listing.selection.lastItem.id
   if (item) {
@@ -246,6 +245,7 @@ save(){
 ***/
 update(data){
   // console.log("-> update %s avec ", this.ref, data)
+  this.updating = true
   const oldIndex = this.index // undefined si pas liste ordonnée
   this.dispatchData(data)
   this.save()
@@ -253,12 +253,10 @@ update(data){
   this.listingItem.replaceInList()
   if ( this.constructor.isOrdered ) {
     this.constructor.resetOrderedList()
-    console.log({
-      index: this.index, oldIndex: oldIndex
-    })
     this.index == oldIndex || this.repositionne()
   }
   this.isSelectedItem && this.select()
+  this.updating = false
 }
 
 destroy(lefaire = false){

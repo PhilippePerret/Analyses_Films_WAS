@@ -21,6 +21,8 @@ static init(){
   this.build()
 }
 
+static _(koption){return this.option(koption)}
+
 /**
 * Retourne TRUE de l'option +koption+ est cochée
 ***/

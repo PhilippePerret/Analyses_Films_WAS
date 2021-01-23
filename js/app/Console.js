@@ -51,8 +51,22 @@ run(){
 }
 
 run_essai(){
-  // Ajax.send("essai.rb").then(ret => console.log(ret))
-  message("Aucun essai pour le moment")
+  // Je lance des tests pour connaitre le rapport entre le rate et la vitesse
+  const param1 = this.params[1]
+      , param2 = this.params[2]
+  // message("Aucun essai pour le moment")
+
+
+  const audio = DGet('audio#audio')
+  audio.addEventListener('canplaythrough', this.StartTestsAudio.bind(this))
+  audio.src = '_FILMS_/Essais/marion.mp3'
+  audio.load()
+}
+
+StartTestsAudio(){
+  const itest = new TestAudio()
+  itest.tests = [2, 3, 4]
+  itest.startTests()
 }
 
 /**
@@ -302,3 +316,69 @@ open_config_file(){
   })
 }
 }//Console
+
+
+/**
+* Pour faire des tests pour trouver le rapport exact entre le rate de
+l'audio et la vitesse. Pour pouvoir synchroniser le son et l'image avec
+mon système d'accélération.
+***/
+
+class TestAudio {
+
+constructor(){
+  this.observe()
+}
+
+startTests(){
+  this.tests = []
+  var i = 1
+  while(i < 8){
+    i += 0.1
+    this.tests.push(i)
+  }
+  this.duration = this.obj.duration * 1000
+  console.info({'Durée totale (msecs)': this.duration})
+  console.log("Je commence le test")
+  this.runNextTest()
+}
+
+runNextTest(){
+  const rateTest = this.tests.shift()
+  if (rateTest) {
+    this.start(rateTest)
+  } else {
+    console.log("Fini !")
+  }
+}
+displayBilanAndNext(){
+  const duree   = this.endTime - this.startTime
+  const rapport = parseFloat(parseFloat(this.duration / duree).toFixed(2))
+  console.info({
+      start: this.startTime, end: this.endTime, rate: this.rate
+    , duree:duree, acceleration: rapport
+  })
+  this.runNextTest()
+}
+
+start(rate){
+  this.rate = rate
+  this.obj.playbackRate = rate
+  this.obj.currentTime  = 0
+  this.startTime = this.now()
+  this.obj.play()
+}
+observe(){
+  this.obj.addEventListener('ended', this.onEnded.bind(this))
+}
+// Appelé quand ça finit
+onEnded(){
+  this.endTime = this.now()
+  this.displayBilanAndNext()
+}
+
+now() { return Number(new Date().getTime()) }
+
+get obj(){return this._obj || (this._obj = DGet('audio#audio') )}
+
+}// class

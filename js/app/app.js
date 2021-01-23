@@ -5,7 +5,7 @@ class App {
   // Quand la page est chargée
   static init(){
     return new Promise((ok,ko) => {
-      console.log("Initialisation en cours…")
+      // console.log("Initialisation en cours…")
       Aide.runAide()
       UI.init()
       Options.init()
