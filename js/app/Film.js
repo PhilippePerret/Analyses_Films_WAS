@@ -13,16 +13,42 @@ static load(){
 }
 
 static maybeSomethingToDo(retourAjax){
+  console.log("retour ajax: ", retourAjax)
   retourAjax.message && message(retourAjax.message)
   delete retourAjax.message
   return new Promise( (ok,ko) => {
-    if ( retourAjax.action == 'require_retrieve_video' ) {
+    this.preActionsRequired = []
+    if ( retourAjax.require_retrieve_video ) {
+      this.preActionsRequired.push('video')
       message("La vidéo doit être copiée. Merci de patienter un moment…", {timer:false})
-      Ajax.send('retrieve_video.rb').then(()=>ok(retourAjax))
-    } else {
-      ok(retourAjax)
+      Ajax.send('retrieve_video.rb').then(this.onActionsPreparatoiresRequired.bind(this,'video',ok, retourAjax))
+      return
     }
+    if (retourAjax.require_audio_file) {
+      this.preActionsRequired.push('audio')
+      message("Le fichier son doit être produit. Merci de patienter un moment…", {timer:false})
+      Ajax.send('product_audio_file.rb').then(this.onActionsPreparatoiresRequired.bind(this,'audio',ok, retourAjax))
+      return
+    }
+    ok(retourAjax)
   })
+}
+
+/**
+* Quand des actions préparatoires ont été requises, on attend leur
+exécution dans cette méthode
+***/
+static onActionsPreparatoiresRequired(keyAction, whenOkMethod, retourAjax, ret){
+  console.log("ret %s = ", keyAction, ret)
+  this.preActionsRequired.pop()
+  console.info("Action %s accomplie", keyAction)
+  if (keyAction == 'audio' && !ret.ok){
+    console.error("Problème avec la production du fichier audio")
+  }
+  if (this.preActionsRequired.length == 0) {
+    console.info("OK, les actions ont été accomplies ")
+    whenOkMethod(retourAjax)
+  }
 }
 
 static prepareFilm(ret){

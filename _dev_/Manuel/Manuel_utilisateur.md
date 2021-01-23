@@ -898,7 +898,7 @@ ffmpeg -i fichier/original.<ext> -vf subtitles=fichier/original.<ext> fichier/or
 Pour extraire le son (*), utiliser la commande :
 
 ~~~
-ffmpeg -i input-video.avi -vn -acodec copy output-audio.aac
+ffmpeg -i input-video.avi -vn output-audio.aac
 ~~~
 
 (* Pour essayer de gérer le son même dans une version accélérée de la vidéo)

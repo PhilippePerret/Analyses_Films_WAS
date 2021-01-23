@@ -77,17 +77,38 @@ end
 def retrieving_video_required?
   return if File.exists?(video_path)
   File.exists?(config['video']['original_path']) || raise("La vidéo n'est pas dans le dossier et il est impossible de retrouver l'original (#{config['video']['original_path']})")
-  Ajax << {action:'require_retrieve_video'}
+  Ajax << {require_retrieve_video: true}
+end
+
+def audio_file_required?
+  return if File.exists?(audio_path)
+  Ajax << {require_audio_file: true}
 end
 
 def retrieve_video
   FileUtils.copy(config['video']['original_path'], video_path)
 end #/ retreive_video
 
-# Chemin d'accès à la vidéo dans le dossier du film (pas l'originale)
-def video_path
-  @video_path ||= File.join(folder, config['video']['name'])
+def product_audio_file
+  ref_path = File.exists?(video_path) ? video_path : original_video_path
+  cmd = "/usr/local/bin/ffmpeg -loglevel warning -i '#{ref_path}' -vn '#{audio_path}'"
+  Ajax << {command_audio_file: cmd}
+  res = `#{cmd} 2>&1`
+  fois = 0
+  begin
+    sleep 1
+    fois += 1
+    if fois > 45
+      Ajax << {ok:false, retour_audio_ffmpeg: res, message:"La production du fichier audio prend trop de temps…" }
+      break
+    end
+  end until File.exists?(audio_path)
+  Ajax << {ok:true, command:cmd, retour_audio_ffmpeg: res}
 end
+
+def exec_as_su
+  # `echo "<mot de passe>" | sudo -S <code à exécuter>`
+end #/ exec_as_su
 
 def personnages
   require_module('Personnage') # écrasera cette méthode
@@ -224,6 +245,26 @@ end #/ duration_scenes
 #   PATHS
 #
 # ---------------------------------------------------------------------
+
+def original_video_path
+  @original_video_path ||= config['video']['original_path']
+end
+# Chemin d'accès à la vidéo dans le dossier du film (pas l'originale)
+def video_path
+  @video_path ||= File.join(folder, video_name)
+end
+
+def audio_path
+  @audio_path ||= File.join(folder, audio_name)
+end
+def audio_name
+  audio_name ||= "#{File.basename(video_name,File.extname(video_name))}.mp3"
+end
+
+def video_name
+  @video_name ||= config['video']['name']
+end #/ video_name
+
 
 def folder_events
   @folder_events ||= mkdir(File.join(folder,'events'))
