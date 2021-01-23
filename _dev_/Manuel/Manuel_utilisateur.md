@@ -669,11 +669,13 @@ On l’affiche grâce au raccourci  ![][Cmd]![][K_K].
 
 ## Les vidéos
 
+### Lancer la lecture
+
+La touche ![][K_L] permet de lancer la lecture sur [la vidéo active][]. Utiliser ![][Ctrl]![][K_L] pour l’autre vidéo.
+
 ### Régler la vitesse
 
-Pour régler la vitesse de la vidéo, il suffit de presser autant de fois que nécessaire la touche ![][K_L] qui permet de lancer la lecture. Avec la touche ![][Ctrl] appuyée, on ralentit la vitesse.
-
-Plusieurs pressions sur la touche ![][K_L] (avec ou sans ![][Ctrl]) permettent de modifier la vitesse.
+Appuyer plusieurs fois sur la touche ![][K_L] (avec ![][Ctrl] pour la vidéo non active)permet de modifier la vitesse (en boucle).
 
 > Noter que dès qu’on arrête la lecture, la vitesse revient à son état initial, sauf si on l’a figée (cf. ci-dessous)
 
@@ -681,7 +683,13 @@ Plusieurs pressions sur la touche ![][K_L] (avec ou sans ![][Ctrl]) permettent d
 
 Parfois il est intéressant de rester toujours à une même vitesse. Par exemple pour faire la relève des scène 2 fois plus vite en accélérant par 2. Dans ce cas, on coche la case « Figer la vitesse » qui permettra de ne pas faire varier la vitesse, quelles que soient les touches pressées.
 
+<a id="video-active"></a>
 
+### La vidéo active
+
+En [mode avec deux vidéos](#use-two-videos), la vidéo active est la vidéo entourée d’un bord bleu. Pour changer la vidéo active, il suffit de cliquer sur la vidéo à activer.
+
+Noter que la plupart des contrôles par touche s’appliquent à la vidéo non active simplement en ajoutant la touche ![][Ctrl]. Par exemple ![][Ctrl]![][K_L] permet de jouer la vidéo non active sans l’activer.
 
 <a id="use-two-videos"></a>
 
@@ -712,7 +720,7 @@ Cf. [Naviguer dans le film](#naviguer) pour voir les multitudes de moyens de se 
 
 Pour faciliter l’analyse, on peut placer des lignes repères qui indiquent les quarts et les tiers du film. 
 
-En [mode commande][], il suffit de jouer la touche ![][K_R] pour afficher ou masquer les repères du paradigme de field, c’est-à-dire les quarts et les tiers. De la même manière, la section avant et après qui n’est pas utilisée est masquée (les génériques, en gros).
+En [mode commande][], il suffit de jouer la touche ![][K_R] — avec ![][Ctrl] pour la vidéo non active — pour afficher ou masquer les repères du paradigme de field, c’est-à-dire les quarts et les tiers. De la même manière, la section avant et après qui n’est pas utilisée est masquée (les génériques, en gros).
 
 On peut aussi utiliser les commandes suivantes :
 
@@ -927,5 +935,6 @@ On peut détruire régulièrement les dossiers les plus vieux, si tout est OK.
 [Mode commande]: #mode-commande
 [contrôleur]: #controller
 
+[la vidéo active]: #video-active
 [le fichier `config.yml`]: #fichier-config
 [la console]: #console

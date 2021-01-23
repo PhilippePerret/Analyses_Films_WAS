@@ -52,23 +52,33 @@ function gestionnaireTouchesController(ev){
     }
     return true // traité
   }
-  // Les touches seules
+
+  // Les touches seules ou avec Ctrl
+
+  const targetVideo = DOMVideo[ev.ctrlKey?'other':'current']
+  // console.info({
+  //   ctrlKey: ev.ctrlKey,
+  //   'Current vidéo':DOMVideo._current.id,
+  //   'Other vidéo': DOMVideo._other.id,
+  //   targetVideo: targetVideo.id
+  // })
+
   switch(ev.key){
     case ' ': DOMVideo.current.togglePlay();break
     case 'a': AEvent.listing.onAllButton(null);break
     case 'c': DOMVideo.synchronizeVideos();break
     case 'f': AEvent.filtre();break // simple message
     case 'h': DOMVideo.current.baliseTimeInClipboard(); break
-    case 'j': DOMVideo.current.onKeyJ(ev); break
-    case 'k': DOMVideo.current.onKeyK(ev); break
-    case 'l': DOMVideo.current.onKeyL(ev); break
+    case 'j': targetVideo.onKeyJ(ev); break
+    case 'k': targetVideo.onKeyK(ev); break
+    case 'l': targetVideo.onKeyL(ev); break
     case 'n': AEvent.createScene();break
     case 'o': Options.togglePanel();break
     case 'p': film.togglePersonnages(); break
-    case 'r': DOMVideo.current.toggleReperesPFA();break
+    case 'r': targetVideo.toggleReperesPFA();break
     case 'x': focusIn(DGet('#console'));break
-    case 'ArrowRight':  DOMVideo.current.avance(ev); break
-    case 'ArrowLeft':   DOMVideo.current.recule(ev); break
+    case 'ArrowRight':  targetVideo.avance(ev); break
+    case 'ArrowLeft':   targetVideo.recule(ev); break
     case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8':
     case '9': Locators.gotoSignet(Number(ev.key) - 1);break
     default: return

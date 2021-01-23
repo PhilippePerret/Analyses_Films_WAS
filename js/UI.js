@@ -6,8 +6,13 @@ class UI {
 
 static init(){
   return new Promise((ok,ko) => {
+    DGet('button#btn-force-reload').addEventListener('click', this.onClickReload.bind(this))
     ok()
   })
+}
+
+static onClickReload(){
+  window.location.href = window.location.href.split('?')[0] + `?at=${new Date().getTime()}`
 }
 
 static toggle(obj){

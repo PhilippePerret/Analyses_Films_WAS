@@ -41,7 +41,11 @@ static set current(v){
   this.current.container.classList.remove('selected')
   this._current = v
   this._current.container.classList.add('selected')
+  this._other = this.current.id == 'video1' ? video2 : video
 }
+
+// L’« autre » vidéo
+static get other(){ return this._other || (this._other = this.current.id == 'video1' ? video2 : video) }
 
 /**
 * Méthode qui permet de suivre les évènements en même temps que la vidéo
@@ -542,7 +546,7 @@ toggleReperesPFA(){
 
 // === Commandes pour dessiner sur la vidéo ===
 draw(what){
-  message("Je dessine…", {keep:false})
+  message(`Je dessine sur #${this.id}…`, {keep:false})
   // On masque le début et la fin si nécessaire
   this.drawMasqueHorsFilm()
   switch(what){
