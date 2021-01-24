@@ -10,6 +10,13 @@ L’application « Analyseur de Films » permet de procéder à l’analyse « s
 
 De façon résumée, l’analyse consiste à enregistrer des « évènements » qui sont autant de points-clé dans le film permettant d’écrire toutes les notes qu’on veut.
 
+L’application permet :
+
+* de définir les scènes ainsi que les points-clé du film afin de produire le paradigme de Field augmenté du film
+* de définir les personnages, les décors afin de produire des fichiers de statistiques qui éclairent objectivement sur les éléments filmiques,
+* de construire des livres ebook à diffuser, qui rassemblent tous les documents produits, manuels et automatisés,
+* de produire des repères de temps qui permettent de faire des références à des portions de film.
+
 ---
 
 ## Première analyse (ou reprise après absence)
@@ -227,6 +234,16 @@ PR et MR parlent de Lili qui ne vient pas. 	<=== :-D
 
 ## Analyse
 
+### Composition d’une analyse
+
+Une analyse avec l'« Analyseur de Films », qui [produira les livres d'analyse](#produire-livre), est composée des éléments suivant :
+
+* une [page de couverture](#cover)
+* des [pages d'informations](#pages-informations)
+* des [« documents rédigés »](#documents-rediges)
+* des [« documents automatiques »](#documents-automatiques)
+* une [quatrième de couverture](#quatrieme-couverture)
+
 ### Créer un évènement d'analyse
 
 * Choisir son type dans le menu (scène, nœud clé, etc.),
@@ -422,7 +439,11 @@ Sans texte alternatif, la marque liée au document (à sa section) sera : **Doc
 
 ---
 
+<a id="books"></a>
+
 ## Les livres
+
+<a id="produire-livre"></a>
 
 ###  Produire les livres
 
@@ -434,6 +455,39 @@ Pour produire les livres (ebook mobi, epub, pdf), il suffit de jouer la commande
 * presser la touche ![][Return] pour lancer la fabrication,
 * attendre jusqu’à la fabrication complète des livres.
 
+<a id="cover"></a>
+
+### La couverture
+
+Chaque livre comporte sa propre couverture mais une charte commune est utilisée pour homogénéiser l'ensemble.
+
+Pour ajouter la page de couverture dans le livre produit, il faut inclure la balise `[include:cover.html]` dans le premier document défini ou ajouter `cover.html` au début de la liste des documents dans la configuration du livre :
+
+~~~yaml
+# dans le fichier config.yml du film
+---
+# ...
+documents:
+	- cover.html
+~~~
+
+Il convient de s'assurer que les données suivantes soient définies dans le fichier `config.yml` (une erreur sera produite si ça n'est pas le cas) :
+
+~~~yaml
+# Dans le fichier config.yml du film
+---
+title: Le titre du film
+film_infos:
+	director: Réalisateur du film
+book_infos:
+	author: Auteur du Film
+	editor:
+		name: Éditeur
+		logo: path/to/logo.png
+	cover: 
+		path: path/to/cover.jpg
+		width: taille sur la page de couverture
+~~~
 
 <a id="note-temps"></a>
 
@@ -884,6 +938,8 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 ## Conversion des vidéos pour l'analyse
 
 Si le fichier du film n’est pas en `mp4` ou `ogg`, il convient de le transposer. Cela se fait grâce à la commande Terminal : 
+
+CETTE COMMANDE NE FONCTIONNE PAS (pour le moment, regarder les recherches entreprises dans le fichier README du dossier des vidéos sur le disque dur externe)
 
 ~~~
 ffmpeg -i fichier/original.<ext> -vf subtitles=fichier/original.<ext> fichier/original.mp4

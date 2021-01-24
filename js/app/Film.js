@@ -1,8 +1,10 @@
 'use strict'
 class Film {
 
-// Méthode qui charge le film courant (c'est-à-dire le film se trouvant
-// dans le dossier _FILMS_)
+/**
+Méthode qui charge le film courant (c'est-à-dire le film se trouvant
+dans le dossier _FILMS_ qui est défini par le fichier _FILMS_/CURRENT)
+*/
 static load(){
   const my = this
   Ajax.send('load_config_current_film.rb')
@@ -39,11 +41,11 @@ static maybeSomethingToDo(retourAjax){
 exécution dans cette méthode
 ***/
 static onActionsPreparatoiresRequired(keyAction, whenOkMethod, retourAjax, ret){
-  console.log("ret %s = ", keyAction, ret)
+  // console.log("ret %s = ", keyAction, ret)
   this.preActionsRequired.pop()
-  console.info("Action %s accomplie", keyAction)
   if (keyAction == 'audio' && !ret.ok){
-    console.error("Problème avec la production du fichier audio")
+    console.error("Problème avec la production du fichier audio. Consulter le retour en console")
+    console.error(ret)
   }
   if (this.preActionsRequired.length == 0) {
     console.info("OK, les actions ont été accomplies ")
@@ -52,6 +54,7 @@ static onActionsPreparatoiresRequired(keyAction, whenOkMethod, retourAjax, ret){
 }
 
 static prepareFilm(ret){
+  console.log("-> prepareFilm(%s)", ret)
   return new Promise((ok,ko) => {
     if ( ret.config ){
       window.film = new Film(ret.config)
@@ -87,6 +90,7 @@ prepare(){
   this.config.snippets && Snippets.addCustomSnippets(this.config.snippets)
   this.setTitle()
   DOMVideo.nombreVideosToPrepare = this.config.video2 ? 2 : 1
+  // this.prepareAudio()
   this.prepareVideo()
   this.config.video2 && this.prepareVideo2()
   Options.set()
@@ -124,6 +128,15 @@ update(){
   })
 }
 
+prepareAudio(){
+  window.audio = DGet('audio#audio')
+  audio.addEventListener('canplaythrough', (ret) => { console.log("L'audio est prête")})
+  audio.src = `_FILMS_/${this.config.film_folder}/${this.audio_name}`
+}
+get audio_name(){
+  const vname = this.config.video.name
+  return vname.substr(0, vname.lastIndexOf('.')) + '.mp3'
+}
 prepareVideo(){
   window.video = new DOMVideo(DGet('video#video1'), `_FILMS_/${this.config.film_folder}/${this.config.video.name}`)
   window.video.setWidth(this.config.video.width || 400)

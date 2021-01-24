@@ -14,15 +14,15 @@ const DATA_SPEEDS = {
   , '-x2'   :  {hname:'↫ x 2',   value: [-.01, 1]}
   , '-x1.5' :  {hname:'↫ x 1.5', value: [-.01, 2]}
   , '-x1'   :  {hname:'↫ x 1',   value: [-.01,8]}
-  , 'x1'    :  {hname:'↬ x 1',   value: null} // <===== ISPEED_X1
-  , 'x1.5'  :  {hname:'↬ x 1.5', value: [.01, 2]}
-  , 'x2'    :  {hname:'↬ x 2',   value: [.01, 1]}
-  , 'x2.5'  :  {hname:'↬ x 2.5', value: [.0125, 1]}
-  , 'x3'    :  {hname:'↬ x 3',   value: [.015,1]}
-  , 'x3.5'  :  {hname:'↬ x 3.5', value: [.0175,1]}
-  , 'x4'    :  {hname:'↬ x 4',   value: [.02, 1]}
-  , 'x6'    :  {hname:'↬ x 6',   value: [.03, 1]}
-  , 'x8'    :  {hname:'↬ x 8',   value: [.04, 1]}
+  , 'x1'    :  {hname:'↬ x 1',   value: null, speed:1} // <===== ISPEED_X1
+  , 'x1.5'  :  {hname:'↬ x 1.5', value: [.01, 2], speed:1.5}
+  , 'x2'    :  {hname:'↬ x 2',   value: [.01, 1], speed:2}
+  , 'x2.5'  :  {hname:'↬ x 2.5', value: [.0125, 1], speed:2.5}
+  , 'x3'    :  {hname:'↬ x 3',   value: [.015,1], speed:3}
+  , 'x3.5'  :  {hname:'↬ x 3.5', value: [.0175,1], speed:3.5}
+  , 'x4'    :  {hname:'↬ x 4',   value: [.02, 1], speed:4}
+  , 'x6'    :  {hname:'↬ x 6',   value: [.03, 1], speed:6}
+  , 'x8'    :  {hname:'↬ x 8',   value: [.04, 1], speed:8}
 }
 const SPEEDS = Object.keys(DATA_SPEEDS)
 const ISPEED_X1 = SPEEDS.indexOf('x1')
@@ -145,6 +145,7 @@ vitesse normale ou qu'il faut jouer plus vite ou plus lentement.
 play(){
   this.timerPlay && this.stopPlayWithSpeed()
   if ( undefined == this.playMethod ) this.playMethod = this.playRegular.bind(this)
+  audio.currentTime = this.obj.currentTime + 1
   this.playMethod.call(this)
   this.playing = true
 }
@@ -156,7 +157,9 @@ playWithSpeed(){
   if ( undefined == this.timerPlay ) {
     const dataSpeed = DATA_SPEEDS[SPEEDS[this.ispeed]]
     const enAvant = this.ispeed >= ISPEED_X1
+    if ( enAvant ) audio.playbackRate = dataSpeed.speed
     this.timerPlay = setInterval(this[`fakePlaying${enAvant?'':'Backward'}`].bind(this, dataSpeed.value[0]), dataSpeed.value[1])
+    if ( enAvant ) audio.play()
   } else {
     console.warn("Le timerPlay est déjà lancé, je ne le relance pas.")
   }
@@ -310,15 +313,17 @@ calcPas(t, ev, factor){
 init(){
   const my = this
   my._frozenspeed = false
-  this.obj.src = this.src
-  this.rewindRate = 60
-  this.obj.load()
+  DGet('source.mp4', this.obj).src = this.src
+  // this.obj.load()
   // On attend que la vidéo soit chargée
   $(this.obj).on('canplaythrough', (res) => {
     my.calcValues()
     my.observe()
     my.setReady()
+    console.log("La vidéo %s est prête", my.id)
   })
+  this.obj.addEventListener('suspend', () => console.log("Vidéo %s suspendue", this.id))
+  this.obj.addEventListener('stalled', () => console.log("Vidéo %s stalled", this.id))
   // On construit le menu des vitesses
   this.buildMenuSpeeds()
 }

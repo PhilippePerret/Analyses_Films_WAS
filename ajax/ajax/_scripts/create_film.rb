@@ -26,7 +26,31 @@ end
 # = Les données du film =
 data = Ajax.param(:data)
 log("Data pour le nouveau film : #{data}")
-data_config = {}
+
+# Les données de configuration complète
+data_config = {
+  'title' => nil,         # titre du film analysé
+  'film_infos' => {
+    'director' => nil,      # Réalisateur du film
+  }
+  'book_infos' => {
+    'author' => "Philippe Perret",  # Auteur de l'analyse
+    'editor' => { # Éditeur
+      'name' => "Icare Éditions",
+      'logo' => nil                 # Chemin vers le logo
+    },
+    'cover' => {
+      'path' => nil       # Chemin d'accès à l'image
+      'width' => nil      # Taille de l'image sur la couverture
+    }
+
+    'isbn' => nil,          # Numéro ISBN du livre
+  }
+  'documents' => [],
+  'personnages' => {},
+  'snippets' => {}
+
+}
 
 # === VÉRIFICATION DES DONNÉES ===
 
