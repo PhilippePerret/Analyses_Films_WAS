@@ -20,9 +20,19 @@ function setModeClavier(mode){
   DGet('#mode-clavier').textContent = `mode clavier : ${mode}`
 }
 
+/**
+* Gestion des touches quand on est dans un champ de texte
+***/
 function gestionnaireTouchesFormField(ev){
   if ( ev.key == 'Escape' ){
     document.activeElement.blur()
+    return stopEvent(ev)
+  } else if (ev.ctrlKey) {
+    switch(ev.key){
+      case 'j': DOMVideo.current.onKeyJ(ev); break
+      case 'k': DOMVideo.current.onKeyK(ev); break
+      case 'l': DOMVideo.current.onKeyL(ev); break
+    }
     return stopEvent(ev)
   } else if (ev.key == 'Tab' && ev.target.tagName == 'TEXTAREA') {
     /* Un snippet ? */
