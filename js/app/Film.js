@@ -76,6 +76,7 @@ constructor(config) {
 save(){
   Ajax.send('save_config.rb', {config: this.config})
 }
+
 setConfig(key, value){
   Ajax.send('set_config.rb', {config_key:key, config_value:value})
   .then(ret => {

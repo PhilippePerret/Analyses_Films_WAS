@@ -190,7 +190,7 @@ pause(){
   this.obj.pause()
   audio.pause() // peu importe si elle n'est pas en route
   this.playing = false
-  Options.option('memorize_last_time') && this.memorizeLastTime()
+  Options._('memorize_last_time') && this.memorizeLastTime()
   if ( undefined != this.timerPlay ) this.stopPlayWithSpeed()
   this.speedIsFrozen || this.setSpeed(ISPEED_X1)
   this.synchroOtherVideoOnStop && this.constructor.synchronizeVideos()

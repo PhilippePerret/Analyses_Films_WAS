@@ -132,6 +132,8 @@ static onSelect(item){
   Options._('follow_selected_event') && (!item.updating) && (DOMVideo.current.time = item.data.time)
   item.exposeItsReference()
   item.listingItem.obj.scrollIntoViewIfNeeded()
+  // On mémorise toujours le dernier évènement sélectionné
+  !item.updating && this.memorizeLastEvent(item)
 }
 
 static get PROPERTIES(){
@@ -296,6 +298,10 @@ static filterOn(aev, conditions, nombre_conditions){
     if ( ! resultat ) return false
   }
   return true
+}
+
+static memorizeLastEvent(item){
+  film.setConfig('last_selected_event', item.id)
 }
 
 /**

@@ -29,8 +29,16 @@ class App {
   static setVeryReady(){
     UI.endInit()
     window.setModeClavier('command')
+
+    // Sélection du dernier évènement sélectionné
+    // Note : il faut le faire avant le réglage du dernier temps mémorisé, car
+    // ce temps a pu être défini après la sélection du dernier évènement
+    if ( film.config.last_selected_event ) {
+        const aev = AEvent.get(film.config.last_selected_event)
+        aev && aev.select()
+    }
     // setTimeout(AEventEditor.edit.bind(AEventEditor, AEvent.get(10)), 2*1000)
-    Options.option('memorize_last_time') && film.config.last_time && (DOMVideo.current.time = film.config.last_time)
+    Options._('memorize_last_time') && film.config.last_time && (DOMVideo.current.time = film.config.last_time)
     message("Nous sommes prêts.", {keep:false})
   }
 }
