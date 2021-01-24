@@ -90,7 +90,7 @@ prepare(){
   this.config.snippets && Snippets.addCustomSnippets(this.config.snippets)
   this.setTitle()
   DOMVideo.nombreVideosToPrepare = this.config.video2 ? 2 : 1
-  // this.prepareAudio()
+  this.prepareAudio()
   this.prepareVideo()
   this.config.video2 && this.prepareVideo2()
   Options.set()

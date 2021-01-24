@@ -188,6 +188,7 @@ stopPlayWithSpeed(){
 
 pause(){
   this.obj.pause()
+  audio.pause() // peu importe si elle n'est pas en route
   this.playing = false
   Options.option('memorize_last_time') && this.memorizeLastTime()
   if ( undefined != this.timerPlay ) this.stopPlayWithSpeed()
@@ -313,8 +314,8 @@ calcPas(t, ev, factor){
 init(){
   const my = this
   my._frozenspeed = false
-  DGet('source.mp4', this.obj).src = this.src
-  // this.obj.load()
+  this.obj.src = this.src
+  this.obj.load()
   // On attend que la vidéo soit chargée
   $(this.obj).on('canplaythrough', (res) => {
     my.calcValues()
@@ -322,8 +323,6 @@ init(){
     my.setReady()
     console.log("La vidéo %s est prête", my.id)
   })
-  this.obj.addEventListener('suspend', () => console.log("Vidéo %s suspendue", this.id))
-  this.obj.addEventListener('stalled', () => console.log("Vidéo %s stalled", this.id))
   // On construit le menu des vitesses
   this.buildMenuSpeeds()
 }

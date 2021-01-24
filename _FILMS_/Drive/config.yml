@@ -4,7 +4,7 @@ title_fr:
 video:
   width: 600
   name: output.mp4
-  original_path: /Volumes/BackupPlusDrive/AnalyseFilms-videos/Drive-subtitles.mp4
+  original_path: "/Volumes/BackupPlusDrive/AnalyseFilms-videos/Drive-subtitles.mp4"
 video2:
   width: 200
 options:
@@ -23,5 +23,5 @@ personnages:
     short_name: deux clients
     nick_name: clients
 film_folder: Drive
-last_time: 181
+last_time: 893
 :film_folder: Drive
