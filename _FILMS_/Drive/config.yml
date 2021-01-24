@@ -29,12 +29,13 @@ decors:
       appartPR: Appartement de PR
       appartEL: Appartement de EL
       parking: Parking
-  parking: Parking souterrain
+      ascenseur: Ascenseur
+  parking: Parking public souterrain
   ville:
     hname: Ville
     items:
       rues: Rues
 film_folder: Drive
-last_time: 703
+last_time: 768
 :film_folder: Drive
-last_selected_event: 17
+last_selected_event: 21

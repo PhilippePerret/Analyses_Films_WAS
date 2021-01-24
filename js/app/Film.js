@@ -171,16 +171,18 @@ updateMenuPersonnages(){
 // À régler
 get decorsForMenus(){
   var data_decor
+    , decor_name
   const decors = this.config.decors || {}
   const liste_decors = []
   for(var kdecor in decors ) {
     data_decor = decors[kdecor]
     if ( 'string' == typeof(data_decor) ) data_decor = {hname:data_decor, items: null}
-    liste_decors.push({id:kdecor, hname:data_decor.hname})
+    decor_name = formate(data_decor.hname)
+    liste_decors.push({id:kdecor, hname:decor_name})
     var sous_decors = data_decor.items
     if ( sous_decors ) {
       for(var ksdecor in sous_decors){
-        liste_decors.push({id:`${kdecor}:${ksdecor}`, hname:`${data_decor.hname} : ${sous_decors[ksdecor]}`})
+        liste_decors.push({id:`${kdecor}:${ksdecor}`, hname:`${decor_name} : ${formate(sous_decors[ksdecor])}`})
       }
     }
   }
