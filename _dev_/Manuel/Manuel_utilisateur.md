@@ -319,6 +319,10 @@ Procédure détaillée :
 
 Si on se trouve dans un champ de texte, on peut utiliser le snippet `t`
 
+##### Méthode quand on se trouve dans le champ de texte
+
+Il suffit de jouer ![][Control]![][K_T] pour placer une balise temps avec le temps courant de la vidéo active.
+
 ##### Méthode par raccourci-clavier
 
 * Se placer à l’endroit voulu dans la vidéo,
@@ -892,18 +896,16 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 ## Raccourcis clavier
 
 > À tout moment, pour sortir d’un champ de texte ou d’un menu select — et donc retrouver l’usage des raccourcis clavier généraux — il suffit de jouer la touche ![][Escape].
+>
+> À tout moment également, pour rentrer dans le champ d’édition le plus naturel, presser la touche ![][K_T].
 
 
 
-<a id="shortcuts-mode-commande"></a>
-
-### Commande du contrôleur
-
-> Ces raccourcis sont utilisables dès le lancement de l’application. Ils ne se désactivent que lorsqu’on se trouve dans un champ d’édition.
+> Note : ces raccourcis sont utilisables dès le lancement de l’application. Ils ne se désactivent que lorsqu’on se trouve dans un champ d’édition.
 
 | Action attendue | Raccourci&nbsp;&nbsp;&nbsp;&nbsp;| Description du raccourci / options       |
 | ----------------------- | ------------------------ | ------------------------------------------------------------ |
-| **Contrôle de la vidéo** | |  |
+| **Contrôle de la vidéo** | | <a id="shortcuts-mode-commande"></a> |
 | Afficher/masquer les repères du PFA. | ![][K_R] |  |
 | Jouer la vidéo active   | ![][K_L]          | En appuyant plusieurs fois sur la touche, on accélère la vidéo. La touche ![][Ctrl] permet commander l’autre vidéo. |
 | Jouer la vidéo active (dans un champ) | ![][Ctrl]![][K_L] | Active la lecture de la vidéo lorsque l’on se trouve dans un champ d’édition. |
@@ -921,6 +923,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | Aller au signet précédent | ![][Cmd]![][ArrowUp] | |
 | **Édition d’un évènement** |  | |
 | Focusser dans le champ de texte | ![][K_T] | Soit dans le texte de l’évènement édité séparément, soit celui du listing. Cette action désactive le mode clavier commande. |
+| Balise temps (dans un champ) | ![][Control]![][K_T] | Quand on est dans un champ de saisie de texte, ce raccourci colle une balise temporelle du temps courant. |
 | Enregistre l’event ou le crée | ![][K_S] | Soit l’évènement édité séparément (si focus), soit l’évènement du listing. |
 | Enregistre l’event ou le crée (dans un champ) | ![][Control]![][K_S] | Seulement dans un champ d’édition. Permet de ne pas en sortir pour l’enregistrement. |
 | Actualiser le temps | ![][K_U] | Met le temps de la vidéo active dans l’event actuellement édité (soit séparément soit celui du listing). |

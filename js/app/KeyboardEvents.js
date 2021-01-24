@@ -28,7 +28,9 @@ function gestionnaireTouchesFormField(ev){
     document.activeElement.blur()
     return stopEvent(ev)
   } else if (ev.ctrlKey) {
+
     // === avec la touche CONTROL ===
+
     switch(ev.key){
       case 'j': DOMVideo.current.onKeyJ(ev); break
       case 'k': DOMVideo.current.onKeyK(ev); break
@@ -37,7 +39,12 @@ function gestionnaireTouchesFormField(ev){
         if (AEvent.current) { UI.focusedObject.onSave(ev) }
         else { AEvent.listing.onSaveButton(null) }
         break
-      case 'w': AEventEditor.close(AEventEditor.current); break
+      case 't':
+        new Selector(document.activeElement).insert(`[time:${t2h(DOMVideo.current.time,false)}]`)
+        break
+      case 'w':
+        AEventEditor.close(AEventEditor.current)
+        break
     }
     return stopEvent(ev)
   } else if (ev.key == 'Tab' && ev.target.tagName == 'TEXTAREA') {

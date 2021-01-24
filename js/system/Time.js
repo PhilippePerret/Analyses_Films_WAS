@@ -20,7 +20,7 @@ function s2h(s, with_frames = true){
   if ( with_frames ) hrl += `.${fs<10?'0':''}${fs}`
   return hrl
 }
-function t2h(v){return s2h(v)} // alias
+function t2h(v,wframes){return s2h(v,wframes)} // alias
 
 // Reçoit une horloge et retourne un temps en seconds (+ décimales)
 function h2t(hr){
