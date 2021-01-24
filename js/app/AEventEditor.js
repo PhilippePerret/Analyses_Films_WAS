@@ -209,7 +209,9 @@ setValues(){
   this.oMainType.value  = ae.mainType
   this.onChangeMainType()
   this.oNoeudCleType.value   = ae.subType || ''
+  // console.log("Lieu mis à ", ae.lieu)
   this.oLieuScene.value   = ae.lieu || 'i'
+  // console.log("Effet mis à ", ae.effet)
   this.oEffetScene.value  = ae.effet || 'j'
   ae.isScene && (this.oDecor.value = ae.decor || 'x')
   this.oTime.value = s2h(ae.time)

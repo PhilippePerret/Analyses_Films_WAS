@@ -1,6 +1,6 @@
 ---
-content: Le PG du garage attend PR dans son garage.
-type: sc
-time: 137.04
-no_tr: false
 id: 5
+content: Le PG du garage attend PR dans son garage.
+type: sc:i:n
+time: 137
+decor: garage

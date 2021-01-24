@@ -13,6 +13,9 @@ class Film
     @decors ||= begin
       h = {}
       (config['decors']||{}).each do |did, ddata|
+        if ddata.is_a?(String)
+          ddata = {hname:ddata, items:[]}
+        end
         dec = Decor.new(ddata.merge!('id' => did))
         decor_name = dec.hname
         h.merge!(did => dec)

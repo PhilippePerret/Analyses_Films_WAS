@@ -368,8 +368,6 @@ get hiddenInfos(){
   return `${t2h(this.time)} #${this.id}`
 }
 
-get isScene(){return this._isscene || ( this._isscene = this.mainType == 'sc') }
-
 // Retourne le type humain en fonction du nœud
 get htype(){
   var ty = this.data.type, cty, st, tt ;
@@ -442,6 +440,8 @@ hide(){
   *
 *** --------------------------------------------------------------------- */
 
+get isScene(){return this._isscene || ( this._isscene = this.mainType == 'sc') }
+
 // Retourne true si le contenu contient +str+
 hasContent(str){
   var telquel = this.content.match(str)
@@ -471,10 +471,10 @@ set type(v){this._type = this.data.type = v}
 
 // Pour les scènes
 get lieu(){
-  return this._lieu || ( this._lieu = this.mainType == 'sc' ? this.subType : null)
+  return this._lieu || ( this._lieu = this.isScene ? this.subType : null)
 }
 get effet(){
-  return this._effet || ( this._effet = this.mainType == 'sc' ? this.terType : null)
+  return this._effet || ( this._effet = this.isScene ? this.terType : null)
 }
 get decor(){
   return this._decor || ( this._decor = this.data.decor )

@@ -1,5 +1,9 @@
 ---
 title: Drive
+documents:
+- sequencier.html
+- traitement.html
+- synopsis.html
 title_fr:
 video:
   width: 600
@@ -14,8 +18,8 @@ options:
   synchro_videos_on_stop: true
   memorize_last_time: true
 personnages:
-  PR: Protagoniste
-  EL: La fille
+  PR: Chauffeur cascadeur
+  EL: Femme du tôlard
   PG: Patron du garage
   CM: Chef mafieu
   CLIENTS:
@@ -30,12 +34,20 @@ decors:
       appartEL: Appartement de EL
       parking: Parking
       ascenseur: Ascenseur
-  parking: Parking public souterrain
+  garage: Garage du PG
   ville:
     hname: Ville
     items:
       rues: Rues
+  parking: Parking public souterrain
+  tournage:
+    hname: Plateau de tournage
+    items:
+      maquillage: maquillage
+      plateau: Plateau
+      voiture: Voiture
+  casse: Lieu du casse
 film_folder: Drive
-last_time: 768
+last_time: 5751
 :film_folder: Drive
-last_selected_event: 21
+last_selected_event: 2

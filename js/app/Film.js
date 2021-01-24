@@ -96,7 +96,7 @@ prepare(){
   this.config.video2 && this.prepareVideo2()
   Options.set()
   this.prepareEditor()
-  this.prepareMenuPersonnages()
+  this.preparePersonnages()
 }
 
 setTitle(){
@@ -156,18 +156,29 @@ togglePersonnages(){
   const montrer = this.menuPersonnages.classList.contains('hidden')
   this.menuPersonnages.classList[montrer?'remove':'add']('hidden')
 }
-prepareMenuPersonnages(){
+preparePersonnages(){
   this.menuPersonnages.appendChild(DCreate('OPTION', {value:'', text:"Choisir…"}))
   this.updateMenuPersonnages()
   this.menuPersonnages.addEventListener('change', this.onChoosePersonnage.bind(this))
 }
 updateMenuPersonnages(){
   this.menuPersonnages.textContent = ''
-  this.personnages = this.config.personnages
-  for(var pid in this.personnages){
-    this.menuPersonnages.appendChild(DCreate('OPTION',{value:pid, text:`${pid} = ${this.personnages[pid].full_name||this.personnages[pid]}`}))
+  this.prepareTablePersonnages()
+  for ( var pid in this.personnages){
+    this.menuPersonnages.appendChild(DCreate('OPTION',{value:pid, text:`${pid} = ${this.personnages[pid].full_name}`}))
   }
 }
+
+prepareTablePersonnages(){
+  this.personnages = this.config.personnages
+  for ( var pid in this.personnages){
+    var name = this.personnages[pid]
+    if ( 'string' == typeof(name) ) {
+      this.personnages[pid] = {full_name:name, short_name:name, nick_name:name}
+    }
+  }
+}
+
 // À régler
 get decorsForMenus(){
   var data_decor

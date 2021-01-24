@@ -223,8 +223,8 @@ def duration
         dataZPoint = devent
       elsif devent['type'] == 'nc:pf'
         dataFPoint = devent
-        break
       end
+      break if dataZPoint && dataFPoint
     end
     unless dataZPoint && dataFPoint
       raise "Impossible de calculer la durée du film, les points Zéro et Final ne sont pas définis les deux."
