@@ -37,6 +37,7 @@ function gestionnaireTouchesFormField(ev){
         if (AEvent.current) { UI.focusedObject.onSave(ev) }
         else { AEvent.listing.onSaveButton(null) }
         break
+      case 'w': AEventEditor.close(AEventEditor.current); break
     }
     return stopEvent(ev)
   } else if (ev.key == 'Tab' && ev.target.tagName == 'TEXTAREA') {
@@ -91,6 +92,7 @@ function gestionnaireTouchesController(ev){
     case 'o': Options.togglePanel();break
     case 'p': film.togglePersonnages(); break
     case 'r': targetVideo.toggleReperesPFA();break
+    case 'w': AEventEditor.close(AEventEditor.current); break
     case 'x': focusIn(DGet('#console'));break
     case 'ArrowRight':  targetVideo.avance(ev); break
     case 'ArrowLeft':   targetVideo.recule(ev); break

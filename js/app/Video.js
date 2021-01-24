@@ -192,7 +192,7 @@ pause(){
   this.playing = false
   Options.option('memorize_last_time') && this.memorizeLastTime()
   if ( undefined != this.timerPlay ) this.stopPlayWithSpeed()
-  if ( ! this.speedIsFrozen ) this.setSpeed(ISPEED_X1)
+  this.speedIsFrozen || this.setSpeed(ISPEED_X1)
   this.synchroOtherVideoOnStop && this.constructor.synchronizeVideos()
   // console.info("STOP")
 }
@@ -201,11 +201,12 @@ pause(){
 // Touche pour aller en avant pressée
 onKeyL(ev){
   // console.log("-> onKeyL")
+  const frozenSpeed = this.speedIsFrozen
   if ( this.playing ){
     if ( this.ispeed < ISPEED_X1 /* marche arrière */) {
-      this.setSpeed(ISPEED_X1)
+      this.setSpeed(frozenSpeed ? Number(this.oMenuSpeed.value) : ISPEED_X1 )
     } else {
-      if ( this.speedIsFrozen ) return
+      if ( frozenSpeed ) return
       this.upSpeed()
     }
   } else {
@@ -614,13 +615,11 @@ setWidth(w){
 }
 
 get cadenasSpeed(){return DGet('img.cadenas-speed',this.container) }
-
 onLockUnlockSpeed(ev){
-  stopEvent(ev)
   this._frozenspeed = !this._frozenspeed
   this.cadenasSpeed.src = `img/ui/cadenas-${this._frozenspeed?'':'un'}locked.png`
+  stopEvent(ev)
 }
-
 get speedIsFrozen(){ return this._frozenspeed }
 
 get miniHorloge(){

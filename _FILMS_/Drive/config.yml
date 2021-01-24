@@ -15,7 +15,7 @@ options:
   memorize_last_time: true
 personnages:
   PR: Protagoniste
-  ELLE: La fille
+  EL: La fille
   PG: Patron du garage
   CM: Chef mafieu
   CLIENTS:
@@ -23,11 +23,17 @@ personnages:
     short_name: deux clients
     nick_name: clients
 decors:
+  immeuble:
+    hname: Immeuble PR
+    items:
+      appartPR: Appartement de PR
+      appartEL: Appartement de EL
+      parking: Parking
   parking: Parking souterrain
   ville:
     hname: Ville
     items:
       rues: Rues
 film_folder: Drive
-last_time: 687
+last_time: 703
 :film_folder: Drive

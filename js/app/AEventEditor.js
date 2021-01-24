@@ -35,7 +35,7 @@ static activate(editor){
   UI.setFocusOn(editor)
 }
 static desactivate(editor){
-  console.log("-> desactivate", editor)
+  // console.log("-> desactivate", editor)
   editor.obj.style.zIndex = 10
   UI.setFocusOn(AEvent)
 }
@@ -55,9 +55,15 @@ static updateMenuDecors(){
 }
 
 /**
-* Méthode appelée quand on referme un éditeur
+* Méthode appelée pour fermer un éditeur
 ***/
 static close(editor){
+  (editor||this.current).close()
+}
+/**
+* Méthode appelée quand on referme un éditeur
+***/
+static onClose(editor){
   const isCurrentEditor = editor.id == this.current.id
   if ( isCurrentEditor ){
     this.current = null
@@ -98,7 +104,7 @@ open(){
 }
 close(){
   this.obj.remove()
-  this.constructor.close(this)
+  this.constructor.onClose(this)
 }
 onClick(){
   this.constructor.current = this
