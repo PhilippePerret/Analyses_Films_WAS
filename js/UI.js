@@ -57,6 +57,7 @@ static setBody(){
 }
 
 static onFocusTextField(ev){
+  message(`Utiliser ${Aide.img('J',{ctrl:true})}, ${Aide.img('K',{ctrl:true})}, ${Aide.img('L',{ctrl:true})} pour contrôler la vidéo.`, {keep:false})
   setModeClavier('text')
 }
 static onBlurTextField(ev){

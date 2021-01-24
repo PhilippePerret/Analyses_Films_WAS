@@ -565,6 +565,14 @@ Il existe deux modes de clavier selon qu’on se trouve ou non dans un champ de 
 
 Les `évènements d'analyse` sont le résultat de la collecte et ce qui va permettre d'automatiser un peu le travail d'analyse du film.
 
+### Édition du texte d’un évènement d'analyse
+
+Après avoir cliqué sur un évènement dans le listing, il se met automatiquement en édition. Il suffit alors de taper la lettre ![][K_T] pour se placer dans le champ d'édition du texte pour le modifier.
+
+### Contrôle de la vidéo en éditant un texte
+
+Lorsque l'on se trouve dans le champ d'édition du texte d'un évènement d'analyse, il faut ajouter la touche ![][Ctrl] aux touches ![][K_J], ![][K_K] et ![][K_L] pour respectivement revenir en arrière, arrêter ou mettre en route la lecture de la vidéo courante.
+
 ### Titre de l’évènement/première ligne
 
 Dans le listing, seule la première ligne de la description des évènements est affichée. C’est en fait que cette première ligne sert toujours de titre à l’évènement et sera toujours traitée de cette manière dans les livres produits.
@@ -897,9 +905,12 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | ----------------------- | ------------------------ | ------------------------------------------------------------ |
 | **Contrôle de la vidéo** | |  |
 | Afficher/masquer les repères du PFA. | ![][K_R] |  |
-| Jouer la vidéo active   | ![][K_L]          | En appuyant plusieurs fois sur la touche, on accélère la vidéo. La touche ![][Ctrl] permet de ralentir jusqu’à 50 % de la vitesse. |
+| Jouer la vidéo active   | ![][K_L]          | En appuyant plusieurs fois sur la touche, on accélère la vidéo. La touche ![][Ctrl] permet commander l’autre vidéo. |
+| Jouer la vidéo active (dans un champ) | ![][Ctrl]![][K_L] | Active la lecture de la vidéo lorsque l’on se trouve dans un champ d’édition. |
 | Stopper la vidéo active | ![][K_K]          | Une seconde pression permet de revenir au début du film. Une troisième pression permet de revenir au tout début de la vidéo. Ensuite, les pressions alternent entre le 0 et le début réel du film. |
+| Stopper la vidéo (dans champ) | ![][Ctrl]![][K_K] | Dans un champ d’édition. Noter que si on n’est pas dans un champ d’édition, cette commande stoppera l’autre vidéo. |
 | Jouer en arrière        | ![][K_J]          | Appuyer plusieurs fois pour changer la vitesse (accélérer)   |
+| Jouer en arrière (dans un champ) | ![][Ctrl]![][K_J] | Dans un champ d’édition. Noter que hors d’un champ d’édition ce raccourci clavier jouera en arrière l’autre vidéo. |
 | Avancer d’une image     | ![][ArrowRight]          |                                                              |
 | Reculer d’une image     | ![][ArrowLeft]           |                                                              |
 | Avancer d’1 seconde     | ![][Cmd]![][ArrowRight]  |                                                              |
@@ -911,6 +922,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | **Édition d’un évènement** |  | |
 | Focusser dans le champ de texte | ![][K_T] | Soit dans le texte de l’évènement édité séparément, soit celui du listing. Cette action désactive le mode clavier commande. |
 | Enregistre l’event ou le crée | ![][K_S] | Soit l’évènement édité séparément (si focus), soit l’évènement du listing. |
+| Enregistre l’event ou le crée (dans un champ) | ![][Control]![][K_S] | Seulement dans un champ d’édition. Permet de ne pas en sortir pour l’enregistrement. |
 | Actualiser le temps | ![][K_U] | Met le temps de la vidéo active dans l’event actuellement édité (soit séparément soit celui du listing). |
 | Sélectionner l’évènement suivant | ![][ArrowDown] | Ou le premier si aucun n’est sélectionné. |
 | Sélectionner l’évènement précédent | ![][ArrowUp] | Ou le dernier si aucun n’est sélectionné. |
@@ -994,7 +1006,9 @@ On peut détruire régulièrement les dossiers les plus vieux, si tout est OK.
 [K_V]: ./img/clavier/K_V.png
 [K_X]: ./img/clavier/K_X.png
 [Ctrl]: ./img/clavier/K_Control.png
+[Control]: ./img/clavier/K_Control.png
 [Cmd]: ./img/clavier/K_Command.png
+[Command]: ./img/clavier/K_Command.png
 [Alt]: ./img/clavier/K_Alt.png
 [Maj]: ./img/clavier/K_Maj.png
 [Tab]: ./img/clavier/K_Tab.png

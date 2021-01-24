@@ -22,6 +22,12 @@ personnages:
     full_name: deux clients de PR
     short_name: deux clients
     nick_name: clients
+decors:
+  parking: Parking souterrain
+  ville:
+    hname: Ville
+    items:
+      rues: Rues
 film_folder: Drive
-last_time: 922
+last_time: 687
 :film_folder: Drive

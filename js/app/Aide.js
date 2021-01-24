@@ -106,7 +106,7 @@ static get MESSAGES(){
 static img(name, modifiers = {}){
   var imgs = []
   modifiers.maj   && imgs.push(this.pathImage('Maj', true))
-  modifiers.ctrl  && imgs.push(this.pathImage('Ctrl', true))
+  modifiers.ctrl  && imgs.push(this.pathImage('Control', true))
   modifiers.alt   && imgs.push(this.pathImage('Alt', true))
   modifiers.cmd   && imgs.push(this.pathImage('Command', true))
   imgs.push(this.pathImage(name))
