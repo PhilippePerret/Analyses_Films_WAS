@@ -58,7 +58,8 @@ static updateMenuDecors(){
 * Méthode appelée pour fermer un éditeur
 ***/
 static close(editor){
-  (editor||this.current).close()
+  editor = editor || this.current
+  editor && editor.close()
 }
 /**
 * Méthode appelée quand on referme un éditeur
@@ -103,6 +104,7 @@ open(){
   this.observe()
 }
 close(){
+  document.activeElement.blur()
   this.obj.remove()
   this.constructor.onClose(this)
 }

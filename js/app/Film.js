@@ -15,7 +15,7 @@ static load(){
 }
 
 static maybeSomethingToDo(retourAjax){
-  console.log("retour ajax: ", retourAjax)
+  // console.log("retour ajax: ", retourAjax)
   retourAjax.message && message(retourAjax.message)
   delete retourAjax.message
   return new Promise( (ok,ko) => {
