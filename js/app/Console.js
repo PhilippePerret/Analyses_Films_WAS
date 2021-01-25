@@ -127,9 +127,9 @@ run_create_document(name){
 ***/
 run_open_command(what, name){
   switch(what){
-    case 'pfa': return this.run_open_pfa()
-    case 'film':
-    case 'aide': return Aide.openPDF();
+    case 'pfa':   return this.run_open_pfa()
+    case 'film':  return this.open_film()
+    case 'aide':  return Aide.openPDF();
     case 'manuel':
       Ajax.send(`open_${what}.rb`).then(ret => message(ret.message||"Ouverture effectuée"))
       break
@@ -256,7 +256,7 @@ run_open_document(name){
       message(`Document ouvert.`)
     })
   } else {
-    erreur("Il faut indiquer le nom du document à créer !")
+    erreur("Il faut indiquer le nom du document à ouvrir !")
   }
 }
 
@@ -310,6 +310,12 @@ parse(){
 *
 *** --------------------------------------------------------------------- */
 
+// Pour ouvrir le dossier du film dans le Finder
+open_film(){
+  return Ajax.send('open_film.rb').then(ret => {
+    message("J'ai ouvert le dossier du film dans le Finder", {keep:false})
+  })
+}
 open_config_file(){
   return Ajax.send('open_fichier_config.rb').then(ret => {
     message("J'ai ouvert le fichier config.yml du film (dans Atom)", {keep:false})
