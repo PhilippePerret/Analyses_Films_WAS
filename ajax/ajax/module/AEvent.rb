@@ -93,7 +93,6 @@ def content
   @content ||= data['content']
 end #/ content
 def time
-  log("film.zero = #{film.zero}::#{film.zero.class.name}")
   @time ||= (data['time'].to_f - film.zero)
 end
 def duree ; @duree  ||= (time_fin - time).to_i end

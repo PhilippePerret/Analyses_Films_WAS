@@ -31,25 +31,6 @@ class Film
     stream.close
   end
 
-  # Ancienne méthode en RTF
-  def build_sequencier_in_RTF
-
-    @rtf = DocRTFAnalyse.new(File.join(Film.current.folder_products,'sequencier.rtf'))
-
-    sorted_scenes.each do |scene|
-      # log("#{scene.intitule}\n#{scene.times_infos}\n#{scene.content}")
-      rtf.par(:intitule)  << scene.intitule
-      rtf.par(:time_infos)<< scene.times_infos
-      rtf.par(:scene_resume)  << scene.resume
-      rtf.par(:regular)       << scene.real_content
-    end
-
-    rtf.save
-  end #/ build_sequencier
-
-  def sequencier_rtf_path
-    @sequencier_rtf_path ||= File.join(folder_products, 'sequencier.rtf')
-  end
   def sequencier_path
     @sequencier_path ||= File.join(folder_products, 'sequencier.html')
   end

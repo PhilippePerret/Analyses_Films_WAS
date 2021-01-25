@@ -39,9 +39,11 @@ class Film
       # Pour obtenir la liste par numéro
       @scenes_per_numero = {}
       # On ajoute le temps de fin (début de la suivante)
+      # [1] Ici, on n'a pas besoin de retirer la valeur Film.current.zero,
+      #     car la valeur @time de la scène est déjà pondérée.
       last_start = duration.dup
       ary_scenes.reverse.each do |sc|
-        sc.time_fin = (last_start.dup - zero)
+        sc.time_fin = last_start.dup # Cf. note [1] ci-dessus
         last_start = sc.time
         @scenes_per_numero.merge!(sc.numero => sc)
       end
