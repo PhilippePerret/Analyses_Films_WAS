@@ -16,12 +16,16 @@ else
   # Construction d'un seul document
   doc_name = "#{doc_name}.md" if File.extname(doc_name) == ''
   adoc = ADocument.new(doc_name)
-  if File.exists?(adoc.md_path)
+  if File.definitely_exists?(adoc.md_path)
     adoc.build_html_file
     if not film.config['documents'].include?(doc_name)
       Ajax << {message: "Il faut ajouter le document « #{doc_name} » à config.yml (propriété 'documents') pour qu'il soit mis dans les livres."}
     end
   else
-    Ajax << {error: "Le document « #{doc_name} » est introuvable… (cherché dans #{adoc.md_path.inspect})"}
+    ajout = ""
+    if File.exists?(adoc.md_path)
+      ajout = " (mais j'ai trouvé un autre document avec le même nom mais une autre casse)"
+    end
+    Ajax << {error: "Le document « #{doc_name} » est introuvable#{ajout}… (cherché dans #{adoc.md_path.inspect})"}
   end
 end
