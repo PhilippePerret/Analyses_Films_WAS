@@ -313,7 +313,49 @@ Procédure détaillée :
 * coller la référence,
 * définir optionnellement le texte alternatif de la référence. Sinon, c’est le résumé (première ligne) de l’évènement d’analyse qui sera utilisé.
 
-#### Insérer une balise de temps
+#### Insérer une balise de temps (avec durée)
+
+Une « balise de temps » est une marque dans le texte qui permet de faire référence à un temps précis. Elle permet de donner au temps un aspect particulier et, dans un développement ultérieur, de rejoindre la partie concernée dans une *timeline* par exemple. Elle ressemble à :
+
+~~~
+On peut voir au temps [time:0:12:13] une balise temporelle.
+~~~
+
+Cette balise sera transformé en :
+
+~~~html
+<p>On peut voir au temps <span class="horloge">0:10:11</span> une balise temporelle.</p>
+~~~
+
+> Lire la note concernant la [différence ici entre les temps](#note-temps) ci-dessus.
+
+Comme toutes les balises, on peut utiliser un texte propre pour cette balise en ajoutant un second argument :
+
+~~~
+On peut trouver [time:0:12:13|un temps] ici.
+~~~
+
+… qui deviendra :
+
+~~~html
+<p>On peut trouver <span class="horloge" data-time="0:10:11">un temps</span></p>
+~~~
+
+Enfin, il est possible d’indiquer un temps de fin en augmentant la première donnée :
+
+~~~
+Il y aura de [time:0:12:13-0:14:13] une durée marquée.
+~~~
+
+… qui sera transformé en :
+
+~~~html
+<p>
+  Il y aura de <span class="horloge" data-time="0:12:13-0:14:13">0:10:11 à 0:13:11 (2")</span> une durée marquée.
+</p>
+~~~
+
+
 
 ##### Méthode par snippet
 

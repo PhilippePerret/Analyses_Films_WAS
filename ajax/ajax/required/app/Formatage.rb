@@ -151,7 +151,7 @@ end #/ formate
 REG_REFERENCE = /\[ref:(scene|note|event):([0-9]+)(?:\|(.*?))?\]/
 REG_REFERENCE_DOC = /\[ref:doc(?:ument)?:(.*?)(?:\|(.*?))?\]/
 REG_REFERENCE_FILM = /\[ref:film:(.*?)(?:\|(.*?))?\]/
-REG_BALISE_TEMPS = /\[time:(.*?)\]/
+REG_BALISE_TEMPS = /\[time:(.*?)(?:\|(.*?))?\]/
 def formate_as_a_string(str)
   # Remplacer les balises [include:relative/path.ext]
   str = traite_inclusion_in(str)
@@ -176,7 +176,7 @@ def formate_as_a_string(str)
     reference_code_for('document', ref_id, ref_text_alt)
   }
   # Remplacer les balises temps
-  str = str.gsub(REG_BALISE_TEMPS){balise_time_to_horloge($1.freeze)}
+  str = str.gsub(REG_BALISE_TEMPS){balise_time_to_horloge($1.freeze, $2.freeze)}
 
   return str
 end #/ formate_as_a_string
@@ -252,6 +252,12 @@ def traite_balises_personnages(str)
 end #/ traite_balises_personnages
 
 
-def balise_time_to_horloge(horloge)
-  span((horloge.h2s - Film.current.zero).to_i.to_horloge, 'time')
+BALISE_TIME = '<span class="horloge" data-time="%s">%s</span>'
+def balise_time_to_horloge(horloge, text_alt)
+  text = text_alt || if horloge.match?('-')
+    MTime.as_time_interval(horloge)
+  else
+    MTime.real(horloge, true)
+  end
+  BALISE_TIME % [horloge, text]
 end #/ balise_time_to_horloge
