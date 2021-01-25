@@ -75,18 +75,19 @@ StartTestsAudio(){
 run_build_command(what, extra, option1){
   switch(what){
     case 'all': return this.run_build_all()
-    case 'document':case'documents': return this.run_build_documents(extra,option1)
     case 'books': case 'livres': return this.run_build_books()
     case 'book': case 'livre':
-    if ( option1 == '-update'){
-      return this.run_build_all(extra, option1)
-    } else {
-      return this.run_build_books(extra, option1)
-    }
-    case 'sequencier': return this.run_build_sequencier()
-    case 'synopsis': return this.run_build_synopsis()
+      if ( option1 == '-update'){
+        return this.run_build_all(extra, option1)
+      } else {
+        return this.run_build_books(extra, option1)
+      }
+    case 'document':case'documents': return this.run_build_documents(extra,option1)
     case 'pfa': return film.analyse.buildPFA()
+    case 'cover': case 'couverture': return this.run_build_cover()
+    case 'sequencier': return this.run_build_sequencier()
     case 'statistiques': case 'stats': return this.run_build_statistiques(extra)
+    case 'synopsis': return this.run_build_synopsis()
     case 'traitement':case'treatment': return this.run_build_traitement()
     default: erreur(`Je ne sais pas comment construire un ou une ${what}`)
   }
@@ -149,6 +150,7 @@ run_open_command(what, name){
 run_build_all(type, option1){
   message('Reconstruction de tout…', {keep:false})
   this.run_build_sequencier(true)
+  .then(this.run_build_cover.bind(this, null, true))
   .then(this.run_build_statistiques.bind(this, null, true))
   .then(this.run_build_traitement.bind(this, null, true))
   .then(this.run_build_sequencier.bind(this, null, true))
@@ -173,6 +175,7 @@ run_build_documents(doc_name,option1,keep_messages=false){
     ret.message && message(ret.message)
   })
 }
+
 run_build_books(type, option1, keep_messages = false){
   var msg
   if (type) msg = `Construction du livre de type '${type}'`
@@ -186,6 +189,14 @@ run_build_books(type, option1, keep_messages = false){
       error("Mais des erreurs ont été trouvées (consulter la console du navigateur pour les voir)")
       console.error(ret.export_errors)
     }
+  })
+}
+
+run_build_cover(option1, keep_messages = false){
+  message("Construction de la COUVERTURE, merci de patienter…", {keep:keep_messages})
+  return Ajax.send('build_cover.rb').then(ret => {
+    message("Couverture construite avec succès. Jouer 'open cover' pour le voir",{keep:keep_messages})
+    ret.message && message(ret.message)
   })
 }
 

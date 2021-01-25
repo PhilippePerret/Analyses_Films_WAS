@@ -1,12 +1,130 @@
+<style media="screen, print">
+body{
+  margin:4cm;padding:0;
+  position:relative;
+  width:calc(29.7cm / 2);
+  height:21cm;
+  background-color:grey;
+}
+div#cover > div {
+  position: absolute;
+
+}
+
+div#cover {
+  width:calc(29.7cm / 2);
+  height:21cm;
+  background-color:white;
+  position:relative;
+  overflow:hidden;
+}
+div#title-collection {
+  transform:rotate(-90deg);
+  transform-origin: 0 0;
+  position:absolute;
+  top:21cm;
+  width:21cm;
+  left:0cm;
+  height:0.7cm;
+  line-height: 0.65cm;
+  font-size:15.1pt;
+  word-spacing:0.1cm;
+  font-variant:all-small-caps;
+  font-family:'Arial Rounded MT Bold';
+  color:#99c6e2; /*rgb(124, 106, 255);*/
+  background-color:#105d8c; /*rgb(71, 64, 123);*/
+  text-align:center;
+  letter-spacing:1.9mm;
+  vertical-align:bottom;
+  z-index:1000;
+}
+div#title-collection span.passionnate {
+  display: inline-block;
+  color: #F49595;
+}
+
+div#title {
+  font-size:47pt;
+  width: calc(100%% - 1.9cm);
+  left:1.9cm;
+  text-align: center;
+  top:6.4cm;
+}
+div#collection-title-on-title {
+  font-size:18.3pt;
+  top:4.6cm;
+  left:2.3cm;
+  font-family:"Arial Narrow";
+  color:#666666;
+  font-style:italic;
+}
+div#collection-title-on-title span.passionnate {
+  color:#F49595;
+}
+
+div#author {
+  top: 10cm;
+  right:1cm;
+  font-size:13pt;
+  color:rgb(98, 98, 98);
+}
+
+img#img-cover {
+  position: absolute;
+  width: 15cm;
+  height:379px;
+  left: 0.1cm;
+  top: 11cm;
+  z-index:0;
+}
+
+div#editor_top, div#editor_bottom {
+  text-align:center;
+  display:inline-block;
+  background-color:#27719e;
+  color:#a5d8f7;
+  width: 140px;
+  font-size:12.7pt;
+  vertical-align:middle;
+  font-variant: all-small-caps;
+  padding:2px 9px 0px 6px;
+}
+div#editor_top {
+  top: 1cm;
+  left:6.4cm;
+  opacity:1;
+}
+div#editor_bottom {
+  display:none;
+  bottom:0.4cm;
+  right:1cm;
+  opacity:0.8;
+}
+span.logo-editor {
+  margin-right:0cm;
+}
+span.logo-editor img {
+  width:24px;
+  vertical-align:middle;
+}
+
+</style>
 <div id="cover">
+
+  <div id="title-collection">
+    Les analyses <span class="passionnate">passionnées</span> de films
+  </div>
 
   <div id="editor_top">%{editor_top}</div>
 
-  <img src="%{cover_path}" alt="Couverture">
+  <img id="img-cover" src="%{cover_filename}" alt="Couverture" style="left:%{img_left};width:%{img_width};height:%{img_height}">
 
+  <div id="collection-title-on-title">
+    L’Analyse <span class="passionnate">passionnée</span> du film…
+  </div>
   <div id="title">%{book_title}</div>
 
-  <div id="author">%{book_author}</div>
+  <div id="author">par %{book_author}</div>
 
   <div id="editor_bottom">%{editor_bottom}</div>
 

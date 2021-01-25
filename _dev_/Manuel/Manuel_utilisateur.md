@@ -104,7 +104,7 @@ set current Arrival
 
 <a id="fichier-config"></a>
 
-## Fichier configuation (`config.yml`) du film
+## Fichier configuration (`config.yml`) du film
 
 C’est le fichier qui définit le film courant. On trouve les propriétés suivantes :
 
@@ -507,7 +507,18 @@ Pour produire les livres (ebook mobi, epub, pdf), il suffit de jouer la commande
 
 Chaque livre comporte sa propre couverture mais une charte commune est utilisée pour homogénéiser l'ensemble.
 
-Pour ajouter la page de couverture dans le livre produit, il faut inclure la balise `[include:cover.html]` dans le premier document défini ou ajouter `cover.html` au début de la liste des documents dans la configuration du livre :
+**Aperçu rapide des commandes**
+
+~~~
+build cover				Construit la couverture du livre à partir
+									des informations fournies dans le fichier
+									de configuration.
+									=> ./products/cover.html
+~~~
+
+
+
+Pour ajouter la page de couverture dans le livre produit, il faut inclure la balise `[include:cover.html]` dans le premier document défini OU ajouter `cover.html` au début de la liste des documents dans la configuration du livre :
 
 ~~~yaml
 # dans le fichier config.yml du film
@@ -525,15 +536,22 @@ Il convient de s'assurer que les données suivantes soient définies dans le fic
 title: Le titre du film
 film_infos:
 	director: Réalisateur du film
+	authors: Scénaristes
 book_infos:
-	author: Auteur du Film
-	editor:
+	author: Auteur de l’analyse du Film
+	publisher:
 		name: Éditeur
 		logo: path/to/logo.png
 	cover: 
 		path: path/to/cover.jpg
 		width: taille sur la page de couverture
 ~~~
+
+
+
+---
+
+
 
 <a id="note-temps"></a>
 

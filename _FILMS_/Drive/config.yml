@@ -1,9 +1,20 @@
 ---
 title: Drive
 documents:
+- cover.html
 - sequencier.html
 - traitement.html
 - synopsis.html
+book_infos:
+  author: Philippe Perret
+  publisher:
+    name: Éditions Icare
+    logo: img/icare-editions.png
+  cover:
+    path: img/Drive-cover-prov.jpg
+    width: 15cm
+    height: 379px
+    left: 0.5cm
 title_fr:
 video:
   width: 600

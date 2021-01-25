@@ -16,7 +16,7 @@ else
   # Construction d'un seul document
   doc_name = "#{doc_name}.md" if File.extname(doc_name) == ''
   adoc = ADocument.new(doc_name)
-  if File.definitely_exists?(adoc.md_path)
+  if File.exists_with_case?(adoc.md_path)
     adoc.build_html_file
     if not film.config['documents'].include?(doc_name)
       Ajax << {message: "Il faut ajouter le document « #{doc_name} » à config.yml (propriété 'documents') pour qu'il soit mis dans les livres."}
