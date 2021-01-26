@@ -228,7 +228,9 @@ PR et MR parlent de TR qui ne vient pas. 		<=== :-(
 PR et MR parlent de Lili qui ne vient pas. 	<=== :-D
 ~~~
 
+#### Ajout d’un commentaire aux statistiques de personnages
 
+Comme pour tout [document automatique](#documents-automatiques) il est possible d’écrire un commentaire concernant les statistiques de personnages. Ce commentaire doit se trouver dans le dossier `./documents` du film et porter le nom 
 
 
 
