@@ -15,18 +15,22 @@ class Book
 #
 # Méthode principale qui produit les livres avec Calibre.
 def export(type)
+  suivi('== Export du livre (fabrication) ==')
   export_as('HTML') if type == 'html' || type.nil?
   export_as('MOBI') if type == 'mobi' || type.nil?
   export_as('ePUB') if type == 'epub' || type.nil?
   export_as('PDF')  if type == 'pdf'  || type.nil?
+  suivi('== /Fin de l’Export du livre ==')
 end
 
 def export_as(type)
+  suivi("--> Export au format #{type}")
   if type.downcase == 'html'
     build_html_book
   else
     build_book(send("#{type.downcase}_file_name".to_sym))
   end
+  suivi("--/ Fin export au format #{type}")
 end #/ export_as(format)
 
 # Construction du livre au format voulu

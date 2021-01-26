@@ -27,11 +27,27 @@ class Film
       stream << scene.output(as: :sequencier)
     end
     stream << '</div>'
+    # On ajoute les commentaires s'il y en a
+    if File.exists?(commentaires_sequencier_path)
+      stream << '<div class="commmentaires_sequencier">'
+      stream << htitle('Commentaires sur le séquencier',3)
+      stream << kramdown(commentaires_sequencier_path)
+      stream << '</div>'
+    end
+
+    if not document?('sequencier.html')
+      Ajax << {message:"Il faut ajouter 'traitement.html' à la liste des documents du fichier config.yml pour qu'il soit introduit dans le livre."}
+    end
+
   ensure
     stream.close
   end
 
   def sequencier_path
     @sequencier_path ||= File.join(folder_products, 'sequencier.html')
+  end
+
+  def commentaires_sequencier_path
+    @commentaires_sequencier_path ||= File.join(folder_documents,'commentaires_sequencier.md')
   end
 end #/Film

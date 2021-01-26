@@ -15,7 +15,17 @@ class Film
     sorted_scenes.each do |scene|
       stream << scene.output(as: :traitement)
     end
-    if not config['documents'].include?('traitement.html')
+
+
+    # On ajoute les commentaires s'il y en a
+    if File.exists?(commentaires_traitement_path)
+      stream << '<div class="commmentaires_traitement">'
+      stream << htitle('Commentaires sur le traitement',3)
+      stream << kramdown(commentaires_traitement_path)
+      stream << '</div>'
+    end
+
+    if not document?('traitement.html')
       Ajax << {message:"Il faut ajouter 'traitement.html' à la liste des documents du fichier config.yml pour qu'il soit introduit dans le livre."}
     end
   ensure
@@ -44,4 +54,9 @@ class Film
   def traitement_path
     @traitement_path ||= File.join(folder_products, 'traitement.html')
   end #/ traitement_path
+
+  def commentaires_traitement_path
+    @commentaires_traitement_path ||= File.join(folder_documents,'commentaires_traitement.md')
+  end
+
 end #/Film

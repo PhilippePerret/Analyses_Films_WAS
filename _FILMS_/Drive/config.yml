@@ -8,11 +8,13 @@ isbn: XX-X-XXXXX-XXX-XX
 prix: 5 €
 documents:
 - cover.html
+- frontispice.html
 - sequencier.html
+documents_out:
 - traitement.html
 - synopsis.html
 - composition.html
-- quatrieme.html
+- quatrieme.html  
 book_infos:
   copyright: Tous droits de reproduction, d'adaptation et de traduction réservés
   author:

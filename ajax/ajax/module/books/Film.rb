@@ -9,13 +9,33 @@ class Film
   # Si non fourni, tous les livres sont construits.
   def build_books(type = nil)
     @export_errors = []
+    suivi("=== Lancement de la construction du #{Time.now} ===")
     require_module('scenes')
+    suivi('S’assurer que tous les dossiers nécessaires existent')
     folder_finaux # Simplement pour s'assurer qu'il existe
     `open -a Finder "#{folder}"`
     book = Book.new(self)
     book.prepare
     book.export(type)
+    suivi("=== Fin de la construction ===")
     Ajax << {export_errors: export_errors}
+  ensure
+    refsuivi.close if @refsuivi
   end
+
+  # Pour écrire des messages de suivi au cours de la construction
+  def suivi(msg)
+    refsuivi.write("#{Time.now.strftime('%H:%M:%S')} #{msg}\n")
+  end
+  def refsuivi
+    @refsuivi ||= begin
+      File.delete(pathsuivi) if File.exists?(pathsuivi)
+      File.open(pathsuivi,'a')
+    end
+  end
+  def pathsuivi
+    @pathsuivi ||= File.join(folder,'building.log')
+  end
+
 
 end #/Film

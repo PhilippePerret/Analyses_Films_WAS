@@ -18,28 +18,32 @@ def initialize(film)
   @film = film
 end #/ initialize
 
+def suivi(msg); film.suivi(msg) end
+
 # = main =
 #
 # Méthode principale qui assemble tous les éléments du livre pour produire
 # le fichier XHTML qui servira pour Calibre.
 #
 def prepare
+  suivi('== Préparation du livre ==')
 
   File.delete(xhtml_file_path) if File.exists?(xhtml_file_path)
-
-
   prepare_document_xhtml_final # => final.xhtml
 
   copie_of_css
 
+  suivi('== /fin de la préparation du livre ==')
 end
 
 def prepare_document_xhtml_final
 
+  suivi('--> Construction du fichier xhtml final')
   # On ouvre le flux vers le fichier XHTML final
   @stream = File.open(xhtml_file_path,'a')
 
   # On ajoute l'entête du fichier XHTML
+  suivi('    + Ajout de l’entête XHTML du fichier')
   @stream << xhtml_header(film.title)
 
   # On ajoute tous les documents
@@ -48,6 +52,8 @@ def prepare_document_xhtml_final
   # On ajoute le pied du fichier XHTML
   @stream << "</body>\n</html>\n"
 
+  suivi('--/ Fin de la Construction du fichier xhtml final')
+
 ensure
   # On ferme le flux vers le fichier XHTML final
   @stream.close
@@ -55,6 +61,7 @@ end
 
 # Copie des fichiers css dans le dossier final
 def copie_of_css
+  suivi('--> Copie des fichiers CSS')
   ['styles','analyse','styles_mobi7_kf8'].each do |affixe|
     src = File.join(folder_templates,"#{affixe}.css")
     dst = File.join(film.folder_products, "#{affixe}.css")
@@ -72,8 +79,6 @@ def add_all_documents
 
   # +files+ est une liste de chemins d'accès absolus
   files = film.documents || Dir["#{film.folder_documents}/**/*.md"]
-  files << File.join(__dir__,'templates','frontispice.html')
-
   files.each do |src|
     if File.extname(src).start_with?('.htm')
       # <=  C'est un fichier HTML qui est requis
@@ -90,6 +95,7 @@ def add_all_documents
         # <=  C'est un fichier automatique
         # =>  On l'actualise dans tous les cas
 
+        suivi("Actualisation du fichier #{src}")
         script_path = File.join(APP_FOLDER,'ajax','ajax','_scripts',"build_#{File.basename(src,File.extname(src))}.rb")
         load script_path
 
@@ -97,6 +103,7 @@ def add_all_documents
         # <=  Le fichier n'existe pas
         # =>  On signale une erreur de document manquant
         log("Fichier #{src.inspect} recherché dans #{dst.inspect}")
+        suivi("ERREUR NON FATALE : fichier introuvable #{src}")
         film.export_errors << "Le fichier #{File.basename(src).inspect} devrait être ajouté aux livres, mais il est introuvable (dans #{src.inspect})"
         next
       end
@@ -109,9 +116,13 @@ def add_all_documents
       affixe  = File.basename(src, File.extname(src))
       dst     = File.join(film.folder_products,"#{affixe}.html")
       File.delete(dst) if File.exists?(dst)
+      suivi("Construction du fichier #{dst} depuis markdown")
       File.open(dst,'wb'){|f| f.write( kramdown(src) )}
     end
+
+    suivi("    + Ajout de : #{dst}")
     @stream << File.read(dst)
+
   end
 end
 

@@ -5,7 +5,7 @@ class Film
     ensure_required_folders
     Frontispice.new(self).build
   end
-end #/class Film
+end
 
 class Frontispice
 attr_reader :film
@@ -18,14 +18,15 @@ def build
   data_valid? || raise("Données invalides : #{@invalidity}")
   File.delete(frontispice_path) if File.exists?(frontispice_path)
   code = File.read(template_path).force_encoding('utf-8')
+  log("code du frontispice :\n#{code.inspect}")
   File.open(frontispice_path,'wb') do |f|
-    code % fconfig.get(required_data)
+    f.write(code % fconfig.get(required_data))
   end
 
   # Et enfin, si le document 'frontispice.html' n'est pas dans la liste
   # des documents du livre, on le signale
-  if film.document?('frontispice.html')
-      Ajax << {message: "Le document 'frontispice.html' n'a pas besoin d'être ajouté à la liste des documents dans config.yml pour être construit avec les livres."}
+  if not film.document?('frontispice.html')
+      Ajax << {message: "Le document 'frontispice.html' doit être ajouté à la liste des documents dans config.yml pour être construit avec les livres."}
   end
 
 end #/ build_page_composition
@@ -45,7 +46,7 @@ end #/ data_valid?
 
 def frontispice_path
   @frontispice_path ||= File.join(film.folder_products,'frontispice.html')
-end #/ frontispice_path
+end
 
 private
 

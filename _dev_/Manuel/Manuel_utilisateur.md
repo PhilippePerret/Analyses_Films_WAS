@@ -268,7 +268,7 @@ Cf.  [la page de couverture](#cover)
 
 J'appelle à tort par ce nom les 8 toutes premières pages du livre, reprenant titre, page de garde, information livre, copyright, etc.
 
-Ces pages s'ajoutent automatiquement aux livres, il n'y a rien à faire.
+Pour l'**insérer dans les livres**, il faut ajouter `frontispice.html` à la liste des `documents` du [fichier `config.yml`][].
 
 Pour pouvoir fonctionner, le frontispice a besoin des informations suivante dans le [fichier `config.yml`][] :
 
@@ -324,7 +324,9 @@ Il s'agit :
 
 **Pour les insérer dans les livres**, il faut impérativement ajouter leur nom final — donc avec l'extension `.html` — à la liste des `documents` du [fichier `config.yml`][].
 
-Pour chacun de ces documents automatiques — hormis les documents de couverture —, il est possible et même préconisé de **produire un commentaire** qui sera ajouté à la suite de la présentation des statistiques. Ce commentaire est un fichier markdown à placer dans le dossier `./documents/` qui portera le nom :
+Pour chacun de ces documents automatiques — hormis les documents de couverture —, il est possible et même préconisé de **produire un commentaire** qui sera ajouté à la suite de la présentation des statistiques. 
+
+Ce commentaire est un fichier markdown — sans titre — à placer dans le dossier `./documents/` qui portera le nom :
 
 ~~~
 # Documents à placer dans le dossier ./documents/ du film

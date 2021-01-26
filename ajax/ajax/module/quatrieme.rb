@@ -19,7 +19,7 @@ def build
   File.delete(cover4_path) if File.exists?(cover4_path)
   code = File.read(template_path).force_encoding('utf-8')
   File.open(cover4_path,'wb') do |f|
-    code % fconfig.get(['resume','author_cv','isbn','prix','cover4_img_path'])
+    f.write(code % fconfig.get(['resume','author_cv','isbn','prix','cover4_img_path']))
   end
 
   # On doit copier l'image
