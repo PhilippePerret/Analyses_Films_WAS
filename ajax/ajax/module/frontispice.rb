@@ -25,7 +25,7 @@ def build
   # Et enfin, si le document 'frontispice.html' n'est pas dans la liste
   # des documents du livre, on le signale
   if film.document?('frontispice.html')
-    Ajax << {message: "Le document 'frontispice.html' n'a pas besoin d'être ajouté à la liste des documents dans config.yml pour être construit avec les livres."}
+      Ajax << {message: "Le document 'frontispice.html' n'a pas besoin d'être ajouté à la liste des documents dans config.yml pour être construit avec les livres."}
   end
 
 end #/ build_page_composition

@@ -24,8 +24,9 @@ book_infos:
     name: Éditions Icare
     address: https://www.atelier-icare.net
     logo: img/icare-editions.png
-  depot_legal:
-  printer:
+  depot_legal: MM AAAA
+  imprimeur:  Lulu la tortue
+  print_date: MM AAAA
   cover:
     path: img/Drive-cover-prov.jpg
     width: 15cm

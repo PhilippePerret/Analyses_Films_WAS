@@ -47,7 +47,7 @@ def build
 
   code = File.read(template_path).force_encoding('utf-8')
   File.open(cover_path,'wb') do |f|
-    f.write(code % fconfig.get(AUTO_DOCUMENTS['cover.html'][:required_data]))
+    f.write(code % fconfig.get(required_data))
   end
 
   # Copier if needed l'image de couverture dans le dossier 'products'
@@ -71,8 +71,11 @@ def build
   end
 end #/ FCover#build
 
+def required_data
+  @required_data ||= AUTO_DOCUMENTS['cover.html'][:required_data]
+end
+
 def data_valid?
-  required_data = AUTO_DOCUMENTS['cover.html'][:required_data]
   lakes = []
   required_data.each do |kdata|
     fconfig.send(kdata.to_sym) || lakes << kdata
