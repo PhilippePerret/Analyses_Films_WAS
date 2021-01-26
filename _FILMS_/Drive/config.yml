@@ -5,11 +5,16 @@ documents:
 - sequencier.html
 - traitement.html
 - synopsis.html
+- composition.html
+- quatrieme.html
 book_infos:
   author: Philippe Perret
   publisher:
     name: Éditions Icare
+    address: https://www.atelier-icare.net
     logo: img/icare-editions.png
+  depot_legal:
+  printer:
   cover:
     path: img/Drive-cover-prov.jpg
     width: 15cm

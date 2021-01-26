@@ -8,7 +8,9 @@ AUTO_DOCUMENTS = {
   'synopsis.html'     => {hname:'Synopsis'},
   'sequencier.html'   => {hname:'Séquencier'},
   'traitement.html'   => {hname:'Traitement'},
-  'statistiques.html' => {hname:'Statistiques'}
+  'statistiques.html' => {hname:'Statistiques'},
+  'composition.html'  => {hname:'Page d’information sur la composition du livre'},
+  'quatrieme.html'    => {hname:'Quatrième de couverture'}
 }
 
 TYPES_EVENTS = {
