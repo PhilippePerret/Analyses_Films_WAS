@@ -124,7 +124,8 @@ end
 
 def config
   YAML.load_file(config_path).merge!(film_folder: File.basename(folder))
-end #/ config
+end
+
 def save_config(config)
   File.open(config_path,'wb'){|f| f.write(YAML.dump(config))}
 end

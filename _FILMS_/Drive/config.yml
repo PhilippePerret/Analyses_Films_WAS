@@ -1,5 +1,9 @@
 ---
 title: Drive
+resume: |
+  <span class="film">Drive</span> raconte l'histoire d'un chauffeur doué, travaillant comme cascadeur.
+isbn: XX-X-XXXXX-XXX-XX
+prix: 5 €
 documents:
 - cover.html
 - sequencier.html
@@ -8,7 +12,9 @@ documents:
 - composition.html
 - quatrieme.html
 book_infos:
-  author: Philippe Perret
+  author:
+    name: Philippe Perret
+    cv: Philippe Perret est romancier publié à compte d'éditeur, scénariste professionnel, musicien, pédagogue (www.atelier-icare.net).
   publisher:
     name: Éditions Icare
     address: https://www.atelier-icare.net
@@ -20,6 +26,12 @@ book_infos:
     width: 15cm
     height: 379px
     left: 0.5cm
+  cover4:
+    img_path: img/Drive-cover-prov.jpg
+    img_width: 10cm
+    img_height: auto
+    img_left: 0
+    img_top: 0
 title_fr:
 video:
   width: 600

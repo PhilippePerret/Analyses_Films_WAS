@@ -15,24 +15,13 @@ if doc_name.nil?
   # Les documents .html sont soit des documents automatiques, soit
   # des documents déjà formatés
   (film.config['documents']||[]).each do |doc_name|
-    case doc_name
-    when 'pfa.html'
-      require_relative 'build_pfa'
-      documents_built << 'PFA'
-    when 'synopsis.html'
-      require_relative 'build_synopsis'
-      documents_built << 'Synopsis'
-    when 'sequencier.html'
-      require_relative 'build_sequencier'
-      documents_built << "Séquencier"
-    when 'traitement.html'
-      require_relative 'build_traitement'
-      documents_built << 'Traitement'
-    when 'statistiques.html'
-      require_relative 'built_statistiques'
-      documents_built << 'Statistiques'
+    if AUTO_DOCUMENTS.key?(doc_name)
+      affixe = File.basename(doc_name,File.extname(doc_name))
+      require_relative "build_#{affixe}"
+      documents_built << AUTO_DOCUMENTS[doc_name][:hname]
     else
       adoc = ADocument.new(doc_name)
+      adoc.valid? || raise("Le document #{doc_name.inspect} est invalide pour la raison suivante : #{adoc.invalidity}")
       if File.exists?(adoc.md_path)
         adoc.build_html_file
         documents_built << doc_name

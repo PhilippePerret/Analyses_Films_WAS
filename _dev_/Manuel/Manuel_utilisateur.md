@@ -381,10 +381,39 @@ isbn:		Numéro ISBN
 book_infos:
 	depot_legal: janvier 2021 # date du dépot légal
 	imprimeur:	Éditions Icare # imprimeur
-	impression:	janvier 2021 # date de la fin d'impression
+	print_date:	janvier 2021 # date de la fin d'impression
 	publisher:
 		name: Nom de l’éditeur
+		address: # adresse de l'éditeur
 ~~~
+
+
+
+<a id="quatrieme-couverture"></a>
+
+#### Quatrième de couverture
+
+La quatrième de couverture présente une autre photo du film, un résumé du film et de l'analyse, ainsi qu'une présentation de l'auteur.
+
+**Pour l’insérer dans le livre**, il faut ajouter le nom `quatrieme.html` dans la liste des documents du film.
+
+Le [fichier `config.yml`][] doit également définir les données suivantes :
+
+~~~yaml
+# ...
+isbn: # Numéro ISBN du livre
+book_infos:
+	author:
+		cv: Une court bio de l’auteur de l’analyse.
+	# ...
+	cover4:
+		img_path: chemin/vers/img-quatrieme.jpg
+		img_width: Largeur (avec unité)
+		img_height: Hauteur (avec unité)
+		img_left: Décalage gauche (dans son conteneur)
+		img_top:	Décalage haut (dans son conteneur)
+~~~
+
 
 
 ---
@@ -700,7 +729,9 @@ film_infos:
 	director: Réalisateur du film
 	authors: Scénaristes
 book_infos:
-	author: Auteur de l’analyse du Film
+	author: 
+		name: Auteur de l’analyse du Film
+		address: adresse@mail.com
 	publisher:
 		name: Éditeur
 		logo: path/to/logo.png

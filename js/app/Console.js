@@ -89,6 +89,7 @@ run_build_command(what, extra, option1){
     case 'statistiques': case 'stats': return this.run_build_statistiques(extra)
     case 'synopsis': return this.run_build_synopsis()
     case 'traitement':case'treatment': return this.run_build_traitement()
+    case 'quatrieme': return this.run_build_quatrieme()
     default: erreur(`Je ne sais pas comment construire un ou une ${what}`)
   }
 }
@@ -151,6 +152,7 @@ run_build_all(type, option1){
   message('Reconstruction de tout…', {keep:false})
   this.run_build_sequencier(true)
   .then(this.run_build_cover.bind(this, null, true))
+  .then(this.run_build_quatrieme.bind(this, null, true))
   .then(this.run_build_statistiques.bind(this, null, true))
   .then(this.run_build_traitement.bind(this, null, true))
   .then(this.run_build_sequencier.bind(this, null, true))
@@ -196,6 +198,14 @@ run_build_cover(option1, keep_messages = false){
   message("Construction de la COUVERTURE, merci de patienter…", {keep:keep_messages})
   return Ajax.send('build_cover.rb').then(ret => {
     message("Couverture construite avec succès. Jouer 'open cover' pour le voir",{keep:keep_messages})
+    ret.message && message(ret.message)
+  })
+}
+
+run_build_quatrieme(option1, keep_messages = false){
+  message("Construction de la QUATRIÈME DE COUVERTURE, merci de patienter…", {keep:keep_messages})
+  return Ajax.send('build_quatrieme.rb').then(ret => {
+    message("4e de couverture construite avec succès. Jouer 'open quatrieme' pour le voir",{keep:keep_messages})
     ret.message && message(ret.message)
   })
 }
