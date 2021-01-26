@@ -111,6 +111,10 @@ C’est le fichier qui définit le film courant. On trouve les propriétés suiv
 ~~~yaml
 ---
 	titre: Le titre du film
+	documents:
+		- document1.html
+		- document2.md
+		- etc.
 	video:
 		width:	400 				// taille de la vidéo à afficher
 		name:  video.mp4		// nom de la vidéo dans ce dossier
@@ -243,6 +247,67 @@ Une analyse avec l'« Analyseur de Films », qui [produira les livres d'analys
 * des [« documents rédigés »](#documents-rediges)
 * des [« documents automatiques »](#documents-automatiques)
 * une [quatrième de couverture](#quatrieme-couverture)
+
+### Les pages principales
+
+#### La couverture
+
+Cf.  [la page de couverture](#cover)
+
+Pour qu'elle soit utilisée dans le livre, il faut ajouter `cover.html` à la propriété `documents` du [fichier `config.yml`][].
+
+<a id="pages-informations"></a>
+
+#### Les pages d'informations
+
+Ce sont les pages « de garde » en quelque sorte, qui renseignent sur la collection. Elles sont communes à tous les livres, à quelques distinctions près (par exemple, la liste des livres parus sera différente pour chaque nouveau livre).
+
+Pour l'insérer dans les livres, il faut ajouter `premieres_pages.md` à la liste des `documents` du [fichier `config.yml`][].
+
+<a id="documents-rediges"></a>
+
+#### Les « documents rédigés »
+
+Ce sont des documents qui sont conçus en dehors de l'application (par exemple dans Typora) mais qui sont « parsés » par l'application. Ils sont rédigés en markdown et peuvent profiter de tous les avantages de l'application à commencer par les personnages en balises ou les temps.
+
+Ces documents doivent se trouver dans le dossier `./documents/` du livre auquel ils appartiennent.
+
+Pour les insérer dans les livres, il faut impérativement ajouter leur nom avec extension à la liste des `documents` du [fichier `config.yml`][].
+
+<a id="documents-automatiques"></a>
+
+#### Les documents « automatiques »
+
+Ce sont des documents qui, conformément à leur type, sont fabriqués de façon automatique, c'est-à-dire *programmatique* par l'application, en se servant des informations des évènements.
+
+Il s'agit :
+
+* du PFA du film (Paradigme de Field Augmenté) — `pfa.html`, 
+* du séquencier — `sequencier.html`,
+* du synopsis — `synopsis.html`,
+* du traitement — `traitement.html`
+* des documents de statistiques — `statistiques.html`.
+
+Pour les insérer dans les livres, il faut impérativement ajouter leur nom final — donc avec l'extension `.html`, le nom suivant la description ci-dessus — à la liste des `documents` du [fichier `config.yml`][].
+
+Chaque de ces documents peut être construit à n'importe quel moment (pour vérifier son contenu par exemple) à l'aide de la commande `build` :
+
+~~~
+build sequencier
+build synopsis
+build traitement
+build statistiques
+build pfa
+
+build documents
+		Construit tous les documents ci-dessus, mais seulement s'ils
+		sont définis dans la liste 'documents' de config.yml
+~~~
+
+---
+
+
+
 
 ### Créer un évènement d'analyse
 
@@ -544,7 +609,9 @@ book_infos:
 		logo: path/to/logo.png
 	cover: 
 		path: path/to/cover.jpg
-		width: taille sur la page de couverture
+		width: taille sur la page de couverture (avec unité)
+		height: hauteur de la page de couverture (avec unité)
+		left: décalage gauche (avec unité)
 ~~~
 
 
@@ -1088,4 +1155,5 @@ On peut détruire régulièrement les dossiers les plus vieux, si tout est OK.
 
 [la vidéo active]: #video-active
 [le fichier `config.yml`]: #fichier-config
+[fichier `config.yml`]: #fichier-config
 [la console]: #console

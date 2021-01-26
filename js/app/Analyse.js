@@ -12,7 +12,7 @@ constructor(film) {
 }
 
 buildPFA(keep_messages = false){
-  return Ajax.send('pfa_build.rb', { duration: video.duration } )
+  return Ajax.send('build_pfa.rb')
   .then(ret => {
     // console.log(ret)
     message(ret.message, {keep:keep_messages})

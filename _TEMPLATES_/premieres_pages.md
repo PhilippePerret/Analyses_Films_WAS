@@ -11,6 +11,8 @@
 
 [include:textes_types/presentation_collection.md]
 
+[include:liste_livres.md]
+
 ## Dans la langue originale
 
 [include:textes_types/warning_langue.md]
@@ -18,3 +20,7 @@
 ## Correspondance des horloges
 
 [include:textes_types/warning_horloges.md]
+
+## Note sur l'auteur
+
+L'auteur de ces analyses, Philippe Perret, est aussi le pédagogue de l'[atelier Icare](https://www.atelier-icare.net), l'auteur du best-seller pédagogique [« Savoir rédiger et présenter son scénario »](lien requis) ainsi que de plusieurs romans (voir [son site personnel](https://www.philippeperret.fr))
