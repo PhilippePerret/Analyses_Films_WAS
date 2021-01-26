@@ -26,6 +26,7 @@ book_infos:
     width: 15cm
     height: 379px
     left: 0.5cm
+    top: 0
   cover4:
     img_path: img/Drive-cover-prov.jpg
     img_width: 10cm

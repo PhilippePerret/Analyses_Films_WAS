@@ -33,7 +33,13 @@ def author_cv         ; @author_cv          ||= authorinfos['cv']         end
 def publisher_name    ; @publisher_name     ||= pubinfos['name']          end
 def publisher_logo    ; @publisher_logo     ||= pubinfos['logo']          end
 def publisher_address ; @publisher_address  ||= pubinfos['address']       end
+
 def cover_img_path    ; @cover_img_path     ||= coverinfos['path']        end
+def cover_img_left    ; @cover_img_left     ||= coverinfos['left']        end
+def cover_img_width   ; @cover_img_width    ||= coverinfos['width']       end
+def cover_img_height  ; @cover_img_height   ||= coverinfos['height']      end
+def cover_img_top     ; @cover_img_top      ||= coverinfos['top']         end
+
 def cover4_img_path   ; @cover4_img_path    ||= cover4infos['img_path']   end
 def depot_legal       ; @depot_legal        ||= bookinfos['depot_legal']  end
 def imprimeur         ; @imprimeur          ||= bookinfos['imprimeur']    end

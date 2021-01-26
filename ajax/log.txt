@@ -179,3 +179,260 @@ Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/requ
 Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
 Nombre de fichiers .DS_Store détruits : 0
 film dans FConfig = #<Film:0x00007f8df60b4448 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126">
+--- [2021-01-26 13:47:27 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = nil
+ERREUR: undefined method `config' for nil:NilClass
+BACKTRACE ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb:17:in `initialize'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:117:in `new'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:117:in `fconfig'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:75:in `block in data_valid?'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:74:in `each'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:74:in `data_valid?'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:44:in `build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:32:in `build_cover'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_cover.rb:8:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-26 13:48:31 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007fdb97196f20 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+ERREUR: undefined local variable or method `book_infos' for #<FCover:0x00007fdb97196a20>
+BACKTRACE ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:82:in `editor'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:51:in `block in build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:49:in `open'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:49:in `build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:32:in `build_cover'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_cover.rb:8:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-26 13:49:46 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007fb27c987098 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+ERREUR: key{cover_img_left||'auto'} not found
+Did you mean?  :cover_img_path
+BACKTRACE ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:50:in `%'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:50:in `block in build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:49:in `open'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:49:in `build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:32:in `build_cover'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_cover.rb:8:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-26 13:50:25 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007fea579ef1f8 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+ERREUR: key{cover_img_left} not found
+Did you mean?  :cover_img_path
+BACKTRACE ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:50:in `%'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:50:in `block in build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:49:in `open'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:49:in `build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:32:in `build_cover'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_cover.rb:8:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-26 13:51:14 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007f9397137220 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+ERREUR: key{cover_img_left} not found
+Did you mean?  :cover_img_path
+BACKTRACE ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:50:in `%'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:50:in `block in build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:49:in `open'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:49:in `build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:32:in `build_cover'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_cover.rb:8:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-26 13:52:41 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007f82e8152e18 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+ERREUR: undefined method `cover_img_right' for #<FConfig:0x00007f82e81528a0>
+Did you mean?  cover_img_height
+               cover_img_width
+               cover_img_path
+               cover_img_left
+BACKTRACE ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:75:in `block in data_valid?'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:74:in `each'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:74:in `data_valid?'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:44:in `build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:32:in `build_cover'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_cover.rb:8:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-26 13:52:55 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007fda201e2d30 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+ERREUR: undefined local variable or method `book_infos' for #<FCover:0x00007fda201e2808>
+BACKTRACE ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:109:in `logo_editor_img_name'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:106:in `logo_editor_products_path'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:64:in `build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:32:in `build_cover'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_cover.rb:8:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-26 13:55:01 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007ff91909ac30 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+ERREUR: undefined local variable or method `documents' for #<FCover:0x00007ff91909a708>
+BACKTRACE ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:71:in `build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/cover.rb:32:in `build_cover'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_cover.rb:8:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-26 13:56:51 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007fa5c08ff0d0 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">

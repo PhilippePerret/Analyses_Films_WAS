@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 class Film
   def build_quatrieme_couverture
+    ensure_required_folders
     Quatrieme.new(self).build
   end
 end #/class Film
@@ -34,7 +35,7 @@ def build
 
   # Et enfin, si le document 'quatrieme.html' n'est pas dans la liste
   # des documents du livre, on le signale
-  if not film.config['documents'].include?('quatrieme.html')
+  if not film.document?('quatrieme.html')
     Ajax << {message: "Le document 'quatrieme.html' doit être ajouté à la liste des documents dans config.yml pour être construit avec les livres."}
   end
 

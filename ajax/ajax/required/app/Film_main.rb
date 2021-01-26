@@ -72,6 +72,19 @@ def initialize(folder)
   require_module('backup') && backup unless File.exists?(backup_today_path)
 end
 
+
+# Retourne true si la liste des documents en config contient +docname+
+def document?(docname)
+  return config['documents'].include?(docname)
+end
+
+# S'assure que les dossiers minimum existent bien
+def ensure_required_folders
+  mkdir(folder_img_in_products)
+  mkdir(folder_img_in_livres)
+end
+
+
 # Si la vidéo définie n'existe pas dans le dossier, on la récupère
 # Si elle est introuvable, on raise
 def retrieving_video_required?
@@ -266,6 +279,13 @@ def video_name
   @video_name ||= config['video']['name']
 end #/ video_name
 
+
+def folder_img_in_products
+  @folder_img_in_products ||= File.join(folder_products,'img')
+end
+def folder_img_in_livres
+  @folder_img_in_livres ||= File.join(folder_livres,'img')
+end
 
 def folder_events
   @folder_events ||= mkdir(File.join(folder,'events'))
