@@ -240,31 +240,59 @@ Comme pour tout [document automatique](#documents-automatiques) il est possible 
 
 ## Analyse
 
+<a id="composition-analyse"></a>
+
 ### Composition d’une analyse
 
 Une analyse avec l'« Analyseur de Films », qui [produira les livres d'analyse](#produire-livre), est composée des éléments suivant :
 
-* une [page de couverture](#cover)
-* des [pages d'informations](#pages-informations)
-* des [« documents rédigés »](#documents-rediges)
-* des [« documents automatiques »](#documents-automatiques)
-* une [quatrième de couverture](#quatrieme-couverture)
+* une [page de couverture](#cover),
+* le [frontispice (premières pages)](#frontispice),
+* des [pages d'informations sur la collection](#pages-informations),
+* des [« documents rédigés »](#documents-rediges),
+* des [« documents automatiques »](#documents-automatiques),
+* une [page de composition](#page-composition),
+* une [quatrième de couverture](#quatrieme-couverture).
 
-### Les pages principales
+<a id="description-pages"></a>
+
+### Description des pages
 
 #### La couverture
 
 Cf.  [la page de couverture](#cover)
 
-Pour qu'elle soit utilisée dans le livre, il faut ajouter `cover.html` à la propriété `documents` du [fichier `config.yml`][].
+<a id="frontispice"></a>
+
+#### Le Frontispice
+
+J'appelle à tort par ce nom les 8 toutes premières pages du livre, reprenant titre, page de garde, information livre, copyright, etc.
+
+Ces pages s'ajoutent automatiquement aux livres, il n'y a rien à faire.
+
+Pour pouvoir fonctionner, le frontispice a besoin des informations suivante dans le [fichier `config.yml`][] :
+
+~~~yaml
+title:	Le titre du livre
+book_infos:
+	# ...
+	isbn: 17-567... # Numéro ISBN du livre
+	# ...
+	author: Auteur du livre
+	# ...
+	publisher:
+		name: Éditeur # nom de l'éditeur
+		address: # adresse de l'éditeur
+		
+~~~
 
 <a id="pages-informations"></a>
 
-#### Les pages d'informations
+#### Les pages d'informations sur la collection
 
 Ce sont les pages « de garde » en quelque sorte, qui renseignent sur la collection. Elles sont communes à tous les livres, à quelques distinctions près (par exemple, la liste des livres parus sera différente pour chaque nouveau livre).
 
-Pour l'insérer dans les livres, il faut ajouter `premieres_pages.md` à la liste des `documents` du [fichier `config.yml`][].
+Pour l'**insérer dans les livres**, il faut ajouter `premieres_pages.md` à la liste des `documents` du [fichier `config.yml`][].
 
 <a id="documents-rediges"></a>
 
@@ -274,7 +302,9 @@ Ce sont des documents qui sont conçus en dehors de l'application (par exemple d
 
 Ces documents doivent se trouver dans le dossier `./documents/` du livre auquel ils appartiennent.
 
-Pour les insérer dans les livres, il faut impérativement ajouter leur nom avec extension à la liste des `documents` du [fichier `config.yml`][].
+**Pour les insérer dans les livres**, il faut impérativement ajouter leur nom avec extension à la liste des `documents` du [fichier `config.yml`][].
+
+Pour leur rédaction, cf. la partie [Rédiger les documents](#redaction-documents).
 
 <a id="documents-automatiques"></a>
 
@@ -284,27 +314,78 @@ Ce sont des documents qui, conformément à leur type, sont fabriqués de façon
 
 Il s'agit :
 
-* du PFA du film (Paradigme de Field Augmenté) — `pfa.html`, 
+* de la couverture — `cover.html`,
+* du PFA du film (Paradigme de Field Augmenté) — `pfa.jpg`, 
 * du séquencier — `sequencier.html`,
 * du synopsis — `synopsis.html`,
-* du traitement — `traitement.html`
-* des documents de statistiques — `statistiques.html`.
+* du traitement — `traitement.html`,
+* des documents de statistiques — `statistiques.html`,
+* de la quatrième de couverture — `quatrieme.html`.
 
-Pour les insérer dans les livres, il faut impérativement ajouter leur nom final — donc avec l'extension `.html`, le nom suivant la description ci-dessus — à la liste des `documents` du [fichier `config.yml`][].
+**Pour les insérer dans les livres**, il faut impérativement ajouter leur nom final — donc avec l'extension `.html` — à la liste des `documents` du [fichier `config.yml`][].
 
-Chaque de ces documents peut être construit à n'importe quel moment (pour vérifier son contenu par exemple) à l'aide de la commande `build` :
+Pour chacun de ces documents automatiques — hormis les documents de couverture —, il est possible et même préconisé de **produire un commentaire** qui sera ajouté à la suite de la présentation des statistiques. Ce commentaire est un fichier markdown à placer dans le dossier `./documents/` qui portera le nom :
 
 ~~~
+# Documents à placer dans le dossier ./documents/ du film
+
+POUR LES STATISTIQUES (statistiques.html)
+
+	commentaires_stats_personnages.md				Pour les stats sur personnages
+	commentaires_stats_decors.md						Pour les stats sur décors
+	commentaires_stats_scenes.md						Pour les stats sur les scènes
+	
+POUR LES AUTRES DOCUMENTS
+
+	commentaires_<type document>.md
+	
+	commentaires_synopsis.md			Pour le synopsis
+	commentaires_traitement.md		Pour le traitement
+	commentaires_pfa.md						Pour le paradigme de Field augmenté
+	commentaires_sequencier.md		Pour le séquencier
+~~~
+
+
+
+Chacun de ces documents peut être construit à n'importe quel moment (pour vérifier son contenu par exemple) à l'aide de la commande `build` (mais ils seront construits et actualisés chaque fois à la [production des livres](#produire-livre)) :
+
+~~~
+build cover
 build sequencier
 build synopsis
 build traitement
 build statistiques
 build pfa
+build quatrieme
 
 build documents
 		Construit tous les documents ci-dessus, mais seulement s'ils
 		sont définis dans la liste 'documents' de config.yml
 ~~~
+
+
+
+<a id="page-composition"></a>
+
+#### Page de composition
+
+La « page de composition », à la fin du livre, présente les informations de composition du livre avec, notamment, le détenteur des droits, le graphiste de la couverture, la date de dépôt légal, l'adresse de l'auteur et de l'éditeur, etc.
+
+Pour introduire cette page dans le livre, il faut ajouter le document `composition.html` à la liste des documents, en général avant `quatrieme.html` (quatrième de converture).
+
+La page de composition a besoin de ces informations, dans le [fichier `config.yml`][] pour être construite :
+
+~~~yaml
+title: Le titre du livre
+isbn:		Numéro ISBN
+book_infos:
+	depot_legal: janvier 2021 # date du dépot légal
+	imprimeur:	Éditions Icare # imprimeur
+	impression:	janvier 2021 # date de la fin d'impression
+	publisher:
+		name: Nom de l’éditeur
+~~~
+
 
 ---
 
@@ -331,6 +412,8 @@ build documents
 Quand on doit éditer un évènement de façon « sérieuse », par exemple pour y ajouter des références à d’autres évènements, on utilise un « éditeur séparé » ou « grand éditeur ». Quand un évènement est édité dans cet éditeur séparé, on peut faire défiler la liste des évènements de façon normale, en restant dans cet éditeur. Cela permet d’ajouter facilement des références à d’autres évènements dans un évènement particulier.
 
 Pour éditer un évènement d’analyse de cette manière, il suffit de le sélectionner dans la liste et de cliquer la touche ![][Return].
+
+<a id="redaction-documents"></a>
 
 ### Rédiger les documents
 
@@ -560,13 +643,15 @@ Sans texte alternatif, la marque liée au document (à sa section) sera : **Doc
 
 ###  Produire les livres
 
-Pour produire les livres (ebook mobi, epub, pdf), il suffit de jouer la commande `build books` :
+Pour produire les livres (ebook mobi, epub, pdf), il suffit de jouer la commande `build books`.
 
-* Jouer ![][Escape] pour sortir d’un champ d’édition si l’on s’y trouve,
-* jouer ![][K_X] pour se placer dans la console,
-* taper la commande `build books`,
-* presser la touche ![][Return] pour lancer la fabrication,
-* attendre jusqu’à la fabrication complète des livres.
+| Actions                                                  | Raccourci   | Description/options                                          |
+| -------------------------------------------------------- | ----------- | ------------------------------------------------------------ |
+| Sortir du champ d’édition dans lequel on peut se trouver | ![][Escape] |                                                              |
+| Se placer dans la console                                | ![][K_X]    | Ou cliquer simplement dedans avec la souris                  |
+| Taper la commande `build books`                          |             | Pour produire tous les livres, c’est-à-dire les formats `html`, `pdf`, `mobi` ou `epub`. |
+| OU Taper la commande `build book <type>`                 |             | Pour produire un seul livre au format voulu (cf. ci-dessus)  |
+| Jouer la commande                                        | ![][Return] | Puis attendre jusqu’à la fabrication complète des livres, ce qui peut prendre un peu de temps. |
 
 <a id="cover"></a>
 
@@ -574,18 +659,28 @@ Pour produire les livres (ebook mobi, epub, pdf), il suffit de jouer la commande
 
 Chaque livre comporte sa propre couverture mais une charte commune est utilisée pour homogénéiser l'ensemble.
 
-**Aperçu rapide des commandes**
+#### Image de couverture
+
+Avant de pouvoir produire la couverture, il faut définir son image — une image tirée du film — qu’on placera dans le fichier `./img/cover.jpg` si la donnée de configuration conserve ce chemin d’accès.
+
+Information sur cette image :
 
 ~~~
-build cover				Construit la couverture du livre à partir
-									des informations fournies dans le fichier
-									de configuration.
-									=> ./products/cover.html
+DIMENSIONS
+	HAUTEUR
+	LARGEUR
+RÉSOLUTION			300ppi
 ~~~
 
 
 
-Pour ajouter la page de couverture dans le livre produit, il faut inclure la balise `[include:cover.html]` dans le premier document défini OU ajouter `cover.html` au début de la liste des documents dans la configuration du livre :
+#### Produire la couverture
+
+Pour produire la couverture sans produire le livre entier, utiliser la commande `build cover`. Cela produit le fichier `./products/cover.html` qui peut être ouvert dans un navigateur pour visualisation.
+
+
+
+Pour ajouter la page de couverture dans le livre produit, il suffit d’ ajouter `cover.html` au début de la liste des documents dans la configuration du livre.
 
 ~~~yaml
 # dans le fichier config.yml du film
@@ -595,7 +690,7 @@ documents:
 	- cover.html
 ~~~
 
-Il convient de s'assurer que les données suivantes soient définies dans le fichier `config.yml` (une erreur sera produite si ça n'est pas le cas) :
+Pour obtenir une couverture cohérente, il convient de s'assurer que les données suivantes soient définies dans le fichier `config.yml` (une erreur sera produite si ça n'est pas le cas) :
 
 ~~~yaml
 # Dans le fichier config.yml du film
