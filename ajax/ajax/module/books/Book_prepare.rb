@@ -72,6 +72,7 @@ def add_all_documents
 
   # +files+ est une liste de chemins d'accès absolus
   files = film.documents || Dir["#{film.folder_documents}/**/*.md"]
+  files << File.join(__dir__,'templates','frontispice.html')
 
   files.each do |src|
     if File.extname(src).start_with?('.htm')
@@ -101,6 +102,7 @@ def add_all_documents
       end
 
     else
+
       # <=  Ce n'est pas un nom de fichier HTML
       # =>  On le formate en le kramdownant
 

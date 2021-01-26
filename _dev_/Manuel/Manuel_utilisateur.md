@@ -742,7 +742,13 @@ book_infos:
 		left: décalage gauche (avec unité)
 ~~~
 
+<a id="dedicace"></a>
 
+### Dédicace
+
+Pour ajouter une dédicace aux premières pages du livre il suffit de la rédiger dans le document `./documents/dedicace.md` en markdown.
+
+Noter qu'elle sera automatiquement insérée dans les livres puisque les premières pages sont toujours créées. On peut la voir en demandant la construction du [frontispice](#frontispice) (commande `build frontispice`).
 
 ---
 
@@ -750,7 +756,7 @@ book_infos:
 
 <a id="note-temps"></a>
 
-### Divergences entre les temps
+### Note sur la divergences entre les temps
 
 Concernant les temps, vous noterez certainement que les temps qui se retrouvent dans les livres ou les documents finaux ne sont pas ceux avec lesquels on travaille dans l’application. 
 

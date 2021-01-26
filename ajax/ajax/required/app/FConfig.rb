@@ -30,6 +30,7 @@ def isbn              ; @isbn               ||= config['isbn']            end
 def resume            ; @resume             ||= config['resume']          end
 def author_name       ; @author_name        ||= authorinfos['name']       end
 def author_cv         ; @author_cv          ||= authorinfos['cv']         end
+def author_books      ; @author_books       ||= authorinfos['books']      end
 def publisher_name    ; @publisher_name     ||= pubinfos['name']          end
 def publisher_logo    ; @publisher_logo     ||= pubinfos['logo']          end
 def publisher_address ; @publisher_address  ||= pubinfos['address']       end
@@ -44,9 +45,21 @@ def cover4_img_path   ; @cover4_img_path    ||= cover4infos['img_path']   end
 def depot_legal       ; @depot_legal        ||= bookinfos['depot_legal']  end
 def imprimeur         ; @imprimeur          ||= bookinfos['imprimeur']    end
 def print_date        ; @print_date         ||= bookinfos['print_date']   end
+
+
+def copyright         ; @copyright          ||= bookinfos['copyright']    end
 def prix              ; @prix               ||= config['prix']            end
 
-
+def dedicace
+  if File.exists?(dedicace_path)
+    kramdown(dedicace_path) + "\n"
+  else
+    '&nbsp;' # pour ne jamais générer d'erreur
+  end
+end
+def dedicace_path
+  @dedicace_path ||= File.join(film.folder_documents,'dedicace.md')
+end
 
 def bookinfos
   @bookinfos ||= config['book_infos'] || raise("Il faut définir 'book_infos' dans le fichier config.yml du film")

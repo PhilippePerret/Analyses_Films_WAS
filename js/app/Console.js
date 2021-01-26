@@ -90,6 +90,7 @@ run_build_command(what, extra, option1){
     case 'synopsis': return this.run_build_synopsis()
     case 'traitement':case'treatment': return this.run_build_traitement()
     case 'quatrieme': return this.run_build_quatrieme()
+    case 'frontispice': return this.run_build_frontispice()
     default: erreur(`Je ne sais pas comment construire un ou une ${what}`)
   }
 }
@@ -198,6 +199,14 @@ run_build_cover(option1, keep_messages = false){
   message("Construction de la COUVERTURE, merci de patienter…", {keep:keep_messages})
   return Ajax.send('build_cover.rb').then(ret => {
     message("Couverture construite avec succès. Jouer 'open cover' pour le voir",{keep:keep_messages})
+    ret.message && message(ret.message)
+  })
+}
+
+run_build_frontispice(option1, keep_messages = false){
+  message("Construction du FRONTISPICE, merci de patienter…", {keep:keep_messages})
+  return Ajax.send('build_frontispice.rb').then(ret => {
+    message("Frontispice construit avec succès.",{keep:keep_messages})
     ret.message && message(ret.message)
   })
 }

@@ -1,7 +1,9 @@
 ---
 title: Drive
-resume: |
-  <span class="film">Drive</span> raconte l'histoire d'un chauffeur doué, travaillant comme cascadeur.
+resume: '<span class="film">Drive</span> raconte l''histoire d''un chauffeur doué,
+  travaillant comme cascadeur.
+
+  '
 isbn: XX-X-XXXXX-XXX-XX
 prix: 5 €
 documents:
@@ -12,9 +14,12 @@ documents:
 - composition.html
 - quatrieme.html
 book_infos:
+  copyright: Tous droits de reproduction, d'adaptation et de traduction réservés
   author:
     name: Philippe Perret
-    cv: Philippe Perret est romancier publié à compte d'éditeur, scénariste professionnel, musicien, pédagogue (www.atelier-icare.net).
+    cv: Philippe Perret est romancier publié à compte d'éditeur, scénariste professionnel,
+      musicien, pédagogue (www.atelier-icare.net).
+    books: "mort@vivant, Cloaca Maxima, collection « Passé sous silence »"
   publisher:
     name: Éditions Icare
     address: https://www.atelier-icare.net
