@@ -47,9 +47,7 @@ def build
 
   code = File.read(template_path).force_encoding('utf-8')
   File.open(cover_path,'wb') do |f|
-    f.write(code % fconfig.get(AUTO_DOCUMENTS['cover.html'][:required_data]).merge({
-        editor_top: editor, editor_bottom:''
-      }))
+    f.write(code % fconfig.get(AUTO_DOCUMENTS['cover.html'][:required_data]))
   end
 
   # Copier if needed l'image de couverture dans le dossier 'products'
@@ -82,10 +80,6 @@ def data_valid?
   @invalidity = lakes.join(', ')
   return lakes.empty?
 end #/ data_valid?
-
-def editor
-  @editor ||= %Q{<span class="logo-editor"><img src="#{fconfig.publisher_logo}" alt="Logo éditeur"></span>#{fconfig.publisher_name}}
-end
 
 def cover_path
   @cover_path ||= File.join(film.folder_products,'cover.html')

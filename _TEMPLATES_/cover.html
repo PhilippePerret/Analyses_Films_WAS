@@ -81,17 +81,17 @@ img#img-cover {
 div#editor_top, div#editor_bottom {
   text-align:center;
   display:inline-block;
-  background-color:#27719e;
-  color:#a5d8f7;
-  width: 140px;
-  font-size:12.7pt;
+  /* background-color:#27719e; */
+  color:#2189c8;
+  width: 200px;
+  font-size:17.7pt;
   vertical-align:middle;
   font-variant: all-small-caps;
   padding:2px 9px 0px 6px;
 }
 div#editor_top {
   top: 1cm;
-  left:6.4cm;
+  left:4.8cm;
   opacity:1;
 }
 div#editor_bottom {
@@ -101,7 +101,9 @@ div#editor_bottom {
   opacity:0.8;
 }
 span.logo-editor {
-  margin-right:0cm;
+  display: none; /* PAS DE LOGO */
+  margin-left:11px;
+  vertical-align:bottom;
 }
 span.logo-editor img {
   width:24px;
@@ -115,7 +117,7 @@ span.logo-editor img {
     Les analyses <span class="passionnate">passionnées</span> de films
   </div>
 
-  <div id="editor_top">%{editor_top}</div>
+  <div id="editor_top">%{publisher_name}<span class="logo-editor"><img src="%{publisher_logo}" alt="Logo éditeur"></span></div>
 
   <img id="img-cover" src="%{cover_img_path}" alt="Couverture" style="left:%{cover_img_left};top:{cover_img_top};width:%{cover_img_width};height:%{cover_img_height}">
 
@@ -125,7 +127,5 @@ span.logo-editor img {
   <div id="title">%{book_title}</div>
 
   <div id="author">par %{author_name}</div>
-
-  <div id="editor_bottom">%{editor_bottom}</div>
 
 </div>
