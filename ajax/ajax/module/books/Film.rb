@@ -1,5 +1,10 @@
 # encoding: UTF-8
 # frozen_string_literal: true
+
+# Verbosité de la commande ebook-convert
+VERBOSE = 2
+
+
 class Film
   attr_reader :export_errors
 
@@ -12,7 +17,7 @@ class Film
     suivi("=== Lancement de la construction du #{Time.now} ===")
     require_module('scenes')
     suivi('S’assurer que tous les dossiers nécessaires existent')
-    folder_finaux # Simplement pour s'assurer qu'il existe
+    ensure_required_folders # Simplement pour s'assurer qu'il existe
     `open -a Finder "#{folder}"`
     book = Book.new(self)
     book.prepare

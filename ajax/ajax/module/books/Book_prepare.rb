@@ -127,13 +127,20 @@ def add_all_documents
 end
 
 def xhtml_header(title, css_path = 'styles.css')
-  File.read(File.join(folder_templates,'header.xhtml')) % {title:title, css:css_path}
+
+  all_styles = File.read(template('styles.css')) + File.read(template('analyse.css'))
+  all_styles = all_styles.gsub(/\/\*(.*)?\*\//m,'').gsub(/\n\n+/,"\n")
+  File.read(File.join(folder_templates,'header.xhtml')) % {title:title, styles:all_styles}
+
 end #/ xhtml_header
 
 def xhtml_file_path
   @xhtml_file_path ||= File.join(film.folder_products,xhtml_file_name)
 end
 
+def template(name)
+  File.join(folder_templates, name)
+end
 def folder_templates
   @folder_templates ||= File.join(__dir__,'templates')
 end

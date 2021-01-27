@@ -82,6 +82,7 @@ end
 def ensure_required_folders
   mkdir(folder_img_in_products)
   mkdir(folder_img_in_livres)
+  folder_finaux
 end
 
 

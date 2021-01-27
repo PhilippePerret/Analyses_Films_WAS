@@ -71,3 +71,1033 @@ point_zero: {"content"=>"Point z\u00E9ro", "type"=>"nc:zr", "time"=>52.911, "id"
 point_zero['time'] = 52.911::Float
 -> Construction du livre HTML
 <- Llivre HTML construit avec succès dans "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/livre.html"
+--- [2021-01-26 16:27:10 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007f92eb937210 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+film dans FConfig = #<Film:0x00007f92eb937210 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+code du frontispice :
+"<div id=\"page-1\" class=\"page frontispice\">\n  <!-- Vierge \u2014 page droite -->\n</div>\n\n<div id=\"page-2\" class=\"page frontispice\">\n  <!-- Vierge - page gauche -->\n</div>\n\n<div id=\"page-3\" class=\"page frontispice\">\n  <div id=\"titre-page-3\" class=\"titre\">\n    %{book_title}\n  </div>\n</div>\n\n<div id=\"page-4\" class=\"page frontispice\">\n  <!-- Liste des \u0153uvres pr\u00E9c\u00E9dente - gauche -->\n  <div class=\"titre-premieres-pages\">\n    Du m\u00EAme auteur\n  </div>\n  <div id=\"autres-livres\">\n    %{author_books}\n  </div>\n</div>\n\n<div id=\"page-5\" class=\"page frontispice\">\n  <!-- Auteur, titre et \u00E9diteur - droite -->\n  <div id=\"auteur-page-5\" class=\"auteur\">\n    %{author_name}\n  </div>\n  <div id=\"titre-page-5\" class=\"titre\">\n    %{book_title}\n  </div>\n  <div id=\"publisher-page-5\" class=\"publisher\">\n    <span class=\"name\">%{publisher_name}</span>\n    <span class=\"address\">%{publisher_address}</span>\n  </div>\n</div>\n\n<div id=\"page-6\" class=\"page frontispice\">\n  <!-- Informations livre - gauche -->\n  <div id=\"copyright-page-6\" class=\"copyright\">\n    %{copyright}\n  </div>\n  <div id=\"auteur-page-6\" class=\"auteur\">\n    %{author_name}\n  </div>\n  <div id=\"publisher-page-6\" class=\"publisher\">\n    %{publisher_name}\n  </div>\n  <div id=\"isbn-page-6\" class=\"isbn\">\n    %{isbn}\n  </div>\n  <div id=\"mention-page-6\" class=\"mention\">\n    Tous droits de traduction, d'adaptation et de reproduction interdits\n  </div>\n</div>\n\n<div id=\"page-7\" class=\"page frontispice\">\n  <!-- D\u00E9dicade - droite -->\n  <div id=\"dedicace-page-7\" class=\"dedicace\">\n    %{dedicace}\n  </div>\n</div>\n\n<div id=\"page-8\" class=\"page frontispice\">\n  <!-- Vierge - gauche -->\n</div>\n"
+point_zero: {"content"=>"Point z\u00E9ro", "type"=>"nc:zr", "time"=>52.911, "id"=>2}
+point_zero['time'] = 52.911::Float
+--- [2021-01-26 16:37:55 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 1
+film dans FConfig = #<Film:0x00007fe9ff98b0e8 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+film dans FConfig = #<Film:0x00007fe9ff98b0e8 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+point_zero: {"content"=>"Point z\u00E9ro", "type"=>"nc:zr", "time"=>52.911, "id"=>2}
+point_zero['time'] = 52.911::Float
+-> Construction du livre HTML
+<- Llivre HTML construit avec succès dans "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/livre.html"
+--- [2021-01-26 16:41:17 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007fb3690befb8 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+film dans FConfig = #<Film:0x00007fb3690befb8 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+point_zero: {"content"=>"Point z\u00E9ro", "type"=>"nc:zr", "time"=>52.911, "id"=>2}
+point_zero['time'] = 52.911::Float
+--- [2021-01-26 16:46:55 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007ff32b8499c0 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+film dans FConfig = #<Film:0x00007ff32b8499c0 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+point_zero: {"content"=>"Point z\u00E9ro", "type"=>"nc:zr", "time"=>52.911, "id"=>2}
+point_zero['time'] = 52.911::Float
+--- [2021-01-26 16:50:05 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007f902d052930 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+film dans FConfig = #<Film:0x00007f902d052930 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+point_zero: {"content"=>"Point z\u00E9ro", "type"=>"nc:zr", "time"=>52.911, "id"=>2}
+point_zero['time'] = 52.911::Float
+--- [2021-01-26 16:53:44 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007ff7680bee30 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+film dans FConfig = #<Film:0x00007ff7680bee30 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+point_zero: {"content"=>"Point z\u00E9ro", "type"=>"nc:zr", "time"=>52.911, "id"=>2}
+point_zero['time'] = 52.911::Float
+-> Construction du livre HTML
+<- Llivre HTML construit avec succès dans "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/livre.html"
+--- [2021-01-26 17:10:53 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007f87ab8d6b68 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+film dans FConfig = #<Film:0x00007f87ab8d6b68 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+point_zero: {"content"=>"Point z\u00E9ro", "type"=>"nc:zr", "time"=>52.911, "id"=>2}
+point_zero['time'] = 52.911::Float
+-> Construction du livre HTML
+<- Llivre HTML construit avec succès dans "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/livre.html"
+--- [2021-01-26 17:25:36 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007f82681a69a8 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+film dans FConfig = #<Film:0x00007f82681a69a8 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+point_zero: {"content"=>"Point z\u00E9ro", "type"=>"nc:zr", "time"=>52.911, "id"=>2}
+point_zero['time'] = 52.911::Float
+-> Construction du livre HTML
+<- Llivre HTML construit avec succès dans "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/livre.html"
+--- [2021-01-26 17:28:55 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 1
+film dans FConfig = #<Film:0x00007f82aca66ba8 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+film dans FConfig = #<Film:0x00007f82aca66ba8 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210126", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"], @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img">
+point_zero: {"content"=>"Point z\u00E9ro", "type"=>"nc:zr", "time"=>52.911, "id"=>2}
+point_zero['time'] = 52.911::Float
+-> Construction du livre HTML
+<- Llivre HTML construit avec succès dans "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/livre.html"
+--- [2021-01-27 06:51:39 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007ffa0e09c580 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210127", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @backup_config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210127/config.yml", @folder_documents="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/documents", @back_documents_folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210127/documents", @backup_signets_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210127/locators.yaml", @backup_events_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210127/aevents.yaml", @stream=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210127/locators.yaml (closed)>, @folder_events="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/events", @locators_folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/locators", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"]>
+film dans FConfig = #<Film:0x00007ffa0e09c580 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210127", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/config.yml", @backup_config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210127/config.yml", @folder_documents="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/documents", @back_documents_folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210127/documents", @backup_signets_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210127/locators.yaml", @backup_events_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210127/aevents.yaml", @stream=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/xbackups/20210127/locators.yaml (closed)>, @folder_events="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/events", @locators_folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/locators", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/building.log>, @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/livres/img", @title="Drive", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/cover.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/frontispice.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/products/sequencier.html"]>
+point_zero: {"content"=>"Point z\u00E9ro", "type"=>"nc:zr", "time"=>52.911, "id"=>2}
+point_zero['time'] = 52.911::Float
+Commande Calibre jouée :
+cd "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive";/Applications/calibre.app/Contents/console.app/Contents/MacOS/ebook-convert ./products/livre.xhtml ./livres/livre.mobi --cover=./products/cover.html --embed-all-fonts --chapter="//h:h2" --chapter-mark="pagebreak" --page-breaks-before="//h:div[@class='page']" --verbose=2
+--- [2021-01-27 10:34:08 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 4
+--- [2021-01-27 10:34:10 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:10 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:11 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:12 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:15 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:17 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:24 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:25 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:26 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:26 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:27 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:27 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:28 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:34:34 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+LINE_HEIGHT = 66
+
+
+
+CMD IMAGE: /usr/local/bin/convert -size 4000x1000 xc:white -units PixelsPerInch -density 300 -background white -stroke black -background transparent -stroke gray50 -fill white -strokewidth 3 -draw "rectangle 150,66 1075,924"  \( -stroke gray75 -strokewidth 3 -pointsize 10 -size 925x80 label:"EXPOSITION" -background none -trim -gravity Center -extent 925x80 \) -gravity northwest -geometry +150+66 -composite -background transparent -stroke gray50 -fill white -strokewidth 3 -draw "rectangle 1075,66 2000,924"  \( -stroke gray75 -strokewidth 3 -pointsize 10 -size 925x80 label:"DEVELOPPEMENT (PART I)" -background none -trim -gravity Center -extent 925x80 \) -gravity northwest -geometry +1075+66 -composite -background transparent -stroke gray50 -fill white -strokewidth 3 -draw "rectangle 2000,66 2925,924"  \( -stroke gray75 -strokewidth 3 -pointsize 10 -size 925x80 label:"DEVELOPPEMENT (PART II)" -background none -trim -gravity Center -extent 925x80 \) -gravity northwest -geometry +2000+66 -composite -background transparent -stroke gray50 -fill white -strokewidth 3 -draw "rectangle 2925,66 3850,924"  \( -stroke gray75 -strokewidth 3 -pointsize 10 -size 925x80 label:"DENOUEMENT" -background none -trim -gravity Center -extent 925x80 \) -gravity northwest -geometry +2925+66 -composite -strokewidth 2 -stroke gray55 -fill white -draw "polyline 154,223 154,248 516,248 516,223"   \( -stroke gray55 -strokewidth 2 -pointsize 8 -size 370x50 label:"PR" -background none -trim -gravity Center -extent 370x50 \) -gravity northwest -geometry +150+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 520,198 581,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:05" -extent 114x50 \) -gravity northwest -geometry +493+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 61x50 label:"I.P." -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +520+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 766,198 827,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:08" -extent 114x50 \) -gravity northwest -geometry +739+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 61x50 label:"I.D." -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +766+198 -composite -strokewidth 2 -stroke gray55 -fill white -draw "polyline 863,223 863,248 1009,248 1009,223" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:10" -extent 114x50 \) -gravity northwest -geometry +879+250 -composite  \( -stroke gray55 -strokewidth 2 -pointsize 8 -size 154x50 label:"RF" -background none -trim -gravity Center -extent 154x50 \) -gravity northwest -geometry +859+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 1013,198 1074,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:12" -extent 114x50 \) -gravity northwest -geometry +986+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 61x50 label:"P1" -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +1013+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 1321,198 1444,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:16" -extent 114x50 \) -gravity northwest -geometry +1325+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 123x50 label:"1/3" -background none -trim -gravity Center -extent 123x50 \) -gravity northwest -geometry +1321+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 1938,198 2061,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:25" -extent 114x50 \) -gravity northwest -geometry +1942+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 123x50 label:"CV" -background none -trim -gravity Center -extent 123x50 \) -gravity northwest -geometry +1938+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 2555,198 2678,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:34" -extent 114x50 \) -gravity northwest -geometry +2559+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 123x50 label:"2/3" -background none -trim -gravity Center -extent 123x50 \) -gravity northwest -geometry +2555+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 2740,198 2863,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:36" -extent 114x50 \) -gravity northwest -geometry +2744+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 123x50 label:"CR" -background none -trim -gravity Center -extent 123x50 \) -gravity northwest -geometry +2740+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 2863,198 2924,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:38" -extent 114x50 \) -gravity northwest -geometry +2836+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 61x50 label:"P2" -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +2863+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 3480,198 3788,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:47" -extent 114x50 \) -gravity northwest -geometry +3577+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 308x50 label:"CX" -background none -trim -gravity Center -extent 308x50 \) -gravity northwest -geometry +3480+198 -composite -strokewidth 2 -stroke gray55 -fill white -draw "polyline 3792,223 3792,248 3845,248 3845,223" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:51" -extent 114x50 \) -gravity northwest -geometry +3761+250 -composite  \( -stroke gray55 -strokewidth 2 -pointsize 8 -size 61x50 label:"DS" -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +3788+198 -composite \(   -size   400x50   -background none   -trim   -pointsize 10   -stroke gray50   -fill gray50   -strokewidth 3   -rotate -90   label:"ABSOLU"   -gravity center   -extent 50x200   \)   -gravity northwest   -geometry +90+132   -composite \(   -size   400x50   -background none   -trim   -pointsize 10   -stroke gray50   -fill gray50   -strokewidth 3   -rotate -90   label:"FILM"   -gravity center   -extent 50x200   \)   -gravity northwest   -geometry +90+594   -composite -stroke black -fill black -strokewidth 3 -draw "line 150,462 3850,462" -stroke black -strokewidth 3 -fill black -background white -draw "line 277,561 278,924 " \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"DEV.P1" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +229+596 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:09" -extent 114x50 \) -gravity northwest -geometry +220+646 -composite -stroke black -strokewidth 3 -fill black -background white -draw "line 925,561 926,924 " \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"DEV.P2" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +877+596 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:30" -extent 114x50 \) -gravity northwest -geometry +868+646 -composite -stroke black -strokewidth 3 -fill black -background white -draw "line 986,561 987,924 " \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"DEN." -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +938+596 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:32" -extent 114x50 \) -gravity northwest -geometry +929+646 -composite -strokewidth 1 -stroke gray55 -background white -fill white -draw "roundrectangle 92,792 192,858 10,10" \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"I.D." -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +94+794 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:03" -extent 114x50 \) -gravity northwest -geometry +85+860 -composite -strokewidth 1 -stroke gray55 -background white -fill white -draw "roundrectangle 123,792 223,858 10,10" \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"P1" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +125+794 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:04" -extent 114x50 \) -gravity northwest -geometry +116+860 -composite -strokewidth 1 -stroke gray55 -background white -fill white -draw "roundrectangle 925,792 1025,858 10,10" \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"P2" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +927+794 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:30" -extent 114x50 \) -gravity northwest -geometry +918+860 -composite -strokewidth 1 -stroke gray55 -background white -fill white -draw "roundrectangle 1418,792 1518,858 10,10" \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"CX" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +1420+794 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:46" -extent 114x50 \) -gravity northwest -geometry +1411+860 -composite -stroke gray50 -fill -pointsize 6.5 -strokewidth 2 \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:00" -extent 114x50 \) -gravity northwest -geometry +93+406 -composite \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:13" -extent 114x50 \) -gravity northwest -geometry +1018+406 -composite \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:26" -extent 114x50 \) -gravity northwest -geometry +1943+406 -composite \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:39" -extent 114x50 \) -gravity northwest -geometry +2868+406 -composite \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:52" -extent 114x50 \) -gravity northwest -geometry +3793+406 -composite \( -background gray20 -stroke white -fill white -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:09" -extent 114x50 \) -gravity northwest -geometry +1018+472 -composite -stroke black -fill black -draw "text 1152,485 '−0:04'" \( -background gray20 -stroke white -fill white -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:30" -extent 114x50 \) -gravity northwest -geometry +1943+472 -composite -stroke black -fill black -draw "text 2077,485 '+0:04'" \( -background gray20 -stroke white -fill white -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:32" -extent 114x50 \) -gravity northwest -geometry +2868+472 -composite -stroke black -fill black -draw "text 3002,485 '−0:07'" -set colorspace sRGB /Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/pfa.jpg
+
+
+
+retour de commande: "convert: unable to open image '-pointsize': No such file or directory @ error/blob.c/OpenBlob/3537.\nconvert: no decode delegate for this image format `' @ error/constitute.c/ReadImage/572.\nconvert: unable to open image '6.5': No such file or directory @ error/blob.c/OpenBlob/3537.\nconvert: unable to open image '6.5': No such file or directory @ error/blob.c/OpenBlob/3537.\nconvert: no decode delegate for this image format `5' @ error/constitute.c/ReadImage/572.\n"
+--- [2021-01-27 10:34:37 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:26: syntax error, unexpected ')', expecting end
+...) % fconfig.get(required_data))
+...                              ^
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:45: syntax error, unexpected tLAMBEG
+    Ajax << {message: msg.join('')}
+            ^
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:45: syntax error, unexpected '}', expecting end
+...Ajax << {message: msg.join('')}
+...                              ^
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:71: syntax error, unexpected end-of-input, expecting end
+BACKTRACE ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb:9:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb:9:in `require_module'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_pfa.rb:4:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-27 10:39:23 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:39:24 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:39:24 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:39:25 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:39:26 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:39:26 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:39:39 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+LINE_HEIGHT = 66
+
+
+
+CMD IMAGE: /usr/local/bin/convert -size 4000x1000 xc:white -units PixelsPerInch -density 300 -background white -stroke black -background transparent -stroke gray50 -fill white -strokewidth 3 -draw "rectangle 150,66 1075,924"  \( -stroke gray75 -strokewidth 3 -pointsize 10 -size 925x80 label:"EXPOSITION" -background none -trim -gravity Center -extent 925x80 \) -gravity northwest -geometry +150+66 -composite -background transparent -stroke gray50 -fill white -strokewidth 3 -draw "rectangle 1075,66 2000,924"  \( -stroke gray75 -strokewidth 3 -pointsize 10 -size 925x80 label:"DEVELOPPEMENT (PART I)" -background none -trim -gravity Center -extent 925x80 \) -gravity northwest -geometry +1075+66 -composite -background transparent -stroke gray50 -fill white -strokewidth 3 -draw "rectangle 2000,66 2925,924"  \( -stroke gray75 -strokewidth 3 -pointsize 10 -size 925x80 label:"DEVELOPPEMENT (PART II)" -background none -trim -gravity Center -extent 925x80 \) -gravity northwest -geometry +2000+66 -composite -background transparent -stroke gray50 -fill white -strokewidth 3 -draw "rectangle 2925,66 3850,924"  \( -stroke gray75 -strokewidth 3 -pointsize 10 -size 925x80 label:"DENOUEMENT" -background none -trim -gravity Center -extent 925x80 \) -gravity northwest -geometry +2925+66 -composite -strokewidth 2 -stroke gray55 -fill white -draw "polyline 154,223 154,248 516,248 516,223"   \( -stroke gray55 -strokewidth 2 -pointsize 8 -size 370x50 label:"PR" -background none -trim -gravity Center -extent 370x50 \) -gravity northwest -geometry +150+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 520,198 581,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:05" -extent 114x50 \) -gravity northwest -geometry +493+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 61x50 label:"I.P." -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +520+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 766,198 827,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:08" -extent 114x50 \) -gravity northwest -geometry +739+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 61x50 label:"I.D." -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +766+198 -composite -strokewidth 2 -stroke gray55 -fill white -draw "polyline 863,223 863,248 1009,248 1009,223" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:10" -extent 114x50 \) -gravity northwest -geometry +879+250 -composite  \( -stroke gray55 -strokewidth 2 -pointsize 8 -size 154x50 label:"RF" -background none -trim -gravity Center -extent 154x50 \) -gravity northwest -geometry +859+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 1013,198 1074,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:12" -extent 114x50 \) -gravity northwest -geometry +986+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 61x50 label:"P1" -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +1013+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 1321,198 1444,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:16" -extent 114x50 \) -gravity northwest -geometry +1325+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 123x50 label:"1/3" -background none -trim -gravity Center -extent 123x50 \) -gravity northwest -geometry +1321+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 1938,198 2061,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:25" -extent 114x50 \) -gravity northwest -geometry +1942+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 123x50 label:"CV" -background none -trim -gravity Center -extent 123x50 \) -gravity northwest -geometry +1938+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 2555,198 2678,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:34" -extent 114x50 \) -gravity northwest -geometry +2559+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 123x50 label:"2/3" -background none -trim -gravity Center -extent 123x50 \) -gravity northwest -geometry +2555+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 2740,198 2863,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:36" -extent 114x50 \) -gravity northwest -geometry +2744+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 123x50 label:"CR" -background none -trim -gravity Center -extent 123x50 \) -gravity northwest -geometry +2740+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 2863,198 2924,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:38" -extent 114x50 \) -gravity northwest -geometry +2836+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 61x50 label:"P2" -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +2863+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 3480,198 3788,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:47" -extent 114x50 \) -gravity northwest -geometry +3577+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 308x50 label:"CX" -background none -trim -gravity Center -extent 308x50 \) -gravity northwest -geometry +3480+198 -composite -strokewidth 2 -stroke gray55 -fill white -draw "polyline 3792,223 3792,248 3845,248 3845,223" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:51" -extent 114x50 \) -gravity northwest -geometry +3761+250 -composite  \( -stroke gray55 -strokewidth 2 -pointsize 8 -size 61x50 label:"DS" -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +3788+198 -composite \(   -size   400x50   -background none   -trim   -pointsize 10   -stroke gray50   -fill gray50   -strokewidth 3   -rotate -90   label:"ABSOLU"   -gravity center   -extent 50x200   \)   -gravity northwest   -geometry +90+132   -composite \(   -size   400x50   -background none   -trim   -pointsize 10   -stroke gray50   -fill gray50   -strokewidth 3   -rotate -90   label:"FILM"   -gravity center   -extent 50x200   \)   -gravity northwest   -geometry +90+594   -composite -stroke black -fill black -strokewidth 3 -draw "line 150,462 3850,462" -stroke black -strokewidth 3 -fill black -background white -draw "line 277,561 278,924 " \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"DEV.P1" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +229+596 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:09" -extent 114x50 \) -gravity northwest -geometry +220+646 -composite -stroke black -strokewidth 3 -fill black -background white -draw "line 925,561 926,924 " \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"DEV.P2" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +877+596 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:30" -extent 114x50 \) -gravity northwest -geometry +868+646 -composite -stroke black -strokewidth 3 -fill black -background white -draw "line 986,561 987,924 " \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"DEN." -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +938+596 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:32" -extent 114x50 \) -gravity northwest -geometry +929+646 -composite -strokewidth 1 -stroke gray55 -background white -fill white -draw "roundrectangle 92,792 192,858 10,10" \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"I.D." -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +94+794 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:03" -extent 114x50 \) -gravity northwest -geometry +85+860 -composite -strokewidth 1 -stroke gray55 -background white -fill white -draw "roundrectangle 123,792 223,858 10,10" \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"P1" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +125+794 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:04" -extent 114x50 \) -gravity northwest -geometry +116+860 -composite -strokewidth 1 -stroke gray55 -background white -fill white -draw "roundrectangle 925,792 1025,858 10,10" \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"P2" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +927+794 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:30" -extent 114x50 \) -gravity northwest -geometry +918+860 -composite -strokewidth 1 -stroke gray55 -background white -fill white -draw "roundrectangle 1418,792 1518,858 10,10" \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"CX" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +1420+794 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:46" -extent 114x50 \) -gravity northwest -geometry +1411+860 -composite -stroke gray50 -fill -pointsize 6.5 -strokewidth 2 \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:00" -extent 114x50 \) -gravity northwest -geometry +93+406 -composite \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:13" -extent 114x50 \) -gravity northwest -geometry +1018+406 -composite \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:26" -extent 114x50 \) -gravity northwest -geometry +1943+406 -composite \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:39" -extent 114x50 \) -gravity northwest -geometry +2868+406 -composite \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:52" -extent 114x50 \) -gravity northwest -geometry +3793+406 -composite \( -background gray20 -stroke white -fill white -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:09" -extent 114x50 \) -gravity northwest -geometry +1018+472 -composite -stroke black -fill black -draw "text 1152,485 '−0:04'" \( -background gray20 -stroke white -fill white -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:30" -extent 114x50 \) -gravity northwest -geometry +1943+472 -composite -stroke black -fill black -draw "text 2077,485 '+0:04'" \( -background gray20 -stroke white -fill white -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:32" -extent 114x50 \) -gravity northwest -geometry +2868+472 -composite -stroke black -fill black -draw "text 3002,485 '−0:07'" -set colorspace sRGB /Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/pfa.jpg
+
+
+
+retour de commande: "convert: unable to open image '-pointsize': No such file or directory @ error/blob.c/OpenBlob/3537.\nconvert: no decode delegate for this image format `' @ error/constitute.c/ReadImage/572.\nconvert: unable to open image '6.5': No such file or directory @ error/blob.c/OpenBlob/3537.\nconvert: unable to open image '6.5': No such file or directory @ error/blob.c/OpenBlob/3537.\nconvert: no decode delegate for this image format `5' @ error/constitute.c/ReadImage/572.\n"
+--- [2021-01-27 10:40:31 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:40:32 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:40:33 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:40:33 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:40:34 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:40:35 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:40:44 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+LINE_HEIGHT = 66
+
+
+
+CMD IMAGE: /usr/local/bin/convert -size 4000x1000 xc:white -units PixelsPerInch -density 300 -background white -stroke black -background transparent -stroke gray50 -fill white -strokewidth 3 -draw "rectangle 150,66 1075,924"  \( -stroke gray75 -strokewidth 3 -pointsize 10 -size 925x80 label:"EXPOSITION" -background none -trim -gravity Center -extent 925x80 \) -gravity northwest -geometry +150+66 -composite -background transparent -stroke gray50 -fill white -strokewidth 3 -draw "rectangle 1075,66 2000,924"  \( -stroke gray75 -strokewidth 3 -pointsize 10 -size 925x80 label:"DEVELOPPEMENT (PART I)" -background none -trim -gravity Center -extent 925x80 \) -gravity northwest -geometry +1075+66 -composite -background transparent -stroke gray50 -fill white -strokewidth 3 -draw "rectangle 2000,66 2925,924"  \( -stroke gray75 -strokewidth 3 -pointsize 10 -size 925x80 label:"DEVELOPPEMENT (PART II)" -background none -trim -gravity Center -extent 925x80 \) -gravity northwest -geometry +2000+66 -composite -background transparent -stroke gray50 -fill white -strokewidth 3 -draw "rectangle 2925,66 3850,924"  \( -stroke gray75 -strokewidth 3 -pointsize 10 -size 925x80 label:"DENOUEMENT" -background none -trim -gravity Center -extent 925x80 \) -gravity northwest -geometry +2925+66 -composite -strokewidth 2 -stroke gray55 -fill white -draw "polyline 154,223 154,248 516,248 516,223"   \( -stroke gray55 -strokewidth 2 -pointsize 8 -size 370x50 label:"PR" -background none -trim -gravity Center -extent 370x50 \) -gravity northwest -geometry +150+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 520,198 581,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:05" -extent 114x50 \) -gravity northwest -geometry +493+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 61x50 label:"I.P." -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +520+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 766,198 827,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:08" -extent 114x50 \) -gravity northwest -geometry +739+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 61x50 label:"I.D." -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +766+198 -composite -strokewidth 2 -stroke gray55 -fill white -draw "polyline 863,223 863,248 1009,248 1009,223" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:10" -extent 114x50 \) -gravity northwest -geometry +879+250 -composite  \( -stroke gray55 -strokewidth 2 -pointsize 8 -size 154x50 label:"RF" -background none -trim -gravity Center -extent 154x50 \) -gravity northwest -geometry +859+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 1013,198 1074,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:12" -extent 114x50 \) -gravity northwest -geometry +986+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 61x50 label:"P1" -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +1013+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 1321,198 1444,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:16" -extent 114x50 \) -gravity northwest -geometry +1325+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 123x50 label:"1/3" -background none -trim -gravity Center -extent 123x50 \) -gravity northwest -geometry +1321+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 1938,198 2061,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:25" -extent 114x50 \) -gravity northwest -geometry +1942+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 123x50 label:"CV" -background none -trim -gravity Center -extent 123x50 \) -gravity northwest -geometry +1938+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 2555,198 2678,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:34" -extent 114x50 \) -gravity northwest -geometry +2559+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 123x50 label:"2/3" -background none -trim -gravity Center -extent 123x50 \) -gravity northwest -geometry +2555+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 2740,198 2863,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:36" -extent 114x50 \) -gravity northwest -geometry +2744+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 123x50 label:"CR" -background none -trim -gravity Center -extent 123x50 \) -gravity northwest -geometry +2740+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 2863,198 2924,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:38" -extent 114x50 \) -gravity northwest -geometry +2836+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 61x50 label:"P2" -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +2863+198 -composite -strokewidth 1 -stroke gray55 -fill white -draw "roundrectangle 3480,198 3788,248 10,10" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:47" -extent 114x50 \) -gravity northwest -geometry +3577+250 -composite  \( -stroke gray55 -strokewidth 1 -pointsize 7 -size 308x50 label:"CX" -background none -trim -gravity Center -extent 308x50 \) -gravity northwest -geometry +3480+198 -composite -strokewidth 2 -stroke gray55 -fill white -draw "polyline 3792,223 3792,248 3845,248 3845,223" \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:51" -extent 114x50 \) -gravity northwest -geometry +3761+250 -composite  \( -stroke gray55 -strokewidth 2 -pointsize 8 -size 61x50 label:"DS" -background none -trim -gravity Center -extent 61x50 \) -gravity northwest -geometry +3788+198 -composite \(   -size   400x50   -background none   -trim   -pointsize 10   -stroke gray50   -fill gray50   -strokewidth 3   -rotate -90   label:"ABSOLU"   -gravity center   -extent 50x200   \)   -gravity northwest   -geometry +90+132   -composite \(   -size   400x50   -background none   -trim   -pointsize 10   -stroke gray50   -fill gray50   -strokewidth 3   -rotate -90   label:"FILM"   -gravity center   -extent 50x200   \)   -gravity northwest   -geometry +90+594   -composite -stroke black -fill black -strokewidth 3 -draw "line 150,462 3850,462" -stroke black -strokewidth 3 -fill black -background white -draw "line 277,561 278,924 " \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"DEV.P1" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +229+596 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:09" -extent 114x50 \) -gravity northwest -geometry +220+646 -composite -stroke black -strokewidth 3 -fill black -background white -draw "line 925,561 926,924 " \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"DEV.P2" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +877+596 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:30" -extent 114x50 \) -gravity northwest -geometry +868+646 -composite -stroke black -strokewidth 3 -fill black -background white -draw "line 986,561 987,924 " \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"DEN." -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +938+596 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:32" -extent 114x50 \) -gravity northwest -geometry +929+646 -composite -strokewidth 1 -stroke gray55 -background white -fill white -draw "roundrectangle 92,792 192,858 10,10" \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"I.D." -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +94+794 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:03" -extent 114x50 \) -gravity northwest -geometry +85+860 -composite -strokewidth 1 -stroke gray55 -background white -fill white -draw "roundrectangle 123,792 223,858 10,10" \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"P1" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +125+794 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:04" -extent 114x50 \) -gravity northwest -geometry +116+860 -composite -strokewidth 1 -stroke gray55 -background white -fill white -draw "roundrectangle 925,792 1025,858 10,10" \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"P2" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +927+794 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:30" -extent 114x50 \) -gravity northwest -geometry +918+860 -composite -strokewidth 1 -stroke gray55 -background white -fill white -draw "roundrectangle 1418,792 1518,858 10,10" \( -background white -stroke black -fill black -strokewidth 1 -pointsize 7 label:"CX" -size 96x62 -trim -gravity Center -extent 96x62 \) -gravity northwest -geometry +1420+794 -composite \( -background white -stroke gray20 -fill gray20 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:46" -extent 114x50 \) -gravity northwest -geometry +1411+860 -composite -stroke gray50 -fill -pointsize 6.5 -strokewidth 2 \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:00" -extent 114x50 \) -gravity northwest -geometry +93+406 -composite \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:13" -extent 114x50 \) -gravity northwest -geometry +1018+406 -composite \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:26" -extent 114x50 \) -gravity northwest -geometry +1943+406 -composite \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:39" -extent 114x50 \) -gravity northwest -geometry +2868+406 -composite \( -background gray50 -stroke gray90 -fill gray90 -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:52" -extent 114x50 \) -gravity northwest -geometry +3793+406 -composite \( -background gray20 -stroke white -fill white -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:09" -extent 114x50 \) -gravity northwest -geometry +1018+472 -composite -stroke black -fill black -draw "text 1152,485 '−0:04'" \( -background gray20 -stroke white -fill white -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:30" -extent 114x50 \) -gravity northwest -geometry +1943+472 -composite -stroke black -fill black -draw "text 2077,485 '+0:04'" \( -background gray20 -stroke white -fill white -strokewidth 1 -pointsize 6.5 -size 114x50 -gravity Center label:"0:32" -extent 114x50 \) -gravity northwest -geometry +2868+472 -composite -stroke black -fill black -draw "text 3002,485 '−0:07'" -set colorspace sRGB /Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/pfa.jpg
+
+
+
+retour de commande: "convert: unable to open image '-pointsize': No such file or directory @ error/blob.c/OpenBlob/3537.\nconvert: no decode delegate for this image format `' @ error/constitute.c/ReadImage/572.\nconvert: unable to open image '6.5': No such file or directory @ error/blob.c/OpenBlob/3537.\nconvert: unable to open image '6.5': No such file or directory @ error/blob.c/OpenBlob/3537.\nconvert: no decode delegate for this image format `5' @ error/constitute.c/ReadImage/572.\n"
+--- [2021-01-27 10:41:22 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:41:22 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:41:23 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:41:23 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:41:24 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:41:25 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-27 10:41:34 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:26: syntax error, unexpected ')', expecting end
+...) % fconfig.get(required_data))
+...                              ^
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:45: syntax error, unexpected tLAMBEG
+    Ajax << {message: msg.join('')}
+            ^
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:45: syntax error, unexpected '}', expecting end
+...Ajax << {message: msg.join('')}
+...                              ^
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:71: syntax error, unexpected end-of-input, expecting end
+BACKTRACE ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb:9:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb:9:in `require_module'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_pfa.rb:4:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-27 10:42:39 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+film dans FConfig = #<Film:0x00007fce969c3be8 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbackups/20210127", @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/img">
+ERREUR: undefined local variable or method `required_data' for #<PFA:0x00007fce969c32b0>
+Did you mean?  require
+BACKTRACE ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:26:in `build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:6:in `build_pfa'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_pfa.rb:5:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-27 10:43:27 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+ERREUR: undefined local variable or method `folder_documents' for #<PFA:0x00007fc7baa036e0>
+BACKTRACE ERREUR: /Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:59:in `commentaires_pfa_path'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:28:in `build'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/module/pfa.rb:6:in `build_pfa'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/_scripts/build_pfa.rb:5:in `<top (required)>'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `require_relative'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/ajax_class.rb:18:in `treate_request'
+/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax.rb:12:in `<main>'
+--- [2021-01-27 10:44:00 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0

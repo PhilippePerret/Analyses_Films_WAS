@@ -14,27 +14,27 @@ documents_out:
 - traitement.html
 - synopsis.html
 - composition.html
-- quatrieme.html  
+- quatrieme.html
 book_infos:
   copyright: Tous droits de reproduction, d'adaptation et de traduction réservés
   author:
     name: Philippe Perret
     cv: Philippe Perret est romancier publié à compte d'éditeur, scénariste professionnel,
       musicien, pédagogue (www.atelier-icare.net).
-    books: "mort@vivant, Cloaca Maxima, collection « Passé sous silence »"
+    books: mort@vivant, Cloaca Maxima, collection « Passé sous silence »
   publisher:
     name: Éditions Icare
     address: https://www.atelier-icare.net
     logo: img/icare-editions.png
   depot_legal: MM AAAA
-  imprimeur:  Lulu la tortue
+  imprimeur: Lulu la tortue
   print_date: MM AAAA
   cover:
     path: img/Drive-cover-prov.jpg
     width: 15cm
     height: 379px
     left: 0.5cm
-    top: 0
+    top: 11cm
   cover4:
     img_path: img/Drive-cover-prov.jpg
     img_width: 10cm

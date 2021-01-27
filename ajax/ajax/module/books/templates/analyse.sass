@@ -2,11 +2,16 @@
 // Jouer le script sass_all.rb après modification
 //
 
+$demipage: 14.85cm
+
 div.page
-  width: calc(29.7cm / 2)
-  height: 21cm
-  margin: 2cm
   position: relative
+  background-color: white
+  page-break-after: always
+  &.frontispice
+    & > div
+      width: 100%
+      text-align: center
 
 // Pour les valeurs en pourcentages
 span.value + span.pct

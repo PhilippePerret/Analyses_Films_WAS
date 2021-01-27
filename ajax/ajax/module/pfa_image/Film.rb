@@ -17,6 +17,7 @@ def build_pfa
 
 
   # === CONSTRUCTION ===
+
   @pfa.build
 
   # Message de retour
@@ -24,9 +25,10 @@ def build_pfa
   if File.exists?(@pfa.path)
     msg = "Le PFA a été construit avec succès."
     @pfa.complet? || msg = "#{msg} Mais il n'est pas complet à cause de l'absence d'informations sur : #{@pfa.lakes.join(', ')}"
-    msg
+    msg = "#{msg}<div class='red bold' style='width:300px;background-color:white;'>Attention ! Vous devez ouvrir l'image dans Aperçu et la tourner vers la gauche pour qu'elle s'affiche de travers dans le livre.</div>"
+    msg = "Lancer ensuite la commande avec l'option -html pour construire le fichier HTML (<code>build pfa -html</code>)."
   else
-    "Bizarrement, tout semble s'être bien passé mais l'image n'a pas été produite…"
+    msg << "Bizarrement, tout semble s'être bien passé mais l'image n'a pas été produite…"
   end
 
   Ajax << {message: msg}

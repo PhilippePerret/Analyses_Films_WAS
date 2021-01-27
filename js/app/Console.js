@@ -73,6 +73,7 @@ StartTestsAudio(){
 * Les commandes de construction
 ***/
 run_build_command(what, extra, option1){
+  // console.log("-> run_build_command(what=%s, extra=%s, option1=%s)", what, extra, option1)
   switch(what){
     case 'all': return this.run_build_all()
     case 'books': case 'livres': return this.run_build_books()
@@ -83,7 +84,7 @@ run_build_command(what, extra, option1){
         return this.run_build_books(extra, option1)
       }
     case 'document':case'documents': return this.run_build_documents(extra,option1)
-    case 'pfa': return film.analyse.buildPFA()
+    case 'pfa': return film.analyse.buildPFA(null, extra)
     case 'cover': case 'couverture': return this.run_build_cover()
     case 'sequencier': return this.run_build_sequencier()
     case 'statistiques': case 'stats': return this.run_build_statistiques(extra)

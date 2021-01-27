@@ -692,7 +692,7 @@ Chaque livre comporte sa propre couverture mais une charte commune est utilisée
 
 #### Image de couverture
 
-Avant de pouvoir produire la couverture, il faut définir son image — une image tirée du film — qu’on placera dans le fichier `./img/cover.jpg` si la donnée de configuration conserve ce chemin d’accès.
+Avant de pouvoir produire la couverture (avec **Inkscape**), il faut définir son image — une image tirée du film en plein écran — qu’on placera dans le fichier `./img/cover-film-img.jpg`.
 
 Information sur cette image :
 
@@ -707,42 +707,16 @@ RÉSOLUTION			300ppi
 
 #### Produire la couverture
 
-Pour produire la couverture sans produire le livre entier, utiliser la commande `build cover`. Cela produit le fichier `./products/cover.html` qui peut être ouvert dans un navigateur pour visualisation.
+Pour produire la couverture :
 
-
-
-Pour ajouter la page de couverture dans le livre produit, il suffit d’ ajouter `cover.html` au début de la liste des documents dans la configuration du livre.
-
-~~~yaml
-# dans le fichier config.yml du film
----
-# ...
-documents:
-	- cover.html
-~~~
-
-Pour obtenir une couverture cohérente, il convient de s'assurer que les données suivantes soient définies dans le fichier `config.yml` (une erreur sera produite si ça n'est pas le cas) :
-
-~~~yaml
-# Dans le fichier config.yml du film
----
-title: Le titre du film
-film_infos:
-	director: Réalisateur du film
-	authors: Scénaristes
-book_infos:
-	author: 
-		name: Auteur de l’analyse du Film
-		address: adresse@mail.com
-	publisher:
-		name: Éditeur
-		logo: path/to/logo.png
-	cover: 
-		path: path/to/cover.jpg
-		width: taille sur la page de couverture (avec unité)
-		height: hauteur de la page de couverture (avec unité)
-		left: décalage gauche (avec unité)
-~~~
+* dupliquer le fichier `./_TEMPLATES_/cover_template.svg`,
+* le copier dans le dossier `./img/` du film analysé,
+* ouvrir ce fichier dans **Inkscape**,
+* importer l’image `./img/cover-film-img.jpg`,
+* remplacer l’image du film par cette image,
+* changer le titre,
+* exporter l’image (en `PNG`),
+* ouvrir l’image dans Aperçu pour la transformer en `JPEG`.
 
 <a id="dedicace"></a>
 

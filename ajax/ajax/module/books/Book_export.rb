@@ -23,23 +23,56 @@ def export(type)
   suivi('== /Fin de l’Export du livre ==')
 end
 
+def convertir_cover_html_to_jpg
+  `cd "#{film.folder_products}" && wkhtmltoimage cover.html cover.jpg`
+end #/ convertir_cover_html_to_jpg
+
+# Retourne la commande Calibre pour le livre
+def calibre_command(src, dst, format)
+  options = []
+
+  # La couverture
+  options << '--cover=./products/cover.jpg'
+  # Pour introduire toutes les fonts
+  options << '--embed-all-fonts'
+  # Pour la détection des chapitres
+  options << '--chapter="//h:h2"'
+  options << '--chapter-mark="pagebreak"'
+  # Pour ajouter un saut de page avant les div.page
+  options << '--page-breaks-before="//h:div[@class=\'page\']"'
+
+  options << "--verbose" if VERBOSE
+
+  case format
+  when 'mobi'
+    # = Options pour AZW3 (mobi) =
+    options << '--no-inline-toc'
+    options << '--pretty-print'
+  when 'pdf'
+    options << '--paper-size=a5'
+  end
+
+  "cd \"#{film.folder}\";#{EBOOK_CONVERT_CMD} ./products/#{src} ./livres/#{dst} #{options.join(' ')}"
+end #/ calibre_command
+
+
 def export_as(type)
   suivi("--> Export au format #{type}")
   if type.downcase == 'html'
     build_html_book
   else
-    build_book(send("#{type.downcase}_file_name".to_sym))
+    build_book(type, send("#{type.downcase}_file_name".to_sym))
   end
   suivi("--/ Fin export au format #{type}")
 end #/ export_as(format)
 
 # Construction du livre au format voulu
-def build_book(dst, src = nil)
+def build_book(type, dst, src = nil)
   src ||= xhtml_file_name
   File.delete(dst) if File.exists?(dst)
-  calibre_command = "cd \"#{film.folder}\";#{EBOOK_CONVERT_CMD} ./products/#{src} ./livres/#{dst}"
-  log("Commande Calibre jouée :\n#{calibre_command}")
-  result = `#{calibre_command} > ./calibre`
+  cmd = calibre_command(src, dst, type)
+  log("Commande Calibre jouée :\n#{cmd}")
+  result = `#{cmd} > ./calibre`
   Ajax << {retour_commande_calibre: result}
 end
 

@@ -18,7 +18,6 @@ def build
   data_valid? || raise("Données invalides : #{@invalidity}")
   File.delete(frontispice_path) if File.exists?(frontispice_path)
   code = File.read(template_path).force_encoding('utf-8')
-  log("code du frontispice :\n#{code.inspect}")
   File.open(frontispice_path,'wb') do |f|
     f.write(code % fconfig.get(required_data))
   end
@@ -26,7 +25,7 @@ def build
   # Et enfin, si le document 'frontispice.html' n'est pas dans la liste
   # des documents du livre, on le signale
   if not film.document?('frontispice.html')
-      Ajax << {message: "Le document 'frontispice.html' doit être ajouté à la liste des documents dans config.yml pour être construit avec les livres."}
+    Ajax << {message: "Le document 'frontispice.html' doit être ajouté à la liste des documents dans config.yml pour être construit avec les livres."}
   end
 
 end #/ build_page_composition
