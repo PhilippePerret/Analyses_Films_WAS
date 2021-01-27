@@ -274,15 +274,22 @@ Pour pouvoir fonctionner, le frontispice a besoin des informations suivante dans
 
 ~~~yaml
 title:	Le titre du livre
+# ...
+isbn: 17-567... # Numéro ISBN du livre
+# ...
 book_infos:
 	# ...
-	isbn: 17-567... # Numéro ISBN du livre
-	# ...
-	author: Auteur du livre
+	author: 
+		name: Auteur du livre
+		address: xxxxx
+		cv: ...
+		books: liste des précédents livres
 	# ...
 	publisher:
 		name: Éditeur # nom de l'éditeur
 		address: # adresse de l'éditeur
+	copyright: Tous droits de reproduction, d’adaptation et de traduction réservés
+
 		
 ~~~
 

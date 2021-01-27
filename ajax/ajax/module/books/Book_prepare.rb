@@ -28,12 +28,58 @@ def suivi(msg); film.suivi(msg) end
 def prepare
   suivi('== Préparation du livre ==')
 
+  prepare_images
+
   File.delete(xhtml_file_path) if File.exists?(xhtml_file_path)
   prepare_document_xhtml_final # => final.xhtml
 
   copie_of_css
 
   suivi('== /fin de la préparation du livre ==')
+end
+
+# Prépare toutes les images utiles
+def prepare_images
+  prepare_cover
+  prepare_image_pfa if film.document?('pfa.html')
+end
+
+# Prépare la couverture
+# La préparation de la couverture, pour le moment, consiste simplement à
+# prendre le fichier cover.jpg qui doit impérativement se trouver dans le
+# dossier ./img pour le copier dans le dossier ./products/img
+def prepare_cover
+  src = File.join(film.folder,'img','cover.jpg')
+  dst = File.join(film.folder_products,'img','cover.jpg')
+  if not File.exists?(src)
+    ent = "Impossible de trouver le fichier de couverture (<code>img/cover.jpg</code>)…"
+    if File.exists?(File.join(film.folder,'img','cover.png'))
+      raise "#{ent} Il faut exporter le fichier 'cover.png' en JPEG avec Aperçu."
+    elsif File.exists?(File.join(film.folder,'img','cover.svg'))
+      raise "#{ent} Il faut exporter le fichier .img/cover.svg en PNG avec Inkscape puis le convertir en JPEG avec Aperçu."
+    else
+      raise "#{ent} Il faut créer le fichier de couverture ! Consulter le manuel."
+    end
+  else
+    delete_if_exists(dst)
+    FileUtils.copy(src, dst)
+  end
+end
+
+def delete_if_exists(pth)
+   File.delete(pth) if File.exists?(pth)
+end
+
+# Prépare l'image du PFA en la construisant si elle n'existe pas
+def prepare_image_pfa
+  src = File.join(film.folder_images,'pfa.jpg')
+  dst = File.join(film.folder_img_in_products,'pfa.jpg')
+  if not File.exists?(src)
+    require_module('pfa_image')
+    film.build_pfa
+  end
+  delete_if_exists(dst)
+  FileUtils.copy(src, dst)
 end
 
 def prepare_document_xhtml_final

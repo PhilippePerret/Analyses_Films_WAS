@@ -78,6 +78,27 @@ def document?(docname)
   return config['documents'].include?(docname)
 end
 
+# Cherche le document de nom ou d'affixe +docname+ dans les dossiers :
+#   - ./documents/
+#   - _TEMPLATES_
+#   - ./products/
+# avec l'extension '.md' ou '.html' si non fournie
+# et retourne le premier trouvé.
+def find_document(docname)
+  if File.extname(docname).empty?
+    find_document("#{docname}.md") || find_document("#{docname}.html")
+  else
+    paths = []
+    paths << File.join(folder_documents, docname)
+    paths << template(docname)
+    paths << File.join(folder_products, docname)
+    log("Document cherché dans : #{paths}")
+    paths.each do |path|
+      return path if File.exists?(path)
+    end
+  end
+end
+
 # S'assure que les dossiers minimum existent bien
 def ensure_required_folders
   mkdir(folder_img_in_products)
@@ -287,7 +308,9 @@ end
 def folder_img_in_livres
   @folder_img_in_livres ||= File.join(folder_livres,'img')
 end
-
+def folder_images
+  @folder_images ||= File.join(folder,'img')
+end
 def folder_events
   @folder_events ||= mkdir(File.join(folder,'events'))
 end

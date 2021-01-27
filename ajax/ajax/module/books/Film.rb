@@ -39,7 +39,7 @@ class Film
     end
   end
   def pathsuivi
-    @pathsuivi ||= File.join(folder,'building.log')
+    @pathsuivi ||= File.join(folder,'xbuilding.log')
   end
 
 

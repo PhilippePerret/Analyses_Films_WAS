@@ -185,19 +185,11 @@ REG_INCLUDE = /\[include:(.*?)\]/
 def traite_inclusion_in(str)
   str.gsub(REG_INCLUDE){
     relpath = $1.freeze
-    real_paths = [template(relpath)]
-    real_paths << File.join(Film.current.folder_documents,relpath)
-    real_paths << File.join(Film.current.folder_products,relpath)
-    final_path = nil
-    real_paths.each do |rpath|
-      next unless File.exists?(rpath)
-      final_path = rpath
-      break
-    end
-    unless final_path.nil?
+    final_path = film.find_document(relpath)
+    if final_path
       traite_inclusion_in(File.read(final_path).force_encoding('utf-8'))
     else
-      "[Fichier introuvable. Cherché dans : #{real_paths.join(', ')}]"
+      "[Fichier introuvable. Cherché dans './documents', '_TEMPLATES_' et './products']"
     end
   }
 end
@@ -224,7 +216,7 @@ end
 # Retourne le path d'un dossier template (ou texte type)
 def template(relative_path)
   File.join(APP_FOLDER,'_TEMPLATES_',relative_path)
-end #/ template
+end
 
 def formate_as_a_integer(n)
 

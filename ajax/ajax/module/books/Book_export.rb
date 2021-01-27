@@ -23,16 +23,12 @@ def export(type)
   suivi('== /Fin de l’Export du livre ==')
 end
 
-def convertir_cover_html_to_jpg
-  `cd "#{film.folder_products}" && wkhtmltoimage cover.html cover.jpg`
-end #/ convertir_cover_html_to_jpg
-
 # Retourne la commande Calibre pour le livre
 def calibre_command(src, dst, format)
   options = []
 
   # La couverture
-  options << '--cover=./products/cover.jpg'
+  options << '--cover=img/cover.jpg'
   # Pour introduire toutes les fonts
   options << '--embed-all-fonts'
   # Pour la détection des chapitres
@@ -52,7 +48,7 @@ def calibre_command(src, dst, format)
     options << '--paper-size=a5'
   end
 
-  "cd \"#{film.folder}\";#{EBOOK_CONVERT_CMD} ./products/#{src} ./livres/#{dst} #{options.join(' ')}"
+  "cd \"#{film.folder_products}\";#{EBOOK_CONVERT_CMD} #{src} #{dst} #{options.join(' ')}"
 end #/ calibre_command
 
 
@@ -70,9 +66,10 @@ end #/ export_as(format)
 def build_book(type, dst, src = nil)
   src ||= xhtml_file_name
   File.delete(dst) if File.exists?(dst)
-  cmd = calibre_command(src, dst, type)
-  log("Commande Calibre jouée :\n#{cmd}")
-  result = `#{cmd} > ./calibre`
+  calibrecommand = calibre_command(src, dst, type)
+  log("Commande Calibre jouée :\n#{calibrecommand}")
+  result = `#{calibrecommand} > ./calibre`
+  move_book_to_folder_livres(dst, type, calibrecommand)
   Ajax << {retour_commande_calibre: result}
 end
 
@@ -87,6 +84,19 @@ def build_html_book
 
   File.open(html_file_path,'wb'){|f|f.write(code)}
   log("<- Llivre HTML construit avec succès dans #{html_file_path.inspect}")
+end
+
+def move_book_to_folder_livres(src, type, calibrecommand)
+  dst = File.join(film.folder_livres, src)
+  src = File.join(film.folder_products, src)
+  log("src:#{src}\ndst:#{dst}")
+  if File.exists?(src)
+    File.delete(dst) if File.exists?(dst)
+    FileUtils.move(src, dst)
+  else
+    log("\n\nERREUR AVEC LA COMMANDE :\n\n#{calibrecommand}\n\n")
+    raise "Une erreur a dû se produire : le livre de type '#{type}' n'a pas été construit… Essayer de jouer la commande placée dans le log pour trouver l'erreur."
+  end
 end
 
 def code_css(file_name)

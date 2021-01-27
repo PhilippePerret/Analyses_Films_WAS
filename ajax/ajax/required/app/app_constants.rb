@@ -8,7 +8,7 @@ EBOOK_CONVERT_CMD = '/Applications/calibre.app/Contents/console.app/Contents/Mac
 # Table des documents qui sont créés de façon automatique
 AUTO_DOCUMENTS = {
   'frontispice.html'  => {hname:'Huit premières pages', required_data:['book_title','isbn','author_books','author_name','publisher_name','publisher_address','copyright','dedicace']},
-  'pfa.jpg'           => {hname:'Paradigme de Field Augmentée du film'},
+  'pfa.html'          => {hname:'Paradigme de Field Augmentée du film'},
   'synopsis.html'     => {hname:'Synopsis'},
   'sequencier.html'   => {hname:'Séquencier'},
   'traitement.html'   => {hname:'Traitement'},

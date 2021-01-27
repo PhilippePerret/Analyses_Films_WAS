@@ -3,11 +3,12 @@
 class PFA
 
   PFA_WIDTH   = 4000 # 4000px (en 300dpi)
-  PFA_HEIGHT  = PFA_WIDTH / 4
+  # PFA_HEIGHT  = PFA_WIDTH / 4
+  PFA_HEIGHT  = (PFA_WIDTH.to_f / 1.6).to_i
   PFA_LEFT_MARGIN   = 150
   PFA_RIGHT_MARGIN  = 150
-  LINE_HEIGHT = PFA_HEIGHT / 15
-  log("LINE_HEIGHT = #{LINE_HEIGHT}")
+  LINE_HEIGHT = (PFA_HEIGHT.to_f / 15).to_i
+  # log("LINE_HEIGHT = #{LINE_HEIGHT}")
 
 class << self
 
@@ -117,11 +118,17 @@ def build
   log("\n\n\nCMD IMAGE: #{cmd}\n\n\n")
   res = `#{cmd} 2>&1`
   log("retour de commande: #{res.inspect}") if res != ""
-  # Pour l'ouvrir tout de suite
+
+  # On lui fait faire une rotation de -90°
+  cmd = "/usr/local/bin/convert #{path} -rotate -90 #{path}"
+  res = `#{cmd} 2>&1`
+  log("retour de commande de rotation : #{res.inspect}") if res != ""
+  # Pour l'ouvrir tout de suite (mais ça ne fonctionne pas, ce n'est pas
+  # possible en ajax)
   begin
     sleep 0.3
   end until File.exists?(path)
-  `open -a Aperçu "#{path}"`
+
 end #/build
 
 def realpos(val)
@@ -247,7 +254,7 @@ alias :na :noeudAbs
 
 # Chemin d'accès au fichier image du paradigme
 def path
-  @path ||= File.join(film.folder_products,'pfa.jpg')
+  @path ||= File.join(film.folder_images,'pfa.jpg')
 end
 
 # Méthode qui crée une bonne fois pour toutes les instances de nœuds absolu
