@@ -315,7 +315,7 @@ Ce sont des documents qui, conformément à leur type, sont fabriqués de façon
 Il s'agit :
 
 * de la couverture — `cover.html`,
-* du PFA du film (Paradigme de Field Augmenté) — `pfa.jpg`, 
+* du [PFA du film](#pfa) (Paradigme de Field Augmenté) — `pfa.jpg`, 
 * du séquencier — `sequencier.html`,
 * du synopsis — `synopsis.html`,
 * du traitement — `traitement.html`,
@@ -416,19 +416,82 @@ book_infos:
 		img_top:	Décalage haut (dans son conteneur)
 ~~~
 
+<a id="documents-automatiques"></a>
 
+### Les documents « automatiques »
+
+Les « documents automatiques » sont des documents qui se construisent de façon automatisée grâce aux informations relevées. Il s’agit aussi bien des séquenciers que des synopsis, des statistiques des personnages ou du PFA.
+
+#### Insérer les documents automatiques dans le livre
+
+Pour insérer un document automatique dans le livre, il suffit de mettre son nom (le nom du document `html`) dans la liste des documents dans le [fichier `config.yml`][] du film. Voici ce que donnerait une liste de documents avec tous les documents automatiques ajoutés :
+
+~~~yaml
+# ...
+documents:
+	- statistiques.html
+  - traitement.html
+	- synopsis.html
+	- pfa.html
+	- sequencier.html
+# ...
+~~~
+
+
+
+#### Commenter les documents automatiques
+
+On peut rédiger un document de commentaire pour chacun de ces documents en appelant ce fichier par l’affixe du fichier précédé de `commentaires_`. On peut ainsi trouver dans le dossier `./documents/` :
+
+
+
+~~~
+# Dans ./documents/
+commentaires_synopsis.md			Commentaires sur le synopsis
+commentaires_sequencier.md		Commentaires sur le séquencier
+commentaires_traitement.md		Commentaires sur le traitement
+commentaires_pfa.md						Commentaires sur le PFA du film
+commentaires_stats_personnages.md	
+															Commentaires sur les statistiques
+															des personnages.
+commentaires_stats_decors.md	Idem sur les décors
+commentaires_stats_scenes.md	Idem sur les scènes
+~~~
+
+
+
+#### PFA du film
+
+Le document automatique pour le PFA du film (Paradigme de Field Augmenté) est un document un peu spécial qui s’appuie sur la fabrication d’une image (avec `convert`) et tous les nœuds clés définis.
+
+La commande `build pfa` permet de construire cette image (qui sera tournée sur le côté pour s’insérer de travers dans le livre, en tout cas dans sa version imprimée).
+
+La commande `build pfa -html` produira le document final.
+
+Comme tous les [documents automatiques](#documents-automatiques), le PFA sera actualisé à la construction d’un livre, SAUF l’image qui devra être actualisée à l’aide de la commande `build pfa` si des nœuds ont été modifié.
 
 ---
 
+<a id="events"></a>
 
+## Les évènements d'analyse
 
+Les « évènements d'analyse » sont tous les points qu’on peut relever dans le film au cours de la phase appelée « collecte », qui consiste à noter tout ce qui peut être consigné pour le film, à commencer par :
+
+* les scènes,
+* les nœuds-clés (qui permettent d’établie le [PFA du film](#pfa)).
 
 ### Créer un évènement d'analyse
 
+* sortir de l’éventuel champ d’édition où l’on se trouve (![][Escape]),
+* positionner la vidéo à l’endroit concerné par l’évènement en [navigant dans le film](#naviguer),
+* choisir une des trois opérations suivante :
+  * initialiser le formulaire avec ![][K_I] (ce qui place automatiquement le pointeur dans le champ d’édition de l'évènement),
+  * OU se placer dans le champ de texte avec ![][K_T],
+  * OU créer une scène avec ![][K_N],
+* rédiger le contenu de l’évènement,
 * Choisir son type dans le menu (scène, nœud clé, etc.),
-* choisir le temps sur la vidéo en [navigant dans le film](#naviguer),
-* rédiger le contenu de l'évènement
-* cliquer sur le bouton « + » du listing d'éléments.
+* cliquer sur le bouton « + » du listing d’éléments (ou sortir du champ ![][Escape] et taper ![][K_S].
 
 ### Modifier un évènement d'analyse
 
@@ -1087,7 +1150,7 @@ Pour se placer rapidement dans la console, il suffit de jouer le raccourci ![][K
 | ---------------------- | ----------------------------- | ------------------------------------------------------------ |
 | Tous les livres        | `build books`                 | Construit tous les livres et les places dans le dossier `./finaux` du dossier du film. Attention cette commande ne reconstruit pas tous les fichiers à produire (synopsis, statistiques, etc.). Utiliser l’option `-update` pour ce faire. |
 | Un livre               | `build book <type>[ options]` | Construire le livre de type `<type>` qui peut être `html`, `pdf`,  `mobi` ou `epub`. Noter que cette méthode n’actualise pas les fichiers construits (comme le synopsis, les statistiques, etc.). Pour ce faire, ajouter l’option `-update`. |
-| PFA                    | `build pfa`                   | Construit une image (`pfa.jpg`) qu’il suffira de copier dans le livre |
+| PFA                    | `build pfa`                   | Construit une image (`pfa.jpg`) qu’il suffira de copier dans le livre. cf. [PFA](#pfa). |
 | Séquencier             | `build sequencier`            | Construit une page (format à voir) à introduire dans le livre. |
 | Synopsis               | `build synopsis`              | Construit le synopsis en se basant sur le contenu des évènements scènes. |
 | Traitement             | `build traitement`            | Construit le traitement. Un traitement est comme un séquencier, mais il présente le contenant complet de la scène ainsi que **tous les évènements qu’elle contient** (sauf ceux qui sont marqués à retirer). C’est donc la version la plus complète du film. |
@@ -1233,6 +1296,7 @@ On peut détruire régulièrement les dossiers les plus vieux, si tout est OK.
 [K_A]: ./img/clavier/K_A.png
 [K_C]: ./img/clavier/K_C.png
 [K_H]: ./img/clavier/K_H.png
+[K_I]: ./img/clavier/K_I.png
 [K_J]: ./img/clavier/K_J.png
 [K_K]: ./img/clavier/K_K.png
 [K_L]: ./img/clavier/K_L.png
