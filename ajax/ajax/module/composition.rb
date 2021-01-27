@@ -20,7 +20,7 @@ def build
 
   code = File.read(template_path).force_encoding('utf-8')
   File.open(composition_path,'wb') do |f|
-    f.write(code % fconfig.get(required_data))
+    f.write(code % fconfig.get(required_data).merge(print_date:Time.now.strftime('%m %Y')))
   end
 
 end #/ build

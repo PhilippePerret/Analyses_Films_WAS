@@ -389,7 +389,9 @@ title: Le titre du livre
 isbn:		Numéro ISBN
 book_infos:
 	depot_legal: janvier 2021 # date du dépot légal
-	imprimeur:	Éditions Icare # imprimeur
+	printer:	
+		name: Calibre # imprimeur
+		address: https://calibre-ebook.com/fr
 	print_date:	janvier 2021 # date de la fin d'impression
 	publisher:
 		name: Nom de l’éditeur

@@ -43,7 +43,8 @@ def cover_img_top     ; @cover_img_top      ||= coverinfos['top']         end
 
 def cover4_img_path   ; @cover4_img_path    ||= cover4infos['img_path']   end
 def depot_legal       ; @depot_legal        ||= bookinfos['depot_legal']  end
-def imprimeur         ; @imprimeur          ||= bookinfos['imprimeur']    end
+def printer_name      ; @printer_name       ||= printerinfos['name']      end
+def printer_address   ; @printer_address    ||= printerinfos['address']   end
 def print_date        ; @print_date         ||= bookinfos['print_date']   end
 
 
@@ -61,6 +62,9 @@ def dedicace_path
   @dedicace_path ||= File.join(film.folder_documents,'dedicace.md')
 end
 
+def printerinfos
+  @printerinfos ||= bookinfos['printer'] || raise("Il faut définir 'book_infos > printer >' dans le fichier config.yml du film !")
+end
 def bookinfos
   @bookinfos ||= config['book_infos'] || raise("Il faut définir 'book_infos' dans le fichier config.yml du film")
 end
