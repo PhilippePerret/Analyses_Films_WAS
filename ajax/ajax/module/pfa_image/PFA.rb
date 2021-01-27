@@ -3,8 +3,8 @@
 class PFA
 
   PFA_WIDTH   = 4000 # 4000px (en 300dpi)
-  # PFA_HEIGHT  = PFA_WIDTH / 4
-  PFA_HEIGHT  = (PFA_WIDTH.to_f / 1.6).to_i
+  PFA_HEIGHT  = PFA_WIDTH / 4
+  # PFA_HEIGHT  = (PFA_WIDTH.to_f / 1.6).to_i
   PFA_LEFT_MARGIN   = 150
   PFA_RIGHT_MARGIN  = 150
   LINE_HEIGHT = (PFA_HEIGHT.to_f / 15).to_i
@@ -120,9 +120,21 @@ def build
   log("retour de commande: #{res.inspect}") if res != ""
 
   # On lui fait faire une rotation de -90°
-  cmd = "/usr/local/bin/convert #{path} -rotate -90 #{path}"
-  res = `#{cmd} 2>&1`
+  # NON : maintenant, on la coupe en deux parties pour la mettre en
+  # haut de deux pages qui se font face
+  # cmd = "/usr/local/bin/convert #{path} -rotate -90 #{path}"
+  # res = `#{cmd} 2>&1`
+  # log("retour de commande de rotation : #{res.inspect}") if res != ""
+
+  moitieX = (PFA_WIDTH.to_f / 2).to_i
+  crop_gauche = "#{moitieX}x#{PFA_HEIGHT}+0+0"
+  crop_droite = "#{moitieX}x#{PFA_HEIGHT}+#{moitieX}+0"
+  cmd = ["cd '#{File.dirname(path)}'"]
+  cmd << "/usr/local/bin/convert pfa.jpg -crop #{crop_gauche} pfa-gauche.jpg"
+  cmd << "/usr/local/bin/convert pfa.jpg -crop #{crop_droite} pfa-droite.jpg"
+  res = `#{cmd.join(';')} 2>&1`
   log("retour de commande de rotation : #{res.inspect}") if res != ""
+
   # Pour l'ouvrir tout de suite (mais ça ne fonctionne pas, ce n'est pas
   # possible en ajax)
   begin

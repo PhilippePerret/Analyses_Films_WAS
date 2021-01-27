@@ -1,11 +1,16 @@
 <style type="text/css">
-  div#pfa {
-    float:left;
-    height:fit-content;
-    width:auto;
-  }
+  div#pfa-droite {page-break-before:right;}
+  div#pfa-gauche{page-break-before:left;}
 </style>
-<div id="pfa">
-  <img src="img/pfa.jpg" alt="Paradigme de Field Augmenté du film" />
+<div id="pfa-gauche" class="pfa gauche">
+  <img src="img/pfa-gauche.jpg" alt="Paradigme de Field Augmenté du film - partie gauche" />
+  <div class="pfa-explication">
+    <div class="titre">Nomenclature</div>
+    <div class="explication">Trouvez ci-dessous les explications des diminutifs employés ci-dessus</div>
+  </div>
+</div>
+<!-- Les commentaires seront placé ici -->
+<div id="pfa-droite" class="pfa">
+  <img src="img/pfa-droite.jpg" alt="Paradigme de Field Augmenté du film - partie droite" />
 </div>
 <!-- Les commentaires seront placé ici -->

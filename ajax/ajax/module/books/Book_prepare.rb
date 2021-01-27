@@ -73,13 +73,16 @@ end
 # Prépare l'image du PFA en la construisant si elle n'existe pas
 def prepare_image_pfa
   src = File.join(film.folder_images,'pfa.jpg')
-  dst = File.join(film.folder_img_in_products,'pfa.jpg')
   if not File.exists?(src)
     require_module('pfa_image')
     film.build_pfa
   end
-  delete_if_exists(dst)
-  FileUtils.copy(src, dst)
+  ['droite','gauche'].each do |cote|
+    src = File.join(film.folder_images,"pfa-#{cote}.jpg")
+    dst = File.join(film.folder_img_in_products,"pfa-#{cote}.jpg")
+    delete_if_exists(dst)
+    FileUtils.copy(src, dst)
+  end
 end
 
 def prepare_document_xhtml_final
