@@ -1,3 +1,27 @@
+<style>
+  div.page.frontispice {
+    padding-top:5cm;
+  }
+  div.frontispice > div {
+    margin-top:1em;
+  }
+  div.frontispice div.titre {
+    font-size:2em;
+  }
+
+  /* L'éditeur de la page 5 */
+  div#publisher-page-5 {
+    margin-top:2em;
+  }
+
+  /* Copyright de la page 6 */
+  div#copyright-page-6 {
+    width:100%%;
+    margin-left:2cm;
+    margin-right:2cm;
+    text-align:justify;
+  }
+</style>
 <div id="page-1" class="page frontispice">
   <!-- Vierge — page droite -->
 </div>
@@ -31,16 +55,13 @@
     %{book_title}
   </div>
   <div id="publisher-page-5" class="publisher">
-    <span class="name">%{publisher_name}</span>
-    <span class="address">%{publisher_address}</span>
+    <div class="name">%{publisher_name}</div>
+    <div class="address">%{publisher_address}</div>
   </div>
 </div>
 
 <div id="page-6" class="page frontispice">
   <!-- Informations livre - gauche -->
-  <div id="copyright-page-6" class="copyright">
-    %{copyright}
-  </div>
   <div id="auteur-page-6" class="auteur">
     %{author_name}
   </div>
@@ -50,8 +71,8 @@
   <div id="isbn-page-6" class="isbn">
     %{isbn}
   </div>
-  <div id="mention-page-6" class="mention">
-    Tous droits de traduction, d'adaptation et de reproduction interdits
+  <div id="copyright-page-6" class="copyright">
+    %{copyright}
   </div>
 </div>
 
