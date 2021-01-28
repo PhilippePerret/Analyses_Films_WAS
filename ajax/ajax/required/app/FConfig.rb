@@ -26,11 +26,12 @@ def get(keys)
 end
 
 def book_title        ; @book_title         ||= config['title']           end
-def isbn              ; @isbn               ||= config['isbn']            end
-def resume            ; @resume             ||= config['resume']          end
+def isbn              ; @isbn               ||= bookinfos['isbn']         end
+def resume            ; @resume             ||= bookinfos['resume']       end
 def author_name       ; @author_name        ||= authorinfos['name']       end
 def author_cv         ; @author_cv          ||= authorinfos['cv']         end
 def author_books      ; @author_books       ||= authorinfos['books']      end
+def author_photo      ; @author_photo       ||= authorinfos['photo']      end
 def publisher_name    ; @publisher_name     ||= pubinfos['name']          end
 def publisher_logo    ; @publisher_logo     ||= pubinfos['logo']          end
 def publisher_address ; @publisher_address  ||= pubinfos['address']       end
@@ -42,6 +43,10 @@ def cover_img_height  ; @cover_img_height   ||= coverinfos['height']      end
 def cover_img_top     ; @cover_img_top      ||= coverinfos['top']         end
 
 def cover4_img_path   ; @cover4_img_path    ||= cover4infos['img_path']   end
+def cover4_img_left   ; @cover4_img_left    ||= cover4infos['img_left']   end
+def cover4_img_width  ; @cover4_img_width   ||= cover4infos['img_width']  end
+def cover4_img_top    ; @cover4_img_top     ||= cover4infos['img_top']    end
+def cover4_img_height ; @cover4_img_height  ||= cover4infos['img_height'] end
 def depot_legal       ; @depot_legal        ||= bookinfos['depot_legal']  end
 def printer_name      ; @printer_name       ||= printerinfos['name']      end
 def printer_address   ; @printer_address    ||= printerinfos['address']   end
@@ -49,7 +54,7 @@ def print_date        ; @print_date         ||= bookinfos['print_date']   end
 
 
 def copyright         ; @copyright          ||= bookinfos['copyright']    end
-def prix              ; @prix               ||= config['prix']            end
+def prix              ; @prix               ||= bookinfos['prix']         end
 
 def dedicace
   if File.exists?(dedicace_path)

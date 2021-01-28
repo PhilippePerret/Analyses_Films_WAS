@@ -14,5 +14,5 @@ AUTO_DOCUMENTS = {
   'traitement.html'   => {hname:'Traitement'},
   'statistiques.html' => {hname:'Statistiques'},
   'composition.html'  => {hname:'Page d’information sur la composition du livre', required_data:['isbn','publisher_name', 'publisher_address', 'depot_legal', 'printer_name', 'printer_address']},
-  'quatrieme.html'    => {hname:'Quatrième de couverture', required_data:['resume','isbn','author_cv', 'cover4_img_path','prix']}
+  'quatrieme.html'    => {hname:'Quatrième de couverture', required_data:['resume','isbn','author_cv', 'author_photo', 'cover4_img_path', 'cover4_img_width', 'cover4_img_left','cover4_img_top', 'prix']}
 }

@@ -1,15 +1,49 @@
-<div id="cover4">
-  <img src="%{cover4_img_path}" alt="Image de quatrième de couverture" />
-  <div id="resume-cover4">
-    %{resume}
+<style type="text/css">
+  div#cover4-bande-resume{
+    position:relative;
+    margin-top:2cm;
+  }
+  div#cover4-bande-auteur {
+    position:relative;
+    width:100%%;
+    margin-top:1cm;
+  }
+  img#photo-cover4 {
+    float:left;
+    margin-right:1em;
+    margin-bottom:1em;
+    width:40%%;
+  }
+  img#photo-auteur {
+    float:right;
+    margin-left:1em;
+    margin-bottom:1em;
+    width:4cm;
+  }
+  div#cover4-bande-isbn {
+    position:absolute;
+    bottom:0.5cm;
+    margin-left:2cm;
+  }
+</style>
+<div id="cover4" class="page">
+
+  <div id="cover4-bande-resume">
+    <img id="photo-cover4" src="img/%{cover4_img_path}" alt="Image de quatrième de couverture" />
+    <div id="resume-cover4">%{resume}</div>
   </div>
-  <div id="cv-author">
-    %{author_cv}
+
+  <div id="cover4-bande-auteur">
+    <img id="photo-auteur" src="img/%{author_photo}" alt="Photo de l’auteur">
+    <div id="cv-author">%{author_cv}</div>
   </div>
-  <div id="isbn-cover4">
-    ISBN :  %{isbn}
-  </div>
-  <div id="prix-cover4">
-    Prix : %{prix}
+
+  <div id="cover4-bande-isbn">
+    <div id="cover4-isbn">
+      ISBN :  %{isbn}
+    </div>
+    <div id="cover4-prix">
+      Prix : %{prix}
+    </div>
   </div>
 </div>
