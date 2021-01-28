@@ -35,6 +35,7 @@ run(){
     case 'options':   return Options.togglePanel()
     case 'open':      return this.run_open_command(this.params[1], this.params[2])
     case 'build':     return this.run_build_command(this.params[1], this.params[2], this.params[3])
+    case 'todo':case'todolist':return this.run_todo_list(this.params)
     case 'pfa':       return this.run_pfa_command(this.params[1])
     case 'goto':      return DOMVideo.current.goto(this.params[1], this.params[2])
     case 'create':    return this.run_create_command(this.params[1], this.params[2])
@@ -56,17 +57,29 @@ run_essai(){
       , param2 = this.params[2]
   // message("Aucun essai pour le moment")
 
-
-  const audio = DGet('audio#audio')
-  audio.addEventListener('canplaythrough', this.StartTestsAudio.bind(this))
-  audio.src = '_FILMS_/Essais/marion.mp3'
-  audio.load()
 }
 
-StartTestsAudio(){
-  const itest = new TestAudio()
-  itest.tests = [2, 3, 4]
-  itest.startTests()
+/**
+* Interactions avec la todolist
+***/
+async run_todo_list(params){
+  this.todolist || await this.instancieTodoList()
+
+  const justOpen = !params[1]
+  params.shift() // on enlève la commande
+  const line = params.join(' ')
+
+  // Dans tous les cas, pour le moment, on ouvre la liste des tâches
+  this.todolist.open(() => {
+    justOpen || this.todolist.createNewTask.call(this.todolist, line)
+  })
+}
+
+async instancieTodoList(){
+  if('undefined' == typeof(TodoList)){
+    await loadJSModule('Todo_list')
+  }
+  this.todolist = new TodoList(film, `${film.relative_path}/todolist.data`)
 }
 
 /**
@@ -103,15 +116,12 @@ run_create_command(what, name){
   }
 }
 
-run_create_new_film(name){
+async run_create_new_film(name){
   // J'essaie de charger un module js
   if ( 'undefined' == typeof(FilmCreator) ){
-    const script = DCreate('SCRIPT',{src:"js/module/FilmCreator.js", type:"text/javascript"})
-    document.body.appendChild(script)
-    script.addEventListener('load', ev => { FilmCreator.createNew(name) })
-  } else {
-    FilmCreator.createNew(name)
+    await loadJSModule('FilmCreator')
   }
+  FilmCreator.createNew(name)
 }
 
 run_create_document(name){

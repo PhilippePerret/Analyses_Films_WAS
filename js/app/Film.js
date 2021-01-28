@@ -241,5 +241,8 @@ get menuPersonnages(){
 }
 get analyse(){return this._analyse || (this._analyse = new Analyse(this))}
 
+get relative_path(){
+  return this._relpath || (this._relpath = `_FILMS_/${this.folder}`)
+}
 get folder(){return this._folder || (this._folder = this.config.film_folder)}
 }// Film

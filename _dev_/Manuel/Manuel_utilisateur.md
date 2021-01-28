@@ -111,7 +111,7 @@ todo Une nouvelle tâche à faire
 
 On peut ajouter des tags pour classer les tâches et leur donner une priorité. 
 
-La **priorité** se définit par `P:X`, avec `X` qui est un nombre de 0 à 9.
+La **priorité** se définit par `P:X`, avec `X` qui est un nombre de 0 à 9 ("p" peut-être minuscule ou majuscule).
 
 Les **tags** se définissent par `T:NomTag` (pas d'espace pour le nom du tag). Les tags seront rassemblés entre eux.
 
@@ -122,6 +122,10 @@ todo Une tâche P:5 avec un tag T:interface et une autre tag T:bug
 ```
 
 Note : plus tard, les tags pourront se définir mieux, au niveau des couleurs notamment, dans le fichier de configuration.
+
+Les tâches peuvent être facilement classées par priorité en cliquant sur les points d'exclamation de n'importe quelle tâche qui définit une priorité.
+
+Les tâches possédant une tag peuvent être rassemblées simplement en cliquant sur cette tag dans n'importe quelle tâche qui la contient.
 
 <a id="fichier-config"></a>
 

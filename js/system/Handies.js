@@ -130,3 +130,15 @@ function clip(what, msg){
   msg && message(msg)
   field.remove()
 }
+
+/**
+* Pour charger un module du dossier 'js/module'
+***/
+function loadJSModule(moduleName){
+  moduleName.endsWith('.js') || (moduleName += '.js')
+  return new Promise((ok,ko)=>{
+    const script = DCreate('SCRIPT',{src:`js/module/${moduleName}`, type:"text/javascript"})
+    document.body.appendChild(script)
+    script.addEventListener('load', ok)
+  })
+}
