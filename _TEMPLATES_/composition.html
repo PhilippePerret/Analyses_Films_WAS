@@ -1,18 +1,33 @@
-<div id="page-composition" class="page">
+<style type="text/css">
+  div.page > div {
+    margin-top:1em;
+  }
+  div#publisher-composition {
+    margin-top:4cm;
+  }
+  label {
+    display:inline-block;
+    width:4.5cm;
+  }
+  .lonely {
+    display: block;
+    margin-left:4.5cm;
+  }
+</style><div id="page-composition" class="page">
 
   <div id="publisher-composition" class="publisher">
     <label>Éditeur : </label>
     <span class="name">%{publisher_name}</span>
-    <span class="address">%{publisher_address}</span>
+    <span class="address lonely">(%{publisher_address})</span>
   </div>
 
   <div id="depot-legal-composition" class="depot-legal">
-    <label>Dépôt légal : </label> %{depot_legal}
+    <label>Dépôt légal : </label><span>%{depot_legal}</span>
   </div>
 
   <div id="imprimeur-composition" class="imprimeur">
     <label>Imprimeur : </label><span class="name">%{printer_name}</span>
-    <span class="address">%{printer_address}</span>
+    <span class="address lonely">(%{printer_address})</span>
   </div>
 
   <div id="date_impression-composition" class="date_impression">
