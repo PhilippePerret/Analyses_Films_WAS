@@ -148,3 +148,251 @@ Commande Calibre jouée :
 cd "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products";/Applications/calibre.app/Contents/console.app/Contents/MacOS/ebook-convert livre.xhtml livre.epub --cover=img/cover.jpg --embed-all-fonts --chapter="//h:h2" --chapter-mark="pagebreak" --page-breaks-before="//h:div[@class='page']" --verbose
 src:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/livre.epub
 dst:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/livre.epub
+--- [2021-01-28 07:21:15 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/premieres_pages.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/premieres_pages.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/premieres_pages.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/presentation_collection.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/presentation_collection.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/presentation_collection.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/liste_livres.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/liste_livres.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/liste_livres.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/warning_langue.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/warning_langue.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/warning_langue.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/warning_horloges.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/warning_horloges.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/warning_horloges.md"]
+film dans FConfig = #<Film:0x00007ffe5923c530 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbackups/20210128", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbuilding.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbuilding.log>, @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/img", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/config.yml", @folder_images="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/img", @title="Pour des essais", @folder_documents="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/pfa.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/introduction.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/composition.html"], @personnages={"PR"=>#<Personnage:0x00007ffe5928d3b8 @data={"short_name"=>"Prota", "nick_name"=>"Protago", "full_name"=>"Protagoniste"}>, "AN"=>#<Personnage:0x00007ffe5928d340 @data={"short_name"=>"Anta", "nick_name"=>"Antago", "full_name"=>"Antagoniste"}>, "OQ"=>#<Personnage:0x00007ffe5928d2a0 @data={"short_name"=>"Objet de la qu\u00EAte", "nick_name"=>"Objet de la qu\u00EAte", "full_name"=>"Objet de la qu\u00EAte"}>}>
+Commande Calibre jouée :
+cd "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products";/Applications/calibre.app/Contents/console.app/Contents/MacOS/ebook-convert livre.xhtml livre.epub --cover=img/cover.jpg --embed-all-fonts --chapter="//h:h2" --chapter-mark="pagebreak" --page-breaks-before="//h:div[@class='page']" --verbose
+src:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/livre.epub
+dst:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/livre.epub
+--- [2021-01-28 07:22:50 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/premieres_pages.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/premieres_pages.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/premieres_pages.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/presentation_collection.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/presentation_collection.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/presentation_collection.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/liste_livres.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/liste_livres.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/liste_livres.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/warning_langue.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/warning_langue.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/warning_langue.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/warning_horloges.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/warning_horloges.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/warning_horloges.md"]
+film dans FConfig = #<Film:0x00007fbc5a9b0e38 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbackups/20210128", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbuilding.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbuilding.log>, @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/img", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/config.yml", @folder_images="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/img", @title="Pour des essais", @folder_documents="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/pfa.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/introduction.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/composition.html"], @personnages={"PR"=>#<Personnage:0x00007fbc5a0f5d20 @data={"short_name"=>"Prota", "nick_name"=>"Protago", "full_name"=>"Protagoniste"}>, "AN"=>#<Personnage:0x00007fbc5a0f5cd0 @data={"short_name"=>"Anta", "nick_name"=>"Antago", "full_name"=>"Antagoniste"}>, "OQ"=>#<Personnage:0x00007fbc5a0f5c58 @data={"short_name"=>"Objet de la qu\u00EAte", "nick_name"=>"Objet de la qu\u00EAte", "full_name"=>"Objet de la qu\u00EAte"}>}>
+Commande Calibre jouée :
+cd "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products";/Applications/calibre.app/Contents/console.app/Contents/MacOS/ebook-convert livre.xhtml livre.epub --cover=img/cover.jpg --embed-all-fonts --chapter="//h:h2" --chapter-mark="pagebreak" --page-breaks-before="//h:div[@class='page']" --verbose
+src:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/livre.epub
+dst:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/livre.epub
+--- [2021-01-28 07:23:48 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/premieres_pages.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/premieres_pages.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/premieres_pages.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/presentation_collection.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/presentation_collection.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/presentation_collection.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/liste_livres.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/liste_livres.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/liste_livres.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/warning_langue.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/warning_langue.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/warning_langue.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/warning_horloges.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/warning_horloges.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/warning_horloges.md"]
+film dans FConfig = #<Film:0x00007f918d1446e8 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbackups/20210128", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbuilding.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbuilding.log>, @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/img", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/config.yml", @folder_images="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/img", @title="Pour des essais", @folder_documents="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/pfa.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/introduction.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/composition.html"], @personnages={"PR"=>#<Personnage:0x00007f918d175590 @data={"short_name"=>"Prota", "nick_name"=>"Protago", "full_name"=>"Protagoniste"}>, "AN"=>#<Personnage:0x00007f918d175540 @data={"short_name"=>"Anta", "nick_name"=>"Antago", "full_name"=>"Antagoniste"}>, "OQ"=>#<Personnage:0x00007f918d1754c8 @data={"short_name"=>"Objet de la qu\u00EAte", "nick_name"=>"Objet de la qu\u00EAte", "full_name"=>"Objet de la qu\u00EAte"}>}>
+Commande Calibre jouée :
+cd "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products";/Applications/calibre.app/Contents/console.app/Contents/MacOS/ebook-convert livre.xhtml livre.epub --cover=img/cover.jpg --embed-all-fonts --chapter="//h:h2" --chapter-mark="pagebreak" --page-breaks-before="//h:div[@class='page']" --verbose
+src:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/livre.epub
+dst:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/livre.epub
+--- [2021-01-28 07:25:45 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/premieres_pages.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/premieres_pages.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/premieres_pages.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/presentation_collection.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/presentation_collection.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/presentation_collection.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/liste_livres.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/liste_livres.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/liste_livres.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/warning_langue.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/warning_langue.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/warning_langue.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/warning_horloges.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/warning_horloges.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/warning_horloges.md"]
+film dans FConfig = #<Film:0x00007fe97b084500 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbackups/20210128", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbuilding.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbuilding.log>, @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/img", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/config.yml", @folder_images="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/img", @title="Pour des essais", @folder_documents="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/pfa.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/introduction.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/composition.html"], @personnages={"PR"=>#<Personnage:0x00007fe97a861378 @data={"short_name"=>"Prota", "nick_name"=>"Protago", "full_name"=>"Protagoniste"}>, "AN"=>#<Personnage:0x00007fe97a8612d8 @data={"short_name"=>"Anta", "nick_name"=>"Antago", "full_name"=>"Antagoniste"}>, "OQ"=>#<Personnage:0x00007fe97a861260 @data={"short_name"=>"Objet de la qu\u00EAte", "nick_name"=>"Objet de la qu\u00EAte", "full_name"=>"Objet de la qu\u00EAte"}>}>
+Commande Calibre jouée :
+cd "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products";/Applications/calibre.app/Contents/console.app/Contents/MacOS/ebook-convert livre.xhtml livre.epub --cover=img/cover.jpg --embed-all-fonts --chapter="//h:h2" --chapter-mark="pagebreak" --page-breaks-before="//h:div[@class='page']" --verbose
+src:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/livre.epub
+dst:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/livre.epub
+--- [2021-01-28 07:31:27 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/premieres_pages.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/premieres_pages.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/premieres_pages.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/presentation_collection.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/presentation_collection.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/presentation_collection.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/liste_livres.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/liste_livres.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/liste_livres.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/warning_langue.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/warning_langue.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/warning_langue.md"]
+Document cherché dans : ["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/textes_types/warning_horloges.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_TEMPLATES_/textes_types/warning_horloges.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/textes_types/warning_horloges.md"]
+film dans FConfig = #<Film:0x00007fb72d91c508 @folder="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais", @folder_backups="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbackups", @backup_today_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbackups/20210128", @export_errors=[], @pathsuivi="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbuilding.log", @refsuivi=#<File:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/xbuilding.log>, @folder_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products", @folder_img_in_products="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/img", @folder_finaux="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres", @folder_img_in_livres="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/img", @config_path="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/config.yml", @folder_images="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/img", @title="Pour des essais", @folder_documents="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents", @documents=["/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/pfa.html", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/documents/introduction.md", "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/composition.html"], @personnages={"PR"=>#<Personnage:0x00007fb72d9653c0 @data={"short_name"=>"Prota", "nick_name"=>"Protago", "full_name"=>"Protagoniste"}>, "AN"=>#<Personnage:0x00007fb72d965320 @data={"short_name"=>"Anta", "nick_name"=>"Antago", "full_name"=>"Antagoniste"}>, "OQ"=>#<Personnage:0x00007fb72d9652a8 @data={"short_name"=>"Objet de la qu\u00EAte", "nick_name"=>"Objet de la qu\u00EAte", "full_name"=>"Objet de la qu\u00EAte"}>}>
+Commande Calibre jouée :
+cd "/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products";/Applications/calibre.app/Contents/console.app/Contents/MacOS/ebook-convert livre.xhtml livre.epub --cover=img/cover.jpg --embed-all-fonts --chapter="//h:h2" --chapter-mark="pagebreak" --page-breaks-before="//h:div[@class='page']" --verbose
+src:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/products/livre.epub
+dst:/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Essais/livres/livre.epub
+--- [2021-01-28 08:37:35 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 2
+--- [2021-01-28 08:37:36 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-28 08:37:37 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-28 08:37:37 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-28 08:37:39 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
+--- [2021-01-28 08:37:40 +0100] Entrée dans ajax.rb
+APP_FOLDER = "/Users/philippeperret/Sites/Analyses_Films_WAS"
+Chargement des modules
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/FConfig.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/MTime.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Film_main.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/DocRTFAnalyse.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/Formatage.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/app/app_constants.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Array.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Nil.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/handies.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Handies_files.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Integer.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/Hash.rb'
+Chargement module '/Users/philippeperret/Sites/Analyses_Films_WAS/ajax/ajax/required/system/String_RTF.rb'
+Nombre de fichiers .DS_Store détruits : 0
