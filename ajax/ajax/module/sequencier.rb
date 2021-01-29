@@ -2,8 +2,9 @@
 # frozen_string_literal: true
 # gem 'rrtf'
 # require 'rrtf'
-require_module('scenes')
-require_module('decors')
+require_relative 'Scenes'
+require_relative 'Decors'
+
 =begin
   Documentation sur le gem rrtf :
 

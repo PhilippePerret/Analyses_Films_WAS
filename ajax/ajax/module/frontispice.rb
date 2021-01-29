@@ -15,7 +15,7 @@ end
 def build
   # Avant toute chose, il faut s'assurer que les données requises soient
   # définies
-  data_valid? || raise("Données invalides : #{@invalidity}")
+  data_valid? || raise("Données manquantes : #{@invalidity}")
   File.delete(frontispice_path) if File.exists?(frontispice_path)
   code = File.read(template_path).force_encoding('utf-8')
   File.open(frontispice_path,'wb') do |f|

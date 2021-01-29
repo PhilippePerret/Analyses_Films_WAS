@@ -99,6 +99,8 @@ static get MESSAGES(){
       , {content: this.img('Entree')+' pour mettre l’évènement d’analyse sélectionné en édition séparée.'}
       , {content: this.img('P')+'pour afficher/masquer la liste des personnages'}
       , {content: this.img('H')+' (« H » comme « Horloge ») pour mettre le temps courant de la vidéo courante dans le presse-papier, sous forme de balise de temps.'}
+      , {content: 'Commande '+code('toto')+' pour afficher la todo liste'}
+      , {content: 'Commande '+code('todo Une nouvelle tâche P:3 T:tag1 T:tag2')+' pour créer une tâche'}
     ]
   } return this._messages
 }

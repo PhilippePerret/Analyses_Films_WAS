@@ -10,7 +10,7 @@
 =end
 require_relative 'data'
 require_relative 'AEvent'
-require_module('Decors')
+require_relative 'Decors'
 
 class Film
   attr_reader :scenes_per_event, :scenes_per_numero
@@ -149,15 +149,19 @@ def output(params)
     fmt << '%{content}'     if params[:content]
     fmt = fmt.join('')
   end
-  fmt % {intitule:f_intitule, times_infos:f_times_infos, resume:f_resume, content:f_content}
+  fmt % {numero:f_numero, intitule:f_intitule,
+    times_infos:f_times_infos, resume:f_resume, content:f_content,
+    lieu:hlieu, effet:heffet, decor:hdecor
+  }
 end #/ output
 
 
 def output_as_sequencier
-  f_intitule + f_times + f_resume
+  fmt = parag('%{numero}%{resume}') + parag('%{times_infos}') + parag('%{lieu}%{effet}%{decor}')
+  return output(format: fmt)
 end
 def output_as_traitement
-  f_intitule + f_times + f_resume + f_content + f_all_events
+  f_intitule + f_times + parag(f_resume,'resume') + f_content + f_all_events
 end
 def output_as_synopsis
   "<p><span class='time'>#{hstart}</span>#{f_force_content}</p>"
@@ -167,6 +171,9 @@ def output_as_stats
   formated_resume
 end
 
+def f_numero
+  @f_numero ||= "<p class='scene_numero'>#{numero}.</p>"
+end
 def f_intitule
   @f_intitule ||= "<p class='scene_intitule'>#{intitule}</p>\n"
 end
@@ -175,7 +182,7 @@ def f_times_infos
 end
 alias :f_times :f_times_infos
 def f_resume
-  @f_resume ||= "<p class='scene_resume'>#{resume}</p>\n"
+  @f_resume ||= "<span class='scene_resume'>#{resume}</span>\n"
 end
 def f_content
   @f_content ||= begin

@@ -17,13 +17,15 @@ def kramdown(src)
 end #/ kramdown
 
 # Retourne le code d'un span avec la classe +css+ et la valeur +text+
-def span(text, css)
+def span(text, css = nil)
   "<span class='#{css}'>#{text}</span>"
 end
-def div(text, css)
+def div(text, css = nil)
   "<div class='#{css}'>#{text}</div>"
 end
-
+def parag(text,css = nil)
+  "<p class='#{css}'>#{text}</p>"
+end
 # Retourne le titre +text+ de niveau +level+
 def htitle(text, level)
   "<h#{level}>#{text}</h#{level}>"

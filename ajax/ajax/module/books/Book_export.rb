@@ -68,7 +68,7 @@ def build_book(type, dst, src = nil)
   File.delete(dst) if File.exists?(dst)
   calibrecommand = calibre_command(src, dst, type)
   log("Commande Calibre jouée :\n#{calibrecommand}")
-  result = `#{calibrecommand} > ./calibre`
+  result = `#{calibrecommand} > ./x_output_calibre`
   move_book_to_folder_livres(dst, type, calibrecommand)
   Ajax << {retour_commande_calibre: result}
 end
