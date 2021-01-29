@@ -8,20 +8,20 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="148mm"
-   height="210mm"
-   viewBox="0 0 148 210"
+   width="1600"
+   height="2560"
+   viewBox="0 0 423.33333 677.33331"
    version="1.1"
    id="svg8"
    inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
-   sodipodi:docname="cover.svg"
+   sodipodi:docname="cover_template.svg"
    inkscape:export-filename="/Users/philippeperret/Sites/Analyses_Films_WAS/_FILMS_/Drive/img/cover.png"
    inkscape:export-xdpi="300"
    inkscape:export-ydpi="300">
   <defs
      id="defs2">
     <rect
-       x="52.281923"
+       x="52.281921"
        y="10.685357"
        width="76.323975"
        height="14.501556"
@@ -44,19 +44,6 @@
        width="135.99306"
        height="26.152512"
        id="rect12" />
-    <filter
-       inkscape:collect="always"
-       style="color-interpolation-filters:sRGB"
-       id="filter1619"
-       x="-0.0092643619"
-       width="1.0185287"
-       y="-0.010222775"
-       height="1.0204455">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="0.67054699"
-         id="feGaussianBlur1621" />
-    </filter>
     <rect
        x="62.18486"
        y="146.45406"
@@ -90,9 +77,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7817613"
-     inkscape:cx="244.04209"
-     inkscape:cy="409.10534"
+     inkscape:zoom="1.2415749"
+     inkscape:cx="260.66986"
+     inkscape:cy="216.15938"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -105,23 +92,31 @@
      inkscape:snap-bbox="true"
      inkscape:snap-nodes="false"
      inkscape:pagecheckerboard="false"
-     showborder="false">
+     showborder="false"
+     lock-margins="false"
+     units="px"
+     width="1600mm"
+     inkscape:lockguides="false">
     <sodipodi:guide
        position="0,210"
        orientation="0,559.37008"
-       id="guide1675" />
+       id="guide1675"
+       inkscape:locked="false" />
     <sodipodi:guide
        position="148,210"
        orientation="793.70079,0"
-       id="guide1677" />
+       id="guide1677"
+       inkscape:locked="false" />
     <sodipodi:guide
        position="148,0"
        orientation="0,-559.37008"
-       id="guide1679" />
+       id="guide1679"
+       inkscape:locked="false" />
     <sodipodi:guide
        position="0,0"
        orientation="-793.70079,0"
-       id="guide1681" />
+       id="guide1681"
+       inkscape:locked="false" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">

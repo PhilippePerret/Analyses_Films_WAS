@@ -776,8 +776,10 @@ Pour produire la couverture :
 * importer l’image `./img/cover-film-img.jpg`,
 * remplacer l’image du film par cette image,
 * changer le titre,
-* exporter l’image (en `PNG`),
-* ouvrir l’image dans Aperçu pour la transformer en `JPEG`.
+* exporter l’image (en `PNG`, sans compression),
+* ouvrir l’image dans Aperçu,
+* mettre sa taille à 1600x2560 (300ppp),
+* l'enregistrer en `JPEG` en meilleure qualité.
 
 <a id="dedicace"></a>
 
