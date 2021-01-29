@@ -40,29 +40,49 @@ label
     width: 500px
     margin-right: 1em
 
+section.book-section
+  background-color: white
+  div.explication-section
+    font-style: italic
+    font-size: 9pt
+
 .scene_intitule
   font-weight: bold
   font-variant: all-small-caps
-  font-size: 1.3em
+  font-size: 1em
   margin-top: 2em
 .scene_times_infos
   font-size: 9pt
-  margin-left: 1em
+
+// = Le résumé de scène =
 .scene_resume
-  font-style: italic
   margin-top: 1em
-  margin-left: 1em
+
+#sequencier
+  div.sequencier
+    div.scene
+      margin-top: 0.5em
+    p
+      margin-top: 4px
+      margin-bottom: 0
+      &.infos
+        margin-left: 1cm
+        font-size: 0.85em
+    .scene_resume
+      font-style: normal
+#traitement
+  .scene_resume
+    font-style: italic
+    margin-left: 1em
+
+// Une scène qui suit un numéro, comme dans le séquencier
+.scene_numero + .scene_resume
+  margin-left: 4px
+
 div:not(.synopsis)
   .scene_content
     margin-top: 1em
     margin-left: 1em
-
-div.sequencier
-  div.scene
-    span.scene_times_infos
-      margin-left: 1em
-    span.scene_resume
-      margin-left: 1em
 
 div.synopsis
   div.scene

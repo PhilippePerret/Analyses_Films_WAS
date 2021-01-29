@@ -10,7 +10,10 @@ class Film
     require_module('Scenes')
     File.delete(synopsis_path) if File.exists?(synopsis_path)
     @stream = File.open(synopsis_path,'a')
-    stream << "\n<h2>Synopsis complet</h2>\n\n"
+    stream << '<section id="synopsis" class="book-section">'
+    stream << htitle('Synopsis complet du film',2)
+    stream << explication_section('synopsis')
+
     stream << '<div class="synopsis">'
     sorted_scenes.each do |scene|
       stream << scene.output(as: :synopsis)
@@ -24,6 +27,8 @@ class Film
       stream << kramdown(commentaires_synopsis_path)
       stream << '</div>'
     end
+
+    stream << '</section>'
 
     if not document?('synopsis.html')
       Ajax << {message:"Il faut ajouter 'synopsis.html' à la liste des documents du fichier config.yml pour qu'il soit introduit dans le livre."}

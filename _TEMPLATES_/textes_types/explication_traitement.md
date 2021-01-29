@@ -1,0 +1,1 @@
+Le traitement présente l’intégralité de l’histoire avec le détail complet des scènes et de leur contenu. C’est la présentation la plus complète du film, qui contient quasiment la totalité du résultat de la collecte qui a précédé l’analyse du film.

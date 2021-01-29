@@ -1,0 +1,1 @@
+Le « séquencier », appelé aussi « chemin de fer », présente la succession des scènes du film avec leur résumé et quelques informations. Son vocation est de permettre d’avoir un bon aperçu de l’enchainement des situations.

@@ -22,7 +22,10 @@ class Film
   def build_sequencier
     File.delete(sequencier_path) if File.exists?(sequencier_path)
     @stream = File.open(sequencier_path,'a')
-    stream << "\n<h2>Séquencier complet du film</h2>\n\n"
+
+    stream << '<section id="sequencier" class="book-section">'
+    stream << htitle('Séquencier complet du film', 2)
+    stream << explication_section('sequencier')
     stream << '<div class="sequencier">'
     sorted_scenes.each do |scene|
       stream << scene.output(as: :sequencier)
@@ -35,6 +38,8 @@ class Film
       stream << kramdown(commentaires_sequencier_path)
       stream << '</div>'
     end
+
+    stream << '</section>'
 
     if not document?('sequencier.html')
       Ajax << {message:"Il faut ajouter 'traitement.html' à la liste des documents du fichier config.yml pour qu'il soit introduit dans le livre."}

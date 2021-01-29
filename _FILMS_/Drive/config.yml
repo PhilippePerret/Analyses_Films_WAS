@@ -5,14 +5,14 @@ resume: '<span class="film">Drive</span> raconte l''histoire d''un chauffeur dou
 
   '
 documents:
-- cover.html
-- frontispice.html
-- sequencier.html
+  - cover.html
+  - traitement.html
+  - sequencier.html
+  - synopsis.html
 documents_out:
-- traitement.html
-- synopsis.html
-- composition.html
-- quatrieme.html
+  - frontispice.html
+  - composition.html
+  - quatrieme.html
 book_infos:
   isbn: XX-X-XXXXX-XXX-XX
   prix: 5 €
@@ -62,7 +62,7 @@ personnages:
   CLIENTS:
     full_name: deux clients de PR
     short_name: deux clients
-    nick_name: clients
+    nick_name: ses clients
 decors:
   immeuble:
     hname: Immeuble PR

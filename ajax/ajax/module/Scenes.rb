@@ -138,28 +138,30 @@ end #/ times_infos
 #     :traitement   => intitule + times + resume + real content + events
 def output(params)
   if params.key?(:as)
-    return '<div class="scene">' + send("output_as_#{params[:as]}".to_sym) + '</div>'
+    case params[:as].to_sym
+    when :sequencier
+      fmt = parag('%{numero}%{resume}') + parag('%{times_infos} — %{lieu} %{decor}%{effet}','infos')
+    else
+      return '<div class="scene">' + send("output_as_#{params[:as]}".to_sym) + '</div>'
+    end
   elsif params.key?(:format)
     fmt = params[:format]
   else
     fmt = []
     fmt << '%{intitule}'    if params[:intitule]
-    fmt << '%{times_infos}' if params[:times_infos]
+    fmt << '%{par_times_infos}' if params[:times_infos]
     fmt << '%{resume}'      if params[:resume]
     fmt << '%{content}'     if params[:content]
     fmt = fmt.join('')
   end
-  fmt % {numero:f_numero, intitule:f_intitule,
-    times_infos:f_times_infos, resume:f_resume, content:f_content,
+  div(fmt % {numero:f_numero, intitule:f_intitule,
+    par_times_infos:par_times_infos,
+    times_infos:times_infos,
+    resume:f_resume, content:f_content,
     lieu:hlieu, effet:heffet, decor:hdecor
-  }
+  }, 'scene')
 end #/ output
 
-
-def output_as_sequencier
-  fmt = parag('%{numero}%{resume}') + parag('%{times_infos}') + parag('%{lieu}%{effet}%{decor}')
-  return output(format: fmt)
-end
 def output_as_traitement
   f_intitule + f_times + parag(f_resume,'resume') + f_content + f_all_events
 end
@@ -172,15 +174,15 @@ def output_as_stats
 end
 
 def f_numero
-  @f_numero ||= "<p class='scene_numero'>#{numero}.</p>"
+  @f_numero ||= "<span class='scene_numero'>#{numero}.</span>"
 end
 def f_intitule
   @f_intitule ||= "<p class='scene_intitule'>#{intitule}</p>\n"
 end
-def f_times_infos
-  @f_times_infos ||= "<p class='scene_times_infos'>#{times_infos}</p>\n"
+def par_times_infos
+  @par_times_infos ||= "<p class='scene_times_infos'>#{times_infos}</p>\n"
 end
-alias :f_times :f_times_infos
+alias :f_times :par_times_infos
 def f_resume
   @f_resume ||= "<span class='scene_resume'>#{resume}</span>\n"
 end

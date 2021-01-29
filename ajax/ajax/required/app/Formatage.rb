@@ -31,6 +31,12 @@ def htitle(text, level)
   "<h#{level}>#{text}</h#{level}>"
 end #/ title
 
+# Retourne la portion d'explication d'une section
+def explication_section(section_name)
+  path = template("textes_types/explication_#{section_name}.md")
+  div(kramdown(path),'explication-section')
+end
+
 # Retourne le pourcentage que représente la valeur +value+ par rapport
 # à la chose +what+
 # +what+ peut avoir les valeurs :

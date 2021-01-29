@@ -11,11 +11,14 @@ class Film
     dispatch_events_in_scenes
     File.delete(traitement_path) if File.exists?(traitement_path)
     @stream = File.open(traitement_path,'a')
-    stream << "\n<h2>Traitement complet</h2>\n\n"
+
+    stream << '<section id="traitement" class="book-section">'
+    stream << htitle('Traitement complet', 2)
+    stream << explication_section('traitement')
+
     sorted_scenes.each do |scene|
       stream << scene.output(as: :traitement)
     end
-
 
     # On ajoute les commentaires s'il y en a
     if File.exists?(commentaires_traitement_path)
@@ -24,6 +27,8 @@ class Film
       stream << kramdown(commentaires_traitement_path)
       stream << '</div>'
     end
+
+    stream << '</section>'
 
     if not document?('traitement.html')
       Ajax << {message:"Il faut ajouter 'traitement.html' à la liste des documents du fichier config.yml pour qu'il soit introduit dans le livre."}
@@ -54,6 +59,10 @@ class Film
   def traitement_path
     @traitement_path ||= File.join(folder_products, 'traitement.html')
   end #/ traitement_path
+
+  def explication_traitement_path
+    @explication_traitement_path ||= template('textes_types/explication_traitement.md')
+  end
 
   def commentaires_traitement_path
     @commentaires_traitement_path ||= File.join(folder_documents,'commentaires_traitement.md')
