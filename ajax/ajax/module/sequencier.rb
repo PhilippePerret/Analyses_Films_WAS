@@ -24,8 +24,10 @@ class Film
     @stream = File.open(sequencier_path,'a')
 
     stream << '<section id="sequencier" class="book-section">'
-    stream << htitle('Séquencier complet du film', 2)
-    stream << explication_section('sequencier')
+    stream << no_break([
+      htitle('Séquencier complet du film', 2),
+      explication_section('sequencier')
+    ])
     stream << '<div class="sequencier">'
     sorted_scenes.each do |scene|
       stream << scene.output(as: :sequencier)

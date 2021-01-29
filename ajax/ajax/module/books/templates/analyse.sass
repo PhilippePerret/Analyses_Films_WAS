@@ -5,6 +5,14 @@
 .small
   font-size: 85%
 
+.no-break
+  page-break-inside: avoid
+
+h1, h2, h3, h4
+  page-break-after: avoid
+  & + p
+    page-break-before: avoid
+
 $demipage: 14.85cm
 
 div.page
@@ -71,18 +79,38 @@ section.book-section
     .scene_resume
       font-style: normal
 #traitement
-  .scene_resume
-    font-style: italic
-    margin-left: 1em
+  p.intitule
+    margin-bottom: 4px
+    span.scene_intitule
+      font-size: 0.8em
+    span.scene_resume
+      font-style: italic
+      margin-left: 0
+  .scene_times_infos, .scene_content
+    margin-left: 1.5cm
+    margin-top: 0
+  .scene_times_infos
+    font-size: 0.8em
+  .scene_content
+    font-size: 0.9em
+  .events
+    font-size: 0.9em
+    margin-left: 1.8cm
+    .aevent
+      position: relative
+      .event_times_infos
+        position: absolute
+        left: -1.7cm
+        width: 1.5cm
+        font-family: Georgia
+        font-size: 8pt
+        text-align: right
+        color: #777777
+        font-style: italic
 
 // Une scène qui suit un numéro, comme dans le séquencier
 .scene_numero + .scene_resume
   margin-left: 4px
-
-div:not(.synopsis)
-  .scene_content
-    margin-top: 1em
-    margin-left: 1em
 
 div.synopsis
   div.scene

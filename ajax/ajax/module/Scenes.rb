@@ -105,19 +105,6 @@ end
 #
 # ---------------------------------------------------------------------
 
-# Intitulé de scène
-def intitule
-  @intitule ||= begin
-    @template_intitule ||= '%{num}. %{lieu} %{decor}%{effet}'
-    (@template_intitule % {num:numero, lieu:hlieu, decor:hdecor, effet:heffet}).upcase
-  end
-end
-
-# Ligne de time
-def times_infos
-  @template_times ||= "De #{hstart} à #{hfin} — Durée : #{duree.s2h(false)}"
-end #/ times_infos
-
 
 # ---------------------------------------------------------------------
 #
@@ -140,7 +127,9 @@ def output(params)
   if params.key?(:as)
     case params[:as].to_sym
     when :sequencier
-      fmt = parag('%{numero}%{resume}') + parag('%{times_infos} — %{lieu} %{decor}%{effet}','infos')
+      fmt = parag('%{numero}%{resume}') + parag('%{times_infos} | %{lieu} %{decor}%{effet}','infos')
+    when :traitement
+      fmt = parag('%{span_numero}%{span_resume} | %{span_intitule_sans_numero}','intitule') + f_times + f_content + f_all_events
     else
       return '<div class="scene">' + send("output_as_#{params[:as]}".to_sym) + '</div>'
     end
@@ -150,21 +139,22 @@ def output(params)
     fmt = []
     fmt << '%{intitule}'    if params[:intitule]
     fmt << '%{par_times_infos}' if params[:times_infos]
-    fmt << '%{resume}'      if params[:resume]
+    fmt << '%{par_resume}'      if params[:resume]
     fmt << '%{content}'     if params[:content]
     fmt = fmt.join('')
   end
-  div(fmt % {numero:f_numero, intitule:f_intitule,
+  div(fmt % {
+    numero:span_numero, span_numero:span_numero,
+    par_intitule:par_intitule, span_intitule:span_intitule, intitule:intitule,
+    span_intitule_sans_numero:span_intitule_sans_numero,
     par_times_infos:par_times_infos,
     times_infos:times_infos,
-    resume:f_resume, content:f_content,
+    par_resume:par_resume, resume:span_resume, span_resume:span_resume,
+    content:f_content,
     lieu:hlieu, effet:heffet, decor:hdecor
   }, 'scene')
 end #/ output
 
-def output_as_traitement
-  f_intitule + f_times + parag(f_resume,'resume') + f_content + f_all_events
-end
 def output_as_synopsis
   "<p><span class='time'>#{hstart}</span>#{f_force_content}</p>"
 end
@@ -173,37 +163,62 @@ def output_as_stats
   formated_resume
 end
 
-def f_numero
-  @f_numero ||= "<span class='scene_numero'>#{numero}.</span>"
+def span_numero
+  @span_numero ||= span("#{numero}. ", 'scene_numero')
 end
-def f_intitule
-  @f_intitule ||= "<p class='scene_intitule'>#{intitule}</p>\n"
+
+# Intitulé de scène
+def intitule
+  @intitule ||= begin
+    @template_intitule ||= '%{num}. %{lieu} %{decor}%{effet}'
+    (@template_intitule % {num:numero, lieu:hlieu, decor:hdecor, effet:heffet}).upcase
+  end
+end
+def intitule_sans_numero
+  @intitule_sans_numero ||= begin
+    @template_intitule_sans_num ||= '%{lieu} %{decor}%{effet}'
+    (@template_intitule_sans_num % {lieu:hlieu, decor:hdecor, effet:heffet}).upcase
+  end
+end
+
+# Ligne de time
+def times_infos
+  @template_times ||= "De #{hstart} à #{hfin} | Durée : #{duree.s2h(false)}"
+end #/ times_infos
+
+def par_intitule
+  @par_intitule ||= parag(intitule,'scene_intitule')
+end
+def span_intitule
+  @span_intitule ||= span(intitule,'scene_intitule')
+end
+def span_intitule_sans_numero
+  @span_intitule_sans_numero ||= span(intitule_sans_numero,'scene_intitule')
 end
 def par_times_infos
-  @par_times_infos ||= "<p class='scene_times_infos'>#{times_infos}</p>\n"
+  @par_times_infos ||= parag(times_infos,'scene_times_infos')
 end
 alias :f_times :par_times_infos
-def f_resume
-  @f_resume ||= "<span class='scene_resume'>#{resume}</span>\n"
+def span_resume
+  @span_resume ||= span(resume,'scene_resume')
+end
+def par_resume
+  @par_resume ||= parag(resume,'scene_resume')
 end
 def f_content
-  @f_content ||= begin
-    "<p class='scene_content'>#{real_content}</p>\n"
-  end
+  @f_content ||= parag(real_content,'scene_content')
 end
 # Même méthode que f_content, mais celle-ci force le contenu de la scène et
 # prend le résumé s'il est le seul à être défini (première ligne)
 def f_force_content
-  @f_content ||= begin
-    "<p class='scene_content'>#{real_content.empty? ? resume : real_content}</p>\n"
-  end
+  @f_content ||= parag(real_content.empty? ? resume : real_content,'scene_content')
 end
 
 # Retourne le formatage de tous les évènements appartenant à la
 # scène
 def f_all_events
   @f_all_events ||= begin
-    (events||[]).collect { |e| e.output(as: :traitement) }.join('')
+    div((events||[]).collect { |e| e.output(as: :traitement) }.join(''),'events')
   end
 end #/ f_all_events
 

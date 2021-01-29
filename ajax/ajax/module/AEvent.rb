@@ -30,7 +30,7 @@ def film ; @film ||= Film.current end
 def output(params)
   if params.key?(:as)
     if params[:as] == :traitement
-      div("#{f_type} #{f_times_infos}#{f_resume}#{f_content}",'aevent')
+      div("#{f_times_infos}#{f_resume}#{f_content}",'aevent')
     end
   end
 end #/ output
@@ -40,7 +40,7 @@ def f_type
   @f_type ||= "<span class='event_type'>#{htype.titleize}</span>"
 end #/ f_type
 def f_times_infos
-  @f_times_infos ||= "<span class='event_times_infos'>à #{hstart}</span>"
+  @f_times_infos ||= "<span class='event_times_infos'>#{hstart}</span>"
 end
 def f_resume
   @f_resume ||= "<p class='event_resume'>#{resume}</p>\n"

@@ -31,6 +31,10 @@ def htitle(text, level)
   "<h#{level}>#{text}</h#{level}>"
 end #/ title
 
+def no_break(ary)
+  div(ary.join(''),'no-break')
+end
+
 # Retourne la portion d'explication d'une section
 def explication_section(section_name)
   path = template("textes_types/explication_#{section_name}.md")
